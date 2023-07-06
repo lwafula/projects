@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+library(reticulate)
 ```
 
 # R
@@ -37,7 +38,7 @@ n = len(nums)
 ## Fibonacci series
 
 ```{r rpyobects, warning=FALSE, echo=FALSE, message=FALSE}
-n = fibonacci$n
+n = py$n
 nums = py$nums
 ```
 The first `r py$n` terms in a Fibonacci series are: `r py$nums`.
