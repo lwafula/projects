@@ -37,8 +37,5 @@ n = len(nums)
 
 ## Fibonacci series
 
-```{r rpyobects, warning=FALSE, echo=FALSE, message=FALSE}
-n = py$n
-nums = py$nums
-```
 The first `r py$n` terms in a Fibonacci series are: `r py$nums`.
+
