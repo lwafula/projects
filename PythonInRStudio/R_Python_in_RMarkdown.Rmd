@@ -39,3 +39,61 @@ n = len(nums)
 
 The first `r py$n` terms in a Fibonacci series are: `r py$nums`.
 
+# Data science basics - in Python
+
+* check here: 
+<https://www.youtube.com/watch?v=JL_grPUnXzY&list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV> 
+
+
+```{python L1L2regularization, warning  = FALSE, message = FALSE, echo = FALSE}
+
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+# import seaborn as sns
+
+
+import warnings
+warnings.filterwarnings('ignore')
+
+# Import Melbourne housing data
+
+dataset = pd.read_csv('C:/Users/Public/lmaaya/data/Melbourne_housing_FULL.csv')
+# dataset.head()
+# dataset.nunique()
+# dataset.shape
+
+# check and resolve for NA values
+# dataset.isna().sum()
+
+cols_to_fill_zero = ['Propertycount', 'Distance', 'Bedroom2', 'Bathroom', 'Car']
+
+dataset[cols_to_fill_zero] = dataset[cols_to_fill_zero].fillna(0)
+# dataset.isna().sum()
+
+dataset['Landsize'] = dataset['Landsize'].fillna(dataset.Landsize.mean())
+dataset['BuildingArea'] = dataset['BuildingArea'].fillna(dataset.BuildingArea.mean())
+# dataset.isna().sum()
+
+dataset.dropna(inplace=True)
+# dataset.isna().sum()
+
+# Convert categoricals to dummies
+dataset = pd.get_dummies(dataset, drop_first=True)
+# dataset.head()
+
+x = dataset.drop('Price', axis = 1)
+y = dataset['Price']
+
+
+# Train and test datasets
+#from sklearn.model_selection import train_test_split
+#X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.3, random_state=2)
+
+# Train the model
+#from sklearn.linear_model import LinearRegression
+#reg = LinearRegression().fit(X_train, Y_train)
+
+#print('Score on the test sample:', round(reg.score(X_test, Y_test),2), '. Score on the training data is',
+#     round(reg.score(X_train, Y_train), 2))
+```
