@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(reticulate)
+library(tidyverse)
 ```
 
 # R
@@ -19,6 +20,9 @@ The iris dataset has `r nrow(iris)` observations and `r NCOL(iris)` columns/vari
 
 # Python
 
+* Python for absolute beginners:
+  * <https://www.youtube.com/watch?v=LHRn9NMNBCQ&list=PLbvhRHYrmshRFWUrS6x2LgeE4CMte_m5K>
+  
 ```{python fibonacci, warning  = FALSE, message = FALSE, echo = FALSE}
 # Python program to generate Fibonacci series until 'n' value
 
@@ -44,13 +48,14 @@ The first `r py$n` terms in a Fibonacci series are: `r py$nums`.
 * check here: 
 <https://www.youtube.com/watch?v=JL_grPUnXzY&list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV> 
 
+## Lasso (L1 regularization) and Ridge (L2) regression
 
-```{python L1L2regularization, warning  = FALSE, message = FALSE, echo = FALSE}
+```{python L1L2regularization, warning  = FALSE, message = FALSE, echo = FALSE, results=FALSE}
 
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-# import seaborn as sns
+import seaborn as sns
 
 
 import warnings
@@ -59,6 +64,8 @@ warnings.filterwarnings('ignore')
 # Import Melbourne housing data
 
 dataset = pd.read_csv('C:/Users/Public/lmaaya/data/Melbourne_housing_FULL.csv')
+dataset = dataset.iloc[:1000] # select a few rows for demonstration purposes
+
 # dataset.head()
 # dataset.nunique()
 # dataset.shape
@@ -87,13 +94,36 @@ y = dataset['Price']
 
 
 # Train and test datasets
-#from sklearn.model_selection import train_test_split
-#X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.3, random_state=2)
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.3, random_state=2)
 
 # Train the model
-#from sklearn.linear_model import LinearRegression
-#reg = LinearRegression().fit(X_train, Y_train)
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression().fit(X_train, Y_train)
 
-#print('Score on the test sample:', round(reg.score(X_test, Y_test),2), '. Score on the training data is',
-#     round(reg.score(X_train, Y_train), 2))
+score = []
+score.append(round(reg.score(X_train, Y_train), 2))
+score.append(round(reg.score(X_test, Y_test),2))
+
+# Lasso regression//L1 regularization
+
+from sklearn import linear_model
+scoreL1 = []
+lasso_reg = linear_model.Lasso(alpha = 50, max_iter = 1000, tol = 0.1)
+lasso_reg.fit(X_train, Y_train)
+
+scoreL1.append(round(reg.score(X_train, Y_train), 2))
+scoreL1.append(round(reg.score(X_test, Y_test),2))
+
+# Ridge regression // L2 regularization
+from sklearn.linear_model import Ridge
+scoreL2 = []
+ridge_reg = Ridge(alpha = 50, max_iter = 1000, tol = 0.1)
+ridge_reg.fit(X_train, Y_train)
+
+scoreL2.append(round(ridge_reg.score(X_train, Y_train), 2))
+scoreL2.append(round(ridge_reg.score(X_test, Y_test),2))
 ```
+
+
+The score for the model without regularization on the training data is `r py$score[1]` while it is `r py$score[2]` on the test data. Elsewhere, the score for the model with L1 regularization - i.e. Lasso regression - on training (test) data is `r py$scoreL1[1]` (`r py$scoreL1[2]`). For L2 regularization - Ridge regression - the score is `r py$scoreL2[1]` (`r py$scoreL2[2]`). These results show that regularization does improve the predictiveness of trained models.
