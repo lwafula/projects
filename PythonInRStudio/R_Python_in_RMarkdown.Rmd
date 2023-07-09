@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(reticulate)
 library(tidyverse)
+library(ggplot2)
 ```
 
 # R
