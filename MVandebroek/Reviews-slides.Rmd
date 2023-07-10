@@ -1,0 +1,137 @@
+---
+title: "R codes "
+author: "Leonard Maaya, Martina Vandebroek"
+date: "2023-07-15"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# PART 1
+
+## Population and sample regression lines
+
+```{r regressionLines, warning=FALSE, message=FALSE, eval = TRUE}
+
+rm(list = ls())
+
+library(tidyverse)
+
+# settings
+
+samplesize = 20
+beta = c(5, 2)
+xrange = c(0, 10)
+errorstdev = 7
+
+set.seed(1072023)
+
+# end of settings
+
+## population + sample data and regression lines
+
+step = (xrange[2] - xrange[1])/(samplesize - 1)
+midrange = beta[1] + beta[2]*2*(xrange[2] - xrange[1])/2
+xvalues = seq(xrange[1], xrange[2], step)
+y = beta[1] + beta[2]*xvalues
+
+df = cbind(xvalues = seq(xrange[1], xrange[2], step)) %>% as.data.frame() %>%
+  mutate(y = beta[1] + beta[2]*xvalues, epsilon = rnorm(samplesize, 0, errorstdev)) %>%
+  mutate(yvalues = y + epsilon) %>% 
+  pivot_longer(cols = contains('y'), names_to = 'ytype', values_to = 'yvalues') %>%
+  mutate(ytype = factor(ifelse(ytype == 'yvalues', 'sample', 'population'))) %>% 
+  select(-c(epsilon))
+
+
+lm_fit = lm(yvalues ~ xvalues, data=df %>% filter(ytype=='sample')) # for predicted values
+
+## plot
+
+ggplot(df, aes(x= xvalues, y = yvalues, col = ytype)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + theme_bw() + 
+  labs(y = "y", x = 'x') + ggtitle('Population and sample regression lines') + 
+  ggeasy::easy_center_title() + scale_colour_manual(values= c('red', 'blue')) +
+  scale_x_continuous(breaks = seq(0, 10, 2), limits = c(0, 10), labels = seq(0, 10, 2)) + 
+  scale_y_continuous(breaks = c(seq(0, 30, 5)), limits = c(0, 30)) +
+  geom_line(data = df %>% filter(ytype=='population'), aes(x = xvalues, y = yvalues),
+            color="red", linewidth = 1) +
+  geom_line(data = broom::augment(lm_fit), aes(x = xvalues, y = predict(lm_fit)),
+            color="blue", linewidth = 1) + guides(col = guide_legend("Y-values"))
+
+
+```
+
+## Intercept & slope histograms
+
+```{r intslopeshistograms, warning=FALSE, message=FALSE, eval = TRUE}
+
+
+# settings
+
+samplesize = 10
+beta = c(5, 2)
+xrange = c(0, 10)
+errorstdev = 7
+nrsim = 100
+
+# set.seed(1072023)
+
+# end of settings
+
+## population + sample data and regression lines
+
+step = (xrange[2] - xrange[1])/(samplesize - 1)
+midrange = beta[1] + beta[2]*2*(xrange[2] - xrange[1])/2
+xvalues = seq(xrange[1], xrange[2], step)
+
+# function that generates several samples and computes performs regression: outputs
+#  intercept & slope
+
+
+intslop_fn = function(){
+  
+  df = cbind(xvalues = seq(xrange[1], xrange[2], step)) %>% as.data.frame() %>%
+    mutate(epsilon = rnorm(samplesize, 0, errorstdev)) %>% 
+    mutate(yvalues = beta[1] + beta[2]*xvalues + epsilon) %>% select(-c(epsilon))
+  
+  fit = lm(yvalues ~ xvalues, data = df)
+  
+  return(fit$coefficients)
+}
+
+df = cbind(r = 1:nrsim) %>% as.data.frame()
+df_intslopes = df %>% group_by(`r`) %>% nest() %>%
+  mutate(model = map(data, ~ intslop_fn())) %>% unnest(model) %>% 
+  mutate("values" = unname(model)) %>% select(-c(data, model)) %>%
+  mutate(parameter = as.factor(ifelse(row_number() == 1, 'intercepts', 'slopes'))) %>% 
+  ungroup() 
+  
+data_vline <- data.frame(parameter = unique(df_intslopes$parameter),  # Create data for lines
+                         vline = c(beta[1], beta[2]))
+
+## histograms
+
+ggplot(df_intslopes, aes(x= values)) + theme_bw() +  
+  geom_histogram(bins = 15, color = "black", fill = "gray")  + 
+  facet_grid(~ parameter, scales = "free", labeller = label_wrap_gen(multi_line = TRUE)) +
+    geom_vline(data = data_vline, aes(xintercept = vline), lwd = 1)
+
+
+
+# scatter plot
+## long -> wide
+df_intslopesWide = df_intslopes %>% 
+  pivot_wider(names_from = 'parameter', values_from = 'values')
+
+
+ggplot(df_intslopesWide, aes(x= intercepts, y = slopes)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + theme_bw() + 
+  ggtitle('Correlation plot') + ggeasy::easy_center_title() +
+  scale_x_continuous(breaks = seq(-7.5, 20, 5), limits = c(-7.5, 20), labels = seq(-7.5, 20, 5)) + 
+  scale_y_continuous(breaks = c(seq(0, 4.5, 1)), limits = c(0, 4.5))
+
+```
