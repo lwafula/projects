@@ -130,3 +130,17 @@ scoreL2.append(round(ridge_reg.score(X_test, Y_test),2))
 
 
 The score for the model without regularization on the training data is `r py$score[1]` while it is `r py$score[2]` on the test data. Elsewhere, the score for the model with L1 regularization - i.e. Lasso regression - on training (test) data is `r py$scoreL1[1]` (`r py$scoreL1[2]`). For L2 regularization - Ridge regression - the score is `r py$scoreL2[1]` (`r py$scoreL2[2]`). These results show that regularization does improve the predictiveness of trained models.
+
+```{python, warning=FALSE, message = FALSE, echo = FALSE}
+
+
+x = [i + 2*pow(i, 2) + 2*pow(i, 3) for i in range(1, 10, 1) if i%2== 1]
+[print(x, "*", y, "= ", x*y) for x in range(1, 10, 2) for y in range(1, 10, 3) if x==y]
+
+for x in range(1, 10, 2):
+  for y in range(1, 10, 3):
+    if x == y:
+      continue
+    print(x, "*", y, "= ", x*y)
+
+```
