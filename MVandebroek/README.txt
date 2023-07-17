@@ -10,5 +10,5 @@
 -- estimable functions? in cases where the X matrix is not of full rank i.e. for overparameterized models
 
 > Data
--- Sports data; can identify a few variables and a response to compare players profiles/ team's tactics etc
+-- StatBombR sports data; can identify a few variables and a response to compare players profiles/ team's tactics etc
 -- madrid housing data from Kaggle
