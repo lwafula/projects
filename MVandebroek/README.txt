@@ -8,3 +8,7 @@
 -- different ways of formulating an ANOVA model as a regression: cell means, weighted and unweighted factor effects?
 -- unequal sample sizes? the ANOVA decomposition no longer holds in this case, thus the need to use a regression approach
 -- estimable functions? in cases where the X matrix is not of full rank i.e. for overparameterized models
+
+> Data
+-- Sports data; can identify a few variables and a response to compare players profiles/ team's tactics etc
+-- madrid housing data from Kaggle
