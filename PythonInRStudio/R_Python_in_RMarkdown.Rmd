@@ -150,3 +150,24 @@ for x in range(1, 10, 2):
 
 #import StatsBombPy
 ```
+
+
+```{r sigmoidFn, echo=FALSE, warning=FALSE, message=FALSE}
+
+sigmoidFN = function(x){
+  return (1/ (1 + exp(-x)))
+}
+
+x = seq(-5, 5, 0.1)
+
+# plot(x, sigmoidFN(x), type = 'l')
+
+df = cbind(x = x, y = sigmoidFN(x)) %>% as.data.frame()
+
+ggplot(data = df, aes(x = x, y = y)) + geom_line() + labs(y="y") + theme_bw() + 
+  theme(axis.title.y = element_blank()) + 
+  scale_x_continuous(breaks = seq(-5, 5, 1), limits = c(-5, 5), labels = seq(-5, 5, 1), expand = c(0,0)) + 
+  scale_y_continuous(breaks = c(seq(0, 1, 0.2)), limits = c(0, 1), expand = c(0,0))
+
+
+```

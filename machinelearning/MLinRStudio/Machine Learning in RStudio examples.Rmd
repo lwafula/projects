@@ -1,0 +1,71 @@
+---
+title: "Machine Learning in R"
+author: "Leonard Maaya"
+date: "2023-07-18"
+output: html_document
+---
+
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+library(tidyverse)
+library(ggplot2)
+
+```
+
+# Book
+* Machine Learning with R (Brent Lantz, 2013)
+
+# Example data
+* Concrete comprehensive strength 
+  * <https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength>
+  * downloaded from Kaggle
+
+```{r concretedata, warning=FALSE, message=FALSE, echo=FALSE}
+datawd = 'C:/Users/Public/lmaaya/data/concrete+compressive+strength/'
+
+concrete <- read.csv(paste(datawd, "concrete_data.csv", sep = ""))
+
+# str(concrete)
+# 
+# normalizing function
+# 
+normalize = function(x){
+  return ((x - min(x))/ (max(x) - min(x)))
+}
+
+concrete_norm = as.data.frame(lapply(concrete, normalize))
+
+concrete_train = concrete_norm[1:773, ]
+concrete_test = concrete_norm[774:1030, ]
+
+# multilayer feedforward neural network
+
+library(neuralnet)
+
+# single hidden layer
+concrete_model = neuralnet(concrete_compressive_strength ~ cement + blast_furnace_slag + 
+                             fly_ash + water + superplasticizer + coarse_aggregate + 
+                             fine_aggregate + age, data = concrete_train)
+
+
+# model performance
+
+model_results = compute(concrete_model, concrete_test[1:8])
+predicted_strength = model_results$net.result
+
+corx = cor(predicted_strength, concrete_test$concrete_compressive_strength)
+```
+
+
+```{r MLplot}
+p = plot(concrete_model)
+
+print(p)
+
+
+```
+
+Since this is a numeric prediction and not a classification problem, we'll use the correlation between the predicted and observed values and not the confusion matrix. This correlation is `r formatC(corx, digits = 2, format = 'f')`
