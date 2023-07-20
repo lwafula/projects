@@ -1,0 +1,619 @@
+---
+title: "Data transformation: dplyr package"
+author: "Leonard Maaya, Martina Vandebroek"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    nature:
+      titleSlideClass: ["center", "middle", "inverse"]
+      ratio: 16:9
+    seal: true
+    css: ["xaringan-themer.css", "custom.css"]
+---
+
+layout: true
+
+background-image: url(KU_Leuven_logo.png)
+background-position: 100% 0%
+background-size: 20%
+
+<!-- <hr style="border:2px solid blue"> -->
+---
+
+class: center, middle
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#themes
+library(xaringanthemer)
+library(flextable)
+library(kableExtra)
+library(officer)
+library(kableExtra)
+library(rmarkdown)
+library(openxlsx)
+library(readxl)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+```
+
+# Introduction
+
+.left[Data transformation is an important step before starting to visualize and analyze your data. Transformation may involve:
+
+* creating new variables and summaries
+* renaming some variables
+* reordering observations
+* format variables
+* select variables
+* perform analyses by group
+* filter/ subset observations
+* etc ...
+]
+
+.left[The *dplyr* package is the workhorse for data transformation in R.]
+
+---
+class: center, middle
+
+# Installing dplyr
+
+* .left[as a standalone package:
+
+_install.packages("dplyr")_
+  * which is then called in R by:
+  
+      _library(dplyr)_
+]
+
+* .left[as part of the *tidyverse* package
+
+_install.packages('tidyverse')_
+
+  * Note: *tidyverse* is a collection of packages for data science:
+  
+      * dplyr
+      * ggplot2
+      * tidyr 
+      * ...
+    
+  * here, loading *tidyverse* automatically loads *dplyr* plus the rest of the packages
+  
+  _library(tidyverse)_
+]
+
+---
+class: center, middle
+
+.left[We will load *dplyr* as part of *tidyverse* package and show some of its uses on the iris data
+
+```{r loaddplyr, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+#install.packages('tidyverse') # uncomment to install tidyverse
+
+library(tidyverse) 
+
+iris = iris
+
+```
+
+A subset of the iris dataset is shown in the table below:
+
+```{r irishead, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+.left[In the next slides, we will show some key dplyr functions and their examples on the iris data]
+
+---
+class: center, middle
+
+# Dplyr functions
+
+## Pipes
+
+---
+class: center, middle
+
+## Select()
+
+.left[Selects columns by name or position
+
+* Select all sepal columns by name
+
+```{r selectbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+# Notes:
+## pipes: %>%
+## select()
+
+irissubset =  iris %>% select(Sepal.Length, Sepal.Width)
+
+```
+
+
+```{r selectout, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+]
+
+---
+class: center, middle
+
+
+.left[Alternative ways of specifying columns 
+
+* Using *contains* option in *select* function
+
+  * *contains* picks out all column names having a *Sepal* pattern
+
+```{r selectcontainsbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+# Notes:
+## select(contains())
+
+irissubset =  iris %>% select(contains("Sepal"))
+
+```
+
+  * By position
+  
+```{r selectbyPositionbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissubset =  iris %>% select(1:2)
+
+```
+
+  
+```{r selectcontainsout, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+class: center, middle
+
+.left[Other helper functions within *select()*:
+
+* *starts_with("Sep")*
+* *ends_with("")*
+* *num_range("x", 1:3)*
+* Use _select()_ together with _everything()_ to reorder columns in a data frame as shown below
+
+.left-code[
+
+Initial order of columns
+
+```{r reorderColsSelect, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissubset = head(iris)
+
+```
+
+
+```{r selectbefore, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+]
+
+.right-code[
+
+Move Species/Petal columns to start
+
+```{r reoderSelect2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+arranged_iris = irissubset %>% 
+  select(Species, contains("Petal"), 
+         everything()) 
+
+```
+
+
+```{r reorderselectafter, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(arranged_iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+]
+
+---
+class: center, middle
+
+## Arrange()
+
+.left[ Sorts rows according to one or more columns
+  
+  * by default, _arrange()_ sorts in an ascending order
+  * to change to descending order, place a **minus sign (i.e. -)** before the ordering column
+      * alternative 2: use *desc(column)* function
+      
+  * Missing values are always sorted to the end
+]
+
+---
+
+
+### Arrange: Ascending
+
+.left-code[
+
+* Before arrange()
+  * For illustration, only the sepal columns are used
+
+```{r arrangebeforeSelect, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+# Notes
+## pipes: %>%
+## select() 
+
+irissubset = iris %>% 
+  select(c(Sepal.Length, Sepal.Width))
+
+```
+
+
+```{r arrangebefore, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+]
+
+.right-code[
+
+* After arrange() 
+  * on Sepal.Length column
+
+```{r arrangeWH, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+# Notes:
+## pipes: %>%
+## arrange()
+
+arranged_iris = irissubset %>% 
+  arrange(Sepal.Length)
+
+```
+
+
+```{r arrangeafter, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(arranged_iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+
+
+### Arrange: Descending 
+
+.left-code[
+
+* Before arrange()
+  * For illustration, only the sepal columns are used
+
+```{r arrangebeforeSelect2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+# Notes
+## pipes: %>%
+## select() 
+
+irissubset = iris %>% 
+  select(c(Sepal.Length, Sepal.Width))
+
+```
+
+
+```{r arrangebefore2, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+]
+
+.right-code[
+
+* After arrange() 
+  * on Sepal.Length column
+
+```{r arrangeWH2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+# Notes:
+## pipes: %>%
+## arrange()
+
+arranged_iris2 = irissubset %>% 
+  arrange(-Sepal.Length)
+
+```
+
+
+```{r arrangeafter2, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(arranged_iris2)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+
+### Arrange on two columns 
+
+.left-code[
+
+* Before arrange()
+  * For illustration, only the sepal columns are used
+
+```{r arrangebeforeSelect3, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+# Notes
+## pipes: %>%
+## select() 
+
+irissubset = iris %>%
+  select(c(Sepal.Length, Sepal.Width))
+
+```
+
+
+```{r arrangebefore3, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+]
+
+.right-code[
+
+* After arrange() 
+  * decreasing Sepal.Length, increasing Sepal.Width
+
+```{r arrangeWH3, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+# Notes:
+## pipes: %>%
+## arrange()
+
+arranged_iris3 = irissubset %>% 
+  arrange(-Sepal.Length, Sepal.Width)
+
+```
+
+
+```{r arrangeafter3, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(arranged_iris3)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+class: center, middle
+
+## Mutate()
+
+.left[For creating new variables to a dataset and/or transforming existing variables
+* the columns are always added at the end of the dataset
+* as an example, if we want to calculate differences between Sepal & Petal lengths and widths
+
+```{r mutatediff, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissubset = head(iris %>% select(Species, everything()))
+irissubset = irissubset %>% 
+  mutate(SP_length_diff = Sepal.Length-Petal.Length, SP_width_diff = Sepal.Width - Petal.Width)
+
+```
+
+
+```{r mutatedifftab, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(irissubset) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+class: center, middle
+
+.left[Similar to _select()_, _mutate()_ can use many functions to create new variables:
+
+* arithmetic operators: +, -, *, /
+* logs
+* offsets e.g. _lead()_, _lag()_
+* cumulative and rolling aggregates: _cumprod()_, _cumsum()_, _cummean()_ etc
+]
+
+### mutate_if()
+
+.left[Checks if a condition is met before applying a transformation to a column
+* say we want to format all character variables to be factors in the iris dataset
+
+```{r mutateif, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+irissubset = head(iris %>% select(Species, everything()))
+
+# calculate the ratios and then format the rel
+irissubset = irissubset %>% 
+  mutate(SP_len_ratio = Sepal.Length/Petal.Length, SP_wid_ratio = Sepal.Width/Petal.Width) %>%
+  mutate_if(is.character, as.factor)
+
+```
+
+]
+---
+class: center, middle
+
+### mutate_at()
+
+.left[Allows to specify specific columns on which an operation should be performed
+
+* say we want to format all ratios between corresponding Sepal and Petal variables to appear with 2 decimal places
+
+
+```{r mutateat, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+irissubset = head(iris %>% select(Species, everything()))
+
+# function to format variables to 2 decimal places
+format_fn = function(x) formatC(x, format = 'f', digits = 2)
+
+# columns to format
+cols_to_format  = c("SP_len_ratio", "SP_wid_ratio")
+
+# calculate the ratios and then format the rel
+irissubset = irissubset %>% 
+  mutate(SP_len_ratio = Sepal.Length/Petal.Length, SP_wid_ratio = Sepal.Width/Petal.Width) %>%
+  mutate_at(.vars = all_of(cols_to_format), .funs = format_fn)
+
+```
+
+
+```{r mutateattab, echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+flextable(head(irissubset, 3)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+---
+class: center, middle
+
+## Filter()
+
+.left[Used to extract rows based on a specified condition
+* for instance, to extract all rows of the **Setosa** species
+
+```{r filterdf, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissetosa = iris %>% filter(Species == 'setosa') # keep Setosa Species
+flextable(table(irissetosa %>% pull(Species)) %>% as.data.frame())
+
+```
+
+
+* filter Setosa Species with Sepal length above the median Sepal Length
+
+```{r filterdf2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissetosa2 = iris %>% filter(Species == 'setosa' & Sepal.Width > median(Sepal.Width)) 
+
+```
+
+
+]
+
+---
+class: center, middle
+
+## summarise()
+
+---
+class: center, middle
+
+## group_by()
+
+---
+class: center, middle
+
+# Resources
+
+* .left[<https://r4ds.had.co.nz/transform.html>]
+* .left[<https://cran.r-project.org/web/packages/dplyr/dplyr.pdf>]
+<!-- * .left[<https://www.nbshare.io/notebook/27204389/How-To-Use-R-Dplyr-Package/>] -->
+<!-- * .left[<https://towardsdatascience.com/data-transformation-in-r-288e95438ff9>] -->
