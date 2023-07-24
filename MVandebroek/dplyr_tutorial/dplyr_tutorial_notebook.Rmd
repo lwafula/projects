@@ -1,0 +1,91 @@
+---
+title: "Data transformation: dplyr package"
+output: html_notebook
+---
+
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#themes
+library(xaringanthemer)
+library(flextable)
+library(kableExtra)
+library(officer)
+library(kableExtra)
+library(rmarkdown)
+library(openxlsx)
+library(readxl)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+```
+
+# Introduction
+
+Data transformation is an important step before starting to visualize and analyze your data. Transformation may involve:
+
+* creating new variables and summaries
+* renaming some variables
+* reordering observations
+* format variables
+* select variables
+* perform analyses by group
+* filter/ subset observations
+* etc ...
+
+The *dplyr* package is the workhorse for data transformation in R.
+
+
+# Installing dplyr
+
+* as a standalone package:
+
+_install.packages("dplyr")_
+
+  * which is then called in R by:
+  
+      _library(dplyr)_
+
+* as part of the *tidyverse* package
+
+_install.packages('tidyverse')_
+
+  * Note: *tidyverse* is a collection of packages for data science:
+  
+      * dplyr
+      * ggplot2
+      * tidyr 
+      * ...
+    
+  * here, loading *tidyverse* automatically loads *dplyr* plus the rest of the packages
+  
+      _library(tidyverse)_
+
+We will load *dplyr* as part of *tidyverse* package and show some of its uses on the iris data
+
+```{r loaddplyr, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+#install.packages('tidyverse') # uncomment to install tidyverse
+
+library(tidyverse) 
+
+iris = iris
+
+```
+
+A subset of the iris dataset is shown in the table below:
+
+```{r irishead, echo=FALSE, warning=FALSE, message=FALSE, eval=TRUE, results='asis'}
+
+flextable(head(iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+
+In the next slides, we will show some key dplyr functions and their examples on the iris data
+

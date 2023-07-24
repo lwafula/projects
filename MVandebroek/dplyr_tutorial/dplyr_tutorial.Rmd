@@ -120,7 +120,71 @@ class: center, middle
 
 # Dplyr functions
 
-## Pipes
+---
+class: center, middle
+
+## Pipes (%>%)
+
+.left[Pipes are used to combine operations. Pipes are very common in R codes that use functions from _dplyr_ and _tidyverse_.
+
+* say we want to calculate the means for _Sepal.Length_ and _Sepal.Width_ columns by species for the iris dataset:
+
+  I. One way to do this could be 
+      * first, group the observations by _Species_
+      * second, calculate the means for the columns
+      
+```{r pipeinSteps, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+by_group = group_by(iris, Species)
+meanSepals <- summarise(by_group, mean_Sepal.Length = mean(Sepal.Length, na.rm = TRUE),
+  mean_Sepal.Width = mean(Sepal.Width, na.rm = TRUE))
+
+```
+
+
+```{r pipeinStepsTab, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(meanSepals) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+   II. A second way is to combine the operations through a _pipe_, annotated by _%>%_ in the code below
+
+]
+
+---
+
+class: center, middle
+
+.left[
+
+
+```{r pipeinSteps2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+meanSepals2 <- iris %>% group_by(Species) %>% 
+  summarise(mean_Sepal.Length = mean(Sepal.Length, na.rm = TRUE),
+  mean_Sepal.Width = mean(Sepal.Width, na.rm = TRUE))
+
+```
+
+
+```{r pipeinStepsTab2, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(meanSepals2) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+* Note:
+  * the _group_by()_ and _summarise()_ functions used here are discussed in later slides
+]
 
 ---
 class: center, middle
@@ -601,13 +665,34 @@ irissetosa2 = iris %>% filter(Species == 'setosa' & Sepal.Width > median(Sepal.W
 ---
 class: center, middle
 
-## summarise()
+## Summarise()
 
----
-class: center, middle
+.left[Provides summary statistics from a dataset. For instance, if we want to find the median values for Petal columns by species:
 
-## group_by()
+```{r summarise, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+medianPetals <- iris %>% group_by(Species) %>% select(contains('Petal')) %>% 
+  summarise(median_Pelal.Length = mean(Petal.Length, na.rm = TRUE),
+  median_Petal.Width = mean(Petal.Width, na.rm = TRUE))
 
+```
+
+
+```{r summariseTab, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(medianPetals) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+## Group_by()
+
+.left[It helps other functions perform their operations by groups in a dataset. It does not change the data in itself, but changes how the data is interpreted by other functions. ]
 ---
 class: center, middle
 
