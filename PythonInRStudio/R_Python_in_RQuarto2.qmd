@@ -1,0 +1,74 @@
+---
+title: "Python and R in Quarto"
+format: html
+editor: visual
+---
+
+## Tutorial:
+
+%%HTML
+<https://www.youtube.com/watch?v=_f3latmOhew>
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+### Python
+
+```{python}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{python}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{python}
+
+N = 101
+
+total = 0
+
+for i in range(1, N, 1):
+  
+  total += i
+  
+print(f' The total of the first {N - 1} numbers is {total}.')
+  
+```
+
+* To call Python objects directly, you have to explicitely load the **reticulate** library.
+
+```{r}
+
+library(reticulate)
+
+```
+
+The total of the first `r py$N - 1` numbers is `r py$total`.
+
+
+### R
+
+```{r}
+
+total = 0
+N = 100
+
+for( i in 1:N){
+ 
+  total = total + i 
+}
+
+```
+
+The total of the first `r N` is `r total`.

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Basics of commonly used R packages - Data transformation: dplyr package</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Basics of commonly used R packages</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Data transformation: dplyr package</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dvisualization.html" rel="" target="">
+ <span class="menu-text">Data visualization: ggplot2 package</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data transformation: dplyr package</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Data transformation is an important step before starting to visualize and analyze your data. Transformation may involve:</p>
+<ul>
+<li>creating new variables and summaries</li>
+<li>renaming some variables</li>
+<li>reordering observations</li>
+<li>format variables</li>
+<li>select variables</li>
+<li>perform analyses by group</li>
+<li>filter/ subset observations</li>
+<li>etc …</li>
+</ul>
+<p>The <em>dplyr</em> package <span class="citation" data-cites="dplyr-2">(<a href="#ref-dplyr-2" role="doc-biblioref">Wickham et al. 2023</a>)</span> is the workhorse for data transformation in R.</p>
+</section>
+<section id="installing-dplyr" class="level1">
+<h1>Installing dplyr</h1>
+<p><em>Dplyr</em> can be installed in two ways:</p>
+<ul>
+<li>as a standalone package:</li>
+</ul>
+<p><em>install.packages(“dplyr”)</em></p>
+<ul>
+<li><p>which is then called in R by:</p>
+<p><em>library(dplyr)</em></p></li>
+<li><p>as part of the <em>tidyverse</em> package <span class="citation" data-cites="tidyverse-2">(<a href="#ref-tidyverse-2" role="doc-biblioref">Wickham et al. 2019</a>)</span></p>
+<p><em>install.packages(‘tidyverse’)</em></p>
+<ul>
+<li><p>Note: <em>tidyverse</em> is a collection of packages for data science:</p>
+<ul>
+<li>dplyr</li>
+<li>ggplot2</li>
+<li>tidyr</li>
+<li>…</li>
+</ul></li>
+<li><p>In this case, loading <em>tidyverse</em> automatically loads <em>dplyr</em> plus the rest of the packages</p></li>
+</ul>
+<p><em>library(tidyverse)</em></p></li>
+</ul>
+<p>We will load <em>dplyr</em> as part of <em>tidyverse</em> package and show some of its uses on the iris data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('tidyverse') # uncomment to install tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">=</span> iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A subset of the iris dataset is shown in the table below:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2df4e44c{}.cl-2de504c8{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2debc7d6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2debc7e0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2debfc42{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc56{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc57{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc60{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc61{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc6a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc6b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2debfc74{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2df4e44c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2debfc42"><p class="cl-2debc7d6"><span class="cl-2de504c8">Sepal.Length</span></p></th><th class="cl-2debfc56"><p class="cl-2debc7e0"><span class="cl-2de504c8">Sepal.Width</span></p></th><th class="cl-2debfc56"><p class="cl-2debc7e0"><span class="cl-2de504c8">Petal.Length</span></p></th><th class="cl-2debfc56"><p class="cl-2debc7e0"><span class="cl-2de504c8">Petal.Width</span></p></th><th class="cl-2debfc56"><p class="cl-2debc7e0"><span class="cl-2de504c8">Species</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2debfc57"><p class="cl-2debc7d6"><span class="cl-2de504c8">5.1</span></p></td><td class="cl-2debfc60"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.5</span></p></td><td class="cl-2debfc60"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.4</span></p></td><td class="cl-2debfc60"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.2</span></p></td><td class="cl-2debfc60"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2debfc61"><p class="cl-2debc7d6"><span class="cl-2de504c8">4.9</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.0</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.4</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.2</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2debfc61"><p class="cl-2debc7d6"><span class="cl-2de504c8">4.7</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.2</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.3</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.2</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2debfc61"><p class="cl-2debc7d6"><span class="cl-2de504c8">4.6</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.1</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.5</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.2</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2debfc61"><p class="cl-2debc7d6"><span class="cl-2de504c8">5.0</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.6</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.4</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.2</span></p></td><td class="cl-2debfc6a"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2debfc6b"><p class="cl-2debc7d6"><span class="cl-2de504c8">5.4</span></p></td><td class="cl-2debfc74"><p class="cl-2debc7e0"><span class="cl-2de504c8">3.9</span></p></td><td class="cl-2debfc74"><p class="cl-2debc7e0"><span class="cl-2de504c8">1.7</span></p></td><td class="cl-2debfc74"><p class="cl-2debc7e0"><span class="cl-2de504c8">0.4</span></p></td><td class="cl-2debfc74"><p class="cl-2debc7e0"><span class="cl-2de504c8">setosa</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>In the next subsections, we will show some key dplyr functions and their examples on the iris data.</p>
+</section>
+<section id="dplyr-functions" class="level1">
+<h1>Dplyr functions</h1>
+<section id="pipes-or" class="level2">
+<h2 class="anchored" data-anchor-id="pipes-or">Pipes (|&gt; or %&gt;%)</h2>
+<p>Pipes are used to combine operations. Pipes are very common in R codes that use functions from <em>dplyr</em> and <em>tidyverse</em>.</p>
+<ul>
+<li><p>say we want to calculate the means for <em>Sepal.Length</em> and <em>Sepal.Width</em> columns by species for the iris dataset:</p>
+<p>I. One way to do this could be</p>
+<ul>
+<li><p>first, group the observations by <em>Species</em></p></li>
+<li><p>second, calculate the means for the columns</p></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>by_group <span class="ot">=</span> <span class="fu">group_by</span>(iris, Species)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>meanSepals <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_group, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mean_Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">mean_Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2e204592{}.cl-2e134702{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e186016{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e18602a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e188096{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880a0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880a1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880aa{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880ab{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880ac{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880b4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e1880b5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2e204592"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2e188096"><p class="cl-2e186016"><span class="cl-2e134702">Species</span></p></th><th class="cl-2e1880a0"><p class="cl-2e18602a"><span class="cl-2e134702">mean_Sepal.Length</span></p></th><th class="cl-2e1880a0"><p class="cl-2e18602a"><span class="cl-2e134702">mean_Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2e1880a1"><p class="cl-2e186016"><span class="cl-2e134702">setosa</span></p></td><td class="cl-2e1880aa"><p class="cl-2e18602a"><span class="cl-2e134702">5.006</span></p></td><td class="cl-2e1880aa"><p class="cl-2e18602a"><span class="cl-2e134702">3.428</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e1880ab"><p class="cl-2e186016"><span class="cl-2e134702">versicolor</span></p></td><td class="cl-2e1880ac"><p class="cl-2e18602a"><span class="cl-2e134702">5.936</span></p></td><td class="cl-2e1880ac"><p class="cl-2e18602a"><span class="cl-2e134702">2.770</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e1880b4"><p class="cl-2e186016"><span class="cl-2e134702">virginica</span></p></td><td class="cl-2e1880b5"><p class="cl-2e18602a"><span class="cl-2e134702">6.588</span></p></td><td class="cl-2e1880b5"><p class="cl-2e18602a"><span class="cl-2e134702">2.974</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ol start="2" type="I">
+<li>A second way is to combine the operations through a <em>pipe</em>, annotated by <em>%&gt;%</em> or <em>|&gt;</em> as shown in the code below</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>meanSepals2 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_Sepal.Length =</span> <span class="fu">mean</span>(Sepal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_Sepal.Width =</span> <span class="fu">mean</span>(Sepal.Width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2e47cc34{}.cl-2e3a0108{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e3f6f62{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e3f6f76{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e3f974e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f9758{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f9759{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f9762{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f9763{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f976c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f976d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e3f9776{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2e47cc34"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2e3f974e"><p class="cl-2e3f6f62"><span class="cl-2e3a0108">Species</span></p></th><th class="cl-2e3f9758"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">mean_Sepal.Length</span></p></th><th class="cl-2e3f9758"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">mean_Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2e3f9759"><p class="cl-2e3f6f62"><span class="cl-2e3a0108">setosa</span></p></td><td class="cl-2e3f9762"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">5.006</span></p></td><td class="cl-2e3f9762"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">3.428</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e3f9763"><p class="cl-2e3f6f62"><span class="cl-2e3a0108">versicolor</span></p></td><td class="cl-2e3f976c"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">5.936</span></p></td><td class="cl-2e3f976c"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">2.770</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e3f976d"><p class="cl-2e3f6f62"><span class="cl-2e3a0108">virginica</span></p></td><td class="cl-2e3f9776"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">6.588</span></p></td><td class="cl-2e3f9776"><p class="cl-2e3f6f76"><span class="cl-2e3a0108">2.974</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ul>
+<li><p>Note:</p>
+<ul>
+<li>the <em>group_by()</em> and <em>summarise()</em> functions used here are discussed in later slides</li>
+</ul></li>
+</ul>
+</section>
+<section id="select" class="level2">
+<h2 class="anchored" data-anchor-id="select">Select()</h2>
+<p>Selects columns by name or position</p>
+<ul>
+<li>Select all sepal columns by name</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## select()</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span>  iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(Sepal.Length, Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2e6d17aa{}.cl-2e5ecb78{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e64bf06{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e64bf10{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e64e12a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e12b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e134{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e135{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e136{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e13e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e13f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e64e140{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2e6d17aa"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2e64e12a"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">Sepal.Length</span></p></th><th class="cl-2e64e12b"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2e64e134"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">5.1</span></p></td><td class="cl-2e64e135"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e64e136"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">4.9</span></p></td><td class="cl-2e64e13e"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e64e136"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">4.7</span></p></td><td class="cl-2e64e13e"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e64e136"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">4.6</span></p></td><td class="cl-2e64e13e"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e64e136"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">5.0</span></p></td><td class="cl-2e64e13e"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e64e13f"><p class="cl-2e64bf06"><span class="cl-2e5ecb78">5.4</span></p></td><td class="cl-2e64e140"><p class="cl-2e64bf10"><span class="cl-2e5ecb78">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Alternative ways of specifying columns</p>
+<ul>
+<li><p>Using <em>contains</em> option in <em>select</em> function</p>
+<ul>
+<li><em>contains</em> picks out all column names having a <em>Sepal</em> pattern</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="do">## select(contains())</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span>  iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">"Sepal"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>By position</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span>  iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2e986bee{}.cl-2e8af8c4{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2e903c1c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e903c26{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2e90603e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906048{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906049{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906052{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906053{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906054{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e906055{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2e90605c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2e986bee"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2e90603e"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">Sepal.Length</span></p></th><th class="cl-2e906048"><p class="cl-2e903c26"><span class="cl-2e8af8c4">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2e906049"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">5.1</span></p></td><td class="cl-2e906052"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e906053"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">4.9</span></p></td><td class="cl-2e906054"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e906053"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">4.7</span></p></td><td class="cl-2e906054"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e906053"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">4.6</span></p></td><td class="cl-2e906054"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e906053"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">5.0</span></p></td><td class="cl-2e906054"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2e906055"><p class="cl-2e903c1c"><span class="cl-2e8af8c4">5.4</span></p></td><td class="cl-2e90605c"><p class="cl-2e903c26"><span class="cl-2e8af8c4">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Other helper functions within <em>select()</em>:</p>
+<ul>
+<li><p><em>starts_with(“Sep”)</em></p></li>
+<li><p><em>ends_with(““)</em></p></li>
+<li><p><em>num_range(“x”, 1:3)</em></p></li>
+<li><p>Use <em>select()</em> together with <em>everything()</em> to reorder columns in a data frame as shown below</p></li>
+</ul>
+<p>Initial order of columns</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> <span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2ec3753c{}.cl-2eb52220{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ebb3c00{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ebb3c0a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ebb64c8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64d2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64d3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64dc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64dd{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64de{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64e6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ebb64e7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2ec3753c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2ebb64c8"><p class="cl-2ebb3c00"><span class="cl-2eb52220">Sepal.Length</span></p></th><th class="cl-2ebb64d2"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">Sepal.Width</span></p></th><th class="cl-2ebb64d2"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">Petal.Length</span></p></th><th class="cl-2ebb64d2"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">Petal.Width</span></p></th><th class="cl-2ebb64d2"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">Species</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64d3"><p class="cl-2ebb3c00"><span class="cl-2eb52220">5.1</span></p></td><td class="cl-2ebb64dc"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.5</span></p></td><td class="cl-2ebb64dc"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.4</span></p></td><td class="cl-2ebb64dc"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.2</span></p></td><td class="cl-2ebb64dc"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64dd"><p class="cl-2ebb3c00"><span class="cl-2eb52220">4.9</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.0</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.4</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.2</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64dd"><p class="cl-2ebb3c00"><span class="cl-2eb52220">4.7</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.2</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.3</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.2</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64dd"><p class="cl-2ebb3c00"><span class="cl-2eb52220">4.6</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.1</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.5</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.2</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64dd"><p class="cl-2ebb3c00"><span class="cl-2eb52220">5.0</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.6</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.4</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.2</span></p></td><td class="cl-2ebb64de"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ebb64e6"><p class="cl-2ebb3c00"><span class="cl-2eb52220">5.4</span></p></td><td class="cl-2ebb64e7"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">3.9</span></p></td><td class="cl-2ebb64e7"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">1.7</span></p></td><td class="cl-2ebb64e7"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">0.4</span></p></td><td class="cl-2ebb64e7"><p class="cl-2ebb3c0a"><span class="cl-2eb52220">setosa</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>After moving Species and Petal columns to start</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>arranged_iris <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> <span class="fu">select</span>(Species, <span class="fu">contains</span>(<span class="st">"Petal"</span>), <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2eef2dd0{}.cl-2ee1f138{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ee6f69c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ee6f6a6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ee71870{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee7187a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee7187b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee71884{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee71885{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee7188e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee7188f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ee71890{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2eef2dd0"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2ee71870"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">Species</span></p></th><th class="cl-2ee7187a"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">Petal.Length</span></p></th><th class="cl-2ee7187a"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">Petal.Width</span></p></th><th class="cl-2ee7187a"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">Sepal.Length</span></p></th><th class="cl-2ee7187a"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2ee7187b"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee71884"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.4</span></p></td><td class="cl-2ee71884"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.2</span></p></td><td class="cl-2ee71884"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">5.1</span></p></td><td class="cl-2ee71884"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ee71885"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.4</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.2</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">4.9</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ee71885"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.3</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.2</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">4.7</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ee71885"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.5</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.2</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">4.6</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ee71885"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.4</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.2</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">5.0</span></p></td><td class="cl-2ee7188e"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ee7188f"><p class="cl-2ee6f69c"><span class="cl-2ee1f138">setosa</span></p></td><td class="cl-2ee71890"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">1.7</span></p></td><td class="cl-2ee71890"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">0.4</span></p></td><td class="cl-2ee71890"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">5.4</span></p></td><td class="cl-2ee71890"><p class="cl-2ee6f6a6"><span class="cl-2ee1f138">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="arrange" class="level2">
+<h2 class="anchored" data-anchor-id="arrange">Arrange()</h2>
+<p>Sorts rows according to one or more columns</p>
+<ul>
+<li><p>by default, <em>arrange()</em> sorts in an ascending order</p></li>
+<li><p>to change to descending order, place a <strong>minus sign (i.e.&nbsp;-)</strong> before the ordering column</p>
+<ul>
+<li><p>alternative 2: use <em>desc(column)</em> function</p></li>
+<li><p>missing values are always sorted to the end</p></li>
+</ul></li>
+</ul>
+<section id="arrange-ascending" class="level3">
+<h3 class="anchored" data-anchor-id="arrange-ascending">Arrange: Ascending</h3>
+<ul>
+<li><p>Before <em>arrange()</em> is applied</p>
+<ul>
+<li>For illustration, only the sepal columns are used</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## select() </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(Sepal.Length, Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2f15a118{}.cl-2f089dc4{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2f0d92a2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f0d92ac{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f0db6ec{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db6ed{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db6f6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db6f7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db6f8{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db700{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db701{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f0db70a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2f15a118"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2f0db6ec"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">Sepal.Length</span></p></th><th class="cl-2f0db6ed"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2f0db6f6"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">5.1</span></p></td><td class="cl-2f0db6f7"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f0db6f8"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">4.9</span></p></td><td class="cl-2f0db700"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f0db6f8"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">4.7</span></p></td><td class="cl-2f0db700"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f0db6f8"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">4.6</span></p></td><td class="cl-2f0db700"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f0db6f8"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">5.0</span></p></td><td class="cl-2f0db700"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f0db701"><p class="cl-2f0d92a2"><span class="cl-2f089dc4">5.4</span></p></td><td class="cl-2f0db70a"><p class="cl-2f0d92ac"><span class="cl-2f089dc4">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ul>
+<li>After <em>arrange()</em> is applied on <em>Sepal.Length</em> column</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## arrange()</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>arranged_iris <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2f3a2826{}.cl-2f2cb4b6{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2f31c168{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f31c172{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f31e22e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e238{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e239{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e242{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e243{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e244{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e24c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f31e24d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2f3a2826"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2f31e22e"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">Sepal.Length</span></p></th><th class="cl-2f31e238"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2f31e239"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.3</span></p></td><td class="cl-2f31e242"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f31e243"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.4</span></p></td><td class="cl-2f31e244"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">2.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f31e243"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.4</span></p></td><td class="cl-2f31e244"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f31e243"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.4</span></p></td><td class="cl-2f31e244"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f31e243"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.5</span></p></td><td class="cl-2f31e244"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">2.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f31e24c"><p class="cl-2f31c168"><span class="cl-2f2cb4b6">4.6</span></p></td><td class="cl-2f31e24d"><p class="cl-2f31c172"><span class="cl-2f2cb4b6">3.1</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="arrange-descending" class="level3">
+<h3 class="anchored" data-anchor-id="arrange-descending">Arrange: Descending</h3>
+<ul>
+<li><p>Before <em>arrange()</em></p>
+<ul>
+<li>For illustration, only the sepal columns are used</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="do">## select() </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(Sepal.Length, Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2f6102f2{}.cl-2f52c282{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2f58d7ee{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f58d7f8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f58fabc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fac6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fac7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fad0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fad1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fada{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fadb{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f58fadc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2f6102f2"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2f58fabc"><p class="cl-2f58d7ee"><span class="cl-2f52c282">Sepal.Length</span></p></th><th class="cl-2f58fac6"><p class="cl-2f58d7f8"><span class="cl-2f52c282">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2f58fac7"><p class="cl-2f58d7ee"><span class="cl-2f52c282">5.1</span></p></td><td class="cl-2f58fad0"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f58fad1"><p class="cl-2f58d7ee"><span class="cl-2f52c282">4.9</span></p></td><td class="cl-2f58fada"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f58fad1"><p class="cl-2f58d7ee"><span class="cl-2f52c282">4.7</span></p></td><td class="cl-2f58fada"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f58fad1"><p class="cl-2f58d7ee"><span class="cl-2f52c282">4.6</span></p></td><td class="cl-2f58fada"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f58fad1"><p class="cl-2f58d7ee"><span class="cl-2f52c282">5.0</span></p></td><td class="cl-2f58fada"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f58fadb"><p class="cl-2f58d7ee"><span class="cl-2f52c282">5.4</span></p></td><td class="cl-2f58fadc"><p class="cl-2f58d7f8"><span class="cl-2f52c282">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ul>
+<li>After applying <em>arrange()</em> on <em>Sepal.Length</em> column</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">## arrange()</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>arranged_iris2 <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2f86d176{}.cl-2f7910fe{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2f7e4efc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f7e4f06{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2f7e722e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e722f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e7238{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e7239{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e7242{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e7243{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e7244{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2f7e724c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2f86d176"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2f7e722e"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">Sepal.Length</span></p></th><th class="cl-2f7e722f"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7238"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.9</span></p></td><td class="cl-2f7e7239"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">3.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7242"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.7</span></p></td><td class="cl-2f7e7243"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">3.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7242"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.7</span></p></td><td class="cl-2f7e7243"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">2.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7242"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.7</span></p></td><td class="cl-2f7e7243"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7242"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.7</span></p></td><td class="cl-2f7e7243"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2f7e7244"><p class="cl-2f7e4efc"><span class="cl-2f7910fe">7.6</span></p></td><td class="cl-2f7e724c"><p class="cl-2f7e4f06"><span class="cl-2f7910fe">3.0</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="arrange-on-two-columns" class="level3">
+<h3 class="anchored" data-anchor-id="arrange-on-two-columns">Arrange on two columns</h3>
+<ul>
+<li><p>Before <em>arrange()</em></p>
+<ul>
+<li>For illustration, only the sepal columns are used</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## select() </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">c</span>(Sepal.Length, Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2fad83ac{}.cl-2f9e3e2e{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2fa46c9a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fa46ca4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fa49788{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa49789{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa49792{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa4979c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa4979d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa4979e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa497a6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fa497a7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2fad83ac"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2fa49788"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">Sepal.Length</span></p></th><th class="cl-2fa49789"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2fa49792"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">5.1</span></p></td><td class="cl-2fa4979c"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fa4979d"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">4.9</span></p></td><td class="cl-2fa4979e"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fa4979d"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">4.7</span></p></td><td class="cl-2fa4979e"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fa4979d"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">4.6</span></p></td><td class="cl-2fa4979e"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fa4979d"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">5.0</span></p></td><td class="cl-2fa4979e"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fa497a6"><p class="cl-2fa46c9a"><span class="cl-2f9e3e2e">5.4</span></p></td><td class="cl-2fa497a7"><p class="cl-2fa46ca4"><span class="cl-2f9e3e2e">3.9</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ul>
+<li><p>After <em>arrange()</em></p>
+<ul>
+<li>decreasing <em>Sepal.Length</em>, increasing <em>Sepal.Width</em></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notes:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="do">## pipes: %&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="do">## arrange()</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>arranged_iris3 <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="sc">-</span>Sepal.Length, Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2fd1e9cc{}.cl-2fc408ac{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2fc932fa{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fc93304{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2fc9578a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc95848{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc95849{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc95852{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc95853{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc9585c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc9585d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2fc95866{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2fd1e9cc"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2fc9578a"><p class="cl-2fc932fa"><span class="cl-2fc408ac">Sepal.Length</span></p></th><th class="cl-2fc95848"><p class="cl-2fc93304"><span class="cl-2fc408ac">Sepal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2fc95849"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.9</span></p></td><td class="cl-2fc95852"><p class="cl-2fc93304"><span class="cl-2fc408ac">3.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fc95853"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.7</span></p></td><td class="cl-2fc9585c"><p class="cl-2fc93304"><span class="cl-2fc408ac">2.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fc95853"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.7</span></p></td><td class="cl-2fc9585c"><p class="cl-2fc93304"><span class="cl-2fc408ac">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fc95853"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.7</span></p></td><td class="cl-2fc9585c"><p class="cl-2fc93304"><span class="cl-2fc408ac">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fc95853"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.7</span></p></td><td class="cl-2fc9585c"><p class="cl-2fc93304"><span class="cl-2fc408ac">3.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2fc9585d"><p class="cl-2fc932fa"><span class="cl-2fc408ac">7.6</span></p></td><td class="cl-2fc95866"><p class="cl-2fc93304"><span class="cl-2fc408ac">3.0</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+</section>
+<section id="mutate" class="level2">
+<h2 class="anchored" data-anchor-id="mutate">Mutate()</h2>
+<p>For creating new variables to a dataset and/or transforming existing variables</p>
+<ul>
+<li>the columns are always added at the end of the dataset</li>
+<li>as an example, if we want to calculate differences between Sepal &amp; Petal lengths and widths</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> <span class="fu">head</span>(iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(Species, <span class="fu">everything</span>()))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SP_length_diff =</span> Sepal.Length<span class="sc">-</span>Petal.Length, <span class="at">SP_width_diff =</span> Sepal.Width <span class="sc">-</span> Petal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-2fffd544{}.cl-2fefd05e{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2ff61554{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ff6155e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2ff64a06{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a10{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a1a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a24{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a25{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a2e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a2f{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2ff64a38{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2fffd544"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2ff64a06"><p class="cl-2ff61554"><span class="cl-2fefd05e">Species</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">Sepal.Length</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">Sepal.Width</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">Petal.Length</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">Petal.Width</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">SP_length_diff</span></p></th><th class="cl-2ff64a10"><p class="cl-2ff6155e"><span class="cl-2fefd05e">SP_width_diff</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a1a"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">5.1</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.5</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.4</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.2</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.7</span></p></td><td class="cl-2ff64a24"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a25"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">4.9</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.0</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.4</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.2</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.5</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">2.8</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a25"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">4.7</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.2</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.3</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.2</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.4</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a25"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">4.6</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.1</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.5</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.2</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.1</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">2.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a25"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">5.0</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.6</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.4</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.2</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.6</span></p></td><td class="cl-2ff64a2e"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2ff64a2f"><p class="cl-2ff61554"><span class="cl-2fefd05e">setosa</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">5.4</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.9</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">1.7</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">0.4</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.7</span></p></td><td class="cl-2ff64a38"><p class="cl-2ff6155e"><span class="cl-2fefd05e">3.5</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Similar to <em>select()</em>, <em>mutate()</em> can use many functions to create new variables:</p>
+<ul>
+<li>arithmetic operators: +, -, *, /</li>
+<li>logs</li>
+<li>offsets e.g.&nbsp;<em>lead()</em>, <em>lag()</em></li>
+<li>cumulative and rolling aggregates: <em>cumprod()</em>, <em>cumsum()</em>, <em>cummean()</em> etc</li>
+</ul>
+<section id="mutate_if" class="level3">
+<h3 class="anchored" data-anchor-id="mutate_if">mutate_if()</h3>
+<p>Checks if a condition is met before applying a transformation to a column</p>
+<ul>
+<li>say we want to format all character variables to be factors in the iris dataset</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> <span class="fu">head</span>(iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(Species, <span class="fu">everything</span>()))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the ratios and then format the rel</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SP_len_ratio =</span> Sepal.Length<span class="sc">/</span>Petal.Length, <span class="at">SP_wid_ratio =</span> Sepal.Width<span class="sc">/</span>Petal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mutate_at" class="level3">
+<h3 class="anchored" data-anchor-id="mutate_at">mutate_at()</h3>
+<p>Allows to specify specific columns on which an operation should be performed</p>
+<ul>
+<li>say we want to format all ratios between corresponding Sepal and Petal variables to appear with 2 decimal places</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> <span class="fu">head</span>(iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(Species, <span class="fu">everything</span>()))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># function to format variables to 2 decimal places</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>format_fn <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">formatC</span>(x, <span class="at">format =</span> <span class="st">'f'</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># columns to format</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>cols_to_format  <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"SP_len_ratio"</span>, <span class="st">"SP_wid_ratio"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the ratios and then format the retios to 2 decimal places using format_fn()</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>irissubset <span class="ot">=</span> irissubset <span class="sc">%&gt;%</span> </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SP_len_ratio =</span> Sepal.Length<span class="sc">/</span>Petal.Length, <span class="at">SP_wid_ratio =</span> Sepal.Width<span class="sc">/</span>Petal.Width) <span class="sc">%&gt;%</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">all_of</span>(cols_to_format), <span class="at">.funs =</span> format_fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-303fc06e{}.cl-3031afa6{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-30368fd0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-30368fda{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3036b21c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b21d{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b226{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b227{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b228{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b229{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b230{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3036b231{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-303fc06e"><thead><tr style="overflow-wrap:break-word;"><th class="cl-3036b21c"><p class="cl-30368fd0"><span class="cl-3031afa6">Species</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">Sepal.Length</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">Sepal.Width</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">Petal.Length</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">Petal.Width</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">SP_len_ratio</span></p></th><th class="cl-3036b21d"><p class="cl-30368fda"><span class="cl-3031afa6">SP_wid_ratio</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3036b226"><p class="cl-30368fd0"><span class="cl-3031afa6">setosa</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">5.1</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">3.5</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">1.4</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">0.2</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">3.64</span></p></td><td class="cl-3036b227"><p class="cl-30368fda"><span class="cl-3031afa6">17.50</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3036b228"><p class="cl-30368fd0"><span class="cl-3031afa6">setosa</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">4.9</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">3.0</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">1.4</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">0.2</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">3.50</span></p></td><td class="cl-3036b229"><p class="cl-30368fda"><span class="cl-3031afa6">15.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3036b230"><p class="cl-30368fd0"><span class="cl-3031afa6">setosa</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">4.7</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">3.2</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">1.3</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">0.2</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">3.62</span></p></td><td class="cl-3036b231"><p class="cl-30368fda"><span class="cl-3031afa6">16.00</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+</section>
+<section id="filter" class="level2">
+<h2 class="anchored" data-anchor-id="filter">Filter()</h2>
+<p>Used to extract rows based on a specified condition</p>
+<ul>
+<li>for instance, to extract all rows of the <strong>Setosa</strong> species</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>irissetosa <span class="ot">=</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">'setosa'</span>) <span class="co"># keep Setosa Species</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flextable</span>(<span class="fu">table</span>(irissetosa <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Species)) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-3067e80a{}.cl-3057bc1e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-305e0f24{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-305e0f38{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-305e3d1e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-305e3d28{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-305e3d29{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-305e3d32{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-305e3d33{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-305e3d3c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-3067e80a"><thead><tr style="overflow-wrap:break-word;"><th class="cl-305e3d1e"><p class="cl-305e0f24"><span class="cl-3057bc1e">Var1</span></p></th><th class="cl-305e3d28"><p class="cl-305e0f38"><span class="cl-3057bc1e">Freq</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-305e3d29"><p class="cl-305e0f24"><span class="cl-3057bc1e">setosa</span></p></td><td class="cl-305e3d32"><p class="cl-305e0f38"><span class="cl-3057bc1e">50</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-305e3d29"><p class="cl-305e0f24"><span class="cl-3057bc1e">versicolor</span></p></td><td class="cl-305e3d32"><p class="cl-305e0f38"><span class="cl-3057bc1e">0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-305e3d33"><p class="cl-305e0f24"><span class="cl-3057bc1e">virginica</span></p></td><td class="cl-305e3d3c"><p class="cl-305e0f38"><span class="cl-3057bc1e">0</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<ul>
+<li>filter Setosa Species with Sepal length above the median Sepal Length</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>irissetosa2 <span class="ot">=</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">'setosa'</span> <span class="sc">&amp;</span> Sepal.Width <span class="sc">&gt;</span> <span class="fu">median</span>(Sepal.Width)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summarise" class="level2">
+<h2 class="anchored" data-anchor-id="summarise">Summarise()</h2>
+<p>Provides summary statistics from a dataset. For instance, if we want to find the median values for Petal columns by species:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>medianPetals <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">'Petal'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median_Pelal.Length =</span> <span class="fu">mean</span>(Petal.Length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_Petal.Width =</span> <span class="fu">mean</span>(Petal.Width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-309f467e{}.cl-3091d6c4{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-30972fa2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-30972fac{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3097507c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-30975086{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-30975090{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-30975091{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3097509a{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3097509b{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-309750a4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-309750a5{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 1pt solid rgba(190, 190, 190, 1.00);border-right: 1pt solid rgba(190, 190, 190, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-309f467e"><thead><tr style="overflow-wrap:break-word;"><th class="cl-3097507c"><p class="cl-30972fa2"><span class="cl-3091d6c4">Species</span></p></th><th class="cl-30975086"><p class="cl-30972fac"><span class="cl-3091d6c4">median_Pelal.Length</span></p></th><th class="cl-30975086"><p class="cl-30972fac"><span class="cl-3091d6c4">median_Petal.Width</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-30975090"><p class="cl-30972fa2"><span class="cl-3091d6c4">setosa</span></p></td><td class="cl-30975091"><p class="cl-30972fac"><span class="cl-3091d6c4">1.462</span></p></td><td class="cl-30975091"><p class="cl-30972fac"><span class="cl-3091d6c4">0.246</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3097509a"><p class="cl-30972fa2"><span class="cl-3091d6c4">versicolor</span></p></td><td class="cl-3097509b"><p class="cl-30972fac"><span class="cl-3091d6c4">4.260</span></p></td><td class="cl-3097509b"><p class="cl-30972fac"><span class="cl-3091d6c4">1.326</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-309750a4"><p class="cl-30972fa2"><span class="cl-3091d6c4">virginica</span></p></td><td class="cl-309750a5"><p class="cl-30972fac"><span class="cl-3091d6c4">5.552</span></p></td><td class="cl-309750a5"><p class="cl-30972fac"><span class="cl-3091d6c4">2.026</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="group_by" class="level2">
+<h2 class="anchored" data-anchor-id="group_by">Group_by()</h2>
+<p>It helps other functions perform their operations by groups in a dataset. It does not change the data in itself, but changes how the data is interpreted by other functions.</p>
+</section>
+<section id="other-important-functions-in-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="other-important-functions-in-dplyr">Other important functions in dplyr</h2>
+<p>The functions mentioned are not exhaustive but are among the most commonly used. The package has many other functions that are useful for specific operations.</p>
+</section>
+</section>
+<section id="resources-references" class="level1">
+
+<!-- -   <https://r4ds.had.co.nz/transform.html> -->
+<!-- <https://cran.r-project.org/web/packages/dplyr/dplyr.pdf>  .left[<https://www.nbshare.io/notebook/27204389/How-To-Use-R-Dplyr-Package/>]  .left[<https://towardsdatascience.com/data-transformation-in-r-288e95438ff9>]  -->
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Resources/ References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-tidyverse-2" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span></span>Tidyverse<span></span>”</span> 4: 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-dplyr-2" class="csl-entry" role="listitem">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <span>“Dplyr: A Grammar of Data Manipulation.”</span> <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

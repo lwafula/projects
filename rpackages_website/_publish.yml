@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: c790f1d7-59b9-4336-ac1d-693c2b2f1137
+      url: 'https://lmaaya.quarto.pub/basics-of-commonly-used-r-packages'

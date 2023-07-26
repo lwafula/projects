@@ -1,11 +1,14 @@
 ---
 title: "Data transformation: dplyr package"
-format: html
+format: 
+  html: default
+  docx: default
+  
 editor: visual
 bibliography: references.bib
 ---
 
-```{r xaringan-themer, include=FALSE, warning=FALSE}
+```{r, include=FALSE, warning=FALSE}
 # https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#themes
 library(xaringanthemer)
 library(flextable)
@@ -65,7 +68,7 @@ The *dplyr* package [@dplyr-2] is the workhorse for data transformation in R.
 
 We will load *dplyr* as part of *tidyverse* package and show some of its uses on the iris data
 
-```{r loaddplyr, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 #install.packages('tidyverse') # uncomment to install tidyverse
 
@@ -104,7 +107,7 @@ Pipes are used to combine operations. Pipes are very common in R codes that use 
 
     -   second, calculate the means for the columns
 
-```{r pipeinSteps, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 by_group = group_by(iris, Species)
 
 meanSepals <- summarise(by_group, 
@@ -126,7 +129,7 @@ flextable(meanSepals) %>% hline(part="body", border = std_border) %>%
 
 II. A second way is to combine the operations through a *pipe*, annotated by *%\>%* or *\|\>* as shown in the code below
 
-```{r pipeinSteps2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 meanSepals2 <- iris %>% group_by(Species) %>% 
   summarise(mean_Sepal.Length = mean(Sepal.Length, na.rm = TRUE), 
@@ -155,7 +158,7 @@ Selects columns by name or position
 
 -   Select all sepal columns by name
 
-```{r selectbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 # Notes:
 ## pipes: %>%
@@ -184,7 +187,7 @@ Alternative ways of specifying columns
 
     -   *contains* picks out all column names having a *Sepal* pattern
 
-```{r selectcontainsbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 # Notes:
 ## select(contains())
@@ -195,7 +198,7 @@ irissubset =  iris %>% select(contains("Sepal"))
 
 -   By position
 
-```{r selectbyPositionbyName, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 irissubset =  iris %>% select(1:2)
 
@@ -226,7 +229,7 @@ Other helper functions within *select()*:
 
 Initial order of columns
 
-```{r reorderColsSelect, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 irissubset = head(iris)
 
@@ -245,7 +248,7 @@ flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>%
 
 After moving Species and Petal columns to start
 
-```{r reoderSelect2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 arranged_iris = irissubset %>% select(Species, contains("Petal"), everything()) 
 
@@ -280,7 +283,7 @@ Sorts rows according to one or more columns
 
     -   For illustration, only the sepal columns are used
 
-```{r arrangebeforeSelect, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 # Notes
 ## pipes: %>%
 ## select() 
@@ -302,7 +305,7 @@ flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>%
 
 -   After *arrange()* is applied on *Sepal.Length* column
 
-```{r arrangeWH, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 # Notes:
 ## pipes: %>%
@@ -331,7 +334,7 @@ flextable(head(arranged_iris)) %>% hline(part="body", border = std_border) %>%
 
     -   For illustration, only the sepal columns are used
 
-```{r arrangebeforeSelect2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 # Notes
 ## pipes: %>%
 ## select() 
@@ -353,7 +356,7 @@ flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>%
 
 -   After applying *arrange()* on *Sepal.Length* column
 
-```{r arrangeWH2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 # Notes:
 ## pipes: %>%
@@ -382,7 +385,7 @@ flextable(head(arranged_iris2)) %>% hline(part="body", border = std_border) %>%
 
     -   For illustration, only the sepal columns are used
 
-```{r arrangebeforeSelect3, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 # Notes
 ## pipes: %>%
 ## select() 
@@ -406,7 +409,7 @@ flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>%
 
     -   decreasing *Sepal.Length*, increasing *Sepal.Width*
 
-```{r arrangeWH3, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 # Notes:
 ## pipes: %>%
@@ -436,7 +439,7 @@ For creating new variables to a dataset and/or transforming existing variables
 -   the columns are always added at the end of the dataset
 -   as an example, if we want to calculate differences between Sepal & Petal lengths and widths
 
-```{r mutatediff, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 irissubset = head(iris %>% select(Species, everything()))
 irissubset = irissubset %>% 
@@ -470,7 +473,7 @@ Checks if a condition is met before applying a transformation to a column
 
 -   say we want to format all character variables to be factors in the iris dataset
 
-```{r mutateif, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 irissubset = head(iris %>% select(Species, everything()))
 
 # calculate the ratios and then format the rel
@@ -486,7 +489,7 @@ Allows to specify specific columns on which an operation should be performed
 
 -   say we want to format all ratios between corresponding Sepal and Petal variables to appear with 2 decimal places
 
-```{r mutateat, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 irissubset = head(iris %>% select(Species, everything()))
 
 # function to format variables to 2 decimal places
@@ -522,7 +525,7 @@ Used to extract rows based on a specified condition
 
 -   for instance, to extract all rows of the **Setosa** species
 
-```{r filterdf, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 irissetosa = iris %>% filter(Species == 'setosa') # keep Setosa Species
 
@@ -536,7 +539,7 @@ flextable(table(irissetosa %>% pull(Species)) %>% as.data.frame())
 
 -   filter Setosa Species with Sepal length above the median Sepal Length
 
-```{r filterdf2, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 irissetosa2 = iris %>% filter(Species == 'setosa' & Sepal.Width > median(Sepal.Width)) 
 
@@ -546,7 +549,7 @@ irissetosa2 = iris %>% filter(Species == 'setosa' & Sepal.Width > median(Sepal.W
 
 Provides summary statistics from a dataset. For instance, if we want to find the median values for Petal columns by species:
 
-```{r summarise, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
 
 medianPetals <- iris %>% group_by(Species) %>% select(contains('Petal')) %>% 
   summarise(median_Pelal.Length = mean(Petal.Length, na.rm = TRUE),
@@ -576,7 +579,5 @@ The functions mentioned are not exhaustive but are among the most commonly used.
 # Resources/ References
 
 <!-- -   <https://r4ds.had.co.nz/transform.html> -->
+
 <!-- <https://cran.r-project.org/web/packages/dplyr/dplyr.pdf>  .left[<https://www.nbshare.io/notebook/27204389/How-To-Use-R-Dplyr-Package/>]  .left[<https://towardsdatascience.com/data-transformation-in-r-288e95438ff9>]  -->
-
-
-

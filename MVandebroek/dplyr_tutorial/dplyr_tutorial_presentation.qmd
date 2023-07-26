@@ -1,0 +1,183 @@
+---
+title: "Data transformation: dplyr package"
+format: revealjs
+editor: visual
+bibliography: references.bib
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#themes
+library(xaringanthemer)
+library(flextable)
+library(kableExtra)
+library(officer)
+library(kableExtra)
+library(rmarkdown)
+library(openxlsx)
+library(readxl)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+```
+
+# Introduction {.smaller}
+
+Data transformation is an important step before starting to visualize and analyze your data. Transformation may involve:
+
+-   creating new variables and summaries
+-   renaming some variables
+-   reordering observations
+-   format variables
+-   select variables
+-   perform analyses by group
+-   filter/ subset observations among others
+
+The *dplyr* package [@dplyr] is the workhorse for data transformation in R.
+
+------------------------------------------------------------------------
+
+# Installing dplyr
+
+-   as a standalone package:
+
+*install.packages("dplyr")*
+
+-   which is then called in R by: *library(dplyr)*
+
+-   as part of the *tidyverse* package
+
+*install.packages('tidyverse')*
+
+-   Note: *tidyverse* is a collection of packages for data science:
+
+-   dplyr, ggplot2, tidyr, ...
+
+-   loading *tidyverse* automatically loads *dplyr* plus the rest of the packages
+
+*library(tidyverse)*
+
+------------------------------------------------------------------------
+
+We will load *dplyr* as part of *tidyverse* package and show some of its uses on the iris data
+
+```{r loaddplyr, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+#install.packages('tidyverse') # uncomment to install tidyverse
+
+library(tidyverse) 
+
+iris = iris
+
+```
+
+A subset of the iris dataset is shown in the table below:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(head(iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+In the next slides, we will show some key dplyr functions and their examples on the iris data
+
+---
+class: center, middle
+
+# Dplyr functions
+
+---
+class: center, middle
+
+## Pipes (%>%)
+
+Pipes are used to combine operations. Pipes are very common in R codes that use functions from _dplyr_ and _tidyverse_.
+
+* say we want to calculate the means for _Sepal.Length_ and _Sepal.Width_ columns by species for the iris dataset:
+
+  I. One way to do this could be 
+  
+    * first, group the observations by _Species_
+    
+    * second, calculate the means for the columns
+      
+```{r pipeinSteps, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+by_group = group_by(iris, Species)
+meanSepals <- summarise(by_group, mean_Sepal.Length = mean(Sepal.Length, na.rm = TRUE),
+  mean_Sepal.Width = mean(Sepal.Width, na.rm = TRUE))
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+flextable(meanSepals) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+  II. A second way is to combine the operations through a _pipe_, annotated by _%>%_ in the code below
+
+
+---
+
+* Use _select()_ together with _everything()_ to reorder columns in a data frame as shown below
+
+
+Initial order of columns
+
+```{r reorderColsSelect, echo=TRUE, warning=FALSE, message=FALSE, eval=TRUE}
+
+irissubset = head(iris) %>% rename("SepL" = `Sepal.Length`, "SepW" = `Sepal.Width`,
+                                   "PetL" = `Petal.Length`, "PetW" = `Petal.Width`)
+
+
+arranged_iris = irissubset %>% select(Species, contains("Pet"), 
+         everything()) 
+
+```
+
+
+```{r}
+
+#| output-location: column-fragment
+
+flextable(head(irissubset)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+flextable(head(arranged_iris)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% vline(border = std_border, part = "all") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+
+```
+
+
+```{r , echo=FALSE, warning=FALSE, message=FALSE}
+# plot code here
+# 
+
+
+```
+
+
+
+------------------------------------------------------------------------
+
+# References
