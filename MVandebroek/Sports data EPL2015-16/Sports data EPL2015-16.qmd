@@ -1,0 +1,131 @@
+---
+title: "Sports data EPL2015-16"
+format: 
+  html: default
+  
+editor: visual
+---
+
+```{r,echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+
+# <!-- https://statsbomb.com/wp-content/uploads/2022/08/Working-with-R.pdf -->
+
+#| echo: false
+#| eval: false
+#| warning: false
+#| message: false
+#| output: false
+
+# library(StatsBombR)
+# 
+# Comp = FreeCompetitions() |> 
+#   filter(country_name == 'England' & competition_name == 'Premier League' &
+#            competition_gender == 'male' & season_name == '2015/2016')
+# 
+# Matches = FreeMatches(Comp) 
+# 
+# StatsBombData <- free_allevents(MatchesDF = Matches, Parallel = T)
+# StatsBombData = allclean(StatsBombData) 
+# 
+# # meaning of each column
+# # 
+# 
+# # names(StatsBombData)
+# 
+# Matches =  Matches |> select("match_id", match_date, contains(c('score')), "referee.name", "referee.id", 
+#          "home_team.home_team_id", "home_team.home_team_name", "away_team.away_team_id", 
+#          "away_team.away_team_name") 
+# 
+# write.csv(Matches, "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/Matches.csv", 
+# row.names = FALSE)
+# 
+# # shots per match per team
+# # 
+# 
+# dfshots = StatsBombData %>% filter(type.name == 'Shot') |> 
+#   select(match_id, possession_team.name, possession_team.id, type.name) %>% 
+#   group_by(match_id, possession_team.id, possession_team.name) %>% count()
+#   
+# write.csv(dfshots, "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/dfshots.csv", 
+# row.names = FALSE)
+# 
+# # tactics applied by each team for a match ID
+# #   
+# 
+# dftactics = StatsBombData |> filter(!is.na(tactics.formation) & type.name=='Starting XI') %>% 
+#   select(match_id, team.name, tactics.formation)
+# 
+# write.csv(dftactics, "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/dftactics.csv", 
+# row.names = FALSE)
+# 
+# # player-position
+# 
+# write.csv(unique(StatsBombData |> select(position.id, position.name)), 
+#           "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/dfplayerpositions.csv",
+#           row.names = FALSE)
+
+# cards received per match
+
+# View(StatsBombData |> filter(!is.na(foul_committed.card.name)) |> select(match_id, team.name, possession_team.name, possession, bad_behaviour.card.name, foul_committed.card.name))
+
+# write.csv(StatsBombData |> filter(!is.na(foul_committed.card.name)) |>
+# group_by(match_id, team.name, team.id) |> count(),
+# "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/dfcards.csv",
+# row.names = FALSE)
+
+
+```
+
+# Variables
+
+Dependent variables
+
+- home/away team goals (Matches data)
+- shots on target (depending on team, home/away etc)
+
+Important independent variables:
+
+-   away or home team (matches data)
+-   position id/name: i.e the position of the player
+
+```{r,echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+
+
+#| tbl-cap-location: top
+#| tbl-cap: "positions of players"
+#| 
+#| 
+
+library(tidyverse)
+library(flextable)
+library(officer)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+dfplayerpositions = read.csv(
+  "C:/Users/Public/lmaaya/data/Sports data EPL2016-16/dfplayerpositions.csv")
+
+flextable(dfplayerpositions) |> 
+  hline(part="body", border = std_border) |> 
+  hline_bottom(part="body", border = std_borderFoot) |> 
+  hline_top(part="body", border = std_borderFoot) |> 
+  merge_h(part = "header") |> merge_v(part = "header") |> 
+  vline(border = std_border, part = "all") |> align(align = "center", part = "all") |> 
+  align(align = "left", part = "all", j = 1) |> width(j = c(1:2), width = c(0.75, 1.5)) |>
+  fix_border_issues(part = "all") |> hline_top(part="header", border = std_borderFoot) |> 
+  fontsize(size = 10, part = "all")
+
+
+```
+
+-   fouls committed
+-   visits to opposition half
+-   tactics formation at start of match
+-   number of corners
+
+# Questions
+
+* probability of winning as a function of 
+
+  * shots per match, home or away team, tactics employed

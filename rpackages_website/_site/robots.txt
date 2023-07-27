@@ -1,1 +1,0 @@
-Sitemap: https://lmaaya.quarto.pub/basics-of-commonly-used-r-packages/sitemap.xml
