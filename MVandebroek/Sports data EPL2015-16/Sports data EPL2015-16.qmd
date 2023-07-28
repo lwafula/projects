@@ -2,6 +2,7 @@
 title: "Sports data EPL2015-16"
 format: 
   html: default
+  pdf: default
   
 editor: visual
 ---

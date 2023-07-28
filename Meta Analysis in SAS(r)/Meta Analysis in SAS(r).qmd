@@ -1,0 +1,117 @@
+---
+title: "Meta Analysis"
+format: 
+  html: default
+---
+
+# Meta analysis in R
+
+To learn more, click [here](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R)
+
+```{r}
+library(reticulate)
+
+```
+
+
+```{python}
+
+import numpy as np
+
+mu, sigma, Nsim = 10, 2, 1000
+
+dfmean = []
+
+for i in range(1, Nsim+1, 1):
+  dfmean.append(np.mean(np.random.normal(mu, sigma, 500)))
+  
+
+```
+
+
+```{r}
+
+dfmean = py$dfmean |> unlist()
+
+hist(dfmean)
+
+```
+
+The histogram of $\theta$ (true value is `r py$mu`) estimates, $\hat{\theta}$ with mean from `r py$Nsim` simulations is `r formatC(mean(dfmean), digits = 5, format = 'f')` and sampling error of `r formatC(sd(dfmean), digits = 5, format = 'f')`. Notice that here,
+
+$$\theta = \hat{\theta} + \epsilon $$
+
+## between group standardized mean difference
+
+```{r}
+
+# Load esc package
+library(esc)
+
+# Define the data we need to calculate SMD/d
+# This is just some example data that we made up
+grp1m <- 50   # mean of group 1
+grp2m <- 60   # mean of group 2
+grp1sd <- 10  # sd of group 1
+grp2sd <- 10  # sd of group 2
+grp1n <- 100  # n of group1
+grp2n <- 100  # n of group2
+
+# Calculate effect size
+esc_mean_sd(grp1m = grp1m, grp2m = grp2m, 
+            grp1sd = grp1sd, grp2sd = grp2sd, 
+            grp1n = grp1n, grp2n = grp2n)
+```
+
+# Pooling
+
+## Fixed effects models
+
+```{r}
+
+# Load dmetar, esc and tidyverse (for pipe)
+# https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/pooling-es.html
+# remotes::install_github("MathiasHarrer/dmetar")
+
+library(dmetar)
+library(esc)
+library(tidyverse)
+
+# Load data set from dmetar
+data(SuicidePrevention)
+
+# Calculate Hedges' g and the Standard Error
+# - We save the study names in "study".
+# - We use the pmap_dfr function to calculate the effect size
+#   for each row.
+SP_calc <- pmap_dfr(SuicidePrevention, 
+                    function(mean.e, sd.e, n.e, mean.c,
+                             sd.c, n.c, author, ...){
+                      esc_mean_sd(grp1m = mean.e,
+                                  grp1sd = sd.e,
+                                  grp1n = n.e,
+                                  grp2m = mean.c,
+                                  grp2sd = sd.c,
+                                  grp2n = n.c,
+                                  study = author,
+                                  es.type = "g") %>% 
+                        as.data.frame()}) 
+
+# Let us catch a glimpse of the data
+# The data set contains Hedges' g ("es") and standard error ("se")
+glimpse(SP_calc)
+
+```
+
+
+```{r}
+
+# Calculate the inverse variance-weights for each study
+SP_calc$w <- 1/SP_calc$se^2
+
+# Then, we use the weights to calculate the pooled effect
+pooled_effect <- sum(SP_calc$w*SP_calc$es)/sum(SP_calc$w)
+pooled_effect
+
+```
+## Random effects model
