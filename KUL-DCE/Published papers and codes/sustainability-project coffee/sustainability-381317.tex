@@ -1,0 +1,1242 @@
+
+%=================================================================
+\documentclass[sustainability,article,accept,moreauthors,pdftex,10pt,a4paper]{Definitions/mdpi}
+
+
+%=================================================================
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+\articlenumber{4496}
+\issuenum{12}
+%\doinum{10.3390/------}
+\pubvolume{10}
+\pubyear{2018}
+\copyrightyear{2018}
+%\externaleditor{Academic Editor: name}
+\history{Received: 16 October 2018; Accepted: 22 November 2018; Published: 29 November 2018}
+%------------------------------------------------------------------
+% The following line should be uncommented if the LaTeX file is uploaded to arXiv.org
+%\pdfoutput=1
+
+%=================================================================
+\usepackage{graphics}
+\usepackage{ifoddpage}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{eurosym}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[export]{adjustbox}
+%\usepackage{cite}
+\usepackage{natbib}
+\usepackage{wrapfig, framed, caption}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%=================================================================
+%% Please use the following mathematics environments:
+\theoremstyle{mdpi}
+\newcounter{thm}
+\setcounter{thm}{0}
+\newcounter{ex}
+\setcounter{ex}{0}
+\newcounter{re}
+\setcounter{re}{0}
+
+% \newtheorem{Theorem}[thm]{Theorem}
+% \newtheorem{Lemma}[thm]{Lemma}
+% \newtheorem{Corollary}[thm]{Corollary}
+% \newtheorem{Proposition}[thm]{Proposition}
+
+\theoremstyle{mdpidefinition}
+% \newtheorem{Characterization}[thm]{Characterization}
+% \newtheorem{Property}[thm]{Property}
+% \newtheorem{Problem}[thm]{Problem}
+% \newtheorem{Example}[ex]{Example}
+% \newtheorem{ExamplesandDefinitions}[ex]{Examples and Definitions}
+% \newtheorem{Remark}[re]{Remark}
+% \newtheorem{Definition}[thm]{Definition}
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{soul}
+\usepackage{microtype}
+
+
+
+\setitemize{parsep=6pt,itemsep=0pt,leftmargin=*,labelsep=5.5mm,align=parleft}
+\setenumerate{parsep=6pt,itemsep=0pt,leftmargin=*,labelsep=5.5mm,align=parleft}
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{Effect of Environmental and Altruistic Attitudes on Willingness-to-Pay for Organic and Fair Trade Coffee in Flanders}
+
+% Authors, for the paper (add full first names)
+\Author{Leonard Maaya {*}\href{https://orcid.org/0000-0001-6489-9324}{\orcidicon}, Michel Meulders\href{https://orcid.org/0000-0001-7042-6849}{\orcidicon}, Nick Surmont and Martina Vandebroek} %Please carefully check the accuracy of names and affiliations. Changes will not be possible after proofreading.
+
+\AuthorNames{Leonard Maaya, Michel Meulders, Nick Surmont and Martina Vandebroek}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address[1]{%
+Faculty of Economics and Business, KU Leuven, Naamsestraat 69, 3000 Leuven, Belgium; michel.meulders@kuleuven.be (M.M.); nicksurmont@outlook.be (N.S.); martina.vandebroek@kuleuven.be~(M.V.)}
+
+% Contact information of the corresponding author
+\corres{\hangafter=1 \hangindent=1.05em \hspace{-0.82em}Correspondence: leonard.maaya@kuleuven.be; Tel.: +32-16-37-72-32}
+
+
+% Simple summary
+%\simplesumm{}
+
+% Abstract (Do not use inserted blank lines, i.e. \\)
+\abstract{Sustainability labels, on food products, provide information to consumers that the product has been produced in an ethical and environmentally friendly way. We explore the knowledge and purchasing behaviour of the organic label and fair trade label. Secondly, we investigate the willingness-to-pay (WTP) for food products bearing organic and fair trade labels. Thirdly, we examine the effects of demographic characteristics and environmental and altruistic attitudes on WTP for both organic and fair trade labels. Lastly, we evaluate the correlation in WTP for organic and fair trade labels. We draw our conclusions by analyzing a stated choice experiment on consumers' coffee buying behaviour in Flanders, Belgium. Our results suggest that knowledge of the fair trade label is higher than that of the organic label. The importance of the organic and fair trade labels on coffee purchase decisions, as well as their WTP estimates, were similar.  We found a high correlation in WTP for both labels. Our results indicate significant effects of environmental and altruistic attitudes on WTP for both organic and fair trade labels as they apply to coffee.
+}
+
+% Keywords
+\keyword{coffee; organic; fair trade; willingness-to-pay; attitudes; discrete choice experiments}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\section{Introduction}
+\par{Ethical and environmentally conscious consumers continuously rely on sustainability labels found on products to choose food products that have been produced and processed in a sustainable way~\cite{Verbeke2005,Grunert2005,Bublitz2010}. These labels are especially important on a product's credence attributes, which can neither be observed pre-purchasing nor be experienced post-purchase. For such attributes, only the presence of a matching label denotes that the product satisfies the sustainability claim. A considerable number of sustainable labels have been developed in the recent past. This increase signifies an ever-increasing interest in sustainability consumption. However, the unbounded increase has fanned consumer confusion on what respective labels aim to address~\cite{ayuso2006,Horne2009,Grunert2011,Grunert2014}. Further, it has increased the information burden on food products that consumers have to process before deciding which product to purchase. As a result, consumers often limit their reliance on these labels~\cite{Verbeke2008,Grunert2011} in making their choices.}
+
+\par{Although many studies have investigated the role of sustainable labels in consumption, few have studied the effects of environmental and altruistic attitudes on willingness-to-pay (WTP) %Please check. Abbreviations must be defined the first time they appear in the Abstract, Keywords, Main text, and first Figure or Table.
+for multiple labels in a food consumption setting~\cite{Lusk2007,Umberger2009,Langen2011,keiko2017,Lucas2018}. Further, whenever multiple sustainability labels are investigated together, correlation between the labels is rarely investigated or reported. This is despite the overlaps in objectives of many labels and the implicit knowledge that consumers tend to perceive sustainability labels in a similar manner. This study seeks to narrow these research gaps by investigating the effects of environmental and altruistic attitudes on WTP for fair trade and organic labelled coffee. First, we explore consumers' recognition for fair trade and organic labels. Then, we~investigate the WTP for fair trade and organic coffee. Thirdly, we assess the influence of demographic, environmental and altruistic factors on WTP for these labels. We use the New Environmental Paradigm (NEP)~\cite{Dunlap2000}, Attitude towards Helping Others (AHO)~\cite{Webb2000} and Altruistic Social Behaviour (ASB)~\cite{carlo2002, carlo2003, rodrigues2017measuring} scales as they are among the most widely reviewed and accepted environmental and altruistic scales.  Lastly, we provide a description of consumers' association of WTP for the labels by estimating their revealed correlation.}
+\par{In the study, we present results from a stated choice experiment~\cite{Train2009} on coffee preference in Flanders (Belgium) aimed at investigating willingness-to-pay for fair trade and organic labels. Investigating coffee is interesting since it is a classic fair trade product. It is largely  produced by poor, Southern hemisphere countries and is heavily consumed in more developed countries~\cite{Pay2009}. Secondly, it is considered as a pioneer product for sustainability consumption~\cite{Reinecke2012}. Coffee is also a well-known food product consumed in Belgium, as well as in many European countries~\cite{DePelsmacker2005,Pay2009,Reinecke2012}. As a result, we expected negligible biased choices resulting from a hypothetical setting in a stated choice experiment~\cite{neill1994hypothetical,List2001, Loomis2014}. Investigating fair trade labels (whose primary objective is to help less-fortunate people in far-off places) and organic labels (which capture peoples' sensitivity to their own health  and the environment) presents a fascinating scenario in revealing their concurrent roles on coffee choices. Furthermore, it can help to identify factors that determine preferences and understand consumers' abilities to differentiate objectives and information provided by these labels in one study.}
+
+\par{This study aspires to benefit market actors in several ways. For marketers and policy makers, the study provides insights on consumers' WTP for fair trade or organic labels. It also provides an intrinsic consumer perception of the roles, objectives and overlaps for these labels by assessing revealed correlation in their WTP. We provide insights for products marketers by determining the important effects of environmental and attitudinal factors on consumers' WTP for either labels. In~studying multiple sustainability labels and determining their importance in consumer choices, WTP and correlation in their WTP, we implicitly question the need to study multiple labels---especially those like fair trade and organic---with a fine line between their objectives.}
+
+\par{The study is divided into six parts. In Section \ref{litreview}, we provide an overview of the available literature on fair trade and organic labels. Section \ref{mdata} discusses the data and methods used. Results are provided in the  Section  \ref{results}. Discussion of results and conclusions are provided in Section \ref{dconc} while study limitations and suggestions for future research are given in the Section \ref{sec6}. }
+
+\section{Literature Review \label{litreview}}
+\unskip
+\subsection{Fair Trade and Organic Labels}
+
+
+\par{Fair trade and organic labels are among the more prominent sustainability labels available on the market~\cite{coff2008,ZANDER2010,Andorfer2012}. %footnote is not permitted, we moved them within the main text, please confirm.
+(While the fair trade label comes in at least two forms: Fairtrade International (FLO) and Fair trade USA, this study limits itself to the FLO label. Also, the term \textit{fair trade} refers to the FLO label throughout the article. Unless otherwise specified, organic label refers to the European Union organic label (\url{https://ec.europa.eu/agriculture/organic/organic-farming_en})). Others include the Animal Welfare, Rainforest Alliance, Biodynamic, Natural, Shade Grown and Carbon Footprint labels. Some of these sustainability claims are certified while others are not. Fair trade was initiated in 1988 by the Dutch development organization Solidaridad~\cite{Solidaridad2018} to promote sustained and democratic development in southern countries. The aim was to achieve progressive growth by guaranteeing market access to producers from these countries. Coffee was introduced as the first fair trade certified product under the Max Havelaar brand~\cite{Pay2009}. Since then, both products and objectives associated with fair trade have expanded in scope and reach. Currently, fair trade not only aims at easing access to developed markets by farmers from less developed Latin American, African and Asian countries. It also cushions these farmers against frequent market upheavals, guarantees minimum prices that are less exploitative for their products, encourages better working conditions and environmental protection, promotes social development at points of product origin and encourages long-term, less restrictive contact between producers and consumers of products~\cite{Becchetti2008,Ruben2009}.}
+\par{Organic labels on the other hand, provide assurance to consumers that products have been grown in conditions that promote healthy living, animal welfare, sustainable resource use and environmental protection~\cite{Lampkin2003}. Since its introduction in 2010 by the European Commission (Regulation (EC) No 271/2010) and its becoming a mandatory requirement after a two-year transition period, all food products with an organic claim are obliged to carry the European organic logo. This is meant to increase recognizability and ensure organic products are produced through strict and structured methods that are certified by a recognized control body.}
+\par{In the recent past, interest in fair trade and organic labelled food products has shown a rapid growth. The growth has been accompanied by massive research  spanning major markets in \mbox{Europe~\cite{Rousseau2015, Gallenti2016}}, America~\cite{Loureiro2005,VanLoo2015}, China~\cite{Yang2012,Wang2018} and Japan~\cite{keiko2017}. Some studies have examined consumers' awareness and perception~\cite{Rousseau2015, Tebbe2017Does}. Others have either focussed on willingness-to-pay~\cite{Didier2008,VanLoo2015} or assessed factors contributing to varying preference levels across markets for these labels~\cite{Bray2011,Annunziata2011,Moser2011}. However, there does not appear to exist clear-cut conclusions by researchers and other market players over these research items. In the following subsections, we provide literature reviews on some of these thematic~areas.}
+\subsection{Willingness to Pay for Fair Trade and Organic Labels}
+\par{Investigation into willingness to pay for fair trade and organic labels has been massive, and  cuts across products and consumer markets. Some studies have exclusively investigated either of the labels solely. For instance, De Pelsmacker et al.~\cite{DePelsmacker2005} and Rotaris et al.~\cite{Rotaris2011} investigated fair trade in the Belgian and Italian coffee markets respectively. De Pelsmacker~\cite{DePelsmacker2005} showed that Belgian consumers were willing to pay an additional 0.19\euro \hspace{1mm} (10\% of the  1.87\euro \hspace{1mm} price for the reference coffee profile) of the market price for a 250~g package of coffee. Elsewhere, Rotaris~\cite{Rotaris2011} found that Italian consumers were willing to pay a premium of 2.2\euro \hspace{1mm} (110\% of the  2\euro \hspace{1mm} price for the \textit{status quo} alternative) for a 250~g of coffee. Poelmans et al.~\cite{Poelmans2017} and Krystallis et al.~\cite{Krystallis2005} on their parts focussed on organic labels on beer and a set of food products in Belgium and Greece. The Belgian beer market was shown to be indifferent to presence of an organic label. However, Krystallis~\cite{Krystallis2005} showed that their sample's WTP was largely sensitive to presence of an organic label on a food product. These studies showed varying levels of WTP for both labels. The variation in WTP depended on factors such as where the study was conducted, products and product attributes included and, data collection and analysis methods used~\cite{Rotaris2011}.}
+\par{Some other studies have studied fair trade and organic labels simultaneously~\cite{VanLoo2015, Rousseau2015,Loureiro2005,Didier2008,Poelman2008,Annunziata2011,Garcia-Yi2015,Gallenti2016,MEYERDING2016105}. These studies have been motivated by several factors. First, they appreciate consumer preferences on number of labels a sustainable product should have~\cite{ZANDER2010, Tebbe2017Does,Sirieix2013}. Second, they acknowledge the frequent overlaps in labels' objectives~\cite{Reinecke2012}. Lastly, they recognize that an increasing number of food products in the recent past have sought to satisfy more than one sustainability requirement~\cite{pierrot2011}. Results of studying fair trade and organic labels together vary depending on similar factors as when studying either labels alone. Moreover, there is no conclusion on whether WTP for fair trade is lower (or higher) than that of organic label. More specifically, while both Rousseau~\cite{Rousseau2015} and Loureiro et al.~\cite{Loureiro2005} reported higher premiums for the fair trade label in the Belgian chocolate and the American coffee consumers respectively, organic label was reported to have higher premiums by both Van~Loo~et~al.~\cite{VanLoo2015} (US coffee consumers) and Garcia-Yi~\cite{Garcia-Yi2015} (Peruvian yellow chili peppers consumers). Yet still, Didier et al.~\cite{Didier2008} obtained similar premiums for the two labels in the French chocolate consumers. The~increasing demand for food products with multiple labels, inconclusive WTP results and the often indistinguishable labels' objectives suggest a need to investigate more than one sustainability label in a food consumption study.}
+
+\subsection{Determinants of Willingness to Pay for Fair Trade and Organic Labels}
+\par{Several studies have concentrated on factors contributing to observed preferences for labels and the impacts of these labels on consumer behaviour. Socio-demographic factors are especially well-researched items. The effects of demographic factors are, however, not conclusive. Older age, higher income, being feminine and higher education status have been found in some studies to have important impacts on sustainable purchasing behaviour~\cite{littrell1999social,Carrigan2001,Laroche2001}. Whereas more recently, De~Pelsmacker~\cite{DePelsmacker2005} and Langen~\cite{Langen2013} found demographic factors to be unrelated to consumers' ethical purchasing behaviour. It is, however, the role of attitudinal factors (e.g., environmental perceptions, attitudes towards helping other people and altruistic social behaviour) on WTP for sustainability labels that is less researched.}
+\par{Studies investigating the effects of environmental and altruistic factors often find important influences on WTP for environmentally and socially conscious products. Husted et al.~\cite{HUSTED2014}, using a modified NEP %Please define. NEP is already defined in the second paragraph in the introduction section
+scale, found that Mexican consumers with pro-environmental attitudes were willing to pay more for environmental certification of their dining rooms. American consumers with perceptions of personal benefits and higher altruistic factors were also willing to pay higher premiums for sustainably-processed beef products~\cite{Umberger2009}. Lusk et al.~\cite{Lusk2007} showed that individuals with altruistic attitudes (measured by psychometric scales) were willing to pay more for pork products with environmentally friendly processing practises, animal well being and antibiotic usage. Similarly, Littrell et al.~\cite{littrell1999social} reports fair trade consumers to be more likely enthusiastic about equality, altruism, peace and environmental friendliness. These studies found that consumers of environmentally and socially responsible products attached more weight on pro-environmental conservation and were pro-social. Although the link between sustainable products and environmental and altruistic attitudes appears to be a direct one, only a few studies have specifically included these factors in their sustainable food consumption researches.}
+
+\section{Data and Methods \label{mdata}}
+\unskip
+\subsection{Choice Experiment \label{choice}}
+\par{A discrete choice experiment (DCE)~\cite{Train2009} was used to elicit consumer preferences for fair trade and organic labels. A DCE is a stated preference technique~\cite{Louviere1982, louviere1983} that has a well grounded theoretical basis in random utility theory~\cite{Hanley1998}, and is more general and consistent with economic demand theory than other choice elicitation approaches~\cite{Louviere2010}.}
+\par{In a stated choice experiment, a product is hypothesised using unique combinations of attributes and respective attribute levels. Often, an opt-out option is made available for respondents who do not prefer any of the hypothesised alternatives. Choosing a product alternative intrinsically implies that the consumer perceives it to have a higher utility compared to its competitors. Inevitably, due to lack of tangible choice consequences and the nonexistent nature of the proposed product, interpretation and application of results from these experiments are often not without caution~\cite{List2001}. However, for~attributes such as sustainability labels, and cases of marketing a prospective non-existing product, this approach is often the sole and reliable option.}
+\par{In this unlabelled choice experiment, a choice set comprised of five alternatives: coffee options A, B, C and D and an opt-out option.}
+\subsection{Attributes and Attribute Levels Selection}
+\par{In line with existing literature~\cite{DePelsmacker2005,catturani2008,Didier2008,Rotaris2011,Rousseau2015,VanLoo2015, Gallenti2016}, we described a 250 g package of grounded coffee using the following attributes: taste, country of production, presence of fair trade and/or organic label, country of origin and price. Taste attribute levels dessert, mild and mocha were selected because they were the most popular flavours available in most brands in the sampled supermarkets. Belgium, the Netherlands and Italian-produced coffee were the most represented producing countries available in the Belgian market. The choice of Ethiopia, Brazil and Indonesia as countries of origin was motivated by representation for an African, Latin American and Asian leading large scale producer of conventional coffee~\cite{vanDing2010,ICO2017}.  Price levels were determined on the basis of online webshops from Carrefour and Bioplanet supermarkets in Belgium. The lowest (highest) priced grounded coffee on these websites was 2.35\euro \hspace{1mm} (4.65\euro). A maximal price of 5.99\euro \hspace{1mm} (plus levels of 3.35\euro \hspace{1mm} and 4.35\euro) were included to provide more trade-offs, reliable parameter estimates and substantial ability to detect non-linearities in marginal utilities. The different attributes and their levels are shown in Table \ref{table1_attribute}.
+\begin{table}[H]
+\centering
+\caption{Attributes and attribute levels.}
+\vspace{-6pt}
+\label{table1_attribute}
+\begin{tabular}{ p{3.5cm} p{5cm}}\\ \toprule
+\textbf{Attribute} & \textbf{Attribute Levels }\\ \midrule
+Taste & Mild (reference) \\
+& Mocha  \\
+& Dessert \\
+Production & Belgium (reference)   \\
+\hspace{3mm} country & Italy \\
+& Netherlands \\
+Fair trade label & No (reference)\\
+& Yes \\
+Organic label & No (reference) \\
+& Yes \\
+Origin country & Ethiopia (reference)\\
+& Brazil \\
+& Indonesia \\
+Price & 2.35 euro \\
+& 3.35 euro \\
+& 4.35 euro \\
+& 5.99  euro \\ \bottomrule
+\end{tabular}
+\end{table}
+}
+\subsection{Design Construction}\label{design}
+\par{From Table \ref{table1_attribute}, 3$^3$ $\times$ 2$^2$$\times$ 4 = 432 different coffee products combinations were possible in a full factorial design. To avoid presenting respondents with the large number of choice tasks from a full factorial design, we constructed a fractional orthogonal factorial design (more efficient design criteria, e.g., the C-opimality, exist for maximizing the efficiency of functions of model coefficients estimates, such as WTP~\cite{Scarpa2008}) using SAS~\cite{SASInstituteInc2014}. The design generation algorithm ensures that alternatives are chosen in such a way that the included factors are balanced and orthogonal~\cite{Street2005,Kuhfeld2010}. The resulting design comprised of 12 distinct choice sets. To limit time spent when making choices, the choice sets were subdivided into two blocks each containing six tasks. A respondent was then randomly assigned to one of the blocks at the start of the survey. An example of a choice set is shown in Table \ref{figureorthogonal}.
+\begin{table}[H]
+\centering
+\caption{Choice set example.}
+\vspace{-6pt}
+\begin{tabular}{p{4.5cm}p{1.1cm} p{2.3cm} p{1.65cm} p{1.65cm} p{1.65cm}}\\ \toprule
+\textbf{Coffee} & \textbf{None} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D}  \\ \midrule
+Taste & &  Dessert & Mocha & Mild & Dessert\\
+Production country & & The Netherlands & Italy & Belgium & Italy \\
+Fair trade \begin{minipage}{.2\textwidth}
+\includegraphics[width=4.5mm, height=4.5mm]{fair_trade.PNG} \vspace{2pt}
+\end{minipage} & & No & Yes & No & Yes \\
+Organic \begin{minipage}{.2\textwidth}
+\includegraphics[width=4.5mm, height=4.5mm]{organic.PNG}
+\end{minipage} & & Yes & No & No & Yes\\
+Origin country & & Ethiopia & Brazil & Indonesia & Indonesia  \\
+Price & & 2.35 euro & 4.35 euro & 5.99  euro & 3.35 euro \\ \bottomrule
+\end{tabular}
+\label{figureorthogonal}
+\end{table}
+}
+\subsection{Survey and Questionnaire}
+\par{Every study participant received a questionnaire divided into three sections. The first section comprised of questions relating to knowledge of the labels, purchasing frequency and consumption behaviour for fair trade and organic coffee. To test the labels' knowledge, fair trade and organic labels were shown to the respondents and a short description (full description is given in the appendix) on the significance of the logos was explained. Then, the respondents were asked to provide a Yes (or No) answer to the questions: (i) All fair trade products are provided with the logo below. Did you know this logo (before you participated in this survey)? (ii) Since 2010, all organic food products are required to bear the European organic label shown below.  Did you know this logo (before you participated in this survey)? To understand their labelled coffee purchasing frequency and consumption behaviour, the respondents were asked to indicate whether they bought labelled coffee (and also provide the frequency with which they bought). The specific question asked was: Do you buy fair trade (organic) products? (and how often?). The answering options were either 'Yes, at least every week', 'Yes, at least every month ', 'Yes, but not every month ' or 'No, never'. The second section consisted of the choice experiment described in Sections \ref{choice}--\ref{design}. The final section comprised of socio-economic questions including age, gender, income, education level and employment status. A short survey was also included in this section on respondent's environmental and altruistic concerns. Attitude towards helping others (AHO)~\cite{Webb2000} and altruistic social behaviour (ASB)~\cite{carlo2002, carlo2003} scales were used to assess prosocial behaviour. The NEP scale~\cite{Dunlap2000} was used to reveal consumers' environmental concerns.
+}
+\subsection{Attitudinal Scales}\label{attscales}
+\par{Participants' pro-social and environmental attitudes were taken as part of the last section to avoid influencing their responses to label definitions and choice tasks. The NEP scale consisted of fifteen items with the exact wording provided by Dunlap et al.~\cite{Dunlap2000}. The seven even-numbered items were inverted to indicate pro-NEP responses as were the eight odd-numbered items. Higher pro-NEP values were expected to be associated with higher WTP for both fair trade and organic labels due to congruence in their objectives. Similarly, AHO had four items~\cite{Webb2000}. A positive AHO effect on fair trade was expected since all the AHO items typify the fair trade objective of concern for other people. The~ASB scale had the five altruistic items presented as items 4, 10, 16, 20 and 23 by Carlo et al.~\cite{carlo2002, carlo2003}. All the ASB items promote self-enhancement values~\cite{DeDominicis2017}. They also include the egoistic concern for environmental problems~\cite{Schultz2000, WesleySchultz2001}. These self-enhancement items were reversed to comply with the ASB motive of collective interest over individual benefit in the succeeding analyses. As such, high ASB values were more likely to be associated with pro-environmental concerns that form the basis for organic and fair trade food products~\cite{Schultz2000, WesleySchultz2001}.}
+\par{Respective items on all scales were translated into Dutch and randomly ordered for the survey. Participants were asked to indicate on a five-point Likert scale whether they strongly disagreed (value equal to 1) or strongly agreed (value 5) with the scales' statements. \iffalse Respondents' internal consistency for the attitudes was tested using Cronbach's Alpha~\cite{Tavakol2011}. Internal consistencies for NEP, AHO and ASB scales were 0.75, 0.87 and 0.72 respectively. The internal consistencies suggest using a single value for each scale. \fi To optimize information from the multidimensional scales~\cite{Fitalew2018}, we carried out a principal components analysis and retained the first principal component for each attitudinal scale. The reliability scores~\cite{Werts1974, lattin2003} of the first principal components for the NEP, AHO and ASB scales were 0.81, 0.91 and 0.82 respectively.
+
+\subsection{Data Collection and Sample Characteristics}
+\par{Participants were recruited using an online survey tool known as Qualtrics~\cite{Qualtrics2018}. Students from the Master of Science in Business Engineering at the university were initially invited to participate in the survey using emails, social media and oral questions by the third author.  Recruited participants were then asked to invite potential participants from amongst their acquaintances. Using an online survey for data collection is desirable as it has been associated with minimizing socially desirable responses~\cite{Kreuter2008}. Further, to limit the chances of hypothetical bias that often characterize stated preference experiments, we included a cheap talk script~\cite{Cummings1999,VanLoo2011} before each block of choice sets. In this script, respondents were asked to imagine they were in a local supermarket planning to buy a coffee product. The coffee was to be served to many visitors. The respondent was to behave as if a chosen product would actually be paid for. Data collection was carried out as part of a master thesis project. }
+
+\par{This survey was limited to Belgian residents in Flanders who were at least 18 years of age. In~total, 326 respondents participated in the study. 262 participants completed the survey and were used for the analysis. Table \ref{socioeconomiceda} shows their demographic characteristics. Slightly over half of the sample were female (55\%) and 50\% were aged below thirty years. The majority (80\%) had at least a post-secondary school diploma. Given the relatively high education in the sample, it followed quite naturally that most of them were either students (27.5\%) or employed (56\%) and had a decent income (over 70\% earning more than 1500\euro).}
+
+\begin{table}[H]
+\centering
+\caption{Socio-economic characteristics and purchasing behaviour of labelled products.}
+\vspace{-6pt}
+\label{socioeconomiceda}
+\begin{tabular}{p{3.9cm} p{0.9cm}p{0.9cm}p{3.75cm} p{1.8cm}p{1.8cm}}\\ \toprule
+\textbf{Characteristic} & \textbf{\%} & & \textbf{Characteristic} & \textbf{\%} & \\ \midrule
+Female & 55.3 &  & \multicolumn{2}{c}{Social status}  &\\
+& &              & Unemployed & 1.5 \\ \midrule
+\multicolumn{2}{c}{Age groups}   &  & Independent & 9.9\\
+19--24 & 29.5 &  & Housewife/husband & 2.7 \\
+25--29 & 20.7 &  & Retired & 2.7 \\
+30--44 & 24.5 &  & Student & 27.5 \\
+45--92 & 25.3 & &   Employed & 55.7 \\ \midrule
+\multicolumn{2}{c}{Education level}   &&  \multicolumn{3}{c}{Purchasing behaviour} \\
+Primary & 0.4         &            & &    \multicolumn{2}{c}{\%} \\
+Secondary & 19.8     & & Frequency & Organic & Fair trade  \\
+Higher non-university & 33.2   &  &At least every week & 24.0 & 5.7 \\
+University & 46.6  &    &At least every month & 18.3 & 17.9 \\
+& &&  Not every month & 35.9 & 42.4 \\\midrule
+\multicolumn{2}{c}{Family income (\euro)}                  &  &  Never & 21.8 & 34.0 \\
+$<$1500 & 8.4                    \\
+1500--2000 & 23.3      \\
+2000--3000 & 14.1 \\
+$>$3000 & 34.4 \\
+No answer & 19.8 \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Data Analysis}
+\unskip
+\subsubsection{Knowledge of Labels and Purchasing Behaviour}
+\par{To test knowledge for fair trade and organic labels, logos were shown to respondents followed by a short description. Then they were asked to indicate whether they already knew the logo and whether their knowledge matched the description of the logo. Descriptive statistics of tabulated percentages were then used to report knowledge of definitions provided for each label, their associated logos and consumers purchasing behaviour.}
+
+\subsubsection{Modelling Willingness-to-Pay for Fair Trade and Organic Labels}
+\par{Multinomial logit models (MNL) are among the most prominent analysis methods for choice data. These models are based on random utility theory~\cite{McFadden1974,Hanley1998}. MNL models assume that the utility for an alternative can be additively decomposed into a deterministic and a random component. The~relationship between the utility and the non-random component is assumed to be linear, while random components are assumed to be identically and independently distributed (iid) following a type-I extreme value distribution~\cite{Train2009}. A general representation of utility ($U_{ijs}$) derived from alternative $j$ of choice set $s$ for respondent $i$ is shown in Equation (\ref{mnlrepresentation}).
+\begin{equation}\label{mnlrepresentation}
+U_{ijs} = V_{ijs} + \epsilon_{ijs}
+\end{equation}
+where V$_{ijs}=\boldsymbol{\beta}^\prime \mathbf{x}_{ijs}$ is the deterministic component, $\boldsymbol{\beta}$ is a vector of attribute preferences, $\mathbf{x}_{ijs}$ is a vector containing observed attribute values related to alternative $j$ in choice set $s$. $\epsilon_{ijs} $ is the corresponding type-I extreme value distributed random component.}
+\par{A respondent chooses an alternative in a choice set if the utility from the chosen alternative exceeds the utility that would be gained from the other alternatives. Thus, the probability of choosing alternative $j$ is $p_{ijs}$=Prob($V_{ijs} + \epsilon_{ijs}>V_{iks} + \epsilon_{iks}$, $\forall $ k $\in$ A$_i$ \& k$\ne$j) where A$_i$ is the choice set faced by respondent $i$. By assuming $\epsilon_{ijs}$ to be iid type-I extreme value variates, McFadden~\cite{McFadden1974} shows that $p_{ijs}$ has a closed form solution (Equation (\ref{prmnl})) that results in the standard MNL probabilities.
+\begin{equation}\label{prmnl}
+p_{ijs} = \frac{e^{V_{ijs}}}{\sum\limits_{k\in A} e^{V_{iks}}}
+\end{equation}
+
+With five dummy coded categorical attributes (Table \ref{table1_attribute}), the expanded utility function for this study is as shown in Equation (\ref{mnlrepresentation_expanded}).
+% \begin{equation}\label{mnlrepresentation_expanded}
+% \begin{split}
+\begin{multline}\label{mnlrepresentation_expanded}
+U_{ijs}  = \beta_0\mbox{OptOut}_{ijs}+\beta_1\mbox{Dessert}_{ijs}+\beta_2\mbox{Mocha}_{ijs}+\beta_3\mbox{Netherlands}_{ijs}+\beta_4\mbox{Italy}_{ijs}+ \\
+\beta_5\mbox{Organic}_{ijs}+ \beta_6\mbox{Fairtrade}_{ijs}+\beta_7\mbox{Brazil}_{ijs}+\beta_8\mbox{Indonesia}_{ijs}+ \beta_9\mbox{Price}_{ijs} + \epsilon_{ijs}
+% \end{split}
+% \end{equation}
+\end{multline}
+where the OptOut is equal to 1 when the 'None' option is chosen and 0 if one of the available coffee options is chosen. Dessert and Mocha are taste dummy coded variables with Mild taste as a reference. The Netherlands and Italy are production country dummy variables with Belgium as a reference. Brazil and Indonesia are indicator variables for country of origin whose reference category is Ethiopia. Organic and Fairtrade are organic and fair trade labels dummy variables, where 1 indicates presence of the respective label on the product and 0 the absence of the label. Price was treated as a continuous~attribute.
+}
+\par{To quantify the marginal rate of substitution between non-price and price attributes, we estimated the WTP ($\omega$) for each attribute level by calculating a ratio between the negative of a non-price ($\beta_{non-price}$) and price ($\beta_{price}$) coefficients:
+\begin{equation}\label{wtpequation}
+\omega_{non-price}= \frac{-\beta_{non-price}}{\beta_{price}}
+\end{equation}}
+
+\subsubsection{Heterogeneity in Willingness-to-Pay and Correlation for Sustainability Labels} %Please try to avoid using abbreviations in headings and sub-headings
+\par{While choice experiments are often modelled using MNL models, their implied assumptions of homogeneity in preferences across respondents and Independence from Irrelevant Alternatives (IIA)~\cite{Train2009} are in most cases unrealistic. The homogeneity assumption in MNL models can be markedly relaxed by including interactions of socio-economic variables with attributes and alternative specific constants  or analysis by subsets~\cite{Ryan2008,Rousseau2015}. Preferences heterogeneity can also be modelled using mixed multinomial logit models (MMNL)~\cite{mcfadden2000mixed,Train2009}\iffalse, of which special cases~\cite{mcfadden1986} exist\fi. The MMNL models consumer preferences and choice behaviour by assuming random coefficients (for all or some of the attributes) over decision makers in a population defined by some density f($\beta$). In this paper, consumer preference heterogeneity will be modelled using an MMNL model.
+}
+\par{Two MMNL models were estimated. The first MMNL model, denoted as M1, included random coefficients for price and taste, fair trade and organic dummy variables. We allowed two independent instances of correlation among these random coefficients. First, between the two taste dummy variables. This correlation was included as a result of improved model fit when correlation between tastes was factored in, keeping all other variables fixed. The second correlation was between fair trade and organic labels. The inspiration for including this correlation was to investigate the association between WTP for the labels when presented simultaneously on a product. Tastes, fair trade and organic labels coefficients were assumed to be normally distributed, while the price coefficient was assumed to be log-normally distributed. Coefficients for country of origin and country of production were kept fixed since there was no improvement in the Deviance Information Criterion (DIC) model fits statistics when entered as random coefficients.}
+
+\par{WTP as shown in Equation (\ref{wtpequation}) is straightforward when applied in MNL since all attributes including price are assumed to be fixed. However, for an MMNL with random non-price and price coefficients, taking ratios may not result in well-behaved distributions~\cite{Train2005, Sonnier2007,Daly2012}. Thus, to derive appropriate WTP estimates for attributes, we  pre-multiplied all non-price parameters by the price coefficient~\cite{Hess2012}. Then, we specified normal heterogeneity distributions for WTP coefficients and lognormal distribution for the price coefficient~\cite{Sonnier2007,Hess2012}. Equation (\ref{m1eqns}) shows a representation of model M1 in WTP space.
+\begin{multline}\label{m1eqns}
+U_{ijs}  = \beta_{9i}(\omega_{0}\mbox{OptOut}_{ijs}+ \omega_{1i}\mbox{Dessert}_{ijs}+\omega_{2i}\mbox{Mocha}_{ijs}+\omega_{3}\mbox{Netherlands}_{ijs}+\omega_{4}\mbox{Italy}_{ijs}+ \\
+\omega_{5i}\mbox{Organic}_{ijs}+ \omega_{6i}\mbox{Fairtrade}_{ijs}+\omega_{7}\mbox{Brazil}_{ijs}+\omega_{8}\mbox{Indonesia}_{ijs}+ \mbox{Price}_{ijs}) + \epsilon_{ijs}
+\end{multline}
+with: \\ Taste WTP coefficients $\omega_{1i}$ and $\omega_{2i}$ assumed to come from a multivariate normal distribution (MVN). $\omega_{Des}$ and $\omega_{Moc}$ are the mean WTP components for Dessert and Mocha respectively. $\sigma^2_{Des}$, $\sigma^2_{Moc}$ are variances for Dessert and Mocha while $\sigma_{Des,Moc}$ is the covariance between Dessert and Mocha~coefficients.  \\
+\begin{equation}\label{tasteaqs}
+\begin{bmatrix}
+\omega_{1i} \\
+\omega_{2i}
+\end{bmatrix}
+\sim MVN\left \{\begin{bmatrix}
+\omega_{Des} \\
+\omega_{Moc}
+\end{bmatrix},\begin{bmatrix}
+\sigma^2_{Des} & \sigma_{Des,Moc}\\
+& \sigma^2_{Moc}
+\end{bmatrix}\right \}
+\end{equation}
+
+A similar idea was applied for organic ($\omega_{5i}$) and fair trade ($\omega_{6i}$) coefficients. ORG and FT subscripts annotate organic and fair trade respectively:
+\begin{equation}\label{orgft}
+\begin{bmatrix}
+\omega_{5i} \\
+\omega_{6i}
+\end{bmatrix}
+\sim MVN\left \{\begin{bmatrix}
+\omega_{ORG} \\
+\omega_{FT}
+\end{bmatrix},\begin{bmatrix}
+\sigma^2_{ORG} & \sigma_{ORG,FT}\\
+& \sigma^2_{FT}
+\end{bmatrix}\right \}
+\end{equation}
+
+The correlation between fair trade and organic labels was then calculated as the ratio of $\sigma_{ORG,FT}$ and the product of $\sigma_{ORG}$ and $\sigma_{FT}$. The lognormal specification for the price coefficient ($\beta_{9i}$) is shown in Equation (\ref{lgpriceeqn}):
+\begin{equation}\label{lgpriceeqn}
+log(\beta_{9i})\sim N(\beta_{Pr},\sigma^2_{Pr})
+\end{equation}
+}
+\subsubsection{Environmental and Altruistic Effects on Willingness-to-Pay for Sustainability Labels}
+\par{The second MMNL model (M2) extends M1 by including demographic and attitudinal variables in the mean coefficients of fair trade and organic labels. The aim was to use these variables to explain part of the observed heterogeneity in both labels. Further, M2 was used to assess the effects of environmental and altruistic attitudes on preferences for fair trade and organic coffee. The updated mean functions for both labels from Equation (\ref{orgft}) are shown in Equations (\ref{orgmean}) and (\ref{ftmean}).
+\begin{multline}\label{orgmean}
+\omega_{ORG}=E(\omega_{5i})= \gamma_{organic}+\gamma_{1}\mbox{female}_i+\gamma_{2}\mbox{age}_i+ \gamma_{3}\mbox{HE.non\_uni}_i+ \gamma_{4}\mbox{HE.uni}_i+ \\ \gamma_{5}\mbox{NEP}_i + \gamma_{6}\mbox{ASB}_i+\gamma_{7}\mbox{AHO}_i
+\end{multline}
+\vspace{-10mm}
+\begin{multline}\label{ftmean}
+\omega_{FT}=E(\omega_{6i})= \gamma_{ftrade}+\gamma_{8}\mbox{female}_i+\gamma_{9}\mbox{age}_i+ \gamma_{10}\mbox{HE.non\_uni}_i+ \gamma_{11}\mbox{HE.uni}_i+ \\
+\gamma_{12}\mbox{NEP}_i+\gamma_{13}\mbox{ASB}_i+\gamma_{14}\mbox{AHO}_i
+\end{multline}
+\vspace{3mm}
+}
+\par{In these equations, female equals 1 for females and 0 for males. Age is treated as a continuous variable. Education is a 4-level categorical variable. Primary and secondary school levels were combined into a reference category while higher non-university education (HE.non\_uni) and higher university education (HE.uni) were the other education categories. NEP, ASB and AHO denote principal component scores for environmental, altruistic social behaviour and attitudes towards helping others. \iffalse To ensure $\gamma_{ftrade}$ and $\gamma_{organic}$ represented the overall mean WTP for fair trade and organic labels, we standardized the age attribute and effect coded the education attribute. Thus, HE.non\_uni is 1 for higher non-university education, 0 for higher university education and $-$1 for either primary or secondary education. Similarly, HE.uni is 1 for higher university, 0 for higher non-university and $-$1 for either primary or secondary education. \fi }
+
+\subsubsection{Estimation and Software}
+\par{The model was estimated using Bayesian methods implemented in the $R2jags$ package~\cite{Su2015} available in R~\cite{R2018}. The package provides high-level interface utilities for MCMC models via the JAGS sampler~\cite{plummer2013jags}. It allows for useful processes like parallel processing for multiple chains, automated convergence control and evaluation of model performance. We ran 3 chains of 100,000 iterations. The~first (last) 50,000 iterations were used as burn-in (sample draws). For random parameters, we~assumed non-informative priors by using low precisions ($10^{-6}$) on the normal (lognormal in the case of price) distributions for mean parameters. Similarly, miniscule shape and scale parameters for the gamma (or wishart in multivariate cases) distributions were used as priors for precision parameters. For the fixed coefficients, we assumed flat priors (N(0,$10^{-6}$)). Convergence for the parameters was assessed using the Rhat statistic~\cite{Gelman1992}. An Rhat value less than 1.05 signified convergence.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results \label{results}}
+\unskip
+\subsection{Fair Trade and Organic Labels Knowledge}
+\par{A total of 238 (90.8\%) of the respondents positively identified with the description provided for and 144~(55\%) already knew the organic label. For fair trade, 254 (96.9\%) agreed with the description provided and 203 (77.5\%) already knew its logo. On the consumption patterns, 46.6\% indicated that they drunk coffee every day, 18.7\% between two to six days per week, 2.3\% once per week, 9.9\% less than once per week, while 22.5\% never drunk coffee. These results indicate that coffee is a well-known and frequently consumed product in the sample. Furthermore, the fair trade logo was more often recognized than the organic label. }
+\par{Table \ref{socioeconomiceda} shows that when considering frequency of buying labelled coffee, a higher percentage bought organic (24\%) compared to fair trade (5.7\%) coffee at least every week. Both labels were bought by 18\% of respondents at least every month, while 34\% do not buy fair trade coffee at all compared to 22\% for organic coffee. \iffalse To explore which product attributes were most important when purchasing a coffee alternative, we \iffalse fitted a single-class\fi calculated relative importance statistics~\cite{Vermunt2013} from the MNL model. \iffalse in Latent Gold \fi \iffalse and extracted attributes' relative importance\fi Relative importance is the ratio between the maximum effect of an attribute and the sum of maximum effects of all attributes under consideration. Price had the highest relative importance score at 0.48, followed by organic (0.17) and fair trade (0.16) labels. Taste \iffalse, country of origin \fi and production country each had scores of 0.08 while country of origin had an importance score of 0.04. Respondents considered price as the most important attribute, followed by sustainability labels. It is interesting that fair trade and organic labels are indistinguishable in importance.\fi}
+
+\subsection{Willingness-to-Pay for Fair Trade and Organic Labels: Multinomial logit model}\label{wtpmnl}
+\par{Table \ref{tablewtpmnl} shows the results for estimating an MNL model to determine the choice probability for a 250 g coffee alternative. OptOut has, as expected, a negative significant coefficient indicating that consumers benefit more from choosing a coffee alternative compared to an opt-out. The respondents preferred dessert and mocha to mild flavoured coffee, Belgian-processed to coffee processed in either Italy or the Netherlands, Brazilian to Ethiopian and Ethiopian to Indonesian for country of origin  ceteris paribus. Cheaper coffee was preferred to more expensive coffee. The WTP for fair trade coffee was on average 2.1 euros higher than coffee without a fair trade label. The WTP for coffee with an organic label was on average 2.2 euros higher than coffee without an organic label.
+
+\begin{table}[H]
+\centering
+\caption{Multinomial logit model % Please define. Abbreviations and variables must be defined in the first table or figure they appear
+results in preference and Willingness-to-Pay % Please define.
+spaces.}
+\vspace{-6pt}
+\label{tablewtpmnl}
+\begin{tabular}{p{2cm}p{3.5cm} p{3cm} p{3cm}}\\ \toprule
+&                 & \multicolumn{1}{l}{\textbf{Preference Space}}         &\multicolumn{1}{l}{\textbf{WTP Space}} \\
+\textbf{Attribute}         & \textbf{Coefficient}     & \boldmath{$\beta$}\textbf{ (SD)}                                 & \boldmath{$\omega$}\textbf{ (SD)}  \\ \midrule
+OptOut              &                 & $-$1.381 (0.152) *                               & $-$4.184 (0.398) *    \\
+Taste            & Dessert         & 0.314 (0.071) *                                & 0.960 (0.238) *    \\
+& Mocha           & 0.316 (0.072) *                                & 0.963 (0.231) *    \\
+Production        & The Netherlands     & $-$0.318 (0.075) *                               & $-$0.968 (0.232) *     \\
+& Italy           & $-$0.111 (0.071) *                               & $-$0.337 (0.217)     \\
+Fair trade        & Yes             & 0.680 (0.060) *                                & 2.064 (0.221) *      \\
+Organic           & Yes             & 0.713 (0.059) *                                & 2.163 (0.206) *      \\
+Origin            & Brazil          & 0.154 (0.072) *                                & 0.469 (0.221) *    \\
+& Indonesia       & $-$0.148 (0.070) *                               & $-$0.446 (0.209) *    \\
+Price             &                 & $-$0.330 (0.024) *                               &                   \\
+\midrule
+% pD                &                 & 10.1                                         & 10.1           \\
+% Deviance          &                 & 4427.149                                     & 4427.180           \\
+DIC               &                 & 4437.2                                       & 4437.2           \\ \bottomrule
+%\multicolumn{4}{l}{Notes:}\\
+%\multicolumn{4}{l}{(i) * The 95\% credible interval does not include zero ( |Est/SD| > 1.96 ).} \\
+%\multicolumn{4}{l}{(ii) Variable (Reference level):}\\
+%\multicolumn{4}{l}{Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia)}
+\begin{tabular}{@{}c@{}}
+\multicolumn{1}{p{\textwidth -.88in}}{\footnotesize Notes: (i) * The 95\% credible interval does not include zero ( |$\beta$/SD| > 1.96 ). (ii) Variable (Reference level): Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia).}
+\end{tabular}
+\end{tabular}
+\end{table}
+}
+\par{To explore which product attributes were most important when purchasing a coffee alternative, we \iffalse fitted a single-class\fi calculated the relative importance statistics~\cite{Vermunt2005} from the MNL model. Relative importance is the ratio between the maximum effect of an attribute and the sum of maximum effects of all attributes under consideration. A maximum effect is the difference between the highest and lowest possible values of an attribute in a survey. An illustration of relative importance calculation is provided in Table~\ref{relativeimportance}, in~Appendix \ref{a.2}. Price had the highest score at 0.36, followed by organic (0.21) and fair trade (0.20) labels. Taste and production country each had scores of 0.09 while country of origin had an importance score of 0.05. Respondents considered price as the most important attribute, followed by sustainability labels. Fair trade and organic labels were indistinguishable in importance and their WTP estimates were similar.}
+
+\subsection{Heterogeneity in Willingness-to-Pay for Sustainability Labels}\label{wtpmmnl}
+\par{Table \ref{tablewtpmmnl} shows consumer preferences for organic and fair trade labels in the two MMNL models. M1 fits an MMNL WTP model without including demographic and attitudinal variables. The opt-out and price coefficients were, as expected, negative and significant. Respondents preferred dessert to mild flavoured coffee. Belgian-made coffee was preferred to coffee processed in either Italy or the Netherlands, while Brazilian coffee was not significantly preferred to Ethiopian coffee.}
+\par{Consumers were prepared to pay on average an extra of 1.67 euros for a 250 g package of fair trade and organic labelled coffee. The high similarity in estimated WTP means for both labels carries over to their standard deviations. Standard deviation estimates were close to 1.8 and were highly significant. The significance of standard deviations indicates the presence of observed heterogeneity in WTP preferences amongst respondents. We attempted to explain part of these WTP heterogeneities by factoring in consumer-specific characteristics in model M2.
+
+\begin{table}[H]
+\centering
+\caption{ Mixed multinomial logit models % Please define.
+results in Willingness-to-Pay space.}
+\vspace{-6pt}
+\label{tablewtpmmnl}
+\begin{tabular}{p{2cm}p{3.5cm} p{3cm} p{3cm}} \\ \toprule
+&              & \multicolumn{1}{l}{\textbf{M1}}    & \multicolumn{1}{l}{\textbf{M2}}     \\ %    & \multicolumn{1}{c}{M2$_1$}           &\multicolumn{1}{c}{M2$_{all}$} \\
+\textbf{Attribute} & \textbf{Coefficient} &               \textbf{Est (SD) }                    & \textbf{Est (SD) }                    \\ \midrule%       & WTP(SD)                              & WTP(SD)  \\ \hline
+OptOut   &  &                              $-$4.065  (0.337) *              & $-$4.011 (0.333) *              \\
+\midrule %       & -4.012 (0.334)*                       &  -3.967 (0.330)*\\
+Taste  & Dessert$_\omega$ &              0.744 (0.230) *               & 0.766 (0.243) *               \\ %       & 0.770 (0.237)*                        &  0.787 (0.245)*  \\
+& Dessert$_\sigma$ &             2.005 (0.258) *               & 2.104 (0.268) *               \\ %       & 2.067 (0.266)*                        &  2.147 (0.269)* \\
+& Mocha$_\omega$ &                $-$0.168 (0.383)               & $-$0.149 (0.387)               \\ %       & -0.167 (0.391)                        &  -0.153 (0.395) \\
+& Mocha$_\sigma$ &               4.909 (0.501) *               & 4.984 (0.525) *               \\ %       & 5.011 (0.515)*                        & 5.070 (0.529)* \\
+& $\sigma_{Des,Moc}$&    0.150 (0.155)                & 0.170 (0.155)                \\ %       & 0.157 (0.155)                         &  0.170 (0.152) \\
+\midrule
+Production&Netherlands$_\omega$&                 $-$0.675 (0.162) *              & $-$0.692 (0.165) *              \\ %       & -0.703 (0.166)*                       &  -0.719 (0.169)*  \\
+& Italy$_\omega$ &                        $-$0.365 (0.142) *              & $-$0.374 (0.146) *              \\ %       & -0.386 (0.146)*                       & -0.395 (0.148)* \\
+\midrule
+Fairtrade & Yes$_\omega$ &                1.668 (0.186) *              & 1.684 (0.186)*               \\ %       & 1.309 (0.277)*                        & 1.541 (0.282)*  \\
+& Yes$_\sigma$  &                 1.869 (0.207) *              & 1.748 (0.205) *               \\ %       & 1.890 (0.212)*                        &   1.805 (0.212)*\\
+% & :Female$_\omega$ &                                          &                             \\ %       & 0.480 (0.347)                         &  0.127 (0.350) \\
+% & :Age$_\omega$  &                                            &                             \\ %       & 0.011 (0.174)                         &  -0.058 (0.171) \\
+% & :HE.non-univ$_\omega$ &                                     &                             \\ %       & 0.032 (0.251)                         & 0.075 (0.248) \\
+% &:HE.univ$_\omega$ &                                          &                             \\ %       & 0.415 (0.240)                         & 0.317 (0.234)  \\
+& :NEP$_\gamma$ &                                             & 0.470 (0.197) *               \\ %       &                                      &  0.457 (0.204)* \\
+& :ASB$_\gamma$ &                                             & 0.374 (0.182) *              \\ %       &                                      &  -0.380 (0.191)* \\
+& :AHO$_\gamma$ &                                             &  0.426 (0.180) *              \\ %       &                                      & 0.427 (0.186)* \\
+& $\sigma_{ORG,\hspace{1mm} FT}$ & 0.907 (0.049) *   & 0.901 (0.054) *         \\ %       & 0.898 (0.054)*                        & 0.896 (0.057)* \\ \hline
+\midrule
+Organic& Yes$_\omega$ &                  1.666 (0.182) *               & 1.685 (0.181) *               \\ %       & 1.279 (0.272)*                        &  1.413 (0.278) * \\
+& Yes$_\sigma$ &                 1.760 (0.205) *               & 1.717 (0.207) *               \\ %       & 1.803 (0.209)*                        & 1.754 (0.212)*\\
+% & :Female$_\omega$  &                                         &                             \\ %       & 0.521 (0.342)                         & 0.318 (0.355)  \\
+% & :Age$_\omega$  &                                            &                             \\ %       & 0.094 (0.172)                         & 0.034 (0.170) \\
+% & :HE.non-univ$_\omega$  &                                    &                             \\ %       & -0.110 (0.246)                        & -0.059 (0.246) \\
+% & :HE.univ$_\omega$  &                                        &                             \\ %       & 0.574 (0.235)*                        & 0.504 (0.236)*\\
+& :NEP$_\gamma$ &                                             & 0.492 (0.199) *               \\ %       &                                      &  0.440 (0.206)* \\
+& :ASB$_\gamma$  &                                            & 0.406 (0.182) *              \\ %       &                                      &  -0.381 (0.191)* \\
+& :AHO$_\gamma$ &                                             & $-$0.010 (0.180)               \\ %       &                                      &  -0.014 (0.185) \\
+\midrule
+Origin & Brazil$_\omega$ &                       $-$0.069 (0.148)               & $-$0.061 (0.149)               \\ %       & -0.073 (0.151)                        &  -0.064 (0.154)  \\
+& Indonesia$_\omega$ &                    $-$0.363 (0.141) *              & $-$0.363 (0.141) *              \\ %       & -0.372 (0.143)*                       &   -0.373 (0.146)* \\
+\midrule
+Price  & $\beta_{Pr}$  &                     $-$0.317 (0.091) *              & $-$0.325 (0.092) *              \\ %       & -0.339 (0.092)*                       & -0.345 (0.093)* \\
+& $\sigma_{Pr}$  &                    1.355 (0.293) *               & 1.344 (0.290) *               \\ \midrule %       & 1.325 (0.289)*                        & 1.330 (0.292)* \\
+% Deviance &                      & 2416.071                             &  2407.966             \\ %       & 2417.755                             & 2410.888               \\
+% pD       &                      & 1595.1                               & 1585.300              \\ %       & 1644.3                               & 1630.7 \\
+DIC       &                      & 4011.1                           & 3993.3                      \\ \bottomrule %       & 4062.0                               & 4041.6 \\  \hline
+\end{tabular}
+%\multicolumn{4}{l}{Notes:}\\
+%\multicolumn{4}{l}{i) * The 95\% credible interval does not include zero ( |Est/SD| > 1.96 ).} \\
+%\multicolumn{4}{l}{ii) Variable (Reference level):}\\
+%\multicolumn{4}{l}{Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia)}
+\begin{tabular}{@{}c@{}}
+\multicolumn{1}{p{\textwidth -.75in}}{\footnotesize Notes: (i) M1 (M2) is a Mixed multinomial logit model without (with) attitudinal variables. (ii) Est (SD)- Estimate (Standard Deviation)
+(iii) * The 95\% credible interval does not include zero ( |Est/SD| > 1.96 ). (iv) Variable (Reference level): Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia).}
+\end{tabular}
+\end{table}
+}
+\vspace{-16pt}
+\subsection{Environmental and Altruistic Effects on Willingness-to-Pay for Labels}\label{attsonlabs}
+\par{Table \ref{tablewtpmmnl} (column M2) shows the results from including attitudinal variables to explain the observed variation in WTP for organic and fair trade labels. M2 had a better fit compared to M1 as seen by its lower DIC value. All of the environmental and altruistic attitudes scores were significantly associated with WTP for the fair trade label. A unit increase in standard deviation for the NEP (ASB, AHO) scales was associated with an increase of 0.5 (0.4, 0.4) euros in willingness-to-pay for fair trade coffee. For the organic label, the NEP and ASB coefficients were positive and significant. AHO was not significant. An~increase by one standard deviation in NEP (ASB) resulted in an increase of 0.5 (0.4) euros in marginal WTP for organic coffee. }
+
+\par{Adding demographic variables to M2 (full results table, column annotated M$_{all}$ in Table \ref{tablewtpmmnlfull}, in~Appendix \ref{a.3}) % changed to Appendix A.3, please see Appendix below and confirm
+led to a poorer DIC value (4042). Except for higher university education in the case of WTP for the organic label, none of the socio-demographic variables were significant. Respondents with a higher university education were willing to pay an extra of 0.5 euros for an organic labelled coffee compared to those with either primary or secondary school education. Variations of the mean preferences for both labels remained significant suggesting that including these variables did not completely explain the observed heterogeneity.}
+
+
+\subsection{Correlation between Willingness-to-Pay for Fair Trade and Organic Labels}\label{ftradebioassociation}
+\par{The foregoing results show important concordance between fair trade and organic labels, even though ideally, we expected them to be unalike. Fair trade consumers were expected to care mostly about people in far-off places (i.e.,\hspace{1mm}others). Conversely, organic coffee enthusiasts were expected to care mostly about themselves. This scenario was well-captured by significance of AHO scale on fair trade and its non-significance on organic label. To describe the high resemblance in results, we calculated the correlation between WTP for organic and fair trade labels. Table \ref{tablewtpmmnl} shows that the correlation was high and positive. In both models, the correlation was 0.9. This result implies that consumers who were willing to pay a premium for fair trade coffee were also willing to pay a largely similar premium for organic coffee and vice versa.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion and Conclusions}\label{dconc}
+\par{Results on label knowledge appear to positively update on what was reported by Rousseau~\cite{Rousseau2015}. In Rousseau's study which also assessed recognition of fair trade and organic labels in Flanders (Belgium), 60\%  of the respondents correctly identified fair trade compared to the 78\% we found. Our~55\% knowledge of organic label, however, appears to show a sharp improvement compared to the 6\% reported by Rousseau. We find fair trade knowledge results within an expectable range, as is comparable to 71\% reported in Italy~\cite{Gallenti2016}. We also posit that additional time for organic label in the Belgian market could be responsible for the increase in its identifiability. This is especially in light of results reported by Van Loo et al.~\cite{VanLoo2014} whose Flanders sample showed a higher preference for a national Belgian organic logo, certified by a private organization, to the then newly-introduced EU-organic label. The superior fair trade knowledge is likely attributable to the longer time it has been on the market compared to the EU-organic label that was introduced in 2010.}
+
+\par{The approximate price premiums for a 250 g of fair trade coffee and organic coffee were similar throughout our analysis. The presence of a fair trade label was associated with a WTP estimate of 2.1\euro \hspace{1mm} in the MNL model. This represented a 34 (88)\% of the most (least) expensive coffee hypothesised. Similarly for the organic label, the WTP estimate was 2.2\euro \hspace{1mm} representing 36 (92)\% of the most (least) expensive coffee. The mean WTP estimates for both labels in mixed models was 1.7 \euro \,(28\% and 72\% of most expensive and cheapest coffee respectively). The similarity in WTP for organic and fair trade has been reported before for French chocolate consumers~\cite{Didier2008}. Didier et al.~\cite{Didier2008} found that the WTP for an organic and a fair trade chocolate bar of 100 g was 1.25\euro \hspace{1mm} (179\% of the average price for a standard chocolate) and 1.31\euro \hspace{1mm} (187\%) respectively. The absolute estimates were similar to separate estimates for a 250 g packet of coffee from two studies in Italy~\cite{Rotaris2011,Gallenti2016}. Rotaris et al.~\cite{Rotaris2011} reported an average extra premium of 2.2\euro \hspace{1mm} which was 34 (146)\% of the most (least) expensive fair trade alternative. The~WTP for organic coffee reported by Gallenti et al.~\cite{Gallenti2016} was 2.8\euro \hspace{1mm} representing 31 (93)\% of the most (least) expensive alternatives. However, our fair trade WTP estimates differ substantially. Gallenti~\cite{Gallenti2016} found a WTP of $-$4.3\euro \hspace{1mm} for fair trade. The authors posit that the negative estimate was as a result of not modelling the heterogeneity towards the fair trade label. }
+
+\par{These WTP results contradict other results in past studies that have shown unequal, non-unidirectional conclusions on fair trade and organic labels. Rousseau~\cite{Rousseau2015} found the WTP for a 100 g of a Belgian chocolate bar to be 2.03\euro \hspace{1mm} (representing 41 (203)\% of the most expensive (cheapest) alternative) for fair trade. The WTP estimate for the organic label was negative and close to zero. Loureiro et al.~\cite{Loureiro2005}, using a different WTP elicitation approach and a Weibull model, also found that fair trade coffee carried a higher premium than organic labelled coffee in the state of Colorado (US). Van Loo~\cite{VanLoo2015} found WTP for organic coffee to be \textdollar 1.16 (11 (27)\% of most (least) expensive options) while fair trade had \textdollar 0.68 (7 (15)\%) for a package of 12 oz at the University of Arkansas Sensory Service Center (Fayetteville, AR, USA). Similarly for Meyerding~\cite{MEYERDING2016105}, the organic label had a higher part-worth utility compared to the fair trade label for labelled tomatoes in Germany. These results, highlighting a few studies that have compared willingness-to-pay for organic and fair trade products, underline the fact that clarity on which of these two labels is superior is non-existent. Perhaps, this is the reason we observed equivalent relative importances and a high correlation in WTP. It could point to consumer inability to tease-out differences in aims advocated by sustainability labels. The results also show that the estimates are highly dependent on study location, products considered and methods used.}
+\par{Our findings support results reported elsewhere~\cite{Lusk2007, Umberger2009, ajzen2011} showing that environmental and altruistic attitudes have important roles in driving consumer decisions and willingness to pay for sustainable products.}
+\par{Environmental pro-activeness and altruism were significantly associated with WTP for fair trade coffee. The positive NEP and AHO effects were intuitively expected given the compatibility between objectives of fair trade and underlying reasons for being pro-environmental and pro-help-others. The~positive ASB effect mirrors the congruence between the fair trade objective of helping other people over oneself and the motivations to minimize personal benefit in the reversed self-enhancement ASB items used in the study.}
+\par{WTP for organic coffee was positively and significantly affected by being pro-environmental and altruism. The positivity shown by pro-environmental respondents naturally stems from the underlying pro-environmental objectives advocated by organic labels. This relationship is unequivocal as has been shown in cases of ecologically-themed conservation studies~\cite{HUSTED2014,Fitalew2018,Kumju2018}. The positive effect of altruistic social behaviour shows that individuals with a collective environmental concern are more likely to purchase pro-environmental food products like organic coffee.}
+
+\par{Our lack of demographic effects on WTP for either labels is, however, not unique. Equally, past literature does not present unambiguous results in this respect~\cite{Laroche2001,DePelsmacker2005,Krystallis2005,Langen2013}.}
+\par{A high correlation was observed between WTP for fair trade and organic labels. This was also manifested through identical relative attribute importances, equivalent WTP estimates and similar effects of attitudinal variables on both labels. The high correlation between WTP for fair trade and organic labels could imply a lack of clarity on the objectives that these respective labels seek to promote as perceived by consumers, or it could be a tacit reasoning that a product satisfying either label will automatically accommodate the other label.}
+\par{The findings from this study provide multi-faceted implications concerning the effects of environmental and altruistic attitudes on the willingness-to-pay for organic and fair trade coffee. First, we affirm that providing additional information through fair trade and organic labels can spur consumer demand for sustainably-produced products. Second, we provide evidence of existence of positive links between organic (green) consumer behaviour and pro-environmental attitudes, as well as  between fair trade-motivated consumer behaviour and attitudes towards both altruistic social behaviour and helping other people. These findings are key considering that while modelling socio-economic effects on WTP for sustainability labels has been vastly investigated, the often uninvestigated effects of environmental and altruistic attitudes appear more intuitive, direct and often show significance. Third, the increased WTP premiums associated with both environmental and altruistic attitudes demonstrates to policy makers, marketers and other market players the importance of including consumers’ attitudinal questions in market segmentation policies. }
+\par{Fourth, we include correlation in WTP for fair trade and organic labels to explicitly provide insights of consumers’ perceptions of overlaps in the objectives for these labels. Although objectives of some labels are often highly similar, existing studies that have studied multiple sustainability labels have often overlooked the correlation aspect in their WTP models. This (un)intentional inattention to model the correlation conceals the reality of overlaps in labels’ objectives and the implicit problem consumers face in identifying the core objective(s) of each and every label they come across on products. The high correlation reported in this study shows that more consumer education  is needed on the primary goals advocated by the fair trade and organic labels.}
+\section{Limitations and Future Research \label{sec6}}
+\par{Considering that this study focused on a single product in a specific market and the non-probabilistic nature of the sampling scheme used, the transferability of these results to other regions or food products may be limited. This is because WTP has been shown to depend on location of the study, methodology used and, product and product attributes investigated. In~addition, the~closeness in relative importance and WTP estimates as well as the high correlation in WTP for fair trade and organic labels calls for further research. Future studies investigating the robustness of these results on more sustainability labels and more food products in other markets may be interesting.}
+\vspace{6pt}
+
+
+\authorcontributions{N.S. under the supervision of M.M. designed the study and provided initial insights during his MSc. L.M., M.M. and M.V. did the analysis, wrote and revised the manuscript after earlier comments from the reviewers}
+
+\funding{Leonard Maaya was funded by project G0C7317N of the Flemish Research Foundation (FWO Flanders), Belgium.} %please add this part
+\acknowledgments{We thank the editors and three anonymous reviewers for their comments on an earlier version of the manuscript.}
+\conflictsofinterest{The authors declare no conflict of interest.}
+
+%\section*{}
+%\noindent Acknowledgments: We thank the editors and three anonymous reviewers for their comments on an earlier version of the manuscript. \\
+%\noindent Author Contributions: Nick Surmont- under the supervision of Michel Meulders- designed the study and provided initial insights during his MSc. Leonard, Michel and Martina did the analysis, wrote and revised the manuscript after earlier comments from the reviewers. \\
+%\noindent Conflicts of Interest: The authors declare no conflict of interest.
+
+\appendixtitles{no} %Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
+\appendixsections{multiple} %Leave argument "multiple" if there are multiple sections. Then a counter is printed ("Appendix A"). If there is only one appendix section then change the argument to "one" and no counter is printed ("Appendix").
+\appendix
+
+\appendixtitles{no}
+\appendix
+
+
+\makeatletter
+\@addtoreset{table}{part}
+\renewcommand{\thetable}{A\@arabic\c@table}
+\setcounter{table}{0}
+\@addtoreset{figure}{part}
+\renewcommand{\thefigure}{A\@arabic\c@figure}
+\setcounter{figure}{0}
+\makeatother
+\section{\label{aaa}}
+\appendixtitles{yes}
+\subsection{Description and Knowledge of Organic and Fair Trade Labels }  %Appendix section number changed, please confirm
+\unskip
+\appendixtitles{yes}
+\subsubsection{Fair Trade Label}
+\unskip
+\subsubsection*{Description:}
+\par{Fair trade offers poor farmers from Africa, Asia and South America a fair price and fair trading conditions. In addition, fair trade guarantees that production is done in a sustainable manner: no forced labor, no child labor, equal wages, good working conditions and gender equity for the both female and male workers}
+\subsubsection*{Knowledge:}
+\par{All fair trade products are provided with the logo below. Did you know this logo (before you participated in this survey)?
+
+\begin{minipage}{0.5\textwidth}
+\begin{centering}
+\includegraphics[width=20mm, height=20mm]{fair_trade.PNG}
+\end{centering}
+\end{minipage}
+
+\begin{itemize}
+\item Yes, I already knew that this logo is the Fair Trade logo (1)
+\item No, I did not know (so far) what this logo was for (2)
+\end{itemize}
+}
+\subsubsection{Organic Label}
+\unskip
+\subsubsection*{Description:}
+\par{The Flemish government defines organic production as ``a comprehensive system of agricultural management and food production that combines best practices in the environmental field with a high level of biodiversity, conservation of natural resources, application of strict standards in the field of animal welfare and production tailored to the preferences of certain consumers for products made with natural substances and processes''. Specifically, a bio label guarantees that the products have been produced in an environmentally friendly way and with respect for animal welfare. Since 2010, all organic products are expected to carry the European organic label. When products carry a European organic label, this means that the products have been produced in line with stringent ecological requirements as defined in the European law.  For example, an organic producer may not use artificial fertilizers, chemical-synthetic pesticides or genetically modified organisms.}
+
+\newpage
+\subsubsection*{Knowledge:}
+\par{Since 2010, all organic packaged food products are required to carry the European organic label shown below.  Did you know this logo (before you participated in this survey)?
+
+\begin{minipage}{0.5\textwidth}
+\begin{centering}
+\includegraphics[width=20mm, height=20mm]{organic.PNG}
+\end{centering}
+\end{minipage}
+\begin{itemize}
+\item Yes, I already knew that this logo is a bio label (1)
+\item No, I did not know (so far) what this label was for (2)
+\end{itemize}
+}
+\subsection{Calculation of Relative Importance Scores \label{a.2}} %Please consider adding the information of Appendix A.2. as text and editable tables, instead of an image. Or please provide a sharper image
+%\begin{center}
+%\includegraphics[width=15cm, height=15cm]{relative_importance_calculation.JPG}
+% \end{center}
+\begin{center}
+\begin{table}[H]
+\caption{Relative Importance calculation.}
+\label{relativeimportance}
+\centering
+\begin{tabular}{ p{2cm}p{2cm}p{3cm} p{3cm} }
+\toprule
+\textbf{Attribute}& \textbf{Effect }& \textbf{Maximum Effect }& \textbf{Relative Importance}\\
+\midrule
+Price & $-0.3300$ & 1.2012 & 0.3551 \\
+Taste & 0.3160 & 0.3160 & 0.0934 \\
+Fair trade & 0.6800 & 0.6800 & 0.2010 \\
+Organic & 0.7130 & 0.7130 & 0.2108 \\
+Origin & 0.1540 & 0.1540 & 0.0456 \\
+Production & $-0.3180$ & 0.3180 & 0.0940 \\ \bottomrule
+\end{tabular}
+\end{table}
+\end{center}
+\par{\textbf{Notes:}
+\begin{itemize}
+\item Maximum Effect is the absolute of the estimate multiplied by the difference between the highest and lowest levels of the given variable
+\begin{itemize}
+\item e.g., Price has a maximum value of 5.99 and a minimum value of 2.35 in this study, while all dummy variables have a maximum (minimum) value of 1 (0)
+\item To calculate the relative importance of price, we take:
+\begin{equation*}
+\begin{split}
+0.33*(5.99-2.35) & = 1.2012 \\
+\mbox{sum} (0.33*(5.99-2.35) : 0.3180*1) & = 3.3822 \\
+\mbox{Relative importance for price } & = \frac{1.2012}{3.3822}  = 0.3551
+\end{split}
+\end{equation*}
+\end{itemize}
+\end{itemize}
+\newpage
+\subsection{Extended Results: Environmental, Altruistic and Demographic Effects on Willingness-to-Pay for Labels \label{a.3}}
+\begin{table}[H]
+\caption{Mixed Multinomial logit results in Willingness-to-Pay space.}
+\vspace{-6pt}
+\label{tablewtpmmnlfull}
+\scalebox{0.9}[0.9]{\begin{tabular}{p{2cm}p{2.5cm}p{2.5cm}p{2.5cm}p{2.5cm} p{2.5cm}}\\ \toprule
+%\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} l @{\extracolsep{\fill}} c @{\extracolsep{\fill}} c @{\extracolsep{\fill}}  c %@{\extracolsep{\fill}}  c @{\extracolsep{\fill}} } \\
+&              & \multicolumn{1}{l}{\textbf{M1}}    & \multicolumn{1}{l}{\textbf{M2}}      & \multicolumn{1}{l}{\textbf{M2}\boldmath{$_1$}}           &\multicolumn{1}{l}{\textbf{M2}\boldmath{$_{all}$}} \\
+\textbf{Attribute} & \textbf{Coefficient} &              \textbf{ Est (SD)}                 & \textbf{Est (SD)}                         & \textbf{Est (SD)}                              & \textbf{Est (SD)}  \\ \midrule
+OptOut   &  &                              $-$4.065  (0.337) *              & $-$4.011 (0.333) *         & $-$4.012 (0.334) *                       & $ -$3.967 (0.330)*\\
+\midrule
+Taste  & Dessert$_\omega$ &              0.744 (0.230) *               & 0.766 (0.243) *                   & 0.770 (0.237) *                        &  0.787 (0.245)*  \\
+& Dessert$_\sigma$ &             2.005 (0.258) *               & 2.104 (0.268) *                   & 2.067 (0.266) *                        &  2.147 (0.269)* \\
+& Mocha$_\omega$ &                $-$0.168 (0.383)               & $-$0.149 (0.387)                    & $-$0.167 (0.391)                        &  $-$0.153 (0.395) \\
+& Mocha$_\sigma$ &               4.909 (0.501) *               & 4.984 (0.525) *                   & 5.011 (0.515) *                        & 5.070 (0.529)* \\
+& $\sigma_{Des,Moc}$&    0.150 (0.155)                & 0.170 (0.155)                     & 0.157 (0.155)                         &  0.170 (0.152) \\
+\midrule
+Production&Netherlands$_\omega$&                 $-$0.675 (0.162) *              & $-$0.692 (0.165) *                   & $-$0.703 (0.166) *                       &  $-$0.719 (0.169) *  \\
+& Italy$_\omega$ &                        $-$0.365 (0.142) *              & $-$0.374 (0.146) *                   & $-$0.386 (0.146) *                       & $-$0.395 (0.148) * \\
+\midrule
+Fairtrade & Yes$_\omega$ &                1.668 (0.186) *              & 1.684 (0.186) *                   & 1.309 (0.277) *                        & 1.541 (0.282)*  \\
+& Yes$_\sigma$  &                 1.869 (0.207) *              & 1.748 (0.205) *                   & 1.890 (0.212) *                        &   1.805 (0.212) *\\
+& :Female$_\omega$ &                                          &                                  & 0.480 (0.347)                         &  0.127 (0.350) \\
+& :Age$_\omega$  &                                            &                                  & 0.011 (0.174)                         &  $-$0.058 (0.171) \\
+& :HE.non-univ$_\omega$ &                                     &                                   & 0.032 (0.251)                         & 0.075 (0.248) \\
+&:HE.univ$_\omega$ &                                          &                                    & 0.415 (0.240)                         & 0.317 (0.234)  \\
+& :NEP$_\gamma$ &                                             & 0.470 (0.197) *                      &                                      &  0.457 (0.204) * \\
+& :ASB$_\gamma$ &                                             & 0.374 (0.182) *                   &                                      &  $-$0.380 (0.191) * \\
+& :AHO$_\gamma$ &                                             &  0.426 (0.180) *                    &                                      & 0.427 (0.186) * \\
+& $\sigma_{ORG,\hspace{1mm} FT}$ & 0.907 (0.049) *   & 0.901 (0.054) *               & 0.898 (0.054) *                        & 0.896 (0.057) * \\
+\midrule
+Organic& Yes$_\omega$ &                  1.666 (0.182) *               & 1.685 (0.181) *                    & 1.279 (0.272) *                        &  1.413 (0.278) * \\
+& Yes$_\sigma$ &                 1.760 (0.205) *               & 1.717 (0.207) *                    & 1.803 (0.209) *                        & 1.754 (0.212) *\\
+& :Female$_\omega$  &                                         &                                  & 0.521 (0.342)                         & 0.318 (0.355)  \\
+& :Age$_\omega$  &                                            &                                 & 0.094 (0.172)                         & 0.034 (0.170) \\
+& :HE.non-univ$_\omega$  &                                    &                                 & $-$0.110 (0.246)                        & $-$0.059 (0.246) \\
+& :HE.univ$_\omega$  &                                        &                                  & 0.574 (0.235) *                        & 0.504 (0.236) *\\
+& :NEP$_\gamma$ &                                             & 0.492 (0.199) *                     &                                      &  0.440 (0.206) * \\
+& :ASB$_\gamma$  &                                            & 0.406 (0.182) *                  &                                      &  $-$0.381 (0.191) * \\
+& :AHO$_\gamma$ &                                             & $-$0.010 (0.180)                    &                                      &  $-$0.014 (0.185) \\
+\midrule
+Origin & Brazil$_\omega$ &                       $-$0.069 (0.148)               & $-$0.061 (0.149)                    & $-$0.073 (0.151)                        &  $-$0.064 (0.154)  \\
+& Indonesia$_\omega$ &                    $-$0.363 (0.141) *              & $-$0.363 (0.141) *                   & $-$0.372 (0.143) *                       &   $-$0.373 (0.146) * \\
+\midrule
+Price  & $\beta_{Pr}$  &                     $-$0.317 (0.091) *              & $-$0.325 (0.092) *                  & $-$0.339 (0.092) *                       & $-$0.345 (0.093) * \\
+& $\sigma_{Pr}$  &                    1.355 (0.293) *               & 1.344 (0.290) *                     & 1.325 (0.289) *                        & 1.330 (0.292) * \\
+% Deviance &                      & 2416.071                             &  2407.966             \\ %       & 2417.755                             & 2410.888               \\
+% pD       &                      & 1595.1                               & 1585.300              \\ %       & 1644.3                               & 1630.7 \\
+\midrule
+DIC       &                      & 4011.1                           & 3993.3                        & 4062.0                               & 4041.6 \\  \bottomrule
+\end{tabular}}
+%\multicolumn{6}{l}{Notes:}\\
+%\multicolumn{6}{l}{(i) * The 95\% credible interval does not include zero ( |Est/SD| > 1.96 ).} \\
+%\multicolumn{6}{l}{(ii) Variable (Reference level):}\\
+%\multicolumn{6}{l}{Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia)} \\
+%\multicolumn{6}{l}{(iii) Models:} \\
+%\multicolumn{6}{l}{M1 - MMNL model, M2 - MMNL + attitudinal scales, M2$_1$ - MMNL + socio-demographic variables,} \\ \multicolumn{6}{l}{M2$_{all}$ - MMNL + attitudinal scales + socio-demographic variables} \\
+\begin{tabular}{@{}c@{}}
+\multicolumn{1}{p{\textwidth -.75in}}{\footnotesize Notes: (i) * The 95\% credible interval does not include zero ( |Est/SD| > 1.96 ). (ii) Variable (Reference level): Taste (Mild), Production (Belgium), Fair trade \& Organic (No label), Origin (Ethiopia). (iii) Models: M1 $-$ MMNL model, M2 - MMNL + attitudinal scales, M2$_1$ $-$ MMNL + socio-demographic variables, M2$_{all}$ $ -$ MMNL + attitudinal scales + socio-demographic variables.}
+\end{tabular}
+
+\end{table}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\reftitle{References}
+\begin{thebibliography}{999}
+
+\bibitem[Verbeke(2005)]{Verbeke2005}
+Verbeke, W.
+\newblock {Agriculture and the food industry in the information age}.
+\newblock  \emph{Eur. Rev. Agric. Econ.}  \textbf{2005}, \emph{32},~347--368.
+ [\href{http://dx.doi.org/10.1093/eurrag/jbi017}{CrossRef}]
+
+\bibitem[Grunert(2005)]{Grunert2005}
+Grunert, K.G.
+\newblock {Food quality and safety: Consumer perception and demand}.
+\newblock  \emph{Eur. Rev. Agric. Econ.}  \textbf{2005}, \emph{32},~369--391. [\href{http://dx.doi.org/10.1093/eurrag/jbi011}{CrossRef}]
+
+\bibitem[Bublitz \em{et~al.}(2010)Bublitz, Peracchio, and Block]{Bublitz2010}
+Bublitz, M.G.; Peracchio, L.A.; Block, L.G.
+\newblock {Why did I eat that? Perspectives on food decision making and dietary
+restraint}. \emph{J. Consum.  Psychol.} \textbf{2010}. [\href{http://dx.doi.org/10.1016/j.jcps.2010.06.008}{CrossRef}]
+
+\bibitem[Ayuso()]{ayuso2006}
+Ayuso, S.
+\newblock Adoption of voluntary environmental tools for sustainable tourism:
+Analysing the experience of Spanish hotels.
+\newblock {\em Corp. Soc. Responsib. Environ. Manag.} \textbf{2006},
+{\em 13},~207--220. [\href{http://dx.doi.org/10.1002/csr.103}{CrossRef}]
+
+\bibitem[Horne(2009)]{Horne2009}
+Horne, R.E.
+\newblock {Limits to labels: The role of eco-labels in the assessment of
+product sustainability and routes to sustainable consumption}.
+\newblock {\em Int. J. Consum. Stud.} {\bf 2009}, {\em
+33},~175--182. [\href{http://dx.doi.org/10.1111/j.1470-6431.2009.00752.x}{CrossRef}]
+
+\bibitem[Grunert(2011)]{Grunert2011}
+Grunert, K.G.
+\newblock {Sustainability in the Food Sector: A Consumer Behaviour
+Perspective}.
+\newblock {\em Int. J. Food Syst. Dyn.} {\bf 2011}, {\em 2},~207--218. [\href{http://dx.doi.org/10.18461/ijfsd.v2i3.232}{CrossRef}]
+
+\bibitem[Grunert \em{et~al.}(2014)Grunert, Hieke, and Wills]{Grunert2014}
+Grunert, K.G.; Hieke, S.; Wills, J.
+\newblock {Sustainability labels on food products: Consumer motivation,
+understanding and use}.
+\newblock {\em Food Policy} {\bf 2014}, {\em 44},~177--189. [\href{http://dx.doi.org/10.1016/j.foodpol.2013.12.001}{CrossRef}]
+
+\bibitem[Verbeke(2008)]{Verbeke2008}
+Verbeke, W.
+\newblock {Impact of communication on consumers' food choices}.
+\newblock  \emph{Proc. Nutr. Soc}. \textbf{2008}, \emph{67},  281--288. [\href{http://dx.doi.org/10.1017/S0029665108007179}{CrossRef}] [\href{http://www.ncbi.nlm.nih.gov/pubmed/18498672}{PubMed}]
+
+\bibitem[Lusk \em{et~al.}(2007)Lusk, Nilsson, and Foster]{Lusk2007}
+Lusk, J.L.; Nilsson, T.; Foster, K.
+\newblock {Public preferences and private choices: Effect of altruism and free
+riding on demand for environmentally certified pork}.
+\newblock {\em Environ. Resour. Econ.} {\bf 2007}, {\em
+36},~499--521. [\href{http://dx.doi.org/10.1007/s10640-006-9039-6}{CrossRef}]
+
+\bibitem[Umberger \em{et~al.}(2009)Umberger, McFadden, and
+Smiths]{Umberger2009}
+Umberger, W.J.; McFadden, D.D.; Smiths, A.R.
+\newblock {Does altruism play a role in determining U.S. consumer preferences
+and willingness to pay for natural and regionally produced beef?}
+\newblock {\em Agribusiness} {\bf 2009}, {\em 25},~268--285. [\href{http://dx.doi.org/10.1002/agr.20194}{CrossRef}]
+
+\bibitem[Langen(2011)]{Langen2011}
+Langen, N.
+\newblock {Are ethical consumption and charitable giving substitutes or not?
+Insights into consumers' coffee choice}.
+\newblock {\em Food Qual. Prefer.} {\bf 2011}, {\em 22},~412--421. [\href{http://dx.doi.org/10.1016/j.foodqual.2011.02.002}{CrossRef}]
+
+\bibitem[Aoki \em{et~al.}(2017)Aoki, Akai, and Ujiie]{keiko2017}
+Aoki, K.; Akai, K.; Ujiie, K.
+\newblock {A choice experiment to compare preferences for rice in Thailand and
+Japan: The impact of origin, sustainability, and taste}.
+\newblock {\em Food Qual. Prefer.} {\bf 2017}, {\em 56},~274--284. [\href{http://dx.doi.org/10.1016/j.foodqual.2016.03.001}{CrossRef}]
+
+\bibitem[Lucas \em{et~al.}(2018)Lucas, Salladarr{\'{e}}, and
+Br{\'{e}}card]{Lucas2018}
+Lucas, S.; Salladarr{\'{e}}, F.; Br{\'{e}}card, D.
+\newblock {Green consumption and peer effects: Does it work for seafood
+products?}
+\newblock {\em Food Policy} {\bf 2018}, {\em 76},~44--55. [\href{http://dx.doi.org/10.1016/j.foodpol.2018.02.017}{CrossRef}]
+
+\bibitem[Dunlap \em{et~al.}(2000)Dunlap, {Van Liere}, Mertig, and
+Jones]{Dunlap2000}
+Dunlap, R.E.; {Van Liere}, K.D.; Mertig, A.G.; Jones, R.E.
+\newblock {New Trends in Measuring Environmental Attitudes: Measuring
+Endorsement of the New Ecological Paradigm: A Revised NEP Scale}.
+\newblock {\em J. Soc. Issues} {\bf 2000}, {\em 56},~425--442. [\href{http://dx.doi.org/10.1111/0022-4537.00176}{CrossRef}]
+
+\bibitem[Webb \em{et~al.}(2000)Webb, Green, and Brashear]{Webb2000}
+Webb, D.J.; Green, C.L.; Brashear, T.G.
+\newblock Development and validation of scales to measure attitudes influencing
+monetary donations to charitable organizations.
+\newblock {\em J.  Acad. Mark. Sci.} {\bf 2000}, {\em
+28},~299. [\href{http://dx.doi.org/10.1177/0092070300282010}{CrossRef}]
+
+\bibitem[Carlo and Randall(2002)]{carlo2002}
+Carlo, G.; Randall, B.A.
+\newblock The development of a measure of prosocial behaviors for late
+adolescents.
+\newblock {\em J.~Youth~Adolesc.} {\bf 2002}, {\em 31},~31--44. [\href{http://dx.doi.org/10.1023/A:1014033032440}{CrossRef}]
+
+\bibitem[Carlo \em{et~al.}(2003)Carlo, Hausmann, Christiansen, and
+Randall]{carlo2003}
+Carlo, G.; Hausmann, A.; Christiansen, S.; Randall, B.A.
+\newblock Sociocognitive and Behavioral Correlates of a Measure of Prosocial
+Tendencies for Adolescents.
+\newblock {\em J. Early Adolesc.} {\bf 2003}, {\em
+23},~107--134. [\href{http://dx.doi.org/10.1177/0272431602239132}{CrossRef}]
+
+\bibitem[Rodrigues \em{et~al.}(2017)Rodrigues, Ulrich, Mussel, Carlo, and
+Hewig]{rodrigues2017measuring}
+Rodrigues, J.; Ulrich, N.; Mussel, P.; Carlo, G.; Hewig, J.
+\newblock Measuring prosocial tendencies in Germany: Sources of validity and
+reliablity of the revised prosocial tendency measure.
+\newblock {\em Front. Psychol.} {\bf 2017}, {\em 8},~2119. [\href{http://dx.doi.org/10.3389/fpsyg.2017.02119}{CrossRef}] [\href{http://www.ncbi.nlm.nih.gov/pubmed/29270144}{PubMed}]
+
+\bibitem[Train(2009)]{Train2009}
+Train, K.
+\newblock {\em {Discrete Choice Methods With Simulation}};  Cambridge
+University Press:  Cambridge, UK, 2009; Volume~47, p. 334.
+
+\bibitem[Pay(2009)]{Pay2009}
+Pay, E.
+\newblock {Increasing Incomes and Food Security of Small Farmers in West and
+Central Africa through Exports of Organic and Fair-Trade Tropical Product}.
+2009. Available online:
+\newblock
+\url{http://www.fao.org/fileadmin/templates/organicexports/docs/Market\_Organic\_FT\_Coffee.pdf} (accessed on 4 June 2018).
+%please add accessed date (Day Month Year)
+
+\bibitem[Reinecke \em{et~al.}(2012)Reinecke, Manning, and von
+Hagen]{Reinecke2012}
+Reinecke, J.; Manning, S.; von Hagen, O.
+\newblock {The Emergence of a Standards Market: Multiplicity of Sustainability
+Standards in the Global Coffee Industry}.
+\newblock {\em Organ. Stud.} {\bf 2012}, {\em 33},~791--814. [\href{http://dx.doi.org/10.1177/0170840612443629}{CrossRef}]
+
+\bibitem[{De Pelsmacker} \em{et~al.}(2005){De Pelsmacker}, Driesen, and
+Rayp]{DePelsmacker2005}
+{De Pelsmacker}, P.; Driesen, L.; Rayp, G.
+\newblock {Do consumers Care about ethics? Willingness to pay for fair-trade
+coffee}. \emph{J. Consum. Affirs}  \textbf{2005}. [\href{http://dx.doi.org/10.1111/j.1745-6606.2005.00019.x}{CrossRef}]
+
+\bibitem[Neill \em{et~al.}(1994)Neill, Cummings, Ganderton, Harrison, and
+McGuckin]{neill1994hypothetical}
+Neill, H.R.; Cummings, R.G.; Ganderton, P.T.; Harrison, G.W.; McGuckin, T.
+\newblock Hypothetical surveys and real economic commitments.
+\newblock {\em Land Econ.} {\bf 1994}, \emph{70},  145--154. [\href{http://dx.doi.org/10.2307/3146318}{CrossRef}]
+
+\bibitem[List and Gallet(2001)]{List2001}
+List, J.A.; Gallet, C.A.
+\newblock {What experimental protocol influence disparities between actual and
+hypothetical stated values?}
+\newblock {\em Environ. Resour. Econ.} {\bf 2001}, {\em
+20},~241--254. [\href{http://dx.doi.org/10.1023/A:1012791822804}{CrossRef}]
+
+\bibitem[Loomis(2014)]{Loomis2014}
+Loomis, J.B.
+\newblock {Strategies for overcoming hypothetical bias in stated preference
+surveys}.
+\newblock {\em J. Agric. Resour. Econ.} {\bf 2014}, {\em
+39},~34--46. [\href{http://dx.doi.org/10.1111/j.1467-6419.2010.00675.x}{CrossRef}]
+
+\bibitem[Coff \em{et~al.}(2008)Coff, Barling, Korthals, and Nielsen]{coff2008}
+Coff, C.; Barling, D.; Korthals, M.; Nielsen, T.
+\newblock {\em Ethical Traceability and Communicating Food}; Springer: \mbox{New York, NY, USA}, 2008.
+
+\bibitem[Zander and Hamm(2010)]{ZANDER2010}
+Zander, K.; Hamm, U.
+\newblock Consumer preferences for additional ethical attributes of organic
+food.
+\newblock {\em Food~Qual.~Prefer.} {\bf 2010}, {\em 21},~495--503. [\href{http://dx.doi.org/10.1016/j.foodqual.2010.01.006}{CrossRef}]
+
+\bibitem[Andorfer and Liebe(2012)]{Andorfer2012}
+Andorfer, V.A.; Liebe, U.
+\newblock {Research on Fair Trade Consumption---A Review}. \emph{J. Bus. Ethics } \textbf{2012}, \emph{106}, 415--435. [\href{http://dx.doi.org/10.1007/s10551-011-1008-5}{CrossRef}]
+
+\bibitem[Solidaridad(2018)]{Solidaridad2018}
+Solidaridad.
+\newblock {About|Solidaridad Network}. 2018.
+\newblock Available online: \url{https://www.solidaridadnetwork.org/about} (accessed on 13 June 2018).   %please add accessed date (Day Month Year)
+
+\bibitem[Becchetti and Huybrechts(2008)]{Becchetti2008}
+Becchetti, L.; Huybrechts, B.
+\newblock {The dynamics of fair trade as a mixed-form market}.
+\newblock {\em J. Bus. Ethics} {\bf 2008}, {\em 81},~733--750. [\href{http://dx.doi.org/10.1007/s10551-007-9544-8}{CrossRef}]
+
+\bibitem[Ruben \em{et~al.}(2009)Ruben, Fort, and Zuniga-Arias]{Ruben2009}
+Ruben, R.; Fort, R.; Zuniga-Arias, G.
+\newblock {Measuring the Impact of Fair Trade on Development}.
+\newblock {\em Dev. Pract.} {\bf 2009}, {\em 19},~777--788. [\href{http://dx.doi.org/10.1080/09614520903027049}{CrossRef}]
+
+\bibitem[Lampkin(2003)]{Lampkin2003}
+Lampkin, N.
+\newblock {From conversion payments to integrated action plans in the European
+Union}. In {\em Organic Agriculture: Sustainability, Markets and Policies};
+OECD Publications: Paris, France, 2003; pp. 313--328.
+
+\bibitem[Rousseau(2015)]{Rousseau2015}
+Rousseau, S.
+\newblock {The role of organic and fair trade labels when choosing chocolate}.
+\newblock {\em Food Qual. Prefer.} {\bf 2015}, {\em 44},~92--100. [\href{http://dx.doi.org/10.1016/j.foodqual.2015.04.002}{CrossRef}]
+
+\bibitem[Gallenti \em{et~al.}(2016)Gallenti, Troiano, Cosmina, and
+Marangon]{Gallenti2016}
+Gallenti, G.; Troiano, S.; Cosmina, M.; Marangon, F.
+\newblock {Ethical and sustainable consumption in the Italian coffee market: A
+choice experiment to analyse consumers' willingness to pay}.
+\newblock {\em Rivista di Econ. Agraria} {\bf 2016}, {\em 71},~153--176. [\href{http://dx.doi.org/10.13128/REA-20077}{CrossRef}]
+
+\bibitem[Loureiro and Lotade(2005)]{Loureiro2005}
+Loureiro, M.L.; Lotade, J.
+\newblock {Do fair trade and eco-labels in coffee wake up the consumer
+conscience?}  \emph{Ecol. Econ.} \textbf{2005}, \emph{53}, 129--138. [\href{http://dx.doi.org/10.1016/j.ecolecon.2004.11.002}{CrossRef}]
+
+\bibitem[{Van Loo} \em{et~al.}(2015){Van Loo}, Caputo, Nayga, Seo, Zhang, and
+Verbeke]{VanLoo2015}
+{Van Loo}, E.J.; Caputo, V.; Nayga, R.M.; Seo, H.S.; Zhang, B.; Verbeke, W.
+\newblock {Sustainability labels on coffee: Consumer preferences,
+willingness-to-pay and visual attention to attributes}.
+\newblock {\em Ecol. Econ.} {\bf 2015}, {\em 118},~215--225. [\href{http://dx.doi.org/10.1016/j.ecolecon.2015.07.011}{CrossRef}]
+
+\bibitem[Yang \em{et~al.}(2012)Yang, Hu, Mupandawana, and Liu]{Yang2012}
+Yang, S.h.; Hu, W.; Mupandawana, M.; Liu, Y.
+\newblock {Consumer Willingness to Pay for Fair Trade Coffee: A Chinese Case
+Study}.
+\newblock {\em Agric. Appl. Econ.} {\bf 2012}, {\em 1},~21--34. [\href{http://dx.doi.org/10.1017/S1074070800000146}{CrossRef}]
+
+\bibitem[Wang \em{et~al.}(2018)Wang, Ge, and Ma]{Wang2018}
+Wang, J.; Ge, J.; Ma, Y.
+\newblock {Urban Chinese consumers' willingness to pay for pork with certified
+labels: A discrete choice experiment}.
+\newblock {\em Sustainability} {\bf 2018}, {\em 10}. [\href{http://dx.doi.org/10.3390/su10030603}{CrossRef}]
+
+\bibitem[Tebbe and von Blanckenburg(2018)]{Tebbe2017Does}
+Tebbe, E.; von Blanckenburg, K.
+\newblock {Does willingness to pay increase with the number and strictness of
+sustainability labels?}
+\newblock {\em Agric. Econ.} {\bf 2018}, {\em
+49},~41--53. [\href{http://dx.doi.org/10.1111/agec.12394}{CrossRef}]
+
+\bibitem[Didier and Lucie(2008)]{Didier2008}
+Didier, T.; Lucie, S.
+\newblock {Measuring consumer's willingness to pay for organic and Fair Trade
+products}.
+\newblock {\em Int. J. Consum. Stud.} {\bf 2008}, {\em
+32},~479--490. [\href{http://dx.doi.org/10.1111/j.1470-6431.2008.00714.x}{CrossRef}]
+
+\bibitem[Bray \em{et~al.}(2011)Bray, Johns, and Kilburn]{Bray2011}
+Bray, J.; Johns, N.; Kilburn, D.
+\newblock {An Exploratory Study into the Factors Impeding Ethical Consumption}.
+\newblock {\em J.~Bus.~Ethics} {\bf 2011}, {\em 98},~597--608. [\href{http://dx.doi.org/10.1007/s10551-010-0640-9}{CrossRef}]
+
+\bibitem[Annunziata \em{et~al.}(2011)Annunziata, Ianuario, and
+Pascale]{Annunziata2011}
+Annunziata, A.; Ianuario, S.; Pascale, P.
+\newblock Consumers' Attitudes Toward Labelling of Ethical Products: The Case
+of Organic and Fair Trade Products.
+\newblock {\em J.  Food Prod.  Mark.} {\bf 2011}, {\em
+17},~518--535. [\href{http://dx.doi.org/10.1080/10454446.2011.618790}{CrossRef}]
+
+\bibitem[Moser \em{et~al.}(2011)Moser, Raffaelli, and
+Thilmany-McFadden]{Moser2011}
+Moser, R.; Raffaelli, R.; Thilmany-McFadden, D.
+\newblock {Consumer preferences for fruit and vegetables with credence-based
+attributes: A review}.
+\newblock {\em Int. Food  Agribus. Manag. Rev.} {\bf
+2011}, {\em 14},~121--142.
+
+\bibitem[Rotaris and Danielis(2011)]{Rotaris2011}
+Rotaris, L.; Danielis, R.
+\newblock {Willingness to Pay for Fair Trade Coffee: A Conjoint Analysis
+Experiment with Italian Consumers}.
+\newblock {\em J. Agric. Food Ind. Organ.} {\bf
+2011}, {\em 9}. [\href{http://dx.doi.org/10.2202/1542-0485.1305}{CrossRef}]
+
+\bibitem[Poelmans and Rousseau(2017)]{Poelmans2017}
+Poelmans, E.; Rousseau, S.
+\newblock {Beer and organic labels: Do belgian consumers care?}
+\newblock {\em Sustainability} {\bf 2017}, {\em 9}. [\href{http://dx.doi.org/10.3390/su9091509}{CrossRef}]
+
+\bibitem[Krystallis and Chryssohoidis(2005)]{Krystallis2005}
+Krystallis, A.; Chryssohoidis, G.
+\newblock {Consumers' willingness to pay for organic food}.
+\newblock {\em Br. Food J.} {\bf 2005}, {\em 107},~320--343. [\href{http://dx.doi.org/10.1108/00070700510596901}{CrossRef}]
+
+\bibitem[Poelman \em{et~al.}(2008)Poelman, Mojet, Lyon, and
+Sefa-Dedeh]{Poelman2008}
+Poelman, A.; Mojet, J.; Lyon, D.; Sefa-Dedeh, S.
+\newblock {The influence of information about organic production and fair trade
+on preferences for and perception of pineapple}.
+\newblock {\em Food Qual. Prefer.} {\bf 2008}, {\em 19},~114--121. [\href{http://dx.doi.org/10.1016/j.foodqual.2007.07.005}{CrossRef}]
+
+\bibitem[Garcia-Yi(2015)]{Garcia-Yi2015}
+Garcia-Yi, J.
+\newblock {Willingness to pay for organic and fairtrade certified yellow chili
+peppers}.
+\newblock {\em Br. Food J.} {\bf 2015}, {\em 117},~929--942. [\href{http://dx.doi.org/10.1108/BFJ-11-2013-0321}{CrossRef}]
+
+\bibitem[Meyerding(2016)]{MEYERDING2016105}
+Meyerding, S.G.
+\newblock Consumer preferences for food labels on tomatoes in Germany---A
+comparison of a quasi-experiment and two stated preference approaches.
+\newblock {\em Appetite} {\bf 2016}, {\em 103},~105--112. [\href{http://dx.doi.org/10.1016/j.appet.2016.03.025}{CrossRef}] [\href{http://www.ncbi.nlm.nih.gov/pubmed/27037221}{PubMed}]
+
+
+\bibitem[Sirieix \em{et~al.}(2013)Sirieix, Delanchy, Remaud, Zepeda, and
+Gurviez]{Sirieix2013}
+Sirieix, L.; Delanchy, M.; Remaud, H.; Zepeda, L.; Gurviez, P.
+\newblock {Consumers' perceptions of individual and combined sustainable food
+labels: A UK pilot investigation}.
+\newblock {\em Int. J. Consum. Stud.} {\bf 2013}, {\em
+37},~143--151.
+
+\bibitem[Giovannucci \em{et~al.}(2010)Giovannucci, Pierrot, and
+Kasterine]{pierrot2011}
+Giovannucci, D.; Pierrot, J.; Kasterine, A.
+\newblock {\emph{Trends in the Trade of Certified Coffees}};
+\newblock MPRA Paper 27551; University Library of Munich:  Munich, Germany,  2010.
+
+\bibitem[Littrell \em{et~al.}(1999)Littrell, Dickson, and
+Dickson]{littrell1999social}
+Littrell, M.; Dickson, M.; Dickson, M.
+\newblock {\em Social Responsibility in the Global Market: Fair Trade of
+Cultural Products}; SAGE Publications:  Thousand Oaks, CA, USA, 1999.
+
+\bibitem[Carrigan and Attalla(2001)]{Carrigan2001}
+Carrigan, M.; Attalla, A.
+\newblock {The myth of the ethical consumer---Do ethics matter in purchase
+behaviour?}
+\newblock {\em J.~Consum.~Mark.} {\bf 2001}, {\em 18},~560--578. [\href{http://dx.doi.org/10.1108/07363760110410263}{CrossRef}]
+
+\bibitem[Laroche \em{et~al.}(2001)Laroche, Bergeron, and
+Barbaro-Forleo]{Laroche2001}
+Laroche, M.; Bergeron, J.; Barbaro-Forleo, G.
+\newblock {Targeting consumers who are willing to pay more for environmentally
+friendly products}.
+\newblock {\em J. Consum. Mark.} {\bf 2001}, {\em 18},~503--520. [\href{http://dx.doi.org/10.1108/EUM0000000006155}{CrossRef}]
+
+\bibitem[Langen(2013)]{Langen2013}
+Langen, N.
+\newblock {\em {Ethics in Consumer Choice: An Empirical Analysis Based on the
+Example of Coffee}}; Springer Science \& Business Media: New York, NY,  USA,
+2013; pp. 1--344.
+
+\bibitem[Husted \em{et~al.}(2014)Husted, Russo, Meza, and Tilleman]{HUSTED2014}
+Husted, B.W.; Russo, M.V.; Meza, C.E.B.; Tilleman, S.G.
+\newblock An exploratory study of environmental attitudes and the willingness
+to pay for environmental certification in Mexico.
+\newblock {\em J.  Bus. Res.} {\bf 2014}, {\em 67},~891--899. [\href{http://dx.doi.org/10.1016/j.jbusres.2013.07.008}{CrossRef}]
+
+\bibitem[Louviere and Hensher(1982)]{Louviere1982}
+Louviere, J.J.; Hensher, D.
+\newblock {Design And Analysis Of Simulated Choice Or Allocation Experiments in
+Travel Choice Modeling}.
+\newblock {\em Transp. Res. Rec.} {\bf 1982}, \emph{890},  11--17.
+
+\bibitem[Louviere and Woodworth(1983)]{louviere1983}
+Louviere, J.J.; Woodworth, G.
+\newblock Design and Analysis of Simulated Consumer Choice or Allocation
+Experiments: An Approach Based on Aggregate Data.
+\newblock {\em J. Mark. Res.} {\bf 1983}, {\em 20},~350--367. [\href{http://dx.doi.org/10.2307/3151440}{CrossRef}]
+
+\bibitem[Hanley \em{et~al.}(1998)Hanley, Wright, and Adamowicz]{Hanley1998}
+Hanley, N.; Wright, R.E.; Adamowicz, V.
+\newblock {Using Choice Experiments to Value the Environment}.
+\newblock {\em Environ.~Resour.~Econ.} {\bf 1998}, {\em
+11},~413--428. [\href{http://dx.doi.org/10.1023/A:1008287310583}{CrossRef}]
+%\newblock doi:{\changeurlcolor{black}\href{https://doi.org/JEL classiﬁcation:
+%  Q23, Q26}{\detokenize{JEL classiﬁcation: Q23, Q26}}}.
+
+\bibitem[Louviere \em{et~al.}(2010)Louviere, Flynn, and Carson]{Louviere2010}
+Louviere, J.J.; Flynn, T.N.; Carson, R.T.
+\newblock {Discrete choice experiments are not conjoint analysis}.
+\newblock {\em J. Choice Model.} {\bf 2010}, {\em 3},~57--72. [\href{http://dx.doi.org/10.1016/S1755-5345(13)70014-9}{CrossRef}]
+
+\bibitem[Catturani \em{et~al.}(2008)Catturani, Nocella, Romano, Stefani,
+et~al.]{catturani2008}
+Catturani, I.; Nocella, G.; Romano, D.; Stefani, G.;
+\newblock Segmenting the Italian coffee market: Marketing opportunities for
+economic agents working along the international coffee chain.
+\newblock  In Proceedings of the 12th Congress of the European Association of Agricultural
+Economists, Ghent (Belgium), Ghent, Belgium, \mbox{26--29 August 2008}.
+
+\bibitem[Van~Dingenen \em{et~al.}(2010)Van~Dingenen, Koyen, Koekoek, Pierrot,
+and Giovannucci]{vanDing2010}
+Van~Dingenen, K.; Koyen, M.L.; Koekoek, F.J.; Pierrot, J.; Giovannucci, D.
+\newblock  {{European and Belgian Market for Certified Coffee}};
+\newblock Technical Report; Idea Consult on Behalf of the Belgian Development
+Agency/BTC Trade for Development.  2010. Available online:
+\newblock
+\url{www.befair.be/drupal_files/public/all-files/brochure/European\%20and\%20Belgian\%20market\%20for\%20certified\%20coffee_Final\%20Report.pdf} (accessed on \mbox{11 June 2018}). %please add accessed date (Day Month Year)
+
+\bibitem[ICO(2017)]{ICO2017}
+ICO.
+\newblock {\emph{Record Exports for Coffee Year 2016--2017}};
+\newblock Technical Report; International Coffee Organization (ICO):  London, UK, 2017.
+
+\bibitem[Scarpa and Rose(2008)]{Scarpa2008}
+Scarpa, R.; Rose, J.M.
+\newblock {Design efficiency for non-market valuation with choice modelling:
+How to measure it, what to report and why}. \emph{Aust.  Agric. Resour. Econ.} \textbf{2008}. [\href{http://dx.doi.org/10.1111/j.1467-8489.2007.00436.x}{CrossRef}]
+
+\bibitem[{SAS Institute Inc}(2014)]{SASInstituteInc2014}
+{SAS Institute Inc}.
+\newblock {\emph{SAS Software 9.4}}; SAS Institute Inc.: Cary, NC, USA,   2014.
+
+\bibitem[Street \em{et~al.}(2005)Street, Burgess, and Louviere]{Street2005}
+Street, D.J.; Burgess, L.; Louviere, J.J.
+\newblock {Quick and easy choice sets: Constructing optimal and nearly optimal
+stated choice experiments}.
+\newblock {\em Int. J. Res. Mark.} {\bf 2005}, {\em
+22},~459--470. [\href{http://dx.doi.org/10.1016/j.ijresmar.2005.09.003}{CrossRef}]
+
+\bibitem[Kuhfeld(2010)]{Kuhfeld2010}
+Kuhfeld, W.F.
+\newblock {\emph{Marketing Research Methods in SAS. Experimental Design, Choice,
+Conjoint, and Graphical Techniques}}; SAS-Institute TS-722: Cary, NC, USA, 2010; pp. 1--1309.
+
+\bibitem[{De Dominicis} \em{et~al.}(2017){De Dominicis}, Schultz, and
+Bonaiuto]{DeDominicis2017}
+{De Dominicis}, S.; Schultz, P.W.; Bonaiuto, M.
+\newblock {Protecting the environment for self-interested reasons: Altruism is
+not the only pathway to sustainability}.
+\newblock {\em Front. Psychol.} {\bf 2017}, {\em 8}. [\href{http://dx.doi.org/10.3389/fpsyg.2017.01065}{CrossRef}] [\href{http://www.ncbi.nlm.nih.gov/pubmed/28701979}{PubMed}]
+
+\bibitem[Schultz(2000)]{Schultz2000}
+Schultz, P.W.
+\newblock {New Environmental Theories: Empathizing With Nature: The Effects
+ofPerspective Taking on Concern for Environmental Issues}.
+\newblock {\em J. Soc. Issues} {\bf 2000}, {\em 56},~391--406. [\href{http://dx.doi.org/10.1111/0022-4537.00174}{CrossRef}]
+
+\bibitem[{Wesley Schultz}(2001)]{WesleySchultz2001}
+{Wesley Schultz}, P.
+\newblock {The structure of environmental concern: Concern for self, other
+people, and the biosphere}.
+\newblock {\em J. Environ. Psychol.} {\bf 2001}, {\em
+21},~327--339. [\href{http://dx.doi.org/10.1006/jevp.2001.0227}{CrossRef}]
+
+\bibitem[Taye \em{et~al.}(2018)Taye, Vedel, and Jacobsen]{Fitalew2018}
+Taye, F.A.; Vedel, S.E.; Jacobsen, J.B.
+\newblock Accounting for environmental attitude to explain variations in
+willingness to pay for forest ecosystem services using the new environmental
+paradigm.
+\newblock {\em J. Environ. Econ.~Policy} {\bf 2018}, {\em
+0},~1--21. [\href{http://dx.doi.org/10.1080/21606544.2018.1467346}{CrossRef}]
+
+\bibitem[Werts \em{et~al.}(1974)Werts, Linn, and Jöreskog]{Werts1974}
+Werts, C.; Linn, R.; Jöreskog, K.
+\newblock Intraclass Reliability Estimates: Testing Structural Assumptions.
+\newblock {\em Educ.~Psychol.~Meas.} {\bf 1974}, {\em
+34},~25--33. [\href{http://dx.doi.org/10.1177/001316447403400104}{CrossRef}]
+
+\bibitem[Lattin \em{et~al.}(2003)Lattin, Green, Carroll, and Green]{lattin2003}
+Lattin, J.M.; Green, P.E.; Carroll, J.D.; Green, P.E.
+\newblock {\em Analyzing Multivariate Data, Volume 1}; { Lattin, J.M.,  Carroll,~J.D., Green, E.,  Eds.};  Thomson Brooks/Cole: Pacific Grove, CA, USA,
+2003.
+%\newblock \hl{{Pr}eviously published:  Dryden Press,: Hinsdale, IL, USA, c1978}. %Is this from a previous edition? If so, you can delete this part and add the edition information
+
+%@book{james2003analyzing,
+% title={Analyzing Multivariate Data},
+% author={James M. Lattin and Carroll, J.D. and Green, P.E.},
+%number={v. 1},
+%isbn={9780534349745},
+%lccn={2002111345},
+%series={Analyzing Multivariate Data},
+%url={https://books.google.be/books?id=VXxuQgAACAAJ},
+% year={2003},
+% publisher={Thomson Brooks/Cole}
+%}
+
+\bibitem[Qualtrics(2018)]{Qualtrics2018}
+Qualtrics.
+\newblock 2018. Available online:
+\newblock \url{https://www.qualtrics.com/uk/} (accessed on 12 August 2018).    %please add accessed date (Day Month Year)
+
+\bibitem[Kreuter \em{et~al.}(2008)Kreuter, Presser, and
+Tourangeau]{Kreuter2008}
+Kreuter, F.; Presser, S.; Tourangeau, R.
+\newblock {Social desirability bias in CATI, IVR, and web surveys: The effects
+of mode and question sensitivity}.
+\newblock {\em Public Opin. Q.} {\bf 2008}, {\em 72},~847--865. [\href{http://dx.doi.org/10.1093/poq/nfn063}{CrossRef}]
+
+\bibitem[Cummings and Taylor(1999)]{Cummings1999}
+Cummings, R.G.; Taylor, L.O.
+\newblock {Unbiased value estimates for environmental goods: A cheap talk
+design for the contingent valuation method}.  \emph{Am. Econ. Rev.} \textbf{1999}, \emph{89}, 649--665. [\href{http://dx.doi.org/10.1257/aer.89.3.649}{CrossRef}]
+
+\bibitem[{Van Loo} \em{et~al.}(2011){Van Loo}, Caputo, Nayga, Meullenet, and
+Ricke]{VanLoo2011}
+{Van Loo}, E.J.; Caputo, V.; Nayga, R.M.; Meullenet, J.F.; Ricke, S.C.
+\newblock {Consumers' willingness to pay for organic chicken breast: Evidence
+from choice experiment}.
+\newblock {\em Food Qual. Prefer.} {\bf 2011}, {\em 22},~603--613. [\href{http://dx.doi.org/10.1016/j.foodqual.2011.02.003}{CrossRef}]
+
+\bibitem[McFadden(1974)]{McFadden1974}
+McFadden, D.
+\newblock {Conditional logit analysis of qualitative choice behavior}.
+\newblock In {\em Frontiers in Econometrics};  \mbox{Zare, P., Ed}.; Academic Press:  New York, NY, USA, {
+1974}; pp.~105--142.
+
+\bibitem[Amaya-Amaya \em{et~al.}(2008)Amaya-Amaya, Gerard, and Ryan]{Ryan2008}
+Amaya-Amaya, M.; Gerard, K.; Ryan, M. Discrete Choice Experiments in a
+Nutshell.
+\newblock  {\em Using Discrete Choice Experiments to Value Health and Health
+Care}; Springer: Dordrecht, The Netherlands, 2008; pp. 13--46.
+
+\bibitem[McFadden and Train(2000)]{mcfadden2000mixed}
+McFadden, D.; Train, K.
+\newblock Mixed MNL models for discrete response.
+\newblock {\em J. Appl. Econ.} {\bf 2000},  447--470. [\href{http://dx.doi.org/10.1002/1099-1255(200009/10)15:5<447::AID-JAE570>3.0.CO;2-1}{CrossRef}]
+
+\bibitem[Train and Weeks(2005)]{Train2005}
+Train, K.E.; Weeks, M.
+\newblock {Discrete Choice Models in Preference and Willingness-to-Pay Space}.
+\newblock In {\em Applications of Simulation Methods in Environmental and Resource
+Economics}; Springer: Dordrecht, The Netherlands,  {2005}; pp.~1--16.
+
+\bibitem[Sonnier \em{et~al.}(2007)Sonnier, Ainslie, and Otter]{Sonnier2007}
+Sonnier, G.; Ainslie, A.; Otter, T.
+\newblock {Heterogeneity distributions of willingness-to-pay in choice models}.
+\newblock {\em Quant.~Mark.~Econ.} {\bf 2007}, {\em
+5},~313--331. [\href{http://dx.doi.org/10.1007/s11129-007-9024-6}{CrossRef}]
+
+\bibitem[Daly \em{et~al.}(2012)Daly, Hess, and Train]{Daly2012}
+Daly, A.; Hess, S.; Train, K.
+\newblock {Assuring finite moments for willingness to pay in random coefficient
+models}.
+\newblock {\em Transportation} {\bf 2012}, {\em 39},~19--31. [\href{http://dx.doi.org/10.1007/s11116-011-9331-3}{CrossRef}]
+
+\bibitem[Hess and Rose(2012)]{Hess2012}
+Hess, S.; Rose, J.M.
+\newblock {Can scale and coefficient heterogeneity be separated in random
+coefficients models?}
+\newblock {\em Transportation} {\bf 2012}, {\em 39},~1225--1239. [\href{http://dx.doi.org/10.1007/s11116-012-9394-9}{CrossRef}]
+
+\bibitem[Su and Yajima(2015)]{Su2015}
+Su, U.s.; Yajima, M.
+\textls[-35]{\newblock {R2jags: Using R to Run `JAGS'}.
+\newblock { R Packages}. { 2015}; p.~12.
+\newblock
+Available online: \url{https://doi.org/http://cran.r-project.org/package=R2jags}} (accessed on 3 April 2018).   %please add accessed date (Day Month Year)
+
+\bibitem[{R Core Team}(2018)]{R2018}
+{R Core Team}.
+\newblock {\em R: A Language and Environment for Statistical Computing};
+\newblock R Foundation for Statistical Computing: Vienna, Austria,  2018.
+
+\bibitem[Plummer(2013)]{plummer2013jags}
+\textls[-15]{Plummer, M. \emph{JAGS Version 3.4. 0 User Manual}; { International Agency for Research on Cancer: Lyon,~France,~2013}.}
+
+\bibitem[Gelman and Rubin(1992)]{Gelman1992}
+Gelman, A.; Rubin, D.B.
+\newblock {Inference from Iterative Simulation Using Multiple Sequences}.
+\newblock {\em Stat. Sci.} {\bf 1992}, {\em 7},~457--472. [\href{http://dx.doi.org/10.1214/ss/1177011136}{CrossRef}]
+
+%\bibitem[Vermunt and Magidson(2013)]{Vermunt2013}
+%Vermunt, J.K.; Magidson, J.
+%\newblock {\em  Technical Guide for Latent GOLD 5.0: Basic, Advanced, and Syntax};
+%\newblock {Statistical Innovations Inc.}': Belmont, MA, USA,  { 2013}; pp. 1--161.
+
+\bibitem[Vermunt and Magidson(2005)]{Vermunt2005}
+Vermunt, J.K.; Magidson, J.
+\newblock {\em  Technical gUide for Latent GOLD Choice 4.0: Basic and Advanced};
+\newblock {Statistical Innovations Inc.}: Belmont, MA, USA,  {2005}; pp. 1--86.
+
+\bibitem[{Van Loo} \em{et~al.}(2014){Van Loo}, Caputo, Nayga, and
+Verbeke]{VanLoo2014}
+{Van Loo}, E.J.; Caputo, V.; Nayga, R.M.; Verbeke, W.
+\newblock {Consumers' valuation of sustainability labels on meat}.
+\newblock {\em Food Policy} {\bf 2014}, {\em 49},~137--150. [\href{http://dx.doi.org/10.1016/j.foodpol.2014.07.002}{CrossRef}]
+
+\bibitem[Ajzen \em{et~al.}(2011)Ajzen, Joyce, Sheikh, and Cote]{ajzen2011}
+Ajzen, I.; Joyce, N.; Sheikh, S.; Cote, N.G.
+\newblock Knowledge and the Prediction of Behavior: The Role of Information
+Accuracy in the Theory of Planned Behavior.
+\newblock {\em Basic Appl. Soc.  Psychol.} {\bf 2011}, {\em
+33},~101--117,
+[\href{http://dx.doi.org/10.1080/01973533.2011.568834}{CrossRef}]
+
+\bibitem[Hwang and Lee(2018)]{Kumju2018}
+Hwang, K.; Lee, J.
+\newblock {Antecedents and Consequences of Ecotourism Behavior: Independent and
+Interdependent Self-Construals, Ecological Belief, Willingness to Pay for
+Ecotourism Services and Satisfaction with Life}.
+\newblock {\em Sustainability} {\bf 2018}, {\em 10},~789. [\href{http://dx.doi.org/10.3390/su10030789}{CrossRef}]
+
+\end{thebibliography}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

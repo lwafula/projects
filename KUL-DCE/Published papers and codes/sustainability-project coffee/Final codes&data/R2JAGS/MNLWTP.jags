@@ -1,0 +1,76 @@
+model{
+    
+    for(i in 1:N){ #respondents
+    for(s in 1:S){ # choice sets
+    
+    choices[i,s,1:J] ~ dmulti(pr[i,s,1:J], 1)  #  multinomial likelihood
+    choicesN[i,s,1:J]~ dmulti(pr[i,s,1:J], 1)
+    # utilities
+    log(u[i,s,1]) <- asc0est # opt-out
+    log(u[i,s,2]) =  fairtrade*faitradematrix[i,s,2] + biolab*biolabmatrix[i,s,2] + brazilorig*obrazil[i,s,2] + 
+    indonesiaorig*oindonesia[i,s,2] + netherlandsprod*pnetherlands[i,s,2] + italyprod*pitaly[i,s,2] + 
+    price*cpricematrix[i,s,2] + tastedesert*tdessert[i,s,2] + tastemokka*tmokka[i,s,2] 
+    
+    log(u[i,s,3]) = fairtrade*faitradematrix[i,s,3] + biolab*biolabmatrix[i,s,3] + brazilorig*obrazil[i,s,3] + 
+    indonesiaorig*oindonesia[i,s,3] + netherlandsprod*pnetherlands[i,s,3] + italyprod*pitaly[i,s,3] + 
+    price*cpricematrix[i,s,3] + tastedesert*tdessert[i,s,3] + tastemokka*tmokka[i,s,3] 
+    
+    log(u[i,s,4]) = fairtrade*faitradematrix[i,s,4] + biolab*biolabmatrix[i,s,4] + brazilorig*obrazil[i,s,4] + 
+    indonesiaorig*oindonesia[i,s,4] + netherlandsprod*pnetherlands[i,s,4] + italyprod*pitaly[i,s,4] + 
+    price*cpricematrix[i,s,4] + tastedesert*tdessert[i,s,4] + tastemokka*tmokka[i,s,4] 
+    
+    
+    log(u[i,s,5]) = fairtrade*faitradematrix[i,s,5] + biolab*biolabmatrix[i,s,5] + brazilorig*obrazil[i,s,5] + 
+    indonesiaorig*oindonesia[i,s,5] + netherlandsprod*pnetherlands[i,s,5] + italyprod*pitaly[i,s,5] + 
+    price*cpricematrix[i,s,5] + tastedesert*tdessert[i,s,5] + tastemokka*tmokka[i,s,5] 
+    
+    # denominator for the probabilities
+    den[i,s] = u[i,s,1] + u[i,s,2] + u[i,s,3] + u[i,s,4] + u[i,s,5]
+    
+    # probabilities
+    pr[i,s,1]<- u[i,s,1]/den[i,s]
+    pr[i,s,2]<- u[i,s,2]/den[i,s]
+    pr[i,s,3]<- u[i,s,3]/den[i,s]
+    pr[i,s,4]<- u[i,s,4]/den[i,s]
+    pr[i,s,5]<- u[i,s,5]/den[i,s]
+    
+    # likelihood
+    for(j in 1:J){
+    LL[i,s,j]<-choices[i,s,j]*log(pr[i,s,j])
+    LLmeans[i,s,j]<-choicesN[i,s,j]*log(mean(pr[,s,j]))
+    }
+    } # end choice sets
+    } # end respondents
+    
+    # deviance+DIC
+    TL<-sum(LL[,,]); # total Log-likelihood
+    D<- -2*sum(LL[,,]); # calculated deviance.
+    Dbar<-0.5*pow(sd(LL[,,]),2)
+    Dbarmeans<-0.5*pow(sd(LLmeans[,,]),2)
+    Dmeans<- -2*sum(LLmeans[,,]); # calculated deviance.
+    
+    
+    # The priors for the fixed effects
+    asc0est ~ dnorm(0, 0.000001)
+    fairtrade ~ dnorm(0, 0.000001)
+    biolab ~ dnorm(0, 0.000001)
+    brazilorig ~ dnorm(0, 0.000001)
+    indonesiaorig ~ dnorm(0, 0.000001)
+    netherlandsprod ~ dnorm(0, 0.000001)
+    italyprod ~ dnorm(0, 0.000001)
+    price ~ dnorm(0, 0.000001)
+    tastedesert~dnorm(0,0.000001)
+    tastemokka~dnorm(0,0.000001) 
+    
+      # WTP space
+      asc0estwtp<- -asc0est/price
+      fairtradewtp<- -fairtrade/price
+      biolabwtp<--biolab/price
+      brazilorigwtp<--brazilorig/price
+      indonesiaorigwtp<--indonesiaorig/price
+      netherlandsprodwtp<--netherlandsprod/price
+      italyprodwtp<--italyprod/price
+      tastedesertwtp<--tastedesert/price
+      tastemokkawtp<--tastemokka/price
+
+    }

@@ -1,0 +1,263 @@
+//LG5.1//
+version = 5.1
+infile 'Y:\dynamic MNL ANA\project_website_preference\datasets\dfwebpref.sav'
+
+
+model
+title 'dynamic+static ANA-first and ordered as in paper';
+options
+    algorithm 
+      tolerance=1e-008 emtolerance=0.01 emiterations=250 nriterations=50 ;
+   startvalues
+      seed=0 sets=100 tolerance=1e-005 iterations=50;
+   bayes
+      categorical=1 variances=1 latent=1 poisson=1;
+   missing  excludeall;
+   output      
+      parameters=first standarderrors profile probmeans=posterior
+      estimatedvalues predictionstatistics setprofile
+      setprobmeans classification ParameterCovariances;
+
+
+choice = 1;
+variables
+   caseid personID;
+   timeid Block ;
+   choicesetid setID ;
+   dependent select choice;  
+   attribute optout, trustlabel, delivery_time, delivery_price price,
+   returning, web_usability, discount, headqtrs, distance_shipment100;
+
+latent
+      Class nominal 1,   
+      Z_delivery_time ordinal 2, 
+      Z_delivery_price ordinal 2,
+      Z_returning ordinal 2,  
+      Z_web_usability ordinal 2, 
+      Z_discount ordinal 2,
+      Z_trustlabel ordinal 2 dynamic,
+      Z_headqtrs ordinal 2 dynamic,
+      Z_distance_shipment ordinal 2 dynamic; 
+
+
+
+equations
+   class<-1 ;
+   Z_delivery_time[=1] <- 1;
+   Z_delivery_price[=1] <- 1;
+   Z_returning[=1] <- 1;
+   Z_web_usability[=1] <- 1;
+   Z_discount[=1] <- 1;
+
+   Z_trustlabel[=1] <- 1;
+   Z_trustlabel <- 1| Z_trustlabel[-1];
+   Z_headqtrs[=1] <- 1;
+   Z_headqtrs<-  1| Z_headqtrs[-1];
+   Z_distance_shipment[=1] <- 1;
+   Z_distance_shipment<-  1| Z_distance_shipment[-1];
+
+
+   select <- optout|class + delivery_time Z_delivery_time|class + delivery_price Z_delivery_price|class + 
+   returning Z_returning|class + web_usability Z_web_usability|class + discount Z_discount|class + 
+   trustlabel Z_trustlabel|class + headqtrs Z_headqtrs|class + distance_shipment100 Z_distance_shipment|class;
+end model
+
+model
+title 'static ANA-first and ordered as in paper';
+options
+    algorithm 
+      tolerance=1e-008 emtolerance=0.01 emiterations=250 nriterations=50 ;
+   startvalues
+      seed=0 sets=100 tolerance=1e-005 iterations=50;
+   bayes
+      categorical=1 variances=1 latent=1 poisson=1;
+   missing  excludeall;
+   output      
+      parameters=first standarderrors profile probmeans=posterior
+      estimatedvalues predictionstatistics setprofile
+      setprobmeans classification;
+
+
+choice = 1;
+variables
+   caseid personID;
+   choicesetid setID ;
+   dependent select choice;  
+   attribute optout, trustlabel, delivery_time, delivery_price,
+   returning , web_usability, discount, headqtrs, distance_shipment100,
+   I_info_trustlabel, I_info_headqtrs, I_info_distance_shipment ;
+ 
+latent
+      Class nominal 1,
+      Z_delivery_time ordinal 2, 
+      Z_delivery_price ordinal 2,
+      Z_returning ordinal 2,  
+      Z_web_usability ordinal 2, 
+      Z_discount ordinal 2,
+      Z_trustlabel ordinal 2,
+      Z_headqtrs ordinal 2,
+      Z_distance_shipment ordinal 2; 
+
+equations
+   class<-1 ;
+
+   Z_delivery_time[=1] <- 1;
+   Z_delivery_price[=1] <- 1;
+   Z_returning[=1] <- 1;
+   Z_web_usability[=1] <- 1;
+   Z_discount[=1] <- 1;
+
+   Z_trustlabel[=1] <- 1;
+   Z_headqtrs[=1] <- 1;
+   Z_distance_shipment[=1] <- 1;
+
+   select <- optout|class + delivery_time Z_delivery_time|class + delivery_price Z_delivery_price|class + 
+   returning Z_returning|class + web_usability Z_web_usability|class + discount Z_discount|class + 
+   trustlabel Z_trustlabel|class + headqtrs Z_headqtrs|class + distance_shipment100 Z_distance_shipment|class +
+   I_info_trustlabel Z_trustlabel|class + I_info_headqtrs Z_headqtrs|class + I_info_distance_shipment Z_distance_shipment|class;
+
+end model
+
+model
+title 'MNL-ordered as in paper';
+options
+    algorithm 
+      tolerance=1e-008 emtolerance=0.01 emiterations=250 nriterations=50 ;
+   startvalues
+      seed=0 sets=100 tolerance=1e-005 iterations=50;
+   bayes
+      categorical=1 variances=1 latent=1 poisson=1;
+   missing  excludeall;
+   output      
+      parameters=first standarderrors profile probmeans=posterior
+      estimatedvalues predictionstatistics setprofile
+      setprobmeans classification;
+
+
+choice = 1;
+variables
+   caseid personID;
+   choicesetid setID ;
+   dependent select choice;  
+   attribute optout, trustlabel, delivery_time, delivery_price,
+   returning , web_usability, discount, headqtrs, distance_shipment100,
+   I_info_trustlabel, I_info_headqtrs, I_info_distance_shipment ;
+
+equations
+   select <- optout + delivery_time + delivery_price + returning + web_usability + discount + 
+   trustlabel + headqtrs + distance_shipment100 + I_info_trustlabel + I_info_headqtrs + I_info_distance_shipment;
+end model
+
+model
+title 'dynamic +static ANA+covariates-first and ordered as in paper';
+options
+    algorithm 
+      tolerance=1e-008 emtolerance=0.01 emiterations=250 nriterations=50 ;
+   startvalues
+      seed=0 sets=100 tolerance=1e-005 iterations=50;
+   bayes
+      categorical=1 variances=1 latent=1 poisson=1;
+   missing  excludeall;
+   output      
+      parameters=first standarderrors profile probmeans=posterior
+      estimatedvalues predictionstatistics setprofile
+      setprobmeans classification ParameterCovariances;
+
+
+choice = 1;
+variables
+   caseid personID;
+   timeid Block ;
+   choicesetid setID ;
+   dependent select choice;  
+   attribute optout, trustlabel, delivery_time, delivery_price price,
+   returning, web_usability, discount, headqtrs, distance_shipment100, sex, agesd,
+   nep_pc, nationalism_pc;
+
+latent
+      Class nominal 1,
+      Z_delivery_time ordinal 2, 
+      Z_delivery_price ordinal 2,
+      Z_returning ordinal 2,  
+      Z_web_usability ordinal 2, 
+      Z_discount ordinal 2,
+      Z_trustlabel ordinal 2 dynamic,
+      Z_headqtrs ordinal 2 dynamic,
+      Z_distance_shipment ordinal 2 dynamic; 
+
+equations
+   class<-1 ;
+
+   Z_delivery_time[=1] <- 1;
+   Z_delivery_price[=1] <- 1;
+   Z_returning[=1] <- 1;
+   Z_web_usability[=1] <- 1;
+   Z_discount[=1] <- 1;
+
+   Z_trustlabel[=1] <- 1 + sex + agesd;
+   Z_trustlabel <- 1| Z_trustlabel[-1] + sex|Z_trustlabel[-1] + agesd|Z_trustlabel[-1];
+   Z_headqtrs[=1] <- 1 + agesd + nationalism_pc;
+   Z_headqtrs<-  1| Z_headqtrs[-1] + agesd| Z_headqtrs[-1] + nationalism_pc| Z_headqtrs[-1];
+   Z_distance_shipment[=1] <- 1 + nep_pc;
+   Z_distance_shipment<-  1| Z_distance_shipment[-1] + nep_pc| Z_distance_shipment[-1];
+
+   select <- optout|class + delivery_time Z_delivery_time|class + delivery_price Z_delivery_price|class + 
+   returning Z_returning|class + web_usability Z_web_usability|class + discount Z_discount|class + 
+   trustlabel Z_trustlabel|class + headqtrs Z_headqtrs|class + distance_shipment100 Z_distance_shipment|class;end model
+
+model
+options
+    algorithm 
+      tolerance=1e-008 emtolerance=0.01 emiterations=250 nriterations=50 ;
+   startvalues
+      seed=0 sets=100 tolerance=1e-005 iterations=50;
+   bayes
+      categorical=1 variances=1 latent=1 poisson=1;
+   missing  excludeall;
+   output      
+      parameters=first standarderrors profile probmeans=posterior
+      estimatedvalues predictionstatistics setprofile
+      setprobmeans classification ParameterCovariances;
+
+
+choice = 1;
+variables
+   caseid personID;
+   timeid Block ;
+   choicesetid setID ;
+   dependent select choice;  
+   attribute optout, trustlabel, delivery_time, delivery_price price,
+   returning, web_usability, discount, headqtrs, distance_shipment100, sex, agesd,
+   nep_pc, nationalism_pc;
+
+latent
+      Class nominal 1,
+      Z_delivery_time ordinal 2, 
+      Z_delivery_price ordinal 2,
+      Z_returning ordinal 2,  
+      Z_web_usability ordinal 2, 
+      Z_discount ordinal 2,
+      Z_trustlabel ordinal 2 dynamic,
+      Z_headqtrs ordinal 2 dynamic,
+      Z_distance_shipment ordinal 2 dynamic; 
+
+equations
+   class<-1 ;
+
+   Z_delivery_time[=1] <- 1;
+   Z_delivery_price[=1] <- 1;
+   Z_returning[=1] <- 1;
+   Z_web_usability[=1] <- 1;
+   Z_discount[=1] <- 1;
+
+   Z_trustlabel[=1] <- 1 + sex + agesd;
+   Z_trustlabel <- 1| Z_trustlabel[-1] + sex|Z_trustlabel[-1] + agesd|Z_trustlabel[-1];
+   Z_headqtrs[=1] <- 1 + agesd + nationalism_pc;
+   Z_headqtrs<-  1| Z_headqtrs[-1] + agesd| Z_headqtrs[-1] + nationalism_pc| Z_headqtrs[-1];
+   Z_distance_shipment[=1] <- 1 + nep_pc;
+   Z_distance_shipment<-  1| Z_distance_shipment[-1] + nep_pc| Z_distance_shipment[-1];
+
+   select <- optout|class + delivery_time Z_delivery_time|class + delivery_price Z_delivery_price|class + 
+   returning Z_returning|class + web_usability Z_web_usability|class + discount Z_discount|class + 
+   trustlabel Z_trustlabel|class + headqtrs Z_headqtrs|class + distance_shipment100 Z_distance_shipment|class;
+end model
