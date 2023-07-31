@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="Meta-Analysis-in-SAS-r-_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The histogram of <span class="math inline">\(\theta\)</span> (true value is 10) estimates, <span class="math inline">\(\hat{\theta}\)</span> with mean from 1000 simulations is 9.99739 and sampling error of 0.08945. Notice that here,</p>
+<p>The histogram of <span class="math inline">\(\theta\)</span> (true value is 10) estimates, <span class="math inline">\(\hat{\theta}\)</span> with mean from 1000 simulations is 9.99699 and sampling error of 0.08740. Notice that here,</p>
 <p><span class="math display">\[\theta = \hat{\theta} + \epsilon \]</span></p>
 <section id="between-group-standardized-mean-difference" class="level2">
 <h2 class="anchored" data-anchor-id="between-group-standardized-mean-difference">between group standardized mean difference</h2>
@@ -156,6 +156,89 @@ Effect Size Calculation for Meta Analysis
          Weight:  44.4444</code></pre>
 </div>
 </div>
+</section>
+</section>
+<section id="pooling" class="level1">
+<h1>Pooling</h1>
+<section id="fixed-effects-models" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-effects-models">Fixed effects models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dmetar, esc and tidyverse (for pipe)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/pooling-es.html</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_github("MathiasHarrer/dmetar")</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dmetar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Extensive documentation for the dmetar package can be found at: 
+ www.bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(esc)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data set from dmetar</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(SuicidePrevention)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Hedges' g and the Standard Error</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - We save the study names in "study".</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - We use the pmap_dfr function to calculate the effect size</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   for each row.</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>SP_calc <span class="ot">&lt;-</span> <span class="fu">pmap_dfr</span>(SuicidePrevention, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">function</span>(mean.e, sd.e, n.e, mean.c,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                             sd.c, n.c, author, ...){</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">esc_mean_sd</span>(<span class="at">grp1m =</span> mean.e,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">grp1sd =</span> sd.e,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">grp1n =</span> n.e,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">grp2m =</span> mean.c,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">grp2sd =</span> sd.c,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">grp2n =</span> n.c,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">study =</span> author,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">es.type =</span> <span class="st">"g"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">as.data.frame</span>()}) </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Let us catch a glimpse of the data</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co"># The data set contains Hedges' g ("es") and standard error ("se")</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(SP_calc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 9
+Columns: 9
+$ study       &lt;chr&gt; "Berry et al.", "DeVries et al.", "Fleming et al.", "Hunt …
+$ es          &lt;dbl&gt; -0.14279447, -0.60770928, -0.11117965, -0.12698011, -0.392…
+$ weight      &lt;dbl&gt; 46.09784, 34.77314, 14.97625, 32.18243, 24.52054, 54.50431…
+$ sample.size &lt;dbl&gt; 185, 146, 60, 129, 100, 220, 120, 80, 107
+$ se          &lt;dbl&gt; 0.1472854, 0.1695813, 0.2584036, 0.1762749, 0.2019459, 0.1…
+$ var         &lt;dbl&gt; 0.02169299, 0.02875783, 0.06677240, 0.03107286, 0.04078214…
+$ ci.lo       &lt;dbl&gt; -0.4314686, -0.9400826, -0.6176413, -0.4724727, -0.7882811…
+$ ci.hi       &lt;dbl&gt; 0.145879624, -0.275335960, 0.395282029, 0.218512440, 0.003…
+$ measure     &lt;chr&gt; "g", "g", "g", "g", "g", "g", "g", "g", "g"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the inverse variance-weights for each study</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>SP_calc<span class="sc">$</span>w <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>SP_calc<span class="sc">$</span>se<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then, we use the weights to calculate the pooled effect</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>pooled_effect <span class="ot">&lt;-</span> <span class="fu">sum</span>(SP_calc<span class="sc">$</span>w<span class="sc">*</span>SP_calc<span class="sc">$</span>es)<span class="sc">/</span><span class="fu">sum</span>(SP_calc<span class="sc">$</span>w)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>pooled_effect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.2311121</code></pre>
+</div>
+</div>
+</section>
+<section id="random-effects-model" class="level2">
+<h2 class="anchored" data-anchor-id="random-effects-model">Random effects model</h2>
 </section>
 </section>
 
