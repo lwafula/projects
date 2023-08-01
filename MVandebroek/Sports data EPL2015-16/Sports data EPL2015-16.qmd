@@ -148,7 +148,13 @@ flextable(dfplayerpositions) |>
 * probability of winning as a function of 
 
   * shots per match, cards received per match, home or away team, tactics employed
-  
+
+* it is a hard to find free data we can use for continuous responses because this kind of data are commercialized. 
+
+  * they can only be accessed if you get it from the clubs themselves or buy from a third party e.g
+
+      * distance covered by a player in a match
+
 # Head of win-lose data
 
 ```{r }
