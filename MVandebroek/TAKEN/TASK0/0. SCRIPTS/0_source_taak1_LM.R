@@ -1,0 +1,266 @@
+########################################
+### script containing all functions ####
+########################################
+
+#libraries
+library("readxl")
+library("dplyr")
+library("gdata")
+library("car")
+library(tidyverse)
+
+#No scientific notation
+options(scipen = 999)
+#print 10 digits (default = 7)
+options(digits=10)
+
+### check the type of the data files > this test with txt files !!!
+### read in individual dataset
+getDATA <- function(ID){
+  
+  # WD <- "C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TAAK1\\3. DATA individual\\"
+  WD <- "C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\"
+  filename <- paste(WD, "DATA\\data",ID,".txt", sep = "") 
+  data <- read.table(file = filename, header = TRUE)
+  
+  return(data)
+}
+
+
+#setwd('C:\\Users\\u0105757\\Dropbox\\Toledo 2021-2022\\datafiles\\HI_taak1\\ind_datafiles')
+#data <- getDATA(ID = "q0980093")
+
+### solution function
+getSOL <- function(data, questions){
+  
+  solutions <- numeric(length = length(questions))
+  #for each question
+  for(i in 1:length(questions)){
+    
+    Q <- questions[i]
+    
+    # data$Department <- as.factor(data$Department)
+    # data$Gender <- as.factor(data$Gender)
+    
+    solutions[i] <- switch(Q,  
+                           
+                           #solution Q1
+                           {
+                             mod = lm(Y1 ~ X1 + X2, data=data)
+                             as.numeric(coefficients(mod)['X2']) 
+                           },
+                           
+                           #solution Q2
+                           {
+                             mod = lm(Y2 ~ X1 + X3, data=data)
+                             as.numeric(coefficients(mod)['X3']) 
+                           },
+                           
+                           #solution Q3
+                           {
+                             mod = lm(Y3 ~ X1 + X3, data=data)
+                             as.numeric(coefficients(mod)['X1']) 
+                           },
+                           
+                           #solution Q4
+                           {
+                             mod = lm(Y1 ~ X2*X4, data=data)
+                             
+                             # p-value for the interaction term
+                             summary(mod)[['coefficients']] |> as.data.frame() |> 
+                               rownames_to_column(var = 'term') |> 
+                               filter(term == 'X2:X4') |> pull('Pr(>|t|)')
+                           },
+                           
+                           #solution Q5
+                           {
+                             mod = lm(Y2 ~ X2*X5, data=data)
+                             
+                             # p-value for the interaction term
+                             summary(mod)[['coefficients']] |> as.data.frame() |> 
+                               rownames_to_column(var = 'term') |> 
+                               filter(term == 'X2:X5') |> pull('Pr(>|t|)')
+                           },
+                           
+                           #solution Q6
+                           {
+                             mod = lm(Y3 ~ X3*X4, data=data)
+                             
+                             # p-value for the interaction term
+                             summary(mod)[['coefficients']] |> as.data.frame() |> 
+                               rownames_to_column(var = 'term') |> 
+                               filter(term == 'X3:X4') |> pull('Pr(>|t|)')
+                           },
+                           
+                           #solution Q7
+                           {
+                             mod = lm(Y3 ~ X1 + X2 + X3, data=data)
+                             summary(mod)[['r.squared']]
+                             
+                           },
+                           
+                           #solution Q8
+                           {
+                             mod = lm(Y1 ~ X2 + X3 + X4, data=data)
+                             summary(mod)[['r.squared']]
+                           },
+                           
+                           #solution Q9
+                           {
+                             mod = lm(Y2 ~ X3 + X4 + X5, data=data)
+                             summary(mod)[['r.squared']]
+                           }
+    )
+  }
+  
+  return(round(solutions, digits = 5))
+  
+}
+
+
+### function to compare answers with rounding 
+comp <- function(answer, solution){
+  
+  if (solution > 1000){ #output question 1 can only have 2 decimals 
+    grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.011, scale = 1)), 1, 0)
+  }
+  
+  if (solution < 1000){ #remaining questions 
+    grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.0011, scale = 1)), 1, 0)
+  }
+  
+  
+  return(grade)
+}
+# 
+# 
+# ### feedback function 
+# # data frame to store all scores 
+# all_scores <- data.frame(matrix(ncol = 6, nrow = 0))
+# colnames(all_scores) <- c("User.Name", "Q1", "Q2", "Q3", "Q4", "Total score")
+# 
+# 
+
+###-----------------------------------------------------
+#### 
+gradingTOOL <- function(responses, solutions){
+  
+  #respondents ID 
+  group_IDS <- as.character(user_info$User.Name)
+  group_IDS <- na.omit(group_IDS)
+  
+  NA_IDS <-  group_IDS[!group_IDS %in% responses$User.Name]
+  
+  #dataframe to store all info and feedback
+  all_info <- as.data.frame(matrix(data = NA, ncol = 18))
+  feedbackfile = data.frame(matrix(nrow = nrow(user_info), ncol = 2))
+  names(feedbackfile) = c("User.Name","Feedback")
+  
+  
+  #for each respondent 
+  for (i in 1:length(group_IDS)){
+    
+    ID <- group_IDS[i]
+    
+    #####
+    ## Get respondent answers if submitted 
+    #####
+    if(ID %in% responses$User.Name){
+      ID_resp <- as.numeric(as.character(responses$Answer[responses$User.Name == ID]))
+    } else {
+      ID_resp <- rep(NA, 4)
+    }
+    
+    #####
+    ## Get respondent solutions and questions
+    #####
+    ID_sol <- c(solutions$S1[solutions$User.Name == as.character(ID)], solutions$S2[solutions$User.Name == as.character(ID)],
+                solutions$S3[solutions$User.Name == as.character(ID)], solutions$S4[solutions$User.Name == as.character(ID)])
+    ID_sol <- round(ID_sol, 3)
+    ID_quest <- c(solutions$Q1[solutions$User.Name == as.character(ID)], solutions$Q2[solutions$User.Name == as.character(ID)],
+                  solutions$Q3[solutions$User.Name == as.character(ID)], solutions$Q4[solutions$User.Name == as.character(ID)])
+    
+    #####
+    ## Write feedback in file and store overall grades
+    #####
+    
+    
+    #compare responses with correct results
+    feedback = vector(mode="character", length=length(ID_sol))
+    
+    for (q in 1:length(ID_sol)){
+      feedback[q] <- comp(answer = ID_resp[q], solution = ID_sol[q])
+    }
+    
+    #store feedback in table
+    feedbacktext <- paste("Question 1: Your answer = ", ID_resp[1], " Correct answer = ",round(ID_sol[1], digits = 3), " Grade = ", feedback[1],"<br/>",
+                          "Question 2: Your answer = ", ID_resp[2], " Correct answer = ",round(ID_sol[2], digits = 3), " Grade = ", feedback[2],"<br/>",
+                          "Question 3: Your answer = ", ID_resp[3], " Correct answer = ",round(ID_sol[3], digits = 3), " Grade = ", feedback[3],"<br/>",
+                          "Question 4: Your answer = ", ID_resp[4], " Correct answer = ",round(ID_sol[4], digits = 3), " Grade = ", feedback[4],"<br/>",
+                          "Total score = ", sum(as.numeric(feedback)))
+    
+    #write individual feedback file
+    feedbackfile[i,1] = ID
+    feedbackfile[i,2] = feedbacktext
+    
+    
+    
+    all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
+                       ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
+                       ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3], 
+                       ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4], 
+                       sum(as.numeric(feedback)))
+  } 
+  colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1"
+                          , "Q2", "R2", "S2", "G2"
+                          , "Q3", "R3", "S3", "G3"
+                          , "Q4", "R4", "S4", "G4"
+                          ,"TOTAL")
+  
+  #not participated
+  #  not_PP <- group_IDS %in% NA_IDS
+  #  all_info$PP <- !not_PP
+  
+  write_xlsx(feedbackfile, path = "2.INDIVIDUAL\\FEEDBACK\\feedbackfile_taak1.xlsx")
+  
+  
+  
+  return(all_info)
+  
+}
+
+
+# 
+# 
+# feedBACK <- function(ID, i, ID_resp, correct_resp){
+#   
+#   # get ID responses  
+#   feedback <- list()
+#   
+#   #compare responses with correct results 
+#   for (q in 1:length(ID_sol)){
+#     feedback[[q]] <- comp(answer = ID_resp[q], solution = ID_sol[q])
+#   }
+#   
+#   #store feedback in table 
+#   fmat <- cbind("Question" = c(1:length(ID_sol)),"Your answer" = ID_resp,
+#                 "Correct answer" = round(ID_sol, digits = 3), "Grade" = unlist(feedback))
+#   rownames(fmat) <- NULL
+#   
+#   
+#   #write individual feedback file
+#   filename <- paste("feedback_",ID, "_test_taak1.txt", sep="")
+#   
+#   file = paste("2. GRADING\\feedback",filename, sep="")
+#   capture.output(print(fmat, print.gap=3, quote = FALSE, row.names=FALSE), 
+#                  file= file)
+#   
+#   line= paste("Total score = ", sum(fmat[ , 4]),"/4", sep = "")
+#   space = ""
+#   write(space,file=file,append=TRUE)
+#   write(line,file=file,append=TRUE)
+#   
+#   #return grades  
+#   return(fmat[,4])
+#   
+# }
