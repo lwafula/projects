@@ -6,6 +6,7 @@ rm(list=ls())
 #libraries
 library(readxl)
 library(writexl)
+library(data.table)
 
 # setwd('C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TASK0')
 setwd("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0")
@@ -16,7 +17,6 @@ source("0. SCRIPTS/0_source_taak1_LM.R")
 
 ### Laad vragenpool en student numbers 
 vragenpool_NED_ENG <- read_excel(path ="1. FILES\\vragen_questions_TEST.xlsx")
-
 
 #Read in Q-numbers 
 user_info <- read_excel(path = "1. FILES\\user_info with coding.xlsx")
@@ -31,6 +31,12 @@ N <- 3 #number of questions
 #store solutions S=Solution, Q=Question
 solutions_IQ <- data.frame(matrix(nrow = I, ncol = 7))
 colnames(solutions_IQ) <- c("ID", "S1", "S2", "S3", "Q1", "Q2", "Q3")
+
+# store questions, Q=Question, Qexp = Question explanation in appropriate language
+
+vragen <- vector(mode="character", length=N)
+questions_IQ <- data.frame(matrix(nrow = I, ncol = 7))
+colnames(questions_IQ) <- c("User.Name", "Q1", "Q2", "Q3", "Qexp1", "Qexp2", "Qexp3")
 
 #replicability
 set.seed(2223)
@@ -49,79 +55,79 @@ for(i in 1:I) {
   #get solutions
   solutions_IQ[i, 1] <- as.character(ID) 
   solutions_IQ[i, 2:7] <- c(getSOL(data = data, questions = QI), QI)
-  
+
+
   #save questions dependent on language
   #group <- getLABEL(ID, user_info)
   
-  if (group == "English") {
+  indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
+  LABEL = user_info[i,"Group Code"] |> toupper() |> as.character()
+  
+  if (LABEL == "TSTAT") {
     
-    questions_i <- vragenpool_NED_ENG[QI, 3]
-    quests <- list()
-    for(n in 1:N){
-      quests[[n]] <- questions_i$`Question ENG`[n]
+    questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('NED'))
+    
+    questions_IQ[i, 1:(length(QI)+1)] <- c(as.character(ID), QI)
+    for(q in 1:NROW(questions_i)){
+      questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
     }
-    
 
-#store solutions
-vragen <- vector(mode="character", length=N)
-questions_IQ <- data.frame(matrix(nrow = I, ncol = 2))
-colnames(questions_IQ) <- c("User.Name", "Questions")
-#settings to draw questions
-bloklength <- table(vragenpool_NED_ENG$BLOK)
-B_end <- cumsum(bloklength)
+    filepathW <- paste0(indfolder,"QUESTIONS\\vragen",user_info[i,"newid"],".xlsx")  
+    filepathBx <- paste0(indfolder, "QUESTIONS\\vragen",user_info[i,"Username"],".xlsx") 
+    write_xlsx(questions_IQ[i, -1], path = filepathW)
+    write_xlsx(questions_IQ[i, ], path = filepathBx)
+    
+    # long formats
+    
+    colA = paste0("Q", 1:3)
+    colB = paste0("Qexp", 1:3)
+    questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
+                              value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
+    
+    write_xlsx(questions_IQLong_i[, -1], 
+               path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"newid"],".xlsx"))
+    write_xlsx(questions_IQLong_i, 
+               path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"Username"],".xlsx"))
+    
+    } else{
+      questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
+      
+      questions_IQ[i, 1:(length(QI)+1)] <- c(as.character(ID), QI)
+      for(q in 1:NROW(questions_i)){
+        questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
+      }
+      
+      filepathW <- paste0(indfolder,"QUESTIONS\\questions",user_info[i,"newid"],".xlsx")  
+      filepathBx <- paste0(indfolder, "QUESTIONS\\questions",user_info[i,"Username"],".xlsx") 
+      write_xlsx(questions_IQ[i, -1], path = filepathW)
+      write_xlsx(questions_IQ[i, ], path = filepathBx)
+      
+      # long format
+      colA = paste0("Q", 1:3)
+      colB = paste0("Qexp", 1:3)
+      questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
+                              value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
+      
+      write_xlsx(questions_IQLong_i[, -1], 
+                 path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"newid"],".xlsx"))
+      write_xlsx(questions_IQLong_i, 
+                 path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"Username"],".xlsx"))
+      
+    }
 
-#replicability
-set.seed(2223)
-
-for(i in 1:I){
-  
-  #draw for each i 4 questions  
-  QI <- c(sample(c(1:B_end[1]), 1),
-          sample(c((B_end[1]+1) : B_end[2]), 1),
-          sample(c((B_end[2]+1) : B_end[3]), 1),
-          sample(c((B_end[3]+1) : B_end[4]), 1))
-  
-  QI <- vragenpool_NED_ENG$`Vraag ID`[QI]
-  
-  #read in data
-  ID <- user_info[i , "User.Name"]
-  idnewid = user_info[i,"newid"]
-  data <- getDATA(ID)
-  LABEL = user_info[i,"Group.Code"]
-  
-  #get solutions
-  solutions_IQ[i, 1] <- as.character(ID) 
-  solutions_IQ[i, 2:9] <- c(getSOL(data = data, questions = QI), QI)
-  
-  questions_IQ[i,1] =  as.character(ID) 
-  
- 
-  if (!(LABEL == "TSTAT")){
-    
-    vragen  <- vragenpool_NED_ENG$Question[vragenpool_NED_ENG$`Vraag ID` %in% QI]
-    
-    questions_IQ[i,2] = paste("Gebruik de data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt",
-                               "<br/>",vragen[1],"<br/>",vragen[2],"<br/>",vragen[3],"<br/>",vragen[4],
-                              "<br/>","Don't forget to round decimals to three digits.")
-  
-  }
-  
-  if (LABEL == "TSTAT"){
-    
-    vragen  <- vragenpool_NED_ENG$Question[vragenpool_NED_ENG$`Vraag ID` %in% QI]
-    
-    questions_IQ[i,2] = paste("Use the data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt",
-                              "<br/>",vragen[1],"<br/>",vragen[2],"<br/>",vragen[3],"<br/>",vragen[4],
-                              "<br/>","Vergeet kommagetallen niet af te ronden op 3 decimalen.")
-  
-}
 }
 
 
 #save all questions and solutions
-write_xlsx(solutions_IQ, path = "2. GRADING\\solutions_taak1.xlsx")
-write_xlsx(questions_IQ, path = "1. INPUT\\indquestions_taak1.xlsx")
+write_xlsx(solutions_IQ, path = "1. FILES\\solutions_taak0.xlsx")
+write_xlsx(questions_IQ, path = "1. FILES\\indquestions_taak0.xlsx")
 
+# long formats
+colA = paste0("Q", 1:3)
+colB = paste0("Qexp", 1:3)
+questions_IQLong = melt(questions_IQ |> as.data.table(), measure = list(colA, colB), 
+                        value.name = c("Q", "Q exp"))[order(User.Name), !'variable'] |> as.data.frame()
 
+write_xlsx(questions_IQLong, path = "1. FILES\\indquestionsLong_taak0.xlsx")
 
 
