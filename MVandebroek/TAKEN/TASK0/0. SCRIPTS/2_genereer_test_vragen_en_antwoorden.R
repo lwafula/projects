@@ -85,9 +85,9 @@ for(i in 1:I) {
                               value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
     
     write_xlsx(questions_IQLong_i[, -1], 
-               path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"newid"],".xlsx"))
+               path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"newid"],".xlsx"))
     write_xlsx(questions_IQLong_i, 
-               path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"Username"],".xlsx"))
+               path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"Username"],".xlsx"))
     
     } else{
       questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
