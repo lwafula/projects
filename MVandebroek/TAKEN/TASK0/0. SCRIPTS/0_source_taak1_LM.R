@@ -152,7 +152,11 @@ gradingTOOL <- function(responses, solutions){
   NA_IDS <-  group_IDS[!group_IDS %in% responses$User.Name]
   
   #dataframe to store all info and feedback
-  all_info <- as.data.frame(matrix(data = NA, ncol = 18))
+  #all_info <- as.data.frame(matrix(data = NA, ncol = 18))
+  all_info <- as.data.frame(matrix(data = NA, ncol = 14))
+  colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
+                          "Q3", "R3", "S3", "G3","TOTAL")
+  
   feedbackfile = data.frame(matrix(nrow = nrow(user_info), ncol = 2))
   names(feedbackfile) = c("User.Name","Feedback")
   
@@ -174,11 +178,13 @@ gradingTOOL <- function(responses, solutions){
     #####
     ## Get respondent solutions and questions
     #####
-    ID_sol <- c(solutions$S1[solutions$User.Name == as.character(ID)], solutions$S2[solutions$User.Name == as.character(ID)],
-                solutions$S3[solutions$User.Name == as.character(ID)], solutions$S4[solutions$User.Name == as.character(ID)])
-    ID_sol <- round(ID_sol, 3)
-    ID_quest <- c(solutions$Q1[solutions$User.Name == as.character(ID)], solutions$Q2[solutions$User.Name == as.character(ID)],
-                  solutions$Q3[solutions$User.Name == as.character(ID)], solutions$Q4[solutions$User.Name == as.character(ID)])
+
+    ID_sol = solutions |> filter(User.Name == as.character(ID)) |> 
+      select(-(contains(c("Name", "Q")))) |> mutate(across(where(is.double), round, 3)) |> 
+      unlist() |> as.vector() 
+    
+   ID_quest <- solutions |> filter(User.Name == as.character(ID)) |> 
+     select(-(contains(c("Name", "S")))) |> unlist() |> as.vector()
     
     #####
     ## Write feedback in file and store overall grades
@@ -196,7 +202,6 @@ gradingTOOL <- function(responses, solutions){
     feedbacktext <- paste("Question 1: Your answer = ", ID_resp[1], " Correct answer = ",round(ID_sol[1], digits = 3), " Grade = ", feedback[1],"<br/>",
                           "Question 2: Your answer = ", ID_resp[2], " Correct answer = ",round(ID_sol[2], digits = 3), " Grade = ", feedback[2],"<br/>",
                           "Question 3: Your answer = ", ID_resp[3], " Correct answer = ",round(ID_sol[3], digits = 3), " Grade = ", feedback[3],"<br/>",
-                          "Question 4: Your answer = ", ID_resp[4], " Correct answer = ",round(ID_sol[4], digits = 3), " Grade = ", feedback[4],"<br/>",
                           "Total score = ", sum(as.numeric(feedback)))
     
     #write individual feedback file
@@ -207,21 +212,25 @@ gradingTOOL <- function(responses, solutions){
     
     all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
                        ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
-                       ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3], 
-                       ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4], 
+                       ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3],
                        sum(as.numeric(feedback)))
+    
+    # individual feedback files
+    
+    indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
+    filepathW <- paste0(indfolder,"FEEDBACK\\feedback",user_info[i,"newid"],".xlsx")  
+    filepathBx <- paste0(indfolder, "FEEDBACK\\feedback",user_info[i,"User.Name"],".xlsx") 
+    write_xlsx(feedbackfile[i, ], path = filepathW)
+    write_xlsx(feedbackfile[i, ], path = filepathBx)
+    
   } 
-  colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1"
-                          , "Q2", "R2", "S2", "G2"
-                          , "Q3", "R3", "S3", "G3"
-                          , "Q4", "R4", "S4", "G4"
-                          ,"TOTAL")
+
   
   #not participated
   #  not_PP <- group_IDS %in% NA_IDS
   #  all_info$PP <- !not_PP
   
-  write_xlsx(feedbackfile, path = "2.INDIVIDUAL\\FEEDBACK\\feedbackfile_taak1.xlsx")
+  write_xlsx(feedbackfile, path = "2. INDIVIDUAL\\FEEDBACK\\feedbackfile_all_taak0.xlsx")
   
   
   
