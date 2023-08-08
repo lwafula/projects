@@ -248,37 +248,3 @@ gradingTOOL <- function(responses, solutions){
 }
 
 
-# 
-# 
-# feedBACK <- function(ID, i, ID_resp, correct_resp){
-#   
-#   # get ID responses  
-#   feedback <- list()
-#   
-#   #compare responses with correct results 
-#   for (q in 1:length(ID_sol)){
-#     feedback[[q]] <- comp(answer = ID_resp[q], solution = ID_sol[q])
-#   }
-#   
-#   #store feedback in table 
-#   fmat <- cbind("Question" = c(1:length(ID_sol)),"Your answer" = ID_resp,
-#                 "Correct answer" = round(ID_sol, digits = 3), "Grade" = unlist(feedback))
-#   rownames(fmat) <- NULL
-#   
-#   
-#   #write individual feedback file
-#   filename <- paste("feedback_",ID, "_test_taak1.txt", sep="")
-#   
-#   file = paste("2. GRADING\\feedback",filename, sep="")
-#   capture.output(print(fmat, print.gap=3, quote = FALSE, row.names=FALSE), 
-#                  file= file)
-#   
-#   line= paste("Total score = ", sum(fmat[ , 4]),"/4", sep = "")
-#   space = ""
-#   write(space,file=file,append=TRUE)
-#   write(line,file=file,append=TRUE)
-#   
-#   #return grades  
-#   return(fmat[,4])
-#   
-# }
