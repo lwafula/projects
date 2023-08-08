@@ -157,8 +157,8 @@ gradingTOOL <- function(responses, solutions){
   colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
                           "Q3", "R3", "S3", "G3","TOTAL")
   
-  feedbackfile = data.frame(matrix(nrow = nrow(user_info), ncol = 2))
-  names(feedbackfile) = c("User.Name","Feedback")
+  feedbackfile = data.frame(matrix(nrow = nrow(user_info), ncol = 4))
+  names(feedbackfile) = c("User.Name", "Last Name", "First Name", "Feedback")
   
   
   #for each respondent 
@@ -206,7 +206,9 @@ gradingTOOL <- function(responses, solutions){
     
     #write individual feedback file
     feedbackfile[i,1] = ID
-    feedbackfile[i,2] = feedbacktext
+    feedbackfile[i,2:3] = user_info |> filter(User.Name == as.character(ID)) |> 
+      select("Last.Name", "First.Name")
+    feedbackfile[i,4] = feedbacktext
     
     
     
@@ -218,10 +220,15 @@ gradingTOOL <- function(responses, solutions){
     # individual feedback files
     
     indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
-    filepathW <- paste0(indfolder,"FEEDBACK\\feedback",user_info[i,"newid"],".xlsx")  
-    filepathBx <- paste0(indfolder, "FEEDBACK\\feedback",user_info[i,"User.Name"],".xlsx") 
-    write_xlsx(feedbackfile[i, ], path = filepathW)
-    write_xlsx(feedbackfile[i, ], path = filepathBx)
+    # filepathW <- paste0(indfolder,"FEEDBACK\\feedback",user_info[i,"newid"],".xlsx")  
+    # filepathBx <- paste0(indfolder, "FEEDBACK\\feedback",user_info[i,"User.Name"],".xlsx") 
+    # write_xlsx(feedbackfile[i, ], path = filepathW)
+    # write_xlsx(feedbackfile[i, ], path = filepathBx)
+    
+    filepathW <- paste0(indfolder,"FEEDBACK\\feedback",user_info[i,"newid"],".txt")  
+    filepathBx <- paste0(indfolder, "FEEDBACK\\feedback",user_info[i,"User.Name"],".txt") 
+    write.table(feedbackfile[i, ], file = filepathW, quote = FALSE, row.names = FALSE)
+    write.table(feedbackfile[i, ], file = filepathBx, quote = FALSE, row.names = FALSE)
     
   } 
 
@@ -230,7 +237,9 @@ gradingTOOL <- function(responses, solutions){
   #  not_PP <- group_IDS %in% NA_IDS
   #  all_info$PP <- !not_PP
   
-  write_xlsx(feedbackfile, path = "2. INDIVIDUAL\\FEEDBACK\\feedbackfile_all_taak0.xlsx")
+  # write_xlsx(feedbackfile, path = "2. INDIVIDUAL\\FEEDBACK\\feedbackfile_all_taak0.xlsx")
+  write.table(feedbackfile, file = "2. INDIVIDUAL\\FEEDBACK\\feedbackfile_all_taak0.txt", 
+              quote = FALSE, row.names = FALSE)
   
   
   

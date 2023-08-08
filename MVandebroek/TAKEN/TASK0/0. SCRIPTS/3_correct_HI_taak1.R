@@ -43,8 +43,9 @@ all_scores <- all_scores[, c(19,20,22,23,25,2:18)]
 
 
 #write overall grades to excel file
-write_xlsx(all_scores, path = "2. INDIVIDUAL\\FEEDBACK\\overallgrades_all_taak0.xlsx")
-
+# write_xlsx(all_scores, path = "2. INDIVIDUAL\\FEEDBACK\\overallgrades_all_taak0.xlsx")
+write.table(all_scores, file = "2. INDIVIDUAL\\FEEDBACK\\overallgrades_all_taak0.txt", 
+            quote = FALSE, row.names = FALSE)
 
 
 

@@ -1,0 +1,5 @@
+Last.Access Availability Marking.Notes Notes.Format Feedback.Format Q1 R1 S1 G1 Q2 R2 S2 G2 Q3 R3 S3 G3 TOTAL User.Name Last.Name First.Name Student.ID
+NA Yes NA NA NA 3 43156.39539 1.393 0 6 0.02398 0.829 0 8 NA 0.834 0 0 c1206235 Vandebroek Martina 31206235
+NA Yes NA NA NA 1 104624.38976 1.357 0 4 0.04296 0.861 0 7 0.8756 0.587 0 0 q0762379 Assele Samson Yaekob 445993
+NA Yes NA NA NA 2 44198.39 1.791 0 6 NA 0.718 0 7 1 0.682 0 0 q1371623 Gutierrez Vargas Alvaro 50133260
+NA Yes NA NA NA 1 44198.39 1.43 0 6 NA 0.244 0 7 1 0.631 0 0 q1411379 Xi Yuan 818343

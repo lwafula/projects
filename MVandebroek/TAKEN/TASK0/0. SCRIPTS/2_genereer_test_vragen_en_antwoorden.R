@@ -29,14 +29,14 @@ N <- 3 #number of questions
 
 
 #store solutions S=Solution, Q=Question
-solutions_IQ <- data.frame(matrix(nrow = I, ncol = 7))
-colnames(solutions_IQ) <- c("ID", "S1", "S2", "S3", "Q1", "Q2", "Q3")
+solutions_IQ <- data.frame(matrix(nrow = I, ncol = (N*2+1)))
+colnames(solutions_IQ) <- c("ID", paste0("S", 1:N), paste0("Q", 1:N))
 
 # store questions, Q=Question, Qexp = Question explanation in appropriate language
 
 vragen <- vector(mode="character", length=N)
-questions_IQ <- data.frame(matrix(nrow = I, ncol = 7))
-colnames(questions_IQ) <- c("User.Name", "Q1", "Q2", "Q3", "Qexp1", "Qexp2", "Qexp3")
+questions_IQ <- data.frame(matrix(nrow = I, ncol = (N*2+1)))
+colnames(questions_IQ) <- c("User.Name", paste0("Q", 1:N), paste0("Qexp", 1:N))
 
 #replicability
 set.seed(2223)
@@ -44,8 +44,8 @@ set.seed(2223)
 
 for(i in 1:I) {
   
-  #draw for each i 3 questions  
-  QI <- c(sample(c(1:3), 1), 3 + sample(c(1:3), 1), 6 + sample(c(1:3), 1))
+  #draw for each i N questions  
+  QI <- c(sample(c(1:N), 1), N + sample(c(1:N), 1), (2*N) + sample(c(1:N), 1))
   
   #read in data
   # ID <- as.character(user_info[i , 'Student ID'])
@@ -54,7 +54,7 @@ for(i in 1:I) {
   
   #get solutions
   solutions_IQ[i, 1] <- as.character(ID) 
-  solutions_IQ[i, 2:7] <- c(getSOL(data = data, questions = QI), QI)
+  solutions_IQ[i, 2:(N*2+1)] <- c(getSOL(data = data, questions = QI), QI)
 
 
   #save questions dependent on language
@@ -72,15 +72,15 @@ for(i in 1:I) {
       questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
     }
 
-    filepathW <- paste0(indfolder,"QUESTIONS\\vragen",user_info[i,"newid"],".xlsx")  
-    filepathBx <- paste0(indfolder, "QUESTIONS\\vragen",user_info[i,"Username"],".xlsx") 
-    write_xlsx(questions_IQ[i, -1], path = filepathW)
-    write_xlsx(questions_IQ[i, ], path = filepathBx)
+    filepathW <- paste0(indfolder,"QUESTIONS\\vragen",user_info[i,"newid"],".txt")  
+    filepathBx <- paste0(indfolder, "QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
+    write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE)
+    write.table(questions_IQ[i, ], file = filepathBx, quote = FALSE, row.names = FALSE)
     
     # long formats
     
-    colA = paste0("Q", 1:3)
-    colB = paste0("Qexp", 1:3)
+    colA = paste0("Q", 1:N)
+    colB = paste0("Qexp", 1:N)
     questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
                               value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
     
@@ -88,6 +88,7 @@ for(i in 1:I) {
                path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"newid"],".xlsx"))
     write_xlsx(questions_IQLong_i, 
                path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"Username"],".xlsx"))
+    
     
     } else{
       questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
@@ -97,14 +98,15 @@ for(i in 1:I) {
         questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
       }
       
-      filepathW <- paste0(indfolder,"QUESTIONS\\questions",user_info[i,"newid"],".xlsx")  
-      filepathBx <- paste0(indfolder, "QUESTIONS\\questions",user_info[i,"Username"],".xlsx") 
-      write_xlsx(questions_IQ[i, -1], path = filepathW)
-      write_xlsx(questions_IQ[i, ], path = filepathBx)
+      filepathW <- paste0(indfolder,"QUESTIONS\\questions",user_info[i,"newid"],".txt")  
+      filepathBx <- paste0(indfolder, "QUESTIONS\\questions",user_info[i,"Username"],".txt") 
+      write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE)
+      write.table(questions_IQ[i, ], file = filepathBx, quote = FALSE, row.names = FALSE)
+      
       
       # long format
-      colA = paste0("Q", 1:3)
-      colB = paste0("Qexp", 1:3)
+      colA = paste0("Q", 1:N)
+      colB = paste0("Qexp", 1:N)
       questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
                               value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
       
@@ -112,6 +114,7 @@ for(i in 1:I) {
                  path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"newid"],".xlsx"))
       write_xlsx(questions_IQLong_i, 
                  path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"Username"],".xlsx"))
+      
       
     }
 
