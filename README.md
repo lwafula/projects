@@ -1,6 +1,6 @@
 # Projects
 
-# Version control with collaborators
+# Version control with collaborators: for this make sure you are in the correct directory (collaborator's local directory before making and pushing changes)
 https://pages.nist.gov/git-novice-MSE/08-collab/index.html
 
 # Copy a shared repository as a collaborator
