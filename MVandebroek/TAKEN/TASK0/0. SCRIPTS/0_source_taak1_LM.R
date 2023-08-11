@@ -19,7 +19,7 @@ options(digits=10)
 getDATA <- function(ID){
   
   # WD <- "C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TAAK1\\3. DATA individual\\"
-  WD <- "C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\"
+  WD <- "C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\"
   filename <- paste(WD, "DATA\\data",ID,".txt", sep = "") 
   data <- read.table(file = filename, header = TRUE)
   
@@ -219,7 +219,7 @@ gradingTOOL <- function(responses, solutions){
     
     # individual feedback files
     
-    indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
+    indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
     # filepathW <- paste0(indfolder,"FEEDBACK\\feedback",user_info[i,"newid"],".xlsx")  
     # filepathBx <- paste0(indfolder, "FEEDBACK\\feedback",user_info[i,"User.Name"],".xlsx") 
     # write_xlsx(feedbackfile[i, ], path = filepathW)

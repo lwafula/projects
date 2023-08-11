@@ -9,7 +9,7 @@ library(writexl)
 library(data.table)
 
 # setwd('C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TASK0')
-setwd("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0")
+setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0")
 
 # include functions from 0_source_taak1.R
 
@@ -60,7 +60,7 @@ for(i in 1:I) {
   #save questions dependent on language
   #group <- getLABEL(ID, user_info)
   
-  indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
+  indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
   LABEL = user_info[i,"Group Code"] |> toupper() |> as.character()
   
   if (LABEL == "TSTAT") {

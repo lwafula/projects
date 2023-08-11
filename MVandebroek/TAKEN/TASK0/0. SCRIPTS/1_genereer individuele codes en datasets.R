@@ -13,7 +13,7 @@ library(openxlsx)
 library(dplyr)
 
 # setwd('C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TASK0')
-setwd("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0")
+setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0")
 
 
 #set seed 
@@ -81,7 +81,7 @@ for(i in 1:I){
   
   #write individual datasets 
    # indfolder= paste0("W:\\dd",user_info[i,"newid"])
-   indfolder= paste0("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
+   indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
    # dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
    filepathW <- paste0(indfolder,"DATA\\data",user_info[i,"newid"],".txt")  
    filepathB <- paste0("DATA\\", "data",user_info[i,"newid"],".txt") 

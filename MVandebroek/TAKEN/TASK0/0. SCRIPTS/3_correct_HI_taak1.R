@@ -11,7 +11,7 @@ library(writexl)
 
 #setwd
 # setwd('C:\\Users\\u0004359\\OneDrive - KU Leuven\\Desktop\\TAKEN\\TAAK1')
-setwd("C:\\Users\\Public\\lmaaya\\Projects\\MVandebroek\\TAKEN\\TASK0")
+setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0")
 
 
 ## Source functions
