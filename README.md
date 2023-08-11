@@ -1,5 +1,8 @@
 # Projects
 
+# Version control with collaborators
+https://pages.nist.gov/git-novice-MSE/08-collab/index.html
+
 # Copy a shared repository as a collaborator
 https://www.tutorialspoint.com/how-to-clone-a-github-repository
 
