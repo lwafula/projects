@@ -1,6 +1,6 @@
 # Projects
 
-# Copy a shared repository as a collaboratoe
+# Copy a shared repository as a collaborator
 https://www.tutorialspoint.com/how-to-clone-a-github-repository
 
 # Site with instructions on how to create and syncronize local and remote repositories
