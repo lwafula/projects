@@ -1,0 +1,30 @@
+: checkUPLOADfile - > fill in the columns
+: check how to create instructions on toledo tabs
+
+create external a/c
+https://p.cygnus.cc.kuleuven.be/webapps/tol-extern-ng-bb_bb60/single.html
+
+write to 
+
+check c-number and put in one of the three groups
+
+1. DATA
+2. QUESTIONS
+3. FEEDBACK
+
+: Put overallgrades_all_taak0.txt in the FILES//overall
+: Individual should only have individuals
+
+Question files: check friets. should like this+feedback files
+
+
+
+Here are the Questions for TASK0
+
+Q1: hetevr
+
+Q2: question 2
+
+..
+
+Make 4 Quiz from the Question Bank Tab on toledo

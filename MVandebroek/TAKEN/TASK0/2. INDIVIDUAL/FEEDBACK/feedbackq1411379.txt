@@ -1,2 +1,0 @@
-User.Name Last Name First Name Feedback
-q1411379 Xi Yuan Question 1: Your answer =  44198.39  Correct answer =  1.43  Grade =  0 <br/> Question 2: Your answer =  NA  Correct answer =  0.244  Grade =  0 <br/> Question 3: Your answer =  1  Correct answer =  0.631  Grade =  0 <br/> Total score =  0

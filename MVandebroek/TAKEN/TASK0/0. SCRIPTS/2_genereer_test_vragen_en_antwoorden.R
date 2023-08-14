@@ -35,8 +35,8 @@ colnames(solutions_IQ) <- c("ID", paste0("S", 1:N), paste0("Q", 1:N))
 # store questions, Q=Question, Qexp = Question explanation in appropriate language
 
 vragen <- vector(mode="character", length=N)
-questions_IQ <- data.frame(matrix(nrow = I, ncol = (N*2+1)))
-colnames(questions_IQ) <- c("User.Name", paste0("Q", 1:N), paste0("Qexp", 1:N))
+questions_IQ <- data.frame(matrix(nrow = I, ncol = 2))
+colnames(questions_IQ) <- c("User.Name", "Questions")
 
 #replicability
 set.seed(2223)
@@ -50,6 +50,7 @@ for(i in 1:I) {
   #read in data
   # ID <- as.character(user_info[i , 'Student ID'])
   ID <- as.character(user_info[i , 'Username']) # Student ID or username? from 1_genereer
+  idnewid = user_info[i,"newid"]
   data <- getDATA(ID)
   
   #get solutions
@@ -64,56 +65,38 @@ for(i in 1:I) {
   LABEL = user_info[i,"Group Code"] |> toupper() |> as.character()
   
   if (LABEL == "TSTAT") {
+    vragen <- vector(mode="character", length=N)
+    vragen  <- vragenpool_NED_ENG |> slice(QI) |> select(contains('NED'))
     
-    questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('NED'))
-    
-    questions_IQ[i, 1:(length(QI)+1)] <- c(as.character(ID), QI)
-    for(q in 1:NROW(questions_i)){
-      questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
-    }
+    questions_IQ[i, 1] <- as.character(ID)
+    questions_IQ[i,2] = paste("Cursist ID: ", as.character(ID), "\n\n", 
+                              paste0("Gebruik de data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
+                              "De vragen voor deze taak staan hieronder vermeld.", "\n", "\n",
+                              "V1:", vragen[1, ], "\n", "V2:", vragen[2, ],"\n", "V3:", vragen[3, ],"\n", "\n",
+                              "Vergeet kommagetallen niet af te ronden op 3 decimalen.")
 
-    filepathW <- paste0(indfolder,"QUESTIONS\\vragen",user_info[i,"newid"],".txt")  
-    filepathBx <- paste0(indfolder, "QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
-    write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE)
-    write.table(questions_IQ[i, ], file = filepathBx, quote = FALSE, row.names = FALSE)
-    
-    # long formats
-    
-    colA = paste0("Q", 1:N)
-    colB = paste0("Qexp", 1:N)
-    questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
-                              value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
-    
-    write_xlsx(questions_IQLong_i[, -1], 
-               path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"newid"],".xlsx"))
-    write_xlsx(questions_IQLong_i, 
-               path = paste0(indfolder, "QUESTIONS\\LongFormat\\vragenLong",user_info[i,"Username"],".xlsx"))
+    filepathW <- paste0(indfolder,"2. QUESTIONS\\vragen",user_info[i,"newid"],".txt")  
+    filepathBx <- paste0(indfolder, "2. QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
+    write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
+    write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
     
     
     } else{
-      questions_i <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
       
-      questions_IQ[i, 1:(length(QI)+1)] <- c(as.character(ID), QI)
-      for(q in 1:NROW(questions_i)){
-        questions_IQ[i, (length(QI)+1+q)] <- as.character(questions_i[q,1])
-      }
+      vragen <- vector(mode="character", length=N)
+      vragen  <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
       
-      filepathW <- paste0(indfolder,"QUESTIONS\\questions",user_info[i,"newid"],".txt")  
-      filepathBx <- paste0(indfolder, "QUESTIONS\\questions",user_info[i,"Username"],".txt") 
-      write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE)
-      write.table(questions_IQ[i, ], file = filepathBx, quote = FALSE, row.names = FALSE)
+      questions_IQ[i, 1] <- as.character(ID)
+      questions_IQ[i,2] = paste("Student ID: ", as.character(ID), "\n\n", 
+                                paste0("Use the data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
+                                "The questions for this task are listed below.", "\n", "\n",
+                                "Q1:", vragen[1, ], "\n", "Q2:", vragen[2, ],"\n", "Q3:", vragen[3, ],"\n", "\n",
+                                "Don't forget to round decimals to three digits.")
       
-      
-      # long format
-      colA = paste0("Q", 1:N)
-      colB = paste0("Qexp", 1:N)
-      questions_IQLong_i = melt(questions_IQ[i, ] |> as.data.table(), measure = list(colA, colB), 
-                              value.name = c("Q", "Q exp"))[, !'variable'] |> as.data.frame()
-      
-      write_xlsx(questions_IQLong_i[, -1], 
-                 path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"newid"],".xlsx"))
-      write_xlsx(questions_IQLong_i, 
-                 path = paste0(indfolder, "QUESTIONS\\LongFormat\\questionsLong",user_info[i,"Username"],".xlsx"))
+      filepathW <- paste0(indfolder,"2. QUESTIONS\\questions",user_info[i,"newid"],".txt")  
+      filepathBx <- paste0(indfolder, "2. QUESTIONS\\questions",user_info[i,"Username"],".txt") 
+      write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
+      write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
       
       
     }
@@ -124,13 +107,5 @@ for(i in 1:I) {
 #save all questions and solutions
 write_xlsx(solutions_IQ, path = "1. FILES\\solutions_taak0.xlsx")
 write_xlsx(questions_IQ, path = "1. FILES\\indquestions_taak0.xlsx")
-
-# long formats
-colA = paste0("Q", 1:3)
-colB = paste0("Qexp", 1:3)
-questions_IQLong = melt(questions_IQ |> as.data.table(), measure = list(colA, colB), 
-                        value.name = c("Q", "Q exp"))[order(User.Name), !'variable'] |> as.data.frame()
-
-write_xlsx(questions_IQLong, path = "1. FILES\\indquestionsLong_taak0.xlsx")
 
 

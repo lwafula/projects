@@ -1,2 +1,0 @@
-User.Name Last Name First Name Feedback
-q0762379 Assele Samson Yaekob Question 1: Your answer =  104624.38976  Correct answer =  1.357  Grade =  0 <br/> Question 2: Your answer =  0.04296  Correct answer =  0.861  Grade =  0 <br/> Question 3: Your answer =  0.8756  Correct answer =  0.587  Grade =  0 <br/> Total score =  0
