@@ -1,6 +1,6 @@
 Cursist ID:  c1206235 
- Last Name: Vandebroek 
- First Name: Martina 
+ Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
+ First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
 
  Question 1: Your answer =  43156.39539  Correct answer =  1.393  Grade =  0 
  Question 2: Your answer =  0.02398  Correct answer =  0.829  Grade =  0 
@@ -10,21 +10,9 @@ Cursist ID:  c1206235
 
 
 
-Cursist ID:  c1242115 
- Last Name: Vandebroek 
- First Name: Martina 
-
- Question 1: Your answer =  70059.41442  Correct answer =  1.934  Grade =  0 
- Question 2: Your answer =  0.02001  Correct answer =  0.695  Grade =  0 
- Question 3: Your answer =  2  Correct answer =  0.521  Grade =  0 
-
- Total score =  0 
-
-
-
 Cursist ID:  q0762379 
- Last Name: Assele 
- First Name: Samson Yaekob 
+ Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
+ First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
 
  Question 1: Your answer =  104624.38976  Correct answer =  1.357  Grade =  0 
  Question 2: Your answer =  0.04296  Correct answer =  0.861  Grade =  0 
@@ -35,8 +23,8 @@ Cursist ID:  q0762379
 
 
 Cursist ID:  q1371623 
- Last Name: Gutierrez Vargas 
- First Name: Alvaro 
+ Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
+ First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
 
  Question 1: Your answer =  44198.39  Correct answer =  1.791  Grade =  0 
  Question 2: Your answer =  NA  Correct answer =  0.718  Grade =  0 
@@ -47,8 +35,8 @@ Cursist ID:  q1371623
 
 
 Cursist ID:  q1411379 
- Last Name: Xi 
- First Name: Yuan 
+ Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
+ First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
 
  Question 1: Your answer =  44198.39  Correct answer =  1.43  Grade =  0 
  Question 2: Your answer =  NA  Correct answer =  0.244  Grade =  0 
