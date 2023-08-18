@@ -1,12 +1,18 @@
 : checkUPLOADfile - > fill in the columns
+
 : check how to create instructions on toledo tabs
+
+> Open ASTAT toledo page under
+> In the course content -> general information -> hold the curser against one of the horizontal line (a + icon shows up)
+> click the + icon to create a new item
+> in the create item -> under assessment, choose either Test or Assigment 
+
 
 create external a/c
 https://p.cygnus.cc.kuleuven.be/webapps/tol-extern-ng-bb_bb60/single.html
-
-write to 
-
 check c-number and put in one of the three groups
+c1243957
+pwd: ASTAT2023**toledoExt
 
 1. DATA
 2. QUESTIONS

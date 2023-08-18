@@ -1,6 +1,6 @@
 Cursist ID:  q1411379 
- Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
- First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
+ Last Name: Xi 
+ First Name: Yuan 
 
  Question 1: Your answer =  44198.39  Correct answer =  1.43  Grade =  0 
  Question 2: Your answer =  NA  Correct answer =  0.244  Grade =  0 

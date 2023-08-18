@@ -1,6 +1,6 @@
 Cursist ID:  q0762379 
- Last Name: c("Vandebroek", "Assele", "Gutierrez Vargas", "Xi") 
- First Name: c("Martina", "Samson Yaekob", "Alvaro", "Yuan") 
+ Last Name: Assele 
+ First Name: Samson Yaekob 
 
  Question 1: Your answer =  104624.38976  Correct answer =  1.357  Grade =  0 
  Question 2: Your answer =  0.04296  Correct answer =  0.861  Grade =  0 
