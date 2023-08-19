@@ -12,6 +12,7 @@ create external a/c
 https://p.cygnus.cc.kuleuven.be/webapps/tol-extern-ng-bb_bb60/single.html
 check c-number and put in one of the three groups
 c1243957
+lwafulae@gmail.com
 pwd: ASTAT2023**toledoExt
 
 1. DATA
