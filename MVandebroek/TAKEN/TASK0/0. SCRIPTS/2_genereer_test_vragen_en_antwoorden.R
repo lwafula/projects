@@ -71,8 +71,8 @@ for(i in 1:I) {
     questions_IQ[i, 1] <- as.character(ID)
     questions_IQ[i,2] = paste("Cursist ID: ", as.character(ID), "\n\n", 
                               paste0("Gebruik de data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
-                              "De vragen voor deze taak staan hieronder vermeld.", "\n", "\n",
-                              "V1:", vragen[1, ], "\n", "V2:", vragen[2, ],"\n", "V3:", vragen[3, ],"\n", "\n",
+                              "De vragen voor deze taak staan hieronder vermeld.", "\n\n\n",
+                              "V1:", vragen[1, ], "\n\n", "V2:", vragen[2, ],"\n\n", "V3:", vragen[3, ],"\n\n\n",
                               "Vergeet kommagetallen niet af te ronden op 3 decimalen.")
 
     filepathW <- paste0(indfolder,"2. QUESTIONS\\vragen",user_info[i,"newid"],".txt")  
@@ -89,8 +89,8 @@ for(i in 1:I) {
       questions_IQ[i, 1] <- as.character(ID)
       questions_IQ[i,2] = paste("Student ID: ", as.character(ID), "\n\n", 
                                 paste0("Use the data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
-                                "The questions for this task are listed below.", "\n", "\n",
-                                "Q1:", vragen[1, ], "\n", "Q2:", vragen[2, ],"\n", "Q3:", vragen[3, ],"\n", "\n",
+                                "The questions for this task are listed below.", "\n\n\n",
+                                "Q1:", vragen[1, ], "\n\n", "Q2:", vragen[2, ],"\n\n", "Q3:", vragen[3, ],"\n\n\n",
                                 "Don't forget to round decimals to three digits.")
       
       filepathW <- paste0(indfolder,"2. QUESTIONS\\questions",user_info[i,"newid"],".txt")  

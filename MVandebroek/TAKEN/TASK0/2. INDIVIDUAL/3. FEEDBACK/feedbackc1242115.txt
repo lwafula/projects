@@ -1,12 +1,11 @@
-Cursist ID:  c1242115 
+Student ID:  c1242115 
  Last Name: Vandebroek 
  First Name: Martina 
 
- Question 1: Your answer =  70059.41442  Correct answer =  1.934  Grade =  0 
- Question 2: Your answer =  0.02001  Correct answer =  0.695  Grade =  0 
- Question 3: Your answer =  2  Correct answer =  0.521  Grade =  0 
 
- Total score =  0 
-
-
-
+Question             Your answer          Correct answer       Grade               
+1                    70059.41442          1.934                0                   
+2                    0.02001              0.695                0                   
+3                    2                    0.521                0                   
+                                                                                   
+Total score =  0 / 3                                                               

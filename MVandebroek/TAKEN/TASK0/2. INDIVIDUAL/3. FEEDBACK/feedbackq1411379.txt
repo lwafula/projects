@@ -1,12 +1,11 @@
-Cursist ID:  q1411379 
+Student ID:  q1411379 
  Last Name: Xi 
  First Name: Yuan 
 
- Question 1: Your answer =  44198.39  Correct answer =  1.43  Grade =  0 
- Question 2: Your answer =  NA  Correct answer =  0.244  Grade =  0 
- Question 3: Your answer =  1  Correct answer =  0.631  Grade =  0 
 
- Total score =  0 
-
-
-
+Question             Your answer          Correct answer       Grade               
+1                    44198.39             1.43                 0                   
+2                                         0.244                0                   
+3                    1                    0.631                0                   
+                                                                                   
+Total score =  0 / 3                                                               

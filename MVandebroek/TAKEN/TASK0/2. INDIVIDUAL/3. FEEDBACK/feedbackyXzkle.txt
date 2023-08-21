@@ -1,12 +1,11 @@
-Cursist ID:  q0762379 
+Student ID:  q0762379 
  Last Name: Assele 
  First Name: Samson Yaekob 
 
- Question 1: Your answer =  104624.38976  Correct answer =  1.357  Grade =  0 
- Question 2: Your answer =  0.04296  Correct answer =  0.861  Grade =  0 
- Question 3: Your answer =  0.8756  Correct answer =  0.587  Grade =  0 
 
- Total score =  0 
-
-
-
+Question             Your answer          Correct answer       Grade               
+1                    104624.38976         1.357                0                   
+2                    0.04296              0.861                0                   
+3                    0.8756               0.587                0                   
+                                                                                   
+Total score =  0 / 3                                                               

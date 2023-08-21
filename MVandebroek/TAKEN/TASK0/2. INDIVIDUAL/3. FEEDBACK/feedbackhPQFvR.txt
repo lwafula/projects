@@ -1,12 +1,11 @@
-Cursist ID:  q1371623 
+Student ID:  q1371623 
  Last Name: Gutierrez Vargas 
  First Name: Alvaro 
 
- Question 1: Your answer =  44198.39  Correct answer =  1.791  Grade =  0 
- Question 2: Your answer =  NA  Correct answer =  0.718  Grade =  0 
- Question 3: Your answer =  1  Correct answer =  0.682  Grade =  0 
 
- Total score =  0 
-
-
-
+Question             Your answer          Correct answer       Grade               
+1                    44198.39             1.791                0                   
+2                                         0.718                0                   
+3                    1                    0.682                0                   
+                                                                                   
+Total score =  0 / 3                                                               
