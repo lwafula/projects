@@ -1,11 +1,11 @@
-Student ID:  q1411379 
- Last Name: Xi 
- First Name: Yuan 
+Student ID:  q1371623 
+ Last Name: Gutierrez Vargas 
+ First Name: Alvaro 
 
 
 Question             Your answer          Correct answer       Grade               
-1                    44198.39             1.43                 0                   
+1                                         1.43                 0                   
 2                                         0.244                0                   
-3                    1                    0.631                0                   
+3                                         0.631                0                   
                                                                                    
 Total score =  0 / 3                                                               

@@ -4,8 +4,8 @@ Student ID:  c1206235
 
 
 Question             Your answer          Correct answer       Grade               
-1                    43156.39539          1.393                0                   
-2                    0.02398              0.829                0                   
+1                                         1.393                0                   
+2                                         0.829                0                   
 3                                         0.834                0                   
                                                                                    
 Total score =  0 / 3                                                               

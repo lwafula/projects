@@ -224,8 +224,8 @@ gradingTOOL <- function(responses, solutions){
     writeLines(Head, filepathW)
     write.fwf(feedbacktext, file=filepathW, width = 20, colnames = F, justify = 'left', append = T)
     
-    writeLines(Head, filepathBx)
-    write.fwf(feedbacktext, file=filepathBx, width = 20, colnames = F, justify = 'left', append = T)
+    # writeLines(Head, filepathBx)
+    # write.fwf(feedbacktext, file=filepathBx, width = 20, colnames = F, justify = 'left', append = T)
     
     
   } 

@@ -22,7 +22,9 @@ source("0. SCRIPTS\\0_source_taak1_LM.R")
 ## Change unanswered to NA
 responses <- read_excel("1. FILES\\responses_test_TAAK0.xlsx") |>
   mutate(across(contains("Ans"), ~if_else(. %in% c("<Unanswered>", "/"), NA_character_, .))) |>
-  mutate(Answer = gsub(",", ".", Answer)) |> mutate(Answer = as.numeric(Answer))
+  mutate(Answer = gsub(",", ".", Answer)) |> mutate(Answer = as.numeric(Answer)) |>
+  filter(!(is.na(`Question ID`) | `Question` == 'Additional Content')) |>
+  rename("User.Name" = `Username`)
 
 ## Read in correct solutions
 solutions <- read_xlsx("1. FILES\\solutions_taak0.xlsx") |>

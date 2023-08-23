@@ -78,7 +78,7 @@ for(i in 1:I) {
     filepathW <- paste0(indfolder,"2. QUESTIONS\\vragen",user_info[i,"newid"],".txt")  
     filepathBx <- paste0(indfolder, "2. QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
     write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
-    write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
+    # write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
     
     
     } else{
@@ -96,7 +96,7 @@ for(i in 1:I) {
       filepathW <- paste0(indfolder,"2. QUESTIONS\\questions",user_info[i,"newid"],".txt")  
       filepathBx <- paste0(indfolder, "2. QUESTIONS\\questions",user_info[i,"Username"],".txt") 
       write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
-      write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
+      # write.table(questions_IQ[i, -1], file = filepathBx, quote = FALSE, row.names = FALSE, col.names = FALSE)
       
       
     }

@@ -1,3 +1,14 @@
+: option? Have three columns: TASK-questions, TASK-data+quiz, TASK-feedback?
+: create the instructions under the Gradebook-markable Items
+: problematic decimal entries when entering solutions as a student: in the solutions file saved from R script
+: can't see the feedback as a student. As an instructor, i can see the feedbak by opening the student-specific tab: solution: it must be posted (rem Export-and fill in the columns, plus a value for the column correponding to the task value e.g. fill in 1s so that it is postable as a feedback) in gradebook
+
+: how to upload individual questions/instructions/solutions to students on toledo
+: how to use the feedback|checkupload file: keeps complaining about the format
+
+: for results: download Results by clicking on the test-name icon under Gradebook. Choose Format to be by question and participant 
+	to have the answers in long format by participant
+
 : checkUPLOADfile - > fill in the columns
 
 : check how to create instructions on toledo tabs
