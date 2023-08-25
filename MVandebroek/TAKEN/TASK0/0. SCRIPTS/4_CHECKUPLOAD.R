@@ -28,6 +28,7 @@ group_IDS <- na.omit(group_IDS)
 
 for (i in 1:length(group_IDS)){
   
+  # create html links for toledo
   dataquizpath = paste0("<p>Click <a href=", 'https://kuleuven-my.sharepoint.com/:f:/r/personal/martina_vandebroek_kuleuven_be/Documents/Desktop/TAKEN/LMaaya/TASK0/2.%20INDIVIDUAL/1.%20DATA?csf=1&web=1&e=pvidg5\\data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
                         # "<p></p>", 
                         "<p>Click <a href=", 'https://kuleuven-my.sharepoint.com/:f:/r/personal/martina_vandebroek_kuleuven_be/Documents/Desktop/TAKEN/LMaaya/TASK0/2.%20INDIVIDUAL/2.%20QUESTIONS?csf=1&web=1&e=MDHT9X\\questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
