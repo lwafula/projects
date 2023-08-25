@@ -1,3 +1,0 @@
-"id","link"
-"Example link #1","=HYPERLINK(""https://google.ca"", ""Example link #1"")"
-"Example link #2","=HYPERLINK(""https://community.rstudio.com"", ""Example link #2"")"

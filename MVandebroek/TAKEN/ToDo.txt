@@ -1,3 +1,13 @@
+25-08-2023: meeting with Martina
+: html links specification: feedback/data/questions
+: single instruction file with a link to a file with links for data/feedback/questions?
+: sept 13 reception at the irish college for the workshop on 14th and 15th Sept
+: clear names for instructions/data/feedback/question tasks
+:
+:: next meeting is on 8th Sept at 1pm
+
+
+
 : how to add active links on feedback and data/question excel files for upload?
 : option? Have three columns: TASK-questions, TASK-data+quiz, TASK-feedback?
 : create the instructions under the Gradebook-markable Items
