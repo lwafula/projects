@@ -34,3 +34,12 @@ This procedure works:
    https://www.youtube.com/watch?v=q8NOmLD5pTU&list=PLeo1K3hjS3ut2o1ay5Dqh-r1kq6ZU8W0M&index=8&ab_channel=codebasics
 
    https://www.linuxfordevices.com/tutorials/linux/edit-config-files-in-linux#:~:text=To%20open%20a%20config%20file%20with%20Nano%2C%20open%20a%20Terminal,can%20make%20the%20necessary%20changes.
+
+--- to add packages in R/RStudio
+https://www.r-bloggers.com/2018/07/configuring-azure-and-rstudio-for-text-analysis/
+
+OR simply login to the virtual machine
+rstudioVM@20.19.212.242
+sudo R
+.libPaths()
+install.packages('tidyverse')
