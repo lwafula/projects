@@ -7,3 +7,7 @@ This procedure works:
    procedures by clicking on the embedded link in the steps or check here:
 
    https://posit.co/download/rstudio-server/
+
+- to login to my RStudio virtual machine(note there are 3 --- in the Pwd):
+	Username: rstudioVM
+	Pwd: Azure2023—
