@@ -28,20 +28,26 @@ group_IDS <- na.omit(group_IDS)
 
 for (i in 1:length(group_IDS)){
   
-  # create html links for toledo
-  dataquizpath = paste0("<p>Click <a href=", 'https://kuleuven-my.sharepoint.com/:f:/r/personal/martina_vandebroek_kuleuven_be/Documents/Desktop/TAKEN/LMaaya/TASK0/2.%20INDIVIDUAL/1.%20DATA?csf=1&web=1&e=pvidg5\\data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
-                        # "<p></p>", 
-                        "<p>Click <a href=", 'https://kuleuven-my.sharepoint.com/:f:/r/personal/martina_vandebroek_kuleuven_be/Documents/Desktop/TAKEN/LMaaya/TASK0/2.%20INDIVIDUAL/2.%20QUESTIONS?csf=1&web=1&e=MDHT9X\\questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
-  
-  
   LABEL = dfUPLOAD[i, "Group Code"] |> toupper() |> as.character()
   
   if (LABEL == "TSTAT") {
+    # create html links for toledo
+    # the public link points to the W: drive
+    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'],'/1. data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
+                          # "<p></p>", 
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/2. vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
+    
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(dataquizpath))
     
   } else{
+    
+    # create html links for toledo
+    # the public link points to the W: drive
+    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'],'/1. data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
+                          # "<p></p>", 
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/2. questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(dataquizpath))
@@ -75,18 +81,17 @@ group_IDS <- as.character(dfUPLOAD$Username)
 group_IDS <- na.omit(group_IDS)
 
 for (i in 1:length(group_IDS)){
-  
-  feedpath = paste0("<p>Click <a href=", 'https://kuleuven-my.sharepoint.com/:f:/r/personal/martina_vandebroek_kuleuven_be/Documents/Desktop/TAKEN/LMaaya/TASK0/2.%20INDIVIDUAL/3.%20FEEDBACK?csf=1&web=1&e=QY8l6T\\feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
-  
+
   LABEL = dfUPLOAD[i, "Group Code"] |> toupper() |> as.character()
   
   if (LABEL == "TSTAT") {
-    
+    feedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'],'/3. feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(feedpath))
     
   } else{
     
+    feedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'],'/3. feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(feedpath))
   }

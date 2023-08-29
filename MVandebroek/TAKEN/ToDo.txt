@@ -1,4 +1,29 @@
 25-08-2023: meeting with Martina
+: create feedback/data/questions folders on https://feb.kuleuven.be/public/u0118298/, similar to Martina's https://feb.kuleuven.be/martina.vandebroek/public/ddlDLHdt
+:: check her email
+
+**** creating data/feedbacks/questions on public folder *****
+
+Dear,
+yes that is possible, you make different folders per person on your W-drive in your Windows explorer and then give the different links to the persons who need it.
+For example 
+https://feb.kuleuven.be/public/U0118298/person1/file1
+https://feb.kuleuven.be/public/U0118298/person2/file2
+etc...
+ 
+ 
+You should be careful because whatever is public can be seen by anyone. So if they change person1 by person2 in the path they will see the questions of the other person.
+But if that is no problem you can use the public drive. If that is a problem then you should use onedrive and give only the correct person access rights to their own folder.
+ 
+ 
+Met Vriendelijke Groeten/Kind Regards,
+
+Dieter Vranken
+
+**************************************************************
+
+
+: problem could be because of using OneDrive
 : html links specification: feedback/data/questions
 : single instruction file with a link to a file with links for data/feedback/questions?
 : sept 13 reception at the irish college for the workshop on 14th and 15th Sept

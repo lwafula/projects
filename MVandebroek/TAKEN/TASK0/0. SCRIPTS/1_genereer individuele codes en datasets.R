@@ -1,3 +1,4 @@
+
 #######################################
 ##### ATSTAT - test task
 #######################################
@@ -80,12 +81,14 @@ for(i in 1:I){
   
   
   #write individual datasets 
-   # indfolder= paste0("W:\\dd",user_info[i,"newid"])
-   indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
-   # dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-   filepathW <- paste0(indfolder,"1. DATA\\data",user_info[i,"newid"],".txt")  
-   filepathBx <- paste0(indfolder, "1. DATA\\data",user_info[i,"Username"],".txt") 
+  indfolder= paste0("W:\\dd",user_info[i,"newid"])
+  dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
+  filepathW <- paste0(indfolder,"\\1. data",user_info[i,"newid"],".txt")  # write to the public folder
+  filepathB <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"newid"],".txt")
+  filepathBx <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"Username"],".txt") 
   write.table(sample_data, file = filepathW, quote = FALSE, row.names = FALSE)
+  write.table(sample_data, file = filepathB, quote = FALSE, row.names = FALSE)
   write.table(sample_data, file = filepathBx, quote = FALSE, row.names = FALSE)
 }
+
 
