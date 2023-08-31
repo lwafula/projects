@@ -22,7 +22,7 @@ set.seed(2222)
 
 #Read in Q-numbers 
 # olduser_info <- read_xlsx("1. INPUT\\gc_ULTRA-C-17518426-K_columns_2023-06-13-15-45-33.xlsx")
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-08-23-13-59-08.csv")
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-08-30-10-02-44.csv")
 # group_info = read_xlsx("1. FILES\\group info.xlsx")
 group_info = read.csv("1. FILES\\group info.csv", check.names = F)
 
