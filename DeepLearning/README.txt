@@ -1,4 +1,8 @@
 
+Unzip a .json file in bash
+The data can be unzipped by running this command in the correct folder in git-bash: gunzip reviews_Cell_Phones_and_Accessories_5.json.gz
+
+
 Recurrent Neural Network 
 https://www.youtube.com/watch?v=Y2wfIKQyd1I&list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV&index=106&ab_channel=codebasics
 
