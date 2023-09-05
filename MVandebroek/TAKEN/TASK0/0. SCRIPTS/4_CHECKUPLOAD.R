@@ -15,7 +15,7 @@ rm(list = ls())
 setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0")
 
 #Read in the Q-numbers 
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-08-30-10-02-44.csv",
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-04-09-39-57.csv",
                          check.names = F)
 
 group_info = read_xlsx("1. FILES\\user_info with coding.xlsx") |>
@@ -57,7 +57,7 @@ for (i in 1:length(group_IDS)){
 
 dfUPLOAD = dfUPLOAD |> select(-c(`Group Code`, newid)) |>
   mutate(`Notes Format` = 'HTML', `Feedback Format` = 'HTML', 
-         `TASK0-116082023: data & quiz links [Total Pts: 1 Score] |118854` = 1) |>
+         `TASK0-116082023: data & quiz links [Total Pts: 1 Score] |118854` = row_number()) |>
   select("Last Name", "First Name", "Username", `Student ID`:`Feedback Format` )
 
 write.table(dfUPLOAD, file = "1. FILES\\CHECKUPLOADFILE_DATAQUIZ.csv", 
@@ -72,7 +72,7 @@ write.table(dfUPLOAD, file = "1. FILES\\CHECKUPLOADFILE_DATAQUIZ.csv",
 
 
 #Read in the Q-numbers 
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-08-30-10-30-13.csv",
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-04-10-11-30.csv",
                          check.names = F)
 
 dfUPLOAD = merge(olduser_info, group_info, by = 'Username')
@@ -100,7 +100,7 @@ for (i in 1:length(group_IDS)){
 
 dfUPLOAD = dfUPLOAD |> select(-c(`Group Code`, newid)) |>
   mutate(`Notes Format` = 'HTML', `Feedback Format` = 'HTML', 
-         `TASK0-116082023: feedback [Total Pts: 1 Score] |114607` = 1) |>
+         `TASK0-116082023: feedback [Total Pts: 1 Score] |114607` = row_number()) |>
   select("Last Name", "First Name", "Username", `Student ID`:`Feedback Format` )
 
 

@@ -1,0 +1,11 @@
+Student ID:  q0762379 
+ Last Name: Assele 
+ First Name: Samson 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.43                 0                   
+2                                         0.244                0                   
+3                                         0.631                0                   
+                                                                                   
+Total score =  0 / 3                                                               

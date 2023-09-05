@@ -1,0 +1,11 @@
+Student ID:  q1411379 
+ Last Name: Xi 
+ First Name: Yuan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.877                0                   
+2                                         0.291                0                   
+3                                         0.928                0                   
+                                                                                   
+Total score =  0 / 3                                                               

@@ -1,3 +1,7 @@
+> check why it is not updating information
+> check why there is no more content/submission tabs for newer items
+
+
 25-08-2023: meeting with Martina
 : create feedback/data/questions folders on https://feb.kuleuven.be/public/u0118298/, similar to Martina's https://feb.kuleuven.be/martina.vandebroek/public/ddlDLHdt
 :: check her email
