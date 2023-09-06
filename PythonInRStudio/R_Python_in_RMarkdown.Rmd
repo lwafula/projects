@@ -51,6 +51,9 @@ The first `r py$n` terms in a Fibonacci series are: `r py$nums`.
 * check here: 
 <https://www.youtube.com/watch?v=JL_grPUnXzY&list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV> 
 
+* End-to-end Data science potato project
+<https://www.youtube.com/watch?v=dGtDTjYs3xc&list=PLeo1K3hjS3utJFNGyBpIvjWgSDY0eOE8S&ab_channel=codebasics>
+
 ## Lasso (L1 regularization) and Ridge (L2) regression
 
 ```{python L1L2regularization, warning  = FALSE, message = FALSE, echo = FALSE, results=FALSE}
