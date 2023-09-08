@@ -1,3 +1,17 @@
+CREATING COLLABORATE ROOMS-BERT'S OPTION
+
+* Content - > Class collaborate -> choose manage all sessions under the three dots\
+* Create Session -> Give name of session & decide on Guest Access (presenter) & no end date -> click create
+* copy Guest link -> save
+* Under course content -> expand the Collaborate session tab and click on the plus(+) sign -> create -> link -> 
+paste the copied link in "Link URL" & give some display name -> on the display name you've given under Collaborate session -> 
+click on the dropdown arrow to choose Release conditions -> Specific participants or groups -> Groups -> choose group and save
+
+* Under class collaborate -> click join session and choose the room to join.
+
+The only issue is all students will see the links and can, in theory, join. Which Martina is not happy with. Bert with check and get back to us
+
+*******************************************************************************************
 > check why it is not updating information
 > check why there is no more content/submission tabs for newer items
 
