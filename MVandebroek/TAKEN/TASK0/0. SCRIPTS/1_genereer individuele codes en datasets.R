@@ -22,7 +22,7 @@ set.seed(2222)
 
 #Read in Q-numbers 
 # olduser_info <- read_xlsx("1. INPUT\\gc_ULTRA-C-17518426-K_columns_2023-06-13-15-45-33.xlsx")
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-07-10-43-16.csv")
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-11-14-22-26.csv")
 # group_info = read_xlsx("1. FILES\\group info.xlsx")
 group_info = read.csv("1. FILES\\group info.csv", check.names = F)
 
@@ -83,7 +83,7 @@ for(i in 1:I){
   #write individual datasets 
   indfolder= paste0("W:\\dd",user_info[i,"newid"])
   dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-  filepathW <- paste0(indfolder,"\\1. data",user_info[i,"newid"],".txt")  # write to the public folder
+  filepathW <- paste0(indfolder,"\\1.data",user_info[i,"newid"],".txt")  # write to the public folder
   filepathB <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"newid"],".txt")
   filepathBx <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"Username"],".txt") 
   write.table(sample_data, file = filepathW, quote = FALSE, row.names = FALSE)

@@ -220,7 +220,7 @@ gradingTOOL <- function(responses, solutions){
     # indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
     indfolder= paste0("W:\\dd",user_info[i,"newid"])
     
-    filepathW <- paste0(indfolder,"\\3. feedback",user_info[i,"newid"],".txt")  
+    filepathW <- paste0(indfolder,"\\3.feedback",user_info[i,"newid"],".txt")  
     filepathB <- paste0("2. INDIVIDUAL\\3. FEEDBACK\\feedback",user_info[i,"newid"],".txt") 
     filepathBx <- paste0("2. INDIVIDUAL\\3. FEEDBACK\\feedback",user_info[i,"User.Name"],".txt") 
     writeLines(Head, filepathW)

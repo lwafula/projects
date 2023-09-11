@@ -75,7 +75,7 @@ for(i in 1:I) {
                               "V1:", vragen[1, ], "\n\n", "V2:", vragen[2, ],"\n\n", "V3:", vragen[3, ],"\n\n\n",
                               "Vergeet kommagetallen niet af te ronden op 3 decimalen.")
     
-    filepathW <- paste0(indfolder,"\\2. vragen",user_info[i,"newid"],".txt")  # write to the public folder
+    filepathW <- paste0(indfolder,"\\2.vragen",user_info[i,"newid"],".txt")  # write to the public folder
     filepathB <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\vragen",user_info[i,"newid"],".txt") 
     filepathBx <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
     write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -95,7 +95,7 @@ for(i in 1:I) {
                                 "Q1:", vragen[1, ], "\n\n", "Q2:", vragen[2, ],"\n\n", "Q3:", vragen[3, ],"\n\n\n",
                                 "Don't forget to round decimals to three digits.")
       
-      filepathW <- paste0(indfolder,"\\2. questions",user_info[i,"newid"],".txt")  # write to the public folder
+      filepathW <- paste0(indfolder,"\\2.questions",user_info[i,"newid"],".txt")  # write to the public folder
       filepathB <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\questions",user_info[i,"newid"],".txt") 
       filepathBx <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\questions",user_info[i,"Username"],".txt") 
       write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)

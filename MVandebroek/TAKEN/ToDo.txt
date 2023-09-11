@@ -1,3 +1,9 @@
+******************************************************************************************
+
+Feedbacks have to be created in the Gradebook. Those in contents will come with content and settings without the feedback tab
+No spaces in urls, otherwise add %20
+
+*******************************************************************************************
 CREATING COLLABORATE ROOMS-BERT'S OPTION
 
 * Content - > Class collaborate -> choose manage all sessions under the three dots\
