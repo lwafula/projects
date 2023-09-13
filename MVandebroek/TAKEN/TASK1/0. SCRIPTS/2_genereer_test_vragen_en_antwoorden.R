@@ -48,6 +48,12 @@ for(i in 1:I) {
   #draw for each i N questions  
   QI <- c(sample(c(1:N), 1), N + sample(c(1:N), 1), (2*N) + sample(c(1:N), 1))
   
+  # randomly select a question in each block: N in total
+
+  # QI <- vragenpool_NED_ENG |> group_by(BLOK) |> slice_sample(n=1) |> ungroup() |>
+  #   select(`Vraag ID`) |> as.vector() |> unname() |> unlist() |> sample(N) |> sort()
+  # QI
+  
   #read in data
   # ID <- as.character(user_info[i , 'Student ID'])
   ID <- as.character(user_info[i , 'Username']) # Student ID or username? from 1_genereer
