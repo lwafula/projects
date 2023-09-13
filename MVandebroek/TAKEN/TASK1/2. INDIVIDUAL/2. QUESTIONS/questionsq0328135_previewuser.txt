@@ -1,10 +1,10 @@
 Student ID:  q0328135_previewuser 
 
- Use the data in https://feb.kuleuven.be/public/U0004359/datahPQFvR.txt 
+ Use the data in https://feb.kuleuven.be/public/U0004359/datatJEMYS.txt 
  The questions for this task are listed below. 
 
 
- Q1: Perform a regression analysis with dependent variable Y2 and independent variables X1 and X3 (without the interaction term). Give the estimate for the parameter corresponding to variable X3. 
+ Q1: Perform a regression analysis with dependent variable Y1 and independent variables X1 and X2 (without the interaction term). Give the estimate for the parameter corresponding to variable X2. 
 
  Q2: Perform a regression analysis with dependent variable Y3 and independent variables X3 and X4. Take the interaction into account. Give the p-value of the parameter corresponding to the interaction term. 
 

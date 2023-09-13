@@ -1,6 +1,6 @@
-Student ID:  q0762379 
+Student ID:  q1411379 
 
- Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddtJEMYS/1.datatJEMYS.txt 
+ Use the data in https://feb.kuleuven.be/public/U0004359/dataJfZnwI.txt 
  The questions for this task are listed below. 
 
 
@@ -8,7 +8,7 @@ Student ID:  q0762379
 
  Q2: Perform a regression analysis with dependent variable Y3 and independent variables X3 and X4. Take the interaction into account. Give the p-value of the parameter corresponding to the interaction term. 
 
- Q3: Perform a regression analysis with dependent variable Y3 and independent variables X1, X2 and X3 (without the interaction terms). Give the proportion of explained variance. 
+ Q3: Perform a regression analysis with dependent variable Y2 and independent variables X3, X4 and X5 (without the interaction terms). Give the proportion of explained variance. 
 
 
  Don't forget to round decimals to three digits.

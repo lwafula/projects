@@ -4,8 +4,8 @@ Student ID:  q0328135_previewuser
 
 
 Question             Your answer          Correct answer       Grade               
-1                                         1.791                0                   
-2                                         0.718                0                   
-3                                         0.682                0                   
+1                                         0.94                 0                   
+2                                         0.715                0                   
+3                                         0.384                0                   
                                                                                    
 Total score =  0 / 3                                                               

@@ -31,9 +31,7 @@ solutions <- read_xlsx("1. FILES\\solutions_taak1.xlsx") |>
   rename("User.Name" = `ID`)
 
 ## read in user info
-# user_info <- read_excel("1. FILES\\user_info with coding.xlsx") |>
-#   rename("User.Name" = `Username`)
-user_info <- read_excel(path = "C:/Users/u0118298/OneDrive/Projects/MVandebroek/TAKEN/TASK0/1. FILES/user_info with coding.xlsx")|>
+user_info <- read_excel("1. FILES\\user_info with coding.xlsx") |>
   rename("User.Name" = `Username`)
 
 

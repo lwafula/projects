@@ -20,7 +20,7 @@ vragenpool_NED_ENG <- read_excel(path ="1. FILES\\vragen_questions_TEST.xlsx")
 
 #Read in Q-numbers 
 # user_info <- read_excel(path = "1. FILES\\user_info with coding.xlsx")
-user_info <- read_excel(path = "C:/Users/u0118298/OneDrive/Projects/MVandebroek/TAKEN/TASK0/1. FILES/user_info with coding.xlsx")
+user_info <- read_excel(path = "1. FILES/user_info with coding.xlsx")
 user_info$group = user_info$"Group Code"
 user_info <- user_info[!is.na(user_info$group),] 
 
@@ -40,7 +40,7 @@ questions_IQ <- data.frame(matrix(nrow = I, ncol = 2))
 colnames(questions_IQ) <- c("User.Name", "Questions")
 
 #replicability
-set.seed(2223)
+set.seed(22231)
 
 
 for(i in 1:I) {
@@ -62,7 +62,7 @@ for(i in 1:I) {
   #save questions dependent on language
   #group <- getLABEL(ID, user_info)
 
-  indfolder= paste0("W:\\dd",user_info[i,"newid"], "\\TASK1")
+  indfolder= paste0("W:\\TASK1\\dd",user_info[i,"newid"])
   LABEL = user_info[i,"Group Code"] |> toupper() |> as.character()
   
   if (LABEL == "TSTAT") {
@@ -71,12 +71,12 @@ for(i in 1:I) {
     
     questions_IQ[i, 1] <- as.character(ID)
     questions_IQ[i,2] = paste("Cursist ID: ", as.character(ID), "\n\n", 
-                              paste0("Gebruik de data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
+                              paste0("Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/dd",idnewid,"/1.data",idnewid,".txt"), "\n",
                               "De vragen voor deze taak staan hieronder vermeld.", "\n\n\n",
                               "V1:", vragen[1, ], "\n\n", "V2:", vragen[2, ],"\n\n", "V3:", vragen[3, ],"\n\n\n",
                               "Vergeet kommagetallen niet af te ronden op 3 decimalen.")
     
-    filepathW <- paste0(indfolder,"\\2. vragen",user_info[i,"newid"],".txt")  # write to the public folder
+    filepathW <- paste0(indfolder,"\\2.vragen",user_info[i,"newid"],".txt")  # write to the public folder
     filepathB <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\vragen",user_info[i,"newid"],".txt") 
     filepathBx <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\vragen",user_info[i,"Username"],".txt") 
     write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -91,12 +91,12 @@ for(i in 1:I) {
       
       questions_IQ[i, 1] <- as.character(ID)
       questions_IQ[i,2] = paste("Student ID: ", as.character(ID), "\n\n", 
-                                paste0("Use the data in https://feb.kuleuven.be/public/U0004359/data",idnewid,".txt"), "\n",
+                                paste0("Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/dd", idnewid, "/1.data",idnewid,".txt"), "\n",
                                 "The questions for this task are listed below.", "\n\n\n",
                                 "Q1:", vragen[1, ], "\n\n", "Q2:", vragen[2, ],"\n\n", "Q3:", vragen[3, ],"\n\n\n",
                                 "Don't forget to round decimals to three digits.")
       
-      filepathW <- paste0(indfolder,"\\2. questions",user_info[i,"newid"],".txt")  # write to the public folder
+      filepathW <- paste0(indfolder,"\\2.questions",user_info[i,"newid"],".txt")  # write to the public folder
       filepathB <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\questions",user_info[i,"newid"],".txt") 
       filepathBx <- paste0("2. INDIVIDUAL\\2. QUESTIONS\\questions",user_info[i,"Username"],".txt") 
       write.table(questions_IQ[i, -1], file = filepathW, quote = FALSE, row.names = FALSE, col.names = FALSE)
