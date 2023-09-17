@@ -18,7 +18,7 @@ setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK2")
 
 
 #set seed 
-set.seed(2222)
+set.seed(22221)
 
 #Read in Q-numbers 
 # olduser_info <- read_xlsx("1. INPUT\\gc_ULTRA-C-17518426-K_columns_2023-06-13-15-45-33.xlsx")
@@ -29,25 +29,21 @@ group_info = read.csv("1. FILES\\group info.csv", check.names = F)
 user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", all.x=TRUE)
 
 #settings > GENEREER ALIASSEN VOOR DE STUDENTENNUMMERS en voeg group toe
-# I <- nrow(user_info)
-# 
-# df <- data.frame(
-#   passwd = replicate(I, paste(sample(c(LETTERS, letters), 6), collapse="")))
-# 
-# user_info$newid<-as.character(df$passwd)
-# user_info
-# 
-# write.xlsx(user_info,"1. FILES\\user_info with coding.xlsx")
-
-user_info <- read_excel(path = "C:/Users/u0118298/OneDrive/Projects/MVandebroek/TAKEN/TASK0/1. FILES/user_info with coding.xlsx")
 I <- nrow(user_info)
 N <- 50 #dataset size
+df <- data.frame(
+  passwd = replicate(I, paste(sample(c(LETTERS, letters), 6), collapse="")))
+
+user_info$newid<-as.character(df$passwd)
+user_info
+
+write.xlsx(user_info,"1. FILES\\user_info with coding.xlsx")
 
 
 #------------------------------------------------------------------
 ###genereer algemene dataset voor regressie vragen. 
 #set seed for replicability
-set.seed(2223)
+set.seed(22231)
 
 beta1 <- c(-0.5, 1.4, 2.4, -1.1, -0.6)
 beta2 <- c( 0.5, -0.4, 1.1, -2.1, -1.6)
@@ -83,9 +79,9 @@ for(i in 1:I){
   
   
   #write individual datasets 
-  indfolder= paste0("W:\\dd",user_info[i,"newid"], "\\TASK2")
+  indfolder= paste0("W:\\TASK2\\dd",user_info[i,"newid"])
   dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-  filepathW <- paste0(indfolder,"\\1. data",user_info[i,"newid"],".txt")  # write to the public folder
+  filepathW <- paste0(indfolder,"\\1.data",user_info[i,"newid"],".txt")  # write to the public folder
   filepathB <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"newid"],".txt")
   filepathBx <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"Username"],".txt") 
   write.table(sample_data, file = filepathW, quote = FALSE, row.names = FALSE)
