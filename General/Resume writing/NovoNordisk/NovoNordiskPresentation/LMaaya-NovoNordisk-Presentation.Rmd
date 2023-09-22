@@ -1,0 +1,146 @@
+---
+title: "Novo Nordisk: HTA Statistician"
+author: "Leonard Maaya"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    nature:
+      titleSlideClass: ["center", "middle", "inverse"]
+    seal: true
+    css: xaringan-themer.css
+---
+
+layout: true
+
+background-image: url(novonordisk.png)
+background-position: 100% 0%
+background-size: 20%
+
+<!-- <hr style="border:2px solid blue"> -->
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# https://pkg.garrickadenbuie.com/xaringanthemer/articles/xaringanthemer.html#themes
+library(xaringanthemer)
+library(flextable)
+library(kableExtra)
+library(officer)
+library(data.table)
+library(tidyverse)
+library(kableExtra)
+library(rmarkdown)
+library(openxlsx)
+library(readxl)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+```
+
+
+# Discrete Choice Experiments
+
+```{r choiceTable, warning=FALSE, echo=FALSE, message=FALSE}
+
+choiceTable = data.frame(rbind(
+c("Administration" , "Injected under the skin at home" , "Intravenously (IV) at a clinic"), 
+c("Time (weeks) between doses" , 2 , 8),
+c("Chance of improvement (%)"      , 30 , 60),
+c("Chance of side effects (%)"       , 15    , 1),
+c("Risk of scaly rashes (%)"     , 15    , 1),
+c("Risk of serious infection (%)" , 8 , 2),
+c("Licenced manufacturer" , "Yes" , "No"),
+c(" ", " ", " "),
+c(" ", " ", " "),
+c(" ", " ", " "),
+c(rep("Which biologic medicine would you prefer?", 3)),
+c("Medicine A", "Medicine B", "None")
+)) %>% rename("Medicine" = `X1`, "A" = `X2`, "B" = `X3`)
+
+```
+
+.pull-left[
+
+```{r, warning=FALSE, echo=FALSE, message=FALSE}
+
+flextable(choiceTable) %>%
+  bold(bold = TRUE, part = "header") %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% merge_h(part = "header") %>%  
+  merge_h(part = "body") %>% align(align = 'center', i = 7, part = 'body') %>% 
+  width(j = c(1, 2, 3), width = c(1.5, 1.2, 1.2)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  hline(part="body", border = std_borderFoot, i = 7) %>%
+  hline(part="body", border = fp_border(color = "white"), i = c(8:12)) %>%
+  fix_border_issues(part = "all") %>%hline_top(part="header", border = std_borderFoot) %>%
+  fontsize(size = 12, part = "all")
+
+```
+
+]
+
+
+.pull-right[
+
+* Before: use all attributes
+
+* Now: task simplification
+  - Ignoring attributes: ANA
+      - screening
+  - ANA as a static behavior
+  - Yet, which attribute to screen-out may change 
+      - newer information
+
+* **Model ANA behavior dynamically to account for possible changes**
+  - Hidden Markov Model 
+]
+
+---
+
+class: center, middle
+
+# Respondents' DCE choices
+
+```{r choiceLong, echo=FALSE, out.height = "500px", out.width='540px', echo=F}
+
+knitr::include_graphics("Univ_longitudinalchoices.png")
+
+```
+
+
+---
+class: center, middle
+
+# Analysis of this DCE data
+
+* .left[Current: 
+  * Preferences
+  * Those that completed the study]
+* .left[Proposal: 
+  * Preferences & dropout behavior in a joint model
+  * Everyone: completers & non-completers
+    - Better coverage and less biased estimates
+    ]
+
+---
+class: center, middle
+
+# Relevance for the HTA position
+
+* .left[Patient/decision maker preferences & willingness-to-pay| cost-benefit analysis
+  - *To be effective, HTA should serve as bridge between scientific knowledge, the judgement of health professionals, the views/preferences of patients, and the needs of policy makers*]
+  
+* .left[Linear and non-linear mixed models]
+* .left[Survival analysis in a joint model]
+* .left[Bayesian analysis in JAGS/STAN]
+
+---
+class: center, middle
+
+# References
+
+* .left[**Maaya, L.**, Meulders, M., and Vandebroek, M. (2020).
+Online consumers' attribute non-attendance behavior: Effects of information provision. _International Journal of Electronic Commerce, 24(3):338-365._]
+
+* .left[**Maaya, L.**, Meulders, M., Vandebroek, M. (2021). Joint analysis of preferences and drop out data in discrete choice. _Journal of Choice Modelling, 41, Art.No. ARTN 100308_]

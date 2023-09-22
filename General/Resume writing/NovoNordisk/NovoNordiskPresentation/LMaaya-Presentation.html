@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>GSK: Senior Statistician</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Leonard Maaya" />
+    <meta name="date" content="2023-05-17" />
+    <script src="LMaaya-Presentation_files/header-attrs-2.10/header-attrs.js"></script>
+    <link href="LMaaya-Presentation_files/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+    <script src="LMaaya-Presentation_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+    <script src="LMaaya-Presentation_files/viz-1.8.2/viz.js"></script>
+    <link href="LMaaya-Presentation_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="LMaaya-Presentation_files/grViz-binding-1.0.6.1/grViz.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# GSK: Senior Statistician
+### Leonard Maaya
+### 2023-05-17
+
+---
+
+
+layout: true
+
+background-image: url(gsk.png)
+background-position: 100% 0%
+background-size: 20%
+
+&lt;!-- &lt;hr style="border:2px solid blue"&gt; --&gt;
+---
+
+class: center, middle
+
+
+# Case study
+
+---
+
+## Objective
+
+**Optimization** of the fermentation process, to maximize the process yield and the purity of the recombinant
+protein ABC.
+
+- Three critical process parameters (CPPs) were selected during the screening phase.
+
+  - Fermentation Temperature, range selected: 15°C – 25°C
+  - pH, range selected: 6 – 6.8
+  - Process duration, range selected: 8 h – 12 h
+
+- An additional noise factor is included into the Optimization Phase: 
+
+  - Day
+  
+- CQAs to monitor
+  - Purity (%)
+  - Yield (mg/ml)
+  
+---
+class: center, middle
+
+## Design evaluation
+
+* .left[Determine the assumed model for the DoE:
+  * Continuous: 
+      - Fermentation Temperature
+      - pH 
+      - process duration
+  * Blocking: Day
+  ]
+  
+* .left[Diagnostics considered
+* Correlations
+* Power
+* Prediction variance plots
+    * HTML report]
+
+---
+
+class: center, middle
+
+
+
+
+&lt;img src="Evaluate_Design.PNG" width="450px" height="500px" /&gt;
+
+* .left[small off-diagonal correlations 
+  - max 0.3 (pH &amp; pH2); `\(\le 0.2\)` for others
+      - the lower the better for orthogonality amongst the effects]
+    
+---
+class: center, middle
+
+## Exploratory analysis on the DoE data
+
+* .left[HTML report
+  * graphical assessment of CPP-CQA relationship
+  * Day-CPP interactions present?
+  
+  * What to do with runs where issues were reported
+      - analyze with &amp; without the problematic runs
+      - discuss way forward with scientist
+  ]
+  
+---
+
+class: center, middle
+
+### Purity vs pH
+
+![](LMaaya-Presentation_files/figure-html/experimentaldataEDAPurity-1.png)&lt;!-- --&gt;
+
+---
+class: center, middle
+
+### Yield vs pH
+
+![](LMaaya-Presentation_files/figure-html/experimentaldataEDAYield-1.png)&lt;!-- --&gt;
+
+---
+class: center, middle
+
+## Model fit on the DoE data
+
+* .left[For each CQA:]
+
+`$$\text{y}_{i} = \beta_0 + \beta_{02}\text{Day}_{i2} + \beta_{03}\text{Day}_{i3} + \sum_{j=1}^3 \beta_j\text{x}_{ij} + \sum_{j=1}^3\sum_{\substack{k=1}}^3\beta_{jk}\text{x}_{ij}\text{x}_{ik} + \epsilon_{i}$$`
+
+* .left[HTML report
+  * with data where issues were reported
+  * without data where issues were reported
+    - suggestion to analyse excluding those where issues were reported
+      - after discussing with the scientist
+    ]
+
+---
+class: center, middle
+
+### Purity
+
+
+&lt;template id="118d01fd-ad9d-4c46-9fe5-507256117073"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-147b3b88{border-collapse:collapse;}.cl-14727890{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1472810a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1472810b{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1472d006{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d007{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d008{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d009{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00b{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00d{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d00f{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472d010{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1472f6e4{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-147b3b88'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00f"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;Term&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d010"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;Estimate&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472f6e4"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;Std. Error&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d010"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;t value&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d010"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;Pr(&amp;gt;|t|)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d008"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;(Intercept)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d006"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-43.85&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d007"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;20.78&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d006"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-2.11&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d006"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.08&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;DayDay 2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.55&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;2.26&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.24&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.82&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;DayDay 3&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-2.64&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;2.12&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-1.24&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.26&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;Fermentation&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-0.56&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.21&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-2.67&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.04&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;pH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;23.23&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;3.09&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;7.51&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;Process&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-2.98&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.48&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-6.19&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;Fermentation2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.08&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.08&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;1.02&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.35&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;pH2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;59.53&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;13.57&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;4.39&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;Process2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;1.35&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.54&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;2.51&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;FermentationpH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;1.71&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.69&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;2.48&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00b"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;FermentationProcess&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.33&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d009"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.12&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;2.88&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00a"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.03&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-1472d00e"&gt;&lt;p class="cl-1472810a"&gt;&lt;span class="cl-14727890"&gt;ProcesspH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00c"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-7.46&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00d"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;1.60&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00c"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;-4.67&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-1472d00c"&gt;&lt;p class="cl-1472810b"&gt;&lt;span class="cl-14727890"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="a144256c-f914-4eb9-a7a2-f57c8dc836b5"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("a144256c-f914-4eb9-a7a2-f57c8dc836b5");
+var template = document.getElementById("118d01fd-ad9d-4c46-9fe5-507256117073");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+* .left[Some effects changed significance (with vs without data with issues)]
+  
+---
+
+class:center, middle
+
+### Yield
+
+
+&lt;template id="802d8899-9ebf-49f7-84cc-a3566866373f"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-1496213c{border-collapse:collapse;}.cl-148d2ea6{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-148d2ea7{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-148d2ea8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-148d7c94{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c95{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c96{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c97{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c98{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c99{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c9a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c9b{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c9c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c9d{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148d7c9e{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-148da386{width:82.8pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-1496213c'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c9d"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;Term&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9e"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;Estimate&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148da386"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;Std. Error&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9e"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;t value&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9e"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;Pr(&amp;gt;|t|)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c96"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;(Intercept)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c94"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;21.31&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c95"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;2.16&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c94"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;9.88&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c94"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;DayDay 2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.48&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.23&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-2.03&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.09&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;DayDay 3&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.41&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.22&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-1.85&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.11&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;Fermentation&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.11&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.02&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;5.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;pH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-2.36&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.32&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-7.35&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;Process&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.23&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;4.62&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;Fermentation2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.01&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.96&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;pH2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-5.46&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;1.41&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-3.88&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.01&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;Process2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.18&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.06&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-3.30&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.02&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;FermentationpH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.03&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.07&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.48&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.65&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c99"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;FermentationProcess&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c97"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.01&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;-0.32&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c98"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.76&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-148d7c9c"&gt;&lt;p class="cl-148d2ea7"&gt;&lt;span class="cl-148d2ea6"&gt;ProcesspH&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9a"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.84&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9b"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.17&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9a"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;5.05&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-148d7c9a"&gt;&lt;p class="cl-148d2ea8"&gt;&lt;span class="cl-148d2ea6"&gt;0.00&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="c1971e24-e79f-42fb-8e54-ececd8b30a0a"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("c1971e24-e79f-42fb-8e54-ececd8b30a0a");
+var template = document.getElementById("802d8899-9ebf-49f7-84cc-a3566866373f");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+* .left[Some effects changed significance (with vs without data with issues)]
+
+---
+class: center, middle
+
+### Could we go further? 
+
+* .left[Bivariate analysis]
+* .left[Other distributions(?)
+
+  - Beta: Purity (%)
+  - Skew normal: Yield (mg/ml)]
+
+* .left[Bayesian methods?]
+
+---
+
+class: left, middle
+
+## Design space
+
+* Objective
+
+  * Relationship between CPPs and quality (specifications)
+  * To guarantee, with a high probability, that the process yield &amp; purity of the recombinant protein ABC will pass the acceptance criteria
+
+* Types
+
+  * Average: takes average estimate of relationship &amp; adds residual error to simulate individual batches
+      - JMP, desirability
+  * Full uncertainty: Bayesian modelling accounting for uncertainty in the estimation of relationship itself &amp; residual error uncertainty 
+      - lower PoS, esp. around the edges 
+
+---
+class: center, middle
+
+### Purity `\(\ge\)` 80%  
+
+&lt;img src="Scatterplot Matrix PurityNoIssues.png" width="450px" height="500px" /&gt;
+
+---
+
+class: center, middle
+
+### Yield `\(\ge\)` 7mg/ml
+
+&lt;img src="Scatterplot Matrix YieldNoIssues.png" width="450px" height="500px" /&gt;
+
+---
+
+class: center, middle
+
+### Purity `\(\ge\)` 80% and Yield `\(\ge\)` 7mg/ml 
+
+&lt;img src="Optimal settings-Scatterplot Matrix2NoIssues.png" width="500px" height="500px" /&gt;
+
+---
+
+class: center, middle
+
+# Attribute Non-Attendance (ANA) in Discrete Choice Experiments
+
+&lt;!-- --- --&gt;
+
+&lt;!-- class: center, middle --&gt;
+
+&lt;!-- ## Discrete Choice Experiment --&gt;
+
+
+
+
+---
+
+## Discrete Choice Experiment &amp; ANA
+
+.pull-left[
+
+
+&lt;template id="bc0e15d2-90ff-4739-8994-60f004ba6474"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-14b24100{border-collapse:collapse;}.cl-14aac740{font-family:'Arial';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-14aac741{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-14aac742{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-14aac743{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-14aaef2c{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef2d{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef2e{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef2f{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef30{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef31{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef32{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef33{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef34{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef35{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14aaef36{width:86.4pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14ab161e{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-14b24100'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14ab161e"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac740"&gt;Webshop&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef36"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac740"&gt;A&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef36"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac740"&gt;B&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef2d"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Delivery time&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef2c"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;6&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef2c"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef31"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Delivery price&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;4&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef31"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Returns&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Free&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Own cost&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef31"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Rating&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef31"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Discount&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;15&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef31"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Trust label&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Yes&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef30"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;No&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef33"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Headquarters&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef32"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Not Belgian&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef32"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Belgian&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td  colspan="3"class="cl-14aaef35"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt; &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td  colspan="3"class="cl-14aaef2f"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt; &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td  colspan="3"class="cl-14aaef2f"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt; &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td  colspan="3"class="cl-14aaef2f"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Which Webshop would you prefer?&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14aaef2f"&gt;&lt;p class="cl-14aac742"&gt;&lt;span class="cl-14aac741"&gt;Webshop A&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef2e"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;Webshop B&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14aaef2e"&gt;&lt;p class="cl-14aac743"&gt;&lt;span class="cl-14aac741"&gt;None&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="9984c7b0-d783-4579-ad4f-896868aa2d12"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("9984c7b0-d783-4579-ad4f-896868aa2d12");
+var template = document.getElementById("bc0e15d2-90ff-4739-8994-60f004ba6474");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+]
+
+
+.pull-right[
+
+* Before: use all attributes
+
+* Now: task simplification
+  - Ignoring attributes: ANA
+      - screening
+  - ANA as a static behavior
+  - Yet, which attribute to screen-out may change 
+      - newer information
+      - change in status
+]
+
+---
+
+class: center, middle
+
+&lt;img src="Univ_longitudinalchoices.png" width="540px" height="500px" /&gt;
+
+---
+
+class: center, middle
+
+## Objective
+
+Model changes in choice-makers' ANA behavior when information is provided 
+
+---
+class: center, middle
+
+## Background: state of the art
+
+* .left[Taste preference changes: changes in `\(\beta\)`
+  * Introduce interaction terms]
+
+* .left[Changes in ANA?
+
+  * Infer ANA using Latent class models
+  * Introduce interchanges between ANA states
+      - Hidden Markov Model (HMM, order 1)]
+
+---
+
+class: center, middle
+
+## Questionnaire: choice experiment
+
+&lt;center&gt;
+
+<div id="htmlwidget-a51270330c70d2049626" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a51270330c70d2049626">{"x":{"diagram":"digraph rmarkdown {\n  graph [layout = dot, rankdir = TB]\n  \n  node [shape = rectangle, fontsize=25, color=black, penwidth=3.5] \n  edge[minlen=2, color=black, penwidth=3.5]\n  rec1 [label = \"&#92;n   Block-1: \n \n Choice sets 1 to 7   &#92;n \"]\n  rec2 [label =  \"&#92;n   Attribute information on: \n \n Trust label \n Headquarters \n Distance  &#92;n \"]\n  rec3 [label = \"&#92;n   Block-2: \n \n Choice sets 8 to 14   &#92;n \"]\n  \n  # edge definitions with the node IDs\n\n  {rank=same ; rec1 -> rec2 -> rec3};\n\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+&lt;/center&gt;
+
+---
+
+class: center, middle
+
+### Information provided on attributes
+
+&lt;img src="Attribute_Information.png" width="800px" height="500px" /&gt;
+
+---
+class: center, middle
+
+## Statistical modelling
+
+### Multinomial logit model with interactions
+
+`\begin{aligned}
+U_{ms} =  &amp; \underbrace{\beta_0\mbox{OOut}_{ms} + \sum_{j=1}^7\beta_j\mbox{x}_{jms} + \mbox{Info}_s\Big(\sum_{j=6}^7\alpha_j\mbox{x}_{jms}\Big)}_{V_{ms}} + \epsilon_{ms} \\
+\\
+p_{ms} =  &amp; \frac{e^{V_{ms}}}{\sum_{m\prime = 1}^M e^{V_{m\prime s}}}
+\end{aligned}`
+
+---
+
+class: left, middle
+
+### Multinomial logit model + interactions + static ANA
+
+* `\(Z_{ij}\)` &amp; `\(K_{ij}\)` equal 1 if person `\(i\)` attended to attribute `\(j\)`, 0 ow
+
+`\begin{aligned}
+V_{ms}|\boldsymbol{z}_{i}, \boldsymbol{k}_{i} = &amp; \\
+&amp;\beta_0\mbox{OOut}_{ms} + \sum_{j=1}^5\beta_j\mbox{z}_{ij}\mbox{x}_{jms} + \sum_{j=6}^7\beta_j\mbox{k}_{ij}\mbox{x}_{jms} + \mbox{Info}_s\Big(\sum_{j=6}^7\alpha_j\mbox{k}_{ij}\mbox{x}_{jms}\Big) \\
+ \\
+p(\boldsymbol{z}_{i}, \boldsymbol{k}_{i}|\boldsymbol{\theta}) = &amp; \prod_{j=1}^5 \theta_j^{z_{ij}}(1-\theta_j)^{1-z_{ij}}\prod_{j=6}^7 \theta_j^{k_{ij}}(1-\theta_j)^{1-k_{ij}} \\
+ \\
+p_{i} = &amp; \sum_{z_i, k_i}p(\boldsymbol{z}_{i}, \boldsymbol{k}_{i}|\boldsymbol{\theta}) \prod_s\prod_m (p_{ms}| \boldsymbol{z}_{i}, \boldsymbol{k}_{i})^{y_{ims}} 
+\end{aligned}`
+
+---
+class: left, middle
+
+### MNL + changing ANA where Info was given
+
+* HMM has 2 sets of ANA probabilities: initial and transition
+* Index `\(b\)` added to `\(K_{ij}\)` with `\(b = 1 (b = 2)\)` for pre (post) -information
+
+`\begin{aligned}
+p(\boldsymbol{z}_i, \boldsymbol{k}_{i1}|\boldsymbol{\theta}) = \prod_{j=1}^5 \theta_j^{z_{ij}}(1-\theta_j)^{1-z_{ij}}\prod_{j=6}^7 \theta_j^{k_{ij1}}(1-\theta_j)^{1-k_{ij1}} \\
+p(\boldsymbol{k}_{i2}|\boldsymbol{k}_{i1}, \boldsymbol{\delta}) =  \prod_{j=6}^7\Big(\delta_{j|1}^{k_{ij2}} (1-\delta_{j|1})^{1-k_{ij2}}\Big)^{k_{ij1}}  \Big(\delta_{j|0}^{k_{ij2}} (1-\delta_{j|0})^{1-k_{ij2}}\Big)^{1-k_{ij1}}  &amp;\\
+\\
+p_i =  \sum_{z_i, k_{i1}}\sum_{k_{i2}}p(\boldsymbol{z}_i, \boldsymbol{k}_{i1}|\boldsymbol{\theta})p(\boldsymbol{k}_{i2}|\boldsymbol{k}_{i1}, \boldsymbol{\delta})\prod_m\prod_s\prod_b(p_{ms}| \boldsymbol{z}_{i}, \boldsymbol{k}_{ib})^{y_{ims}} &amp;
+\end{aligned}`
+
+---
+
+class: left, middle
+
+## Results
+
+### Model comparison (N = 203)
+
+
+&lt;template id="8f4f95b8-93d1-4294-ad3e-b019d9ffeef5"&gt;&lt;style&gt;
+.tabwid table{
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-spacing: 0;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+&lt;/style&gt;&lt;div class="tabwid"&gt;&lt;style&gt;.cl-14d8afca{border-collapse:collapse;}.cl-14d14276{font-family:'Arial';font-size:12pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-14d14277{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-14d14278{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-14d14279{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-14d1b756{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b757{width:198pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b758{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b759{width:198pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(190, 190, 190, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b75a{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b75b{width:198pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(190, 190, 190, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b75c{width:54pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-14d1b75d{width:198pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}&lt;/style&gt;&lt;table class='cl-14d8afca'&gt;&lt;thead&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14d1b75d"&gt;&lt;p class="cl-14d14278"&gt;&lt;span class="cl-14d14276"&gt;Model&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75c"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14276"&gt;Par&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75c"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14276"&gt;LL&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75c"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14276"&gt;AIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75c"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14276"&gt;BIC&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14d1b757"&gt;&lt;p class="cl-14d14278"&gt;&lt;span class="cl-14d14277"&gt;MNL + interactions&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b756"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;12&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b756"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;-2311&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b756"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4647&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b756"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4687&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14d1b759"&gt;&lt;p class="cl-14d14278"&gt;&lt;span class="cl-14d14277"&gt;MNL + interactions + static ANA&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b758"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b758"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;-2115&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b758"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4271&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b758"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4337&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr style="overflow-wrap:break-word;"&gt;&lt;td class="cl-14d1b75b"&gt;&lt;p class="cl-14d14278"&gt;&lt;span class="cl-14d14277"&gt;MNL + changing ANA&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75a"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;23&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75a"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;-2095&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75a"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4236&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td class="cl-14d1b75a"&gt;&lt;p class="cl-14d14279"&gt;&lt;span class="cl-14d14277"&gt;4312&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/template&gt;
+&lt;div class="flextable-shadow-host" id="2654a84f-9f29-4380-8446-d907fc48f8fc"&gt;&lt;/div&gt;
+&lt;script&gt;
+var dest = document.getElementById("2654a84f-9f29-4380-8446-d907fc48f8fc");
+var template = document.getElementById("8f4f95b8-93d1-4294-ad3e-b019d9ffeef5");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.previousSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+&lt;/script&gt;
+
+
+### Attention to attributes where info was provided
+
+* Higher attention post-information vs pre-information
+
+  - attention post-information given no attention pre-info was significant
+  - attention post-information given attention pre-info was certain
+
+---
+class: center, middle
+
+## Conclusions
+
+* .left[Modeling impact of information through ANA changes may be more informative than through introducing interaction terms]
+
+* .left[Attribute information significantly increases their attention probability]
+
+---
+class: center, middle
+
+# References
+
+* .left[Maaya, L., Meulders, M., and Vandebroek, M. (2020).
+Online consumers' attribute non-attendance behavior: Effects of information provision. _International Journal of Electronic Commerce, 24(3):338{365._]
+
+* .left[Maaya, L., Meulders, M., Vandebroek, M. (2021). Joint analysis of preferences and drop out data in discrete choice. _Journal of Choice Modelling, 41, Art.No. ARTN 100308_]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

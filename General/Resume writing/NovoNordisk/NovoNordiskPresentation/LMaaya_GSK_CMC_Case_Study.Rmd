@@ -1,0 +1,991 @@
+---
+title: "GSK-CMC Sr Statistician"
+author: "Leonard Maaya"
+date: '`r format(Sys.time(), "%d %B %Y (%X)")`'
+output: 
+    bookdown::html_document2: 
+        toc            : true
+        toc_float      : true
+        toc_collapsed  : true
+        highlight      : tango
+        number_sections: true
+        code_folding   : show
+        code_download  : true
+        toc_depth: 3
+---
+    
+    
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(25112021)
+
+```
+
+
+<!-- packages -->
+
+```{r packages, echo=TRUE, eval=TRUE, message=FALSE, include=FALSE}
+
+library(data.table)
+library(ggplot2)
+library(brms)
+library(flextable)
+library(knitr) 
+library(png)
+library(bookdown)
+library(captioner) # for creating figure and table labels and numbers for word_document 
+library(flextable)
+library(kableExtra)
+library(officer)
+library(openxlsx)
+library(readxl)
+library(tidyverse)
+library(lme4)
+library("performance") # GoF stats
+```
+
+
+```{r functions, echo=FALSE, include=FALSE}
+format_fn = function(x) formatC(x, format = 'f', digits = 2)
+abs_fn = function(x) abs(x)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+```
+
+
+# Case study
+
+## Objective
+
+**Optimization** of the fermentation process, to improve as much as possible the process yield and the purity of the recombinant
+protein ABC.
+
+- Three factors (CPPs) have been selected during the screening phase so a DoE for 3 factors is proposed.
+
+  - Fermentation Temperature, range selected: 15°C – 25°C
+  - pH, range selected: 6 – 6.8
+  - Process duration, range selected: 8 h – 12 h
+
+- An additional noise (or random) factor is included into the Optimization Phase: 
+
+  - Day
+
+**CQAs monitored**
+
+* Yield
+* Purity (%)
+
+## Exploratory data analysis {.tabset}
+
+
+```{r experimentaldata, echo=FALSE, warning=FALSE, message=FALSE}
+
+myDir = unlist(strsplit(getwd(), '/'))
+twd = paste0(myDir[-length(myDir)], collapse = '/')
+
+#  Data
+df = read_excel(paste(twd, "/data/Case_study.xlsx", sep=""), sheet = "Sheet1") %>%
+  mutate_if(is.character, as.factor)
+
+specificationsPurity = 80
+specificationsYield = 7
+
+```
+
+
+```{r experimentaldataEDA, echo=FALSE, results = 'asis', warning=FALSE, eval = TRUE}
+
+# ggplot(df, aes(x = `Day`, y = `Purity [%]`, group = `Day`, color = `Comment`)) + 
+#   geom_point(shape = 16, size = 2, stat = "identity") + theme_bw() +
+#   geom_jitter(width = 0.0001, height = 0) +
+#   scale_y_continuous(breaks = seq(50, 100, 10), limits = c(50, 100))
+
+indcols = names(df %>% select(contains(c("Day", "Fermentation", "pH", "Process"))))
+
+for (i in 1:length(indcols)) {
+  
+  if(indcols[i]=='Day'){
+   tmp <- data.frame("Purity" = df[['Purity [%]']], "Yield" = df[["Yield [mg/ml]"]],
+                  Comment = df[["Comment"]], x = df %>% pull(indcols[i])) %>%
+  mutate(xnum = as.numeric(match(x, table = unique(x))))
+  
+cat("###", indcols[i], '<br>', '\n')
+
+p = ggplot(tmp %>% group_by(xnum) %>% mutate(MeanPurity = mean(Purity)), 
+       aes(x= xnum, y = Purity, col = Comment)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + 
+  theme_bw() + labs(y = "Purity [%]", x = indcols[i]) +
+  scale_x_continuous(breaks = seq(1, 3, 1), limits = c(0.9999, 3.0001),
+                     labels = levels(tmp$x)) + 
+  geom_jitter(width = 0.0001, height = 0) + 
+  scale_y_continuous(breaks = c(specificationsPurity, seq(50, 100, 10)), limits = c(50, 100)) +
+  geom_hline(yintercept = specificationsPurity, linetype="dashed", col="red") +
+  geom_line(aes(x = `xnum`, y = `MeanPurity`), colour="blue", linetype="solid", linewidth=1) +
+  guides(col = guide_legend("Comment"), linetype = guide_legend("specs/mean"))
+
+
+print(p)
+
+
+p2 = 
+ggplot(tmp %>% group_by(xnum) %>% mutate(MeanYield = mean(Yield)), 
+       aes(x= xnum, y = Yield, col = Comment)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + 
+  theme_bw() + labs(y = "Yield [mg/ml]", x = indcols[i]) +
+  geom_jitter(width = 0.0001, height = 0) + 
+  scale_x_continuous(breaks = seq(1, 3, 1), limits = c(0.9999, 3.0001),
+                     labels = levels(tmp$x)) + 
+  geom_hline(yintercept = specificationsYield, lty="dashed", col="red") +
+  scale_y_continuous(breaks = c(specificationsYield, seq(4, 12, 2)), limits = c(4, 12)) +
+  geom_line(aes(x = `xnum`, y = `MeanYield`), colour="blue", linetype="solid", linewidth=1) +
+  guides(col = guide_legend("Comment"), linetype = guide_legend("specs/mean"))
+
+print(p2) 
+  }  else{
+    tmp <- data.frame("Purity" = df[['Purity [%]']], "Yield" = df[["Yield [mg/ml]"]],
+                  Comment = df[["Comment"]], x = df %>% pull(indcols[i]))
+  
+cat("###", indcols[i], '<br>', '\n')
+
+p = ggplot(tmp %>% group_by(x) %>% mutate(MeanPurity = mean(Purity)), 
+       aes(x= x, y = Purity, col = Comment)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + 
+  theme_bw() + labs(y = "Purity [%]", x = indcols[i]) +
+  geom_jitter(width = 0.0001, height = 0) + 
+    scale_y_continuous(breaks = c(specificationsPurity, seq(50, 100, 10)), limits = c(50, 100)) +
+  geom_hline(yintercept = specificationsPurity, linetype="dashed", col="red") +
+  geom_line(aes(x = `x`, y = `MeanPurity`), colour="blue", linetype="solid", linewidth=1) +
+  guides(col = guide_legend("Comment"), linetype = guide_legend("specs/mean"))
+
+print(p)
+
+
+p2 = ggplot(tmp %>% group_by(x) %>% mutate(MeanYield = mean(Yield)), 
+            aes(x= x, y = Yield, col = Comment)) + 
+  geom_point(shape = 16, size = 2, stat = "identity") + 
+  theme_bw() + labs(y = "Yield [mg/ml]", x = indcols[i]) +
+  geom_jitter(width = 0.0001, height = 0) + 
+  geom_hline(yintercept = specificationsYield, lty="dashed", col="red") +
+  scale_y_continuous(breaks = c(specificationsYield, seq(4, 12, 2)), limits = c(4, 12)) +
+  geom_line(aes(x = `x`, y = `MeanYield`), colour="blue", linetype="solid", linewidth=1) +
+  guides(col = guide_legend("Comment"), linetype = guide_legend("specs/mean"))
+
+print(p2) 
+  }
+
+cat('\n', '<br>', '\n\n')
+
+}
+
+```
+
+
+### Day & CPP interactions? {.tabset}
+
+* Day & the CPPs
+
+```{r interactions, echo=FALSE, results = 'asis', warning=FALSE, eval = TRUE}
+
+indcolsInt = names(df %>% select(contains(c("Fermentation", "pH", "Process"))))
+
+tmpInt = df %>% rename("Purity" = `Purity [%]`, "Yield" = `Yield [mg/ml]`) %>%
+  pivot_longer(c(Purity, Yield), names_to = "response", values_to = "value") %>%
+  as.data.table() %>% .[order(response)]
+
+for (i in 1:length(indcolsInt)) {
+
+cat("####", indcolsInt[i], '<br>', '\n')
+
+tmpInt1 = tmpInt %>% as.data.frame() %>% dplyr::select(c(Day, response, value)) %>%
+  mutate(x = tmpInt %>% pull(indcolsInt[i])) 
+
+p = ggplot(tmpInt1) + aes(x = x, y = value, group = Day, col = Day) +
+  geom_point() + theme_bw() + labs(y = "Measured value", x = indcols[i]) + 
+  facet_wrap(~response,  nrow = 2, scales = "free", labeller = label_wrap_gen(multi_line = TRUE)) +
+  stat_summary(fun = mean, geom = "point", pch = 'X') + stat_summary(fun = mean, geom = "line")
+
+print(p)
+
+cat('\n', '<br>', '\n\n')
+
+}
+
+```
+
+* Day
+  - was borderline significant for Purity, as was Day*Process interactions (p-value 0.04 & 0.049 respectively)
+  - was not significant for Yield, as was for all its interactions
+  - decision to keep only the day main effect
+    - even
+* In general for Purity, there were interactions among the CPP and the plots showed quadratic effects
+  - decided to make the same model for Yield and Purity
+  
+### Meet the scientist {.active}
+
+* Data where issues occurred 
+  - decide with scientist whether these data should be included since they're not representative; 
+  - for this, I would have results with and without those with issues and see if there's a difference before we decide whether to exclude them
+
+## {-}
+
+## Evaluating the design {.tabset}
+
+
+### Introduction
+
+**In this DoE**:
+
+* The linear effects are estimable as there are at least two levels per factor tested;
+* The quadratic effects are estimable as there are at least three levels per factor tested;
+  - Presence of center point (15, 6, 8) provides us with the flexibility to estimate quadratic terms
+* The first order interaction effects are estimable following adequate combinations of the three factor levels.
+* The Day factor is used to measure and remove the potential effect of day to day variability over the effect of the 3 factors of interest (avoiding bias due to day effects).
+
+
+```{r datawithInteractions, warning=FALSE, echo=FALSE, message=FALSE}
+
+dfAnalysis = df %>% rename("Fermentation" = `Fermentation Temperature [°C]`, "Process" = `Process duratin [hours]`,
+                           "Purity" = `Purity [%]`, "Yield" = `Yield [mg/ml]`) %>%
+  mutate(Purity = Purity/100)
+
+dfAnalysis2 = dfAnalysis %>% 
+  mutate(Purity = Purity*100, Fermentation2 = (Fermentation-20)*(Fermentation-20), 
+         pH2 = (pH-6.4381)*(pH-6.4381), Process2 = (Process-10)*(Process-10), 
+         FermentationpH = (Fermentation-20)*(pH-6.4381), 
+         FermentationProcess = (Fermentation-20)* (Process-10), 
+         ProcesspH = (Process-10) * (pH-6.4381), # Day1 = ifelse(Day == "Day 1", 1, 0),
+         #Day2 = ifelse(Day == "Day 2", 1, 0)
+         )
+
+# data where issues were reported excluded
+
+dfAnalysis3 = dfAnalysis %>% filter(is.na(Comment)) %>%
+  mutate(Purity = Purity*100, Fermentation2 = (Fermentation-20.5556)*(Fermentation-20.5556), 
+         pH2 = (pH-6.51111)*(pH-6.51111), Process2 = (Process-10)*(Process-10), 
+         FermentationpH = (Fermentation-20.5556)*(pH-6.51111), 
+         FermentationProcess = (Fermentation-20.5556)* (Process-10), 
+         ProcesspH = (Process-10) * (pH-6.51111), # Day1 = ifelse(Day == "Day 1", 1, 0),
+         #Day2 = ifelse(Day == "Day 2", 1, 0)
+         )
+
+```
+
+### Correlations
+
+```{r correlation_designEvaluation, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/Evaluate Design.png"))
+
+```
+
+### Correlation Table
+
+```{r correlationNumbers, warning=FALSE, echo=FALSE, message=FALSE}
+
+flextable(formatC(cor(dfAnalysis2 %>% 
+              select(-c(Day, `Experimental Run`, `Purity`, `Yield`, `Comment`))), 
+        format = 'f', digits = 2) %>% as.data.frame() %>% rownames_to_column() %>%
+rename(" " = 1)) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Correlations for the design.") %>% 
+  merge_h(part = "header") %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 8, part = "all")
+
+```
+
+### Power
+
+- main effects: 0.94 
+- interactions: 0.89
+- quadratic effects: 0.39
+
+### Prediction variance profile
+
+```{r predvarianceprofiler, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/predictionvarianceprofiler.png"))
+
+```
+
+* maximum relative prediction variance over the design space is 0.63 times the error variance.
+
+### Fraction of DS
+
+```{r FractionDS, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/FractionofDS.png"))
+
+```
+
+* For 50% of the design space, the relative prediction variance is about 0.32. 
+    - Relative prediction variance is the ratio of the prediction variance to the error variance
+
+* Over the entire design space, the relative prediction variance is below 0.65. The minimum relative prediction variance is about 0.2.
+
+### Author notes
+
+* Day is included as a blocking factor because it has a limited number of levels 
+  - this would not provide reliable variance estimates if considered as a random effect
+  - what do they think: block vs random effect
+  
+* Before analyzing the design and optimizing it, we need to know how this DoE was arrived
+  - which model was assumed
+  - For the Main Effects only (comes with interactions)
+    - Correlation map shows that the off-diagonal factors have low correlations, thus estimable
+    - The power to find effects when they are there is also high for all the main effects
+  - Under the Model tab from **Evaluate Design**, 
+    - interactions can be included to a preferred degree can be included (degree = 2)
+    - power/polynomials (to a degree) included (working with 2)
+      - for this, the power to estimate quadratic effects is only about 0.39
+      - interactions and main effects still have powers close to 0.94
+    - Even for the model with interactions and quadratic effects, 
+      - the off-diagonal correlations are not that bad, max of 0.2
+  - In both cases, check the Alias matrix
+  
+* When evaluating the model, use the independent variables. The response is not necessary
+  - This can even be seen with Y as _optional_ and X as _required_
+  - In JMP, DoE -> Design Diagnostics -> Evaluate Design 
+
+## {-}
+
+## How would you approach the request and what would be your recommendation to the team based on the provided data? {.tabset}
+
+The linear model fit for each CQA was:
+
+$$\text{y}_{i} = \beta_0 + \beta_{02}\text{Day}_{i2} + \beta_{03}\text{Day}_{i3} + \sum_{j=1}^3 \beta_j\text{x}_{ij} + \sum_{j=1}^3\sum_{\substack{k=1}}^3\beta_{jk}\text{x}_{ij}\text{x}_{ik} + \epsilon_{i}$$
+
+Where:
+
+* $y_{i}$ is the response for a given CQA at run $i$
+* $\beta$s are regression coefficients to be estimated
+* $\text{Day}_{i2}$($\text{Day}_{i3}$) are dummy variables at run $i$ for day factor
+* $x_{ij}$ is a CPP $j$'s value in run $i$ with
+  - $j = 1$: fermentation temperature (°)
+  - $j = 2$: pH
+  - $j = 3$: process duration (hours)
+* $\epsilon_i$ is the run to run variability (N(0, $\sigma^2$))
+
+
+### Purity
+
+#### Analysis with data where issues were reported
+
+```{r PurityModelEstimates, warning=FALSE, echo=FALSE, message=FALSE}
+
+lmPurity = lm(Purity ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 +
+             FermentationpH + FermentationProcess + ProcesspH, data = dfAnalysis2)
+
+lmPurityTable = (summary(lmPurity)$`coefficients`) %>% as.data.frame() %>%
+  mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+rename("Term" = 1) %>% mutate("sig*" = ifelse(abs(as.numeric(`Pr(>|t|)`))<0.05, "*", ""))
+
+
+flextable(lmPurityTable) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Purity: data where issues were reported included..") %>% 
+  merge_h(part = "header") %>%  width(j = c(3), width = c(1.15)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+# performance::model_performance(lmePurity) %>% as.data.frame() %>% select(contains("R2"))
+# 
+# flextable(VarCorr(lmPurity) %>% as.data.frame() %>% 
+#   mutate(percentTotal = round(vcov/sum(vcov)*100, 2)) %>% select(-(2:3)) %>%
+#   mutate_if(is.numeric, .funs = format_fn) %>% rename("Random component" = `grp`)) %>%
+#   hline(part="body", border = std_border) %>% 
+#   hline_bottom(part="body", border = std_borderFoot) %>% 
+#   hline_top(part="body", border = std_borderFoot) %>% 
+#   set_caption(caption ="Variance component estimates for Purity.") %>% 
+#   merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+#   align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+#   fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+#   fontsize(size = 12, part = "all")
+
+```
+
+#### Analysis without data where issues were reported
+
+```{r PurityModelEstimates2, warning=FALSE, echo=FALSE, message=FALSE}
+
+lmPurity2 = lm(Purity ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 +
+             FermentationpH + FermentationProcess + ProcesspH, data = dfAnalysis3)
+
+lmPurityTable2 = (summary(lmPurity2)$`coefficients`) %>% as.data.frame() %>%
+  mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+rename("Term" = 1) %>% mutate("sig*" = ifelse(abs(as.numeric(`Pr(>|t|)`))<0.05, "*", ""))
+
+
+flextable(lmPurityTable2) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Purity: data where issues were reported excluded.") %>% 
+  merge_h(part = "header") %>%  width(j = c(3), width = c(1.15)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+* Some results which were significant turned non-significant (or not strongly significant as before)
+* Differences in parameter estimates as expected
+
+### Yield
+
+#### Analysis with data where issues were reported
+
+```{r YieldModelEstimates, warning=FALSE, echo=FALSE, message=FALSE}
+
+lmYield = lm(Yield ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 +
+             FermentationpH + FermentationProcess + ProcesspH, data = dfAnalysis2)
+
+
+lmYieldTable = (summary(lmYield)$`coefficients`) %>% as.data.frame() %>%
+  mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+rename("Term" = 1) %>% mutate("sig*" = ifelse(abs(as.numeric(`Pr(>|t|)`))<0.05, "*", ""))
+
+
+flextable(lmYieldTable) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Yield: data where issues were reported included..") %>% 
+  merge_h(part = "header") %>%  width(j = c(3), width = c(1.15)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+
+# flextable(VarCorr(lmeYield) %>% as.data.frame() %>% 
+#   mutate(percentTotal = round(vcov/sum(vcov)*100, 2)) %>% select(-(2:3)) %>%
+#   mutate_if(is.numeric, .funs = format_fn) %>% rename("Random component" = `grp`)) %>%
+#   hline(part="body", border = std_border) %>% 
+#   hline_bottom(part="body", border = std_borderFoot) %>% 
+#   hline_top(part="body", border = std_borderFoot) %>% 
+#   set_caption(caption ="Variance component estimates for Yield.") %>% 
+#   merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+#   align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+#   fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+#   fontsize(size = 12, part = "all")
+
+```
+
+#### Analysis without data where issues were reported
+
+```{r YieldModelEstimates2, warning=FALSE, echo=FALSE, message=FALSE}
+
+lmYield2 = lm(Yield ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 +
+             FermentationpH + FermentationProcess + ProcesspH, data = dfAnalysis3)
+
+
+lmYieldTable2 = (summary(lmYield2)$`coefficients`) %>% as.data.frame() %>%
+  mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+rename("Term" = 1) %>% mutate("sig*" = ifelse(abs(as.numeric(`Pr(>|t|)`))<0.05, "*", ""))
+
+
+flextable(lmYieldTable2) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Yield: data where issues were reported excluded.") %>% 
+  merge_h(part = "header") %>%  width(j = c(3), width = c(1.15)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 12, part = "all")
+
+```
+
+
+* Some results which were significant turned non-significant (or not strongly significant as before)
+* Differences in parameter estimates as expected
+
+### Possibilities, Quiz
+
+* Day 
+  - blocking factor
+  - random effect
+  
+* distributions for the responses
+  - beta distribution for purity (%)
+    - log transform?
+  - skew normal for Yield
+  
+* proper bivariate model?
+* bayesian to take into account more variability?
+
+## {-}
+
+* Rest of analysis is for data without those with issues 
+  * differences in significance of some CPPs and some interactions, especially for Yield made it compelling
+
+* Note that since there are several effects that are not significant, we could reduce this model further by removing these factors as they contribute to the random noise.
+  - decision to keep Day in even though Day was not significant. 
+      - if the Day variable was indeed a blocking variable in the design stage, which we are not explicitely told, then we should analyze according to the design. Therefore Day should be in the model regardless. Otherwise we inflate the degrees of freedom and thus lose the frequentist properties.
+      - if the experiment was randomized within Days as blocks, then based on randomization theory (randomization tests) for testing, you should use the randomization used in the experiment.
+  - Decided to work with a response surface (including pairwise & quadratic terms) because response surface experiments are mainly for developing a predictive model of the relationship between the factors and the response. 
+      - Predictive models are often used to find optimal operating settings for processes
+
+### Bayesian results {.tabset}
+
+```{r bayesianUnivariate, warning=FALSE, echo=FALSE}
+
+# Fit_purityperc <- brm(`Purity` ~ `Fermentation` + pH + `Process` + (Day),
+#                        data = dfAnalysis, warmup = 10000, iter = 20000, thin=1, chains = 3, cores = 3,
+#             family = Beta(link = "logit", link_phi = "log"), control = list(adapt_delta = 0.9999))
+# saveRDS(Fit_purityperc, file = paste(twd, "/workspace/Purity_Beta.RDS", sep = ""))
+
+# Fit_purityperc = readRDS(paste(twd, "/workspace/Purity_Beta.RDS", sep = ""))
+
+
+# Fit_yield <- brm(`Yield` ~ `Fermentation` + pH + `Process` + (Day),
+#                        data = dfAnalysis, warmup = 10000, iter = 20000, thin=1, chains = 3, cores = 3,
+#             family = "skew_normal", control = list(adapt_delta = 0.9999))
+# saveRDS(Fit_yield, file = paste(twd, "/workspace/Yield_SkewNormal.RDS", sep = ""))
+# Fit_yield = readRDS(paste(twd, "/workspace/Yield_SkewNormal.RDS", sep = ""))
+
+```
+
+#### Purity & Yield both normal
+
+```{r PurityYieldNormalBayesian, warning=FALSE, echo=FALSE}
+
+bform1 <- bf(mvbind(Purity, Yield) ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + 
+               Process2 + FermentationpH + FermentationProcess + ProcesspH) +
+  set_rescor(FALSE)
+
+# PurityYieldNormal <- brm(bform1, data = dfAnalysis3, warmup = 10000, iter = 20000, thin=1,
+#                           chains = 3, cores = 3, control = list(adapt_delta = 0.9999))
+#  
+# saveRDS(PurityYieldNormal, paste(twd, "/workspace/PurityYield_BayesianNormalNoIssues.RDS", sep = ""))
+
+PurityYieldNormal = readRDS(paste(twd, "/workspace/PurityYield_BayesianNormalNoIssues.RDS", sep = ""))
+
+PurityYieldNormal <- add_criterion(PurityYieldNormal, "loo")
+
+# summary Table
+flextable((summary(PurityYieldNormal))$`fixed` %>% select(Estimate:Rhat) %>%
+            mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+            rename("Term" = 1) %>% 
+            mutate("sig*" = ifelse(sign(as.numeric(`l-95% CI`))!=sign(as.numeric(`u-95% CI`)), " ", "*"))) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Purity & Yield.") %>% 
+  merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 10, part = "all")
+
+
+# for the random effects
+RandomEffectTab1 = (summary(PurityYieldNormal))$`spec_pars` %>% as.data.frame(check.names = FALSE) %>% 
+                           select(Estimate:Rhat) %>%
+                           mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+                           rename("Random component" = 1) 
+
+flextable(RandomEffectTab1) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Random effects for Purity & Yield.") %>% 
+  merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 10, part = "all")
+```
+
+#### Purity - Beta & Yield - skew normal
+
+```{r PurityBetaYieldSkewNormalBayesian, warning=FALSE, echo=FALSE}
+
+# multivariate: purity - beta, yield- skew normal
+
+bf_Purity <- bf(Purity ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 + 
+                  FermentationpH + FermentationProcess + ProcesspH) + 
+  Beta(link = "logit", link_phi = "log")
+
+bf_Yield <- bf(Yield ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 + Process2 + 
+                 FermentationpH + FermentationProcess + ProcesspH) + skew_normal()
+
+# PurityBetaYieldSkewNormal <- brm(bf_Purity + bf_Yield + set_rescor(FALSE),
+#                                  data = dfAnalysis3 %>% mutate(Purity = Purity/100),
+#                                  warmup = 10000, iter = 20000, thin=1, chains = 3,
+#                                  cores = 3, control = list(adapt_delta = 0.9999))
+# 
+# 
+# saveRDS(PurityBetaYieldSkewNormal, paste(twd, "/workspace/PurityBetaYieldSkewNormalNoIssues.RDS", sep = ""))
+
+PurityBetaYieldSkewNormal = readRDS(paste(twd, "/workspace/PurityBetaYieldSkewNormalNoIssues.RDS", sep = ""))
+
+PurityBetaYieldSkewNormal <- add_criterion(PurityBetaYieldSkewNormal, "loo")
+
+# summary Table
+flextable((summary(PurityBetaYieldSkewNormal))$`fixed` %>% select(Estimate:Rhat) %>%
+  mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+  rename("Term" = 1) %>% 
+  mutate("sig*" = ifelse(sign(as.numeric(`l-95% CI`))!=sign(as.numeric(`u-95% CI`)), " ", "*"))) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Parameter estimates for Purity & Yield.") %>% 
+  merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 10, part = "all")
+
+# for the random effects
+RandomEffectTab2 = (summary(PurityBetaYieldSkewNormal)$`spec_pars` %>% as.data.frame(check.names = FALSE) %>% 
+                            select(Estimate:Rhat) %>%
+                            mutate_if(is.numeric, .funs = format_fn) %>% rownames_to_column() %>%
+                            rename("Random component" = 1)) 
+
+flextable(RandomEffectTab2) %>%
+  hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>% 
+  set_caption(caption ="Random effects for Purity & Yield.") %>% 
+  merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>% 
+  align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>% 
+  fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>% 
+  fontsize(size = 10, part = "all")
+
+```
+
+
+### {-}
+
+## Design space {.tabset}
+
+### Blank {.active}
+
+### Author notes
+
+* To analyze the DoE results in JMP
+  - Analyze -> Fit Model -> Select Responses (more than one fits simultaneous univariate) -> select X variables 
+    - if you need both quadratic & pairwise interactions, select the variables and before moving them, check them as Response surface in **Macros** under **Construct Model Effects**
+    - Random effects can be selected and checked under **Attributes** in the **Construct Model Effects**
+    - You can also **recall** the previously fit model instead of redoing everything
+    
+    - **To find optimal settings**:
+    - If there is need for spec limits, double click on the relevant response in the data column, and set the limits (both lower and upper if needed)
+      - For the profiler for both responses,
+        - Fit Group -> Profiler
+        - Check simulator under the Prediction Profiler
+        - You can also set the spec limits in the simulator under the profiler
+        - You can add randomness in the responses. The automatically filled values are from the model
+        - For optimal settings:
+          - More reliable procedure: check **Example of the Prediction Profiler** in chapter 3 of JMP
+          <!-- - after the above procedure, check Optimization and Desirability under the prediction profiler -> Maximize Desirability -->
+    - Second option
+      - More info and detailed explanation can be found in the **Summary_Robustness_CE_24NOV2016_V01.docx** in this folder C:\JnJPostDoc\GeneralJnJ\Interviews\GSK\CMC documents\Presentations\SelfTests\Stephene-Sarah Janssen
+  
+## {-}
+
+
+### If the minimum required Yield for the process is 7 mg/ml and the minimum required Purity is 80%, what will be your recommendation to the team? {.tabset}
+
+#### Optimal settings: simulated OoS prob in JMP {.tabset}
+
+##### Purity
+
+```{r OOSprobOptimalSettingsPurity, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/Scatterplot Matrix PurityNoIssues.png"))
+
+```
+
+
+```{r ProfilerOptimalSettingsPurity, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/OptimalSettings-PurityProfilerNoIssues.png"))
+
+```
+
+For this case study, we can achieve a Purity level of 99.32% at the optimal settings for the three CPP: Fermentation Temperature of 15$^\circ$C, pH of 6.8 & Process duration of 8 hours.
+
+##### Yield
+
+```{r OOSprobOptimalSettingsYield, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/Scatterplot Matrix YieldNoIssues.png"))
+
+```
+
+
+```{r ProfilerOptimalSettingsYield, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/OptimalSettings-YieldProfilerNoIssues.png"))
+
+```
+
+For this case study, we can achieve a Yield level of 11.04 [mg/ml] at the optimal settings for the three CPP: Fermentation Temperature of 25$^\circ$C, pH of 6.29 & Process duration of 10.1 hours.
+
+##### Purity & Yield
+
+```{r OOSprobOptimalSettingsPurityYield, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/Optimal settings-Scatterplot Matrix2NoIssues.png"))
+
+```
+
+
+```{r ProfilerOptimalSettingsPurityYield, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+knitr::include_graphics(paste0(twd, "/Output/Optimal settings-Fit ModelNoIssues.png"))
+
+```
+
+For this case study, we can achieve a Purity level of 86.99% and a Yield of 8.94 [mg/ml] at the optimal settings for the three CPP: Fermentation Temperature of 15$^\circ$C, pH of 6 & Process duration of 8 hours.
+
+#### {-}
+
+#### Bayesian POS in R {.tabset}
+
+##### Purity
+
+```{r BayesianOptimalSettings, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+
+# Fit_purityperc2 <- brm(Purity ~ Day + Fermentation + pH + Process + Fermentation2 + pH2 +
+#                             Process2 + FermentationpH + FermentationProcess + ProcesspH,
+#                         data = dfAnalysis3, warmup = 1000, iter = 2000, thin=1, chains = 3,
+#                         cores = 3, control = list(adapt_delta = 0.9999))
+
+# saveRDS(Fit_purityperc2, paste(twd, "/workspace/Purity_BayesianNormalTMPNoIssues.RDS", sep = ""))
+Fit_purityperc2 = readRDS(paste(twd, "/workspace/Purity_BayesianNormalTMPNoIssues.RDS", sep = ""))
+
+dfpurityperc2 = Fit_purityperc2$`fit` %>% as.data.frame()  %>% # slice(1:1000) %>% 
+  select(-c("lp__", "b_DayDay2", "b_DayDay3")) # w/out par uncertainties
+
+
+RangesPerParameter <- dfAnalysis2 %>% 
+  gather(., key="ModelTerm",value="value", Fermentation:Process) %>%
+  group_by(., ModelTerm)%>%dplyr::summarize(., min=min(value), max=max(value))
+
+Grid <-data.frame(V1=runif(2000, unlist(RangesPerParameter[1,"min"]), unlist(RangesPerParameter[1,"max"])),
+                  V2=runif(2000,unlist(RangesPerParameter[2,"min"]), unlist(RangesPerParameter[2,"max"])),
+                  V3=runif(2000,unlist(RangesPerParameter[3,"min"]), unlist(RangesPerParameter[3,"max"]))) %>%
+  add_row(V1 = c(15, 15.02), V2 = c(6.6, 6.67), V3 = c(8, 8.1))
+
+names(Grid) <- RangesPerParameter$ModelTerm
+
+# 
+GridUpdate <- Grid %>% mutate(Fermentation2 = (Fermentation-20)*(Fermentation-20), 
+                              pH2 = (pH-6.4381)*(pH-6.4381), Process2 = (Process-10)*(Process-10), 
+                              FermentationpH = (Fermentation-20)*(pH-6.4381), 
+                              FermentationProcess = (Fermentation-20)* (Process-10), 
+                              ProcesspH = (Process-10) * (pH-6.4381)) %>% mutate(Int = 1) %>% 
+  select(c(Int, Fermentation:ProcesspH))
+
+
+library(sfsmisc)
+
+POSMat = array(rep(0, NROW(GridUpdate)*4), c(NROW(GridUpdate), 4))
+R = nrow(dfpurityperc2)
+P = ncol(dfpurityperc2)
+
+# for(scenario in 1:NROW(GridUpdate)){
+#   Xmat = GridUpdate  %>% slice(scenario) %>% as.numeric() %>% as.vector()
+#   Xmat.RP = rep(1, R) %o% Xmat # rep(1, 10) %o% rep(9, 3)
+#   rn.R = rnorm(R)
+#   sigma.R = rn.R * (as.matrix(dfpurityperc2[, P]) %>% as.numeric() %>% as.vector())
+#   
+#   Purityperc.RP = (as.matrix(dfpurityperc2[1:R, 1:(P-1)]) * Xmat.RP)
+#   Purityperc.R = apply(Purityperc.RP, 1, sum) + sigma.R
+#   
+#   POSMat[scenario, 1:3] <- GridUpdate  %>% slice(scenario) %>% 
+#     select(Fermentation:Process) %>% as.numeric() %>% as.vector()
+#   
+#   POSMat[scenario, 4] = as.numeric(prop.table(table(Purityperc.R>=80))['TRUE'])
+#   
+# }
+
+
+# dfPOS = POSMat %>% as.data.frame.matrix() %>% 
+#   rename("Fermentation" = `V1`, 'pH' = `V2`, 'Process' = `V3`, 'PoS' = `V4`)
+# 
+# library(ggplot2)
+# library(GGally)
+# 
+# xp = seq(0, 1, 0.1)
+# dfPOS = dfPOS %>% 
+#   mutate(PoSCat = cut(PoS, breaks = xp, 
+#                       labels = names(table(cut(dfPOS$PoS, breaks=seq(0, 1, 0.1))))))
+# dfPOS = dfPOS %>% mutate(PoSCat = as.factor(ifelse(PoS>=0.95, ">=0.95", "< 0.95")))
+
+# saveRDS(dfPOS, paste(twd, "/workspace/dfPOSPurity.RDS", sep = ""))
+
+dfPOS = readRDS(paste(twd, "/workspace/dfPOSPurity.RDS", sep = ""))
+
+dfPOSPlot = dfPOS %>% filter(PoS>=0.95) %>% select(c(1:3, 5))
+pairs(dfPOSPlot[, 1:3], pch = 19,  cex = 1.1, upper.panel =NULL, col="blue")
+
+# Baba lao
+# Xmat = GridUpdate %>% mutate(Int = 1) %>% select(c(Int, Fermentation:ProcesspH)) %>% 
+#   slice(22) %>% as.numeric() %>% as.vector()
+# 
+# R = nrow(dfpurityperc2)
+# P = ncol(dfpurityperc2)
+# 
+# Xmat.RP = rep(1, R) %o% Xmat # rep(1, 10) %o% rep(9, 3)
+# rn.R = rnorm(R)
+# sigma.R = rn.R * (as.matrix(dfpurityperc2[, P]) %>% as.numeric() %>% as.vector())
+# 
+# Purityperc.RP = (as.matrix(dfpurityperc2[1:R, 1:(P-1)]) * Xmat.RP)
+# Purityperc.R = apply(Purityperc.RP, 1, sum) + sigma.R
+# prop.table(table(Purityperc.R>80))
+# 
+# (10.728417*1 -0.3655191*0 -2.7152374*0 -0.6355033*15 + 15.18155*6.6 -2.795455*8 +
+#     0.04691232*(15-20)+ 37.10087*(6.6-6.4381) + 1.490995*(8-10) + 1.2012641*(15-20)*(6.6-6.4381) +
+#     0.3885363*((15-20)* (8-10)) -7.483069*(8-10)*(6.6-6.4381) + rnorm(1, 0, sd = 3.327443))
+```
+
+
+##### Yield
+
+```{r BayesianOptimalSettingsYield, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "70%", message=FALSE}
+
+dfpurityYield = PurityYieldNormal$`fit` %>% as.data.frame()  %>% # slice(1:5000) %>% 
+  select(-c("lp__", contains("_DayDay2"), contains("_DayDay3"))) # w/out par uncertainties
+
+dfYield2 = dfpurityYield %>% dplyr::select(contains("Yield"))
+
+R = nrow(dfYield2)
+P = ncol(dfYield2)
+
+# POSMat = array(rep(0, NROW(GridUpdate)*4), c(NROW(GridUpdate), 4))
+# 
+# for(scenario in 1:NROW(GridUpdate)){
+#   Xmat = GridUpdate  %>% slice(scenario) %>% as.numeric() %>% as.vector()
+#   Xmat.RP = rep(1, R) %o% Xmat # rep(1, 10) %o% rep(9, 3)
+#   rn.R = rnorm(R)
+#   sigma.R = rn.R * (as.matrix(dfYield2[, P]) %>% as.numeric() %>% as.vector())
+# 
+#   Yield.RP = (as.matrix(dfYield2[1:R, 1:(P-1)]) * Xmat.RP)
+#   Yield.R = apply(Yield.RP, 1, sum) + sigma.R
+# 
+#   POSMat[scenario, 1:3] <- GridUpdate  %>% slice(scenario) %>%
+#     select(Fermentation:Process) %>% as.numeric() %>% as.vector()
+# 
+#   POSMat[scenario, 4] = as.numeric(prop.table(table(Yield.R>=7))['TRUE'])
+# 
+# }
+# 
+# 
+# dfPOS = POSMat %>% as.data.frame.matrix() %>%
+#    rename("Fermentation" = `V1`, 'pH' = `V2`, 'Process' = `V3`, 'PoS' = `V4`)
+# 
+# xp = seq(0, 1, 0.1)
+# dfPOS = dfPOS %>%
+#   mutate(PoSCat = cut(PoS, breaks = xp,
+#                       labels = names(table(cut(dfPOS$PoS, breaks=seq(0, 1, 0.1))))))
+# dfPOS = dfPOS %>% mutate(PoSCat = as.factor(ifelse(PoS>=0.95, ">=0.95", "< 0.95")))
+
+# saveRDS(dfPOS, paste(twd, "/workspace/dfPOSYield.RDS", sep = ""))
+
+dfPOS = readRDS(paste(twd, "/workspace/dfPOSYield.RDS", sep = ""))
+
+dfPOSPlot = dfPOS %>% filter(PoS>=0.95) %>% select(c(1:3, 5))
+pairs(dfPOSPlot[, 1:3], pch = 19,  cex = 1.1, upper.panel =NULL, col="blue")
+ 
+```
+
+
+##### Purity & yield
+
+<!-- **PoS >= 0.60** -->
+
+```{r BayesianOptimalSettingsBoth, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "100%", message=FALSE}
+
+dfpurityYield = PurityYieldNormal$`fit` %>% as.data.frame()  %>% # slice(1:5000) %>% 
+  select(-c("lp__", contains("_DayDay2"), contains("_DayDay3"))) # w/out par uncertainties
+
+POSMat = array(rep(0, NROW(GridUpdate)*4), c(NROW(GridUpdate), 4))
+
+dfpurityperc2 = dfpurityYield %>% dplyr::select(contains("Purity"))
+R = nrow(dfpurityperc2)
+P = ncol(dfpurityperc2)
+
+dfYield2 = dfpurityYield %>% dplyr::select(contains("Yield"))
+
+# for(scenario in 1:NROW(GridUpdate)){
+#   Xmat = GridUpdate  %>% slice(scenario) %>% as.numeric() %>% as.vector()
+#   Xmat.RP = rep(1, R) %o% Xmat # rep(1, 10) %o% rep(9, 3)
+#   rn.R = rnorm(R)
+#   sigma.R = rn.R * (as.matrix(dfpurityperc2[, P]) %>% as.numeric() %>% as.vector())
+#   
+#   Purityperc.RP = (as.matrix(dfpurityperc2[1:R, 1:(P-1)]) * Xmat.RP)
+#   Purityperc.R = apply(Purityperc.RP, 1, sum) + sigma.R
+#   
+#   # Yield
+#   rn2.R = rnorm(R)
+#   sigma2.R = rn2.R * (as.matrix(dfYield2[, P]) %>% as.numeric() %>% as.vector())
+#   
+#   Yield.RP = (as.matrix(dfYield2[1:R, 1:(P-1)]) * Xmat.RP)
+#   Yield.R = apply(Yield.RP, 1, sum) + sigma.R
+#   
+#   POSMat[scenario, 1:3] <- GridUpdate  %>% slice(scenario) %>% 
+#     select(Fermentation:Process) %>% as.numeric() %>% as.vector()
+#   
+#   POSMat[scenario, 4] = (as.numeric(prop.table(table(Purityperc.R>=80))['TRUE']))*
+#     (as.numeric(prop.table(table(Yield.R>=7))['TRUE']))
+#   
+# }
+
+
+# dfPOS = POSMat %>% as.data.frame.matrix() %>% 
+#   rename("Fermentation" = `V1`, 'pH' = `V2`, 'Process' = `V3`, 'PoS' = `V4`)
+# 
+# xp = seq(0, 1, 0.1)
+# dfPOS = dfPOS %>% 
+#   mutate(PoSCat = cut(PoS, breaks = xp, 
+#                       labels = names(table(cut(dfPOS$PoS, breaks=seq(0, 1, 0.1))))))
+
+# saveRDS(dfPOS, paste(twd, "/workspace/dfPOSPurityYield.RDS", sep = ""))
+dfPOS = readRDS(paste(twd, "/workspace/dfPOSPurityYield.RDS", sep = ""))
+
+dfPOS = dfPOS %>% mutate(PoSCat = as.factor(ifelse(PoS>=0.60, ">=0.60", "< 0.60")))
+dfPOSPlot = dfPOS %>% filter(PoS>=0.60) %>% select(c(1:3, 5))
+pairs(dfPOSPlot[, 1:3], pch = 19,  cex = 1.1, upper.panel =NULL, col="blue")
+
+```
+
+<!-- **PoS >= 0.64** -->
+
+<!-- ```{r BayesianOptimalSettingsBoth0p6, echo=FALSE, warning=FALSE, fig.align = 'center', out.width = "100%", message=FALSE} -->
+
+<!-- dfPOS = dfPOS %>% mutate(PoSCat = as.factor(ifelse(PoS>=0.64, ">=0.64", "< 0.64"))) -->
+<!-- dfPOSPlot = dfPOS %>% filter(PoS>=0.64) %>% select(c(1:3, 5)) -->
+<!-- pairs(dfPOSPlot[, 1:3], pch = 19,  cex = 1.1, upper.panel =NULL, col="blue") -->
+
+<!-- ``` -->
+
+
+
+<!-- ```{r PurityBetaYieldSkewNormalBayesianTable, warning=FALSE, echo=FALSE} -->
+
+<!-- flextable(dfPOS %>% filter(PoS>=0.64) %>% dplyr::select(-(PoSCat)) %>%  -->
+<!--   mutate_at(vars(contains('PoS')), .funs = format_fn)) %>% -->
+<!--   hline(part="body", border = std_border) %>%  -->
+<!--   hline_bottom(part="body", border = std_borderFoot) %>%  -->
+<!--   hline_top(part="body", border = std_borderFoot) %>%  -->
+<!--   set_caption(caption ="CPP levels with PoS>=0.64 for both Yield and Purity.") %>%  -->
+<!--   merge_h(part = "header") %>%  width(j = c(1), width = c(1.5)) %>%  -->
+<!--   align(align = "center", part = "all") %>% align(align = "left", part = "all", j = 1) %>%  -->
+<!--   fix_border_issues(part = "all") %>% hline_top(part="header", border = std_borderFoot) %>%  -->
+<!--   fontsize(size = 10, part = "all") -->
+
+<!-- ``` -->
+
+#### {-}
+
+
+## Resources
+
+* Estimating Multivariate Models with brms: <https://cran.r-project.org/web/packages/brms/vignettes/brms_multivariate.html>
+* Optimization using the prediction profiler:
+  - <https://community.jmp.com/t5/Discussions/Optimization-with-prediction-profiler/td-p/42093>
+  - Check the **Optimize Factor Settings** section in the JMP Documentation Library under **Help in JMP**
+  - check the **Response Surface Design** section in the JMP Documentation
+  - In general, check the **DoE Guide** section in JMP
+  
+* <https://www.youtube.com/watch?v=C-p0qtsswqk&t=61s>
+* Mixed model in JMP <https://www.jmp.com/en_ch/learning-library/topics/mixed-models-and-repeated-measures/mixed-model-analysis.html>

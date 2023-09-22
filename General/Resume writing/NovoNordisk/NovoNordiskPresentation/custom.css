@@ -1,0 +1,11 @@
+/* custom.css */
+.left-code {
+  color: #777;
+  width: 55%;
+  float: left;
+}
+.right-code {
+  width: 45%;
+  float: right;
+  padding-left: 1%;
+}
