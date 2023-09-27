@@ -1,0 +1,12 @@
+Student ID:  q1382279 
+ Last Name: Mestdagh 
+ First Name: Arne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.37                 0                   
+2                                         0.807                0                   
+3                                         0.943                0                   
+4                                         0.067                0                   
+                                                                                   
+Total score =  0 / 4                                                               

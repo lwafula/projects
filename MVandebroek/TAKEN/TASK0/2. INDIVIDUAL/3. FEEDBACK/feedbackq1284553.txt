@@ -1,0 +1,12 @@
+Student ID:  q1284553 
+ Last Name: De Smedt 
+ First Name: Max 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.285                0                   
+2                                         0.838                0                   
+3                                         0.901                0                   
+4                                         0.062                0                   
+                                                                                   
+Total score =  0 / 4                                                               

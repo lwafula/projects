@@ -1,0 +1,12 @@
+Student ID:  q1699451 
+ Last Name: Carraro 
+ First Name: Daniel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.656                0                   
+2                                         0.872                0                   
+3                                         0.417                0                   
+4                                         0.021                0                   
+                                                                                   
+Total score =  0 / 4                                                               

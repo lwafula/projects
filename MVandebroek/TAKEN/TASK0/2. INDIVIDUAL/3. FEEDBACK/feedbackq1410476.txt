@@ -1,0 +1,12 @@
+Student ID:  q1410476 
+ Last Name: Baert 
+ First Name: Lawrence 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.214                0                   
+2                                         0.582                0                   
+3                                         0.923                0                   
+4                                         0.042                0                   
+                                                                                   
+Total score =  0 / 4                                                               

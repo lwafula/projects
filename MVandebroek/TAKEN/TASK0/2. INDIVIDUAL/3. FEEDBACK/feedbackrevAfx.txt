@@ -1,0 +1,12 @@
+Student ID:  q1383618 
+ Last Name: Dierick 
+ First Name: Nicolas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.157                0                   
+2                                         0.345                0                   
+3                                         0.879                0                   
+4                                         0.06                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

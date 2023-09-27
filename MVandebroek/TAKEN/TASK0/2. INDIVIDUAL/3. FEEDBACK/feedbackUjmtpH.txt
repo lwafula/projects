@@ -1,0 +1,12 @@
+Student ID:  q1226687 
+ Last Name: Van Mol 
+ First Name: Alexander 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.198                0                   
+2                                         0.272                0                   
+3                                         0.969                0                   
+4                                         0.084                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1373839 
+ Last Name: Moris 
+ First Name: Stijn 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.16                 0                   
+2                                         0.732                0                   
+3                                         0.923                0                   
+4                                         0.026                0                   
+                                                                                   
+Total score =  0 / 4                                                               

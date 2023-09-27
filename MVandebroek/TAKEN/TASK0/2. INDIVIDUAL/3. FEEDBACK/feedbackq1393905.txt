@@ -1,0 +1,12 @@
+Student ID:  q1393905 
+ Last Name: Uwents 
+ First Name: Helena 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.06                 0                   
+2                                         0.472                0                   
+3                                         0.48                 0                   
+4                                         0.021                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1610706 
+ Last Name: Van Elder 
+ First Name: Juan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.113                0                   
+2                                         0.307                0                   
+3                                         0.849                0                   
+4                                         0.025                0                   
+                                                                                   
+Total score =  0 / 4                                                               

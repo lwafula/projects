@@ -1,0 +1,12 @@
+Student ID:  q1691076 
+ Last Name: Paglia 
+ First Name: Irene 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.298                0                   
+2                                         0.199                0                   
+3                                         0.901                0                   
+4                                         0.027                0                   
+                                                                                   
+Total score =  0 / 4                                                               

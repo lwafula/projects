@@ -4,8 +4,9 @@ Student ID:  c1242115
 
 
 Question             Your answer          Correct answer       Grade               
-1                                         1.934                0                   
-2                                         0.695                0                   
-3                                         0.521                0                   
+1                                         1.393                0                   
+2                                         0.829                0                   
+3                                         0.834                0                   
+4                                         0.037                0                   
                                                                                    
-Total score =  0 / 3                                                               
+Total score =  0 / 4                                                               

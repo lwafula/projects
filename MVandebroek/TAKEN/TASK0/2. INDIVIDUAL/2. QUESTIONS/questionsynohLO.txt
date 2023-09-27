@@ -1,0 +1,16 @@
+Student ID:  q1400456 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK0/ddynohLO/1.dataynohLO.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression analysis with dependent variable Y2 and independent variables X1 and X3 (without the interaction term). Give the estimate for the parameter corresponding to variable X3. 
+
+ Q2: Perform a regression analysis with dependent variable Y1 and independent variables X2 and X4. Take the interaction into account. Give the p-value of the parameter corresponding to the interaction term. 
+
+ Q3: Perform a regression analysis with dependent variable Y2 and independent variables X3, X4 and X5 (without the interaction terms). Give the proportion of explained variance. 
+
+ Q4: Perform a regression with dependent variable Y2 and independent variable X3. Give the hat-value of observation 35. 
+
+
+ Don't forget to round decimals to three digits.

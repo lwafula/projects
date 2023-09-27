@@ -1,0 +1,12 @@
+Student ID:  q1326968 
+ Last Name: De Poorter 
+ First Name: Jonathan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.892                0                   
+2                                         0.896                0                   
+3                                         0.94                 0                   
+4                                         0.024                0                   
+                                                                                   
+Total score =  0 / 4                                                               

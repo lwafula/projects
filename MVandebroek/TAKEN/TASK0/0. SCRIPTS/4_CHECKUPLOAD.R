@@ -16,7 +16,7 @@ rm(list = ls())
 setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0")
 
 #Read in the Q-numbers 
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-11-14-22-26.csv",
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-27-13-16-31.csv",
                          check.names = F)
 
 group_info = read_xlsx("1. FILES\\user_info with coding.xlsx") |>
@@ -34,10 +34,10 @@ for (i in 1:length(group_IDS)){
   if (LABEL == "TSTAT") {
     # create html links for toledo
     # the public link points to the W: drive
-    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'],'/1.data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
+    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'],'/1.data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
                           # "<p></p>", 
-                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/2.vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
-                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/3.feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'], '/2.vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'], '/3.feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
     
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
@@ -47,10 +47,10 @@ for (i in 1:length(group_IDS)){
     
     # create html links for toledo
     # the public link points to the W: drive
-    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/1.data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
+    dataquizpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'], '/1.data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
                           # "<p></p>", 
-                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/2.questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
-                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/dd', dfUPLOAD[i,'newid'], '/3.feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'], '/2.questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
+                          "<p>Click <a href=", 'https://feb.kuleuven.be/public/u0118298/TASK0/dd', dfUPLOAD[i,'newid'], '/3.feedback',dfUPLOAD[i,'newid'],'.txt',">here for your feedback</a></p>")
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(dataquizpath))

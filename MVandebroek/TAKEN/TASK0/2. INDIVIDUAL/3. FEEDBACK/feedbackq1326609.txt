@@ -1,0 +1,12 @@
+Student ID:  q1326609 
+ Last Name: Ngninkeu Ngami 
+ First Name: Yann Armel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.245                0                   
+2                                         0.862                0                   
+3                                         0.555                0                   
+4                                         0.02                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

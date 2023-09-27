@@ -1,0 +1,12 @@
+Student ID:  q1392004 
+ Last Name: Stove 
+ First Name: Amélie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.337                0                   
+2                                         0.202                0                   
+3                                         0.913                0                   
+4                                         0.028                0                   
+                                                                                   
+Total score =  0 / 4                                                               

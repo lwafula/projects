@@ -1,0 +1,12 @@
+Student ID:  q1359699 
+ Last Name: Vrijsen 
+ First Name: Delphine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.972                0                   
+2                                         0.11                 0                   
+3                                         0.831                0                   
+4                                         0.067                0                   
+                                                                                   
+Total score =  0 / 4                                                               

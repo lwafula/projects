@@ -1,0 +1,12 @@
+Student ID:  q1321207 
+ Last Name: Mortelmans 
+ First Name: Giel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.144                0                   
+2                                         0.944                0                   
+3                                         0.544                0                   
+4                                         0.104                0                   
+                                                                                   
+Total score =  0 / 4                                                               

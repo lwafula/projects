@@ -1,0 +1,12 @@
+Student ID:  q1381254 
+ Last Name: Libbrecht 
+ First Name: Mattice 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.565                0                   
+2                                         0.136                0                   
+3                                         0.921                0                   
+4                                         0.03                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

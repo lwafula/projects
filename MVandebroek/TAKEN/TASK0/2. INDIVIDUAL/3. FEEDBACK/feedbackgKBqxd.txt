@@ -1,0 +1,12 @@
+Student ID:  q1340978 
+ Last Name: Vanheusden 
+ First Name: Kato 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.838                0                   
+2                                         0.736                0                   
+3                                         0.861                0                   
+4                                         0.028                0                   
+                                                                                   
+Total score =  0 / 4                                                               

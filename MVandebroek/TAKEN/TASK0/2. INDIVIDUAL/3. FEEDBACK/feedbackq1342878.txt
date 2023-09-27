@@ -1,0 +1,12 @@
+Student ID:  q1342878 
+ Last Name: Somers 
+ First Name: Anke 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.725                0                   
+2                                         0.391                0                   
+3                                         0.554                0                   
+4                                         0.021                0                   
+                                                                                   
+Total score =  0 / 4                                                               

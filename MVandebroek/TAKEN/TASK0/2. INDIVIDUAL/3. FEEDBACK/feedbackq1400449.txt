@@ -1,0 +1,12 @@
+Student ID:  q1400449 
+ Last Name: Deckx 
+ First Name: Lauren 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.003                0                   
+2                                         0.531                0                   
+3                                         0.895                0                   
+4                                         0.022                0                   
+                                                                                   
+Total score =  0 / 4                                                               

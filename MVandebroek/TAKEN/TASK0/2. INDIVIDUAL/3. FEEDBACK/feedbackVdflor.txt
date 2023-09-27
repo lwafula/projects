@@ -1,0 +1,12 @@
+Student ID:  q1702981 
+ Last Name: Alves Ribeiro Coelho 
+ First Name: Guilherme 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.024                0                   
+2                                         0.083                0                   
+3                                         0.431                0                   
+4                                         0.056                0                   
+                                                                                   
+Total score =  0 / 4                                                               

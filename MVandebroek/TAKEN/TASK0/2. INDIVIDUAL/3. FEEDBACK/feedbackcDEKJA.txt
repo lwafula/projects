@@ -1,0 +1,12 @@
+Student ID:  q1393617 
+ Last Name: Imschoot 
+ First Name: Phaedra 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.085                0                   
+2                                         0.223                0                   
+3                                         0.939                0                   
+4                                         0.022                0                   
+                                                                                   
+Total score =  0 / 4                                                               

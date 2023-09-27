@@ -1,0 +1,12 @@
+Student ID:  q1403581 
+ Last Name: Gheys 
+ First Name: Simon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.799                0                   
+2                                         0.585                0                   
+3                                         0.538                0                   
+4                                         0.02                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

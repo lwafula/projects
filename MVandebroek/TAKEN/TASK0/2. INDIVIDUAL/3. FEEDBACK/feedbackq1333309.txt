@@ -1,0 +1,12 @@
+Student ID:  q1333309 
+ Last Name: de Buck van Overstraeten 
+ First Name: Annaëlle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.342                0                   
+2                                         0.973                0                   
+3                                         0.841                0                   
+4                                         0.028                0                   
+                                                                                   
+Total score =  0 / 4                                                               

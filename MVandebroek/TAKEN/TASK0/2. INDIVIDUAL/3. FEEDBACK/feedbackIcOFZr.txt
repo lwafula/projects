@@ -1,0 +1,12 @@
+Student ID:  q1594195 
+ Last Name: Ochoa Ruiz Godoy 
+ First Name: Juan Pablo 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.516                0                   
+2                                         0.026                0                   
+3                                         0.923                0                   
+4                                         0.023                0                   
+                                                                                   
+Total score =  0 / 4                                                               

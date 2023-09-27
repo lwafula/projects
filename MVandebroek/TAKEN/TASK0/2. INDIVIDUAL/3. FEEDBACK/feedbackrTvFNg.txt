@@ -1,0 +1,12 @@
+Student ID:  q1317061 
+ Last Name: Kabbani 
+ First Name: Raouf 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.076                0                   
+2                                         0.164                0                   
+3                                         0.918                0                   
+4                                         0.028                0                   
+                                                                                   
+Total score =  0 / 4                                                               

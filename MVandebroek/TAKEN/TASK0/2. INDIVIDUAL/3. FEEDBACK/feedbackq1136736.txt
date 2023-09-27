@@ -1,0 +1,12 @@
+Student ID:  q1136736 
+ Last Name: Martens 
+ First Name: Thibaut 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.471                0                   
+2                                         0.148                0                   
+3                                         0.532                0                   
+4                                         0.05                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,16 @@
+Cursist ID:  q1236343 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK0/ddNZBErX/1.dataNZBErX.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie analyse uit met als afhankelijke variabele Y1 en als onafhankelijke variabelen X1 en X2 (zonder interactieterm). Geef de parameterschatting die hoort bij variabele X2. 
+
+ V2: Voer een regressie analyse uit met als  afhankelijke variabele Y3, en onafhankelijke variabelen X3 en X4. Neem ook de interactieterm op. Geef de p-waarde die bij de parameter van de interactieterm hoort. 
+
+ V3: Voer een regressie analyse uit met als afhankelijke variabele Y2, en onafhankelijke variabelen X3, X4 en X5 (zonder interactietermen). Geef de proportie verklaarde variantie. 
+
+ V4: Voer een regressie uit met als afhankelijke variabele Y3 en onafhankelijke variabele X4. Geef de hat-value van observatie 12. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

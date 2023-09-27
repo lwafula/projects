@@ -1,0 +1,12 @@
+Student ID:  q1696976 
+ Last Name: Yang 
+ First Name: Hao 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.332                0                   
+2                                         0.801                0                   
+3                                         0.8                  0                   
+4                                         0.022                0                   
+                                                                                   
+Total score =  0 / 4                                                               

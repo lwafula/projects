@@ -109,6 +109,21 @@ getSOL <- function(data, questions){
                            {
                              mod = lm(Y2 ~ X3 + X4 + X5, data=data)
                              summary(mod)[['r.squared']]
+                           },
+                           #solution Q10
+                           {
+                             mod = lm(Y1 ~ X2, data=data)
+                             (influence.measures(mod))[['infmat']][20,6]
+                           },
+                           #solution Q11
+                           {
+                             mod = lm(Y3 ~ X4, data=data)
+                             (influence.measures(mod))[['infmat']][12,6]
+                           },
+                           #solution Q12
+                           {
+                             mod = lm(Y2 ~ X3, data=data)
+                             (influence.measures(mod))[['infmat']][35,6]
                            }
     )
   }
@@ -151,11 +166,11 @@ gradingTOOL <- function(responses, solutions){
   
   NA_IDS <-  group_IDS[!group_IDS %in% responses$User.Name]
   
-  #dataframe to store all info and feedback
+  #dataframe to store all info and feedback: ID, quiz,resp,sol,grade
   #all_info <- as.data.frame(matrix(data = NA, ncol = 18))
-  all_info <- as.data.frame(matrix(data = NA, ncol = 14))
+  all_info <- as.data.frame(matrix(data = NA, ncol = 18))
   colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
-                          "Q3", "R3", "S3", "G3","TOTAL")
+                          "Q3", "R3", "S3", "G3", "Q4", "R4", "S4", "G4","TOTAL")
   
   
   #for each respondent 
@@ -205,6 +220,7 @@ gradingTOOL <- function(responses, solutions){
                         c("1", ID_resp[1], round(ID_sol[1], digits = 3), feedback[1]),
                         c("2", ID_resp[2], round(ID_sol[2], digits = 3), feedback[2]),
                         c("3", ID_resp[3], round(ID_sol[3], digits = 3), feedback[3]),
+                        c("4", ID_resp[4], round(ID_sol[4], digits = 3), feedback[4]),
                         c(""),
                         c(paste("Total score = ", sum(as.numeric(feedback)), "/", length(ID_sol))," ", " ", "")) |>
      as.data.frame()
@@ -213,12 +229,12 @@ gradingTOOL <- function(responses, solutions){
     all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
                        ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
                        ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3],
+                       ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4],
                        sum(as.numeric(feedback)))
     
     # individual feedback files
     
-    # indfolder= paste0("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK0\\2. INDIVIDUAL\\")
-    indfolder= paste0("W:\\dd",user_info[i,"newid"])
+    indfolder= paste0("W:TASK0\\dd",user_info[i,"newid"])
     
     filepathW <- paste0(indfolder,"\\3.feedback",user_info[i,"newid"],".txt")  
     filepathB <- paste0("2. INDIVIDUAL\\3. FEEDBACK\\feedback",user_info[i,"newid"],".txt") 

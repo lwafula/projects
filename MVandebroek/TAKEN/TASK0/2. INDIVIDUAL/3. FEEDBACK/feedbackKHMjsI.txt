@@ -1,0 +1,12 @@
+Student ID:  q1712528 
+ Last Name: De Waele 
+ First Name: Axel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.086                0                   
+2                                         0.679                0                   
+3                                         0.8                  0                   
+4                                         0.055                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1648730 
+ Last Name: Sercan 
+ First Name: Ozan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.709                0                   
+2                                         0.334                0                   
+3                                         0.921                0                   
+4                                         0.027                0                   
+                                                                                   
+Total score =  0 / 4                                                               

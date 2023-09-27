@@ -22,11 +22,14 @@ set.seed(2222)
 
 #Read in Q-numbers 
 # olduser_info <- read_xlsx("1. INPUT\\gc_ULTRA-C-17518426-K_columns_2023-06-13-15-45-33.xlsx")
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-11-14-22-26.csv")
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-27-13-16-31.csv")
 # group_info = read_xlsx("1. FILES\\group info.xlsx")
 group_info = read.csv("1. FILES\\group info.csv", check.names = F)
 
-user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", all.x=TRUE)
+# students with unassigned groups
+write.xlsx(olduser_info |> filter(!(Username %in% group_info$`User Name`)),"3. QUERIES\\students with no group assigned.xlsx")
+
+user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", all.y=TRUE) # keep those with complete group status
 
 #settings > GENEREER ALIASSEN VOOR DE STUDENTENNUMMERS en voeg group toe
 I <- nrow(user_info)
@@ -81,7 +84,7 @@ for(i in 1:I){
   
   
   #write individual datasets 
-  indfolder= paste0("W:\\dd",user_info[i,"newid"])
+  indfolder= paste0("W:\\TASK0\\dd",user_info[i,"newid"])
   dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
   filepathW <- paste0(indfolder,"\\1.data",user_info[i,"newid"],".txt")  # write to the public folder
   filepathB <- paste0("2. INDIVIDUAL\\1. DATA\\", "data",user_info[i,"newid"],".txt")

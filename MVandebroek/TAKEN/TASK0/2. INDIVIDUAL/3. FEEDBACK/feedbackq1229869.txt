@@ -1,0 +1,12 @@
+Student ID:  q1229869 
+ Last Name: De Boeck 
+ First Name: Elias 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.442                0                   
+2                                         0.95                 0                   
+3                                         0.825                0                   
+4                                         0.045                0                   
+                                                                                   
+Total score =  0 / 4                                                               

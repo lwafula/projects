@@ -1,0 +1,12 @@
+Student ID:  q1417882 
+ Last Name: Van Sanden Campos 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.286                0                   
+2                                         0.113                0                   
+3                                         0.891                0                   
+4                                         0.044                0                   
+                                                                                   
+Total score =  0 / 4                                                               
