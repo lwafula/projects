@@ -1,11 +1,12 @@
-Student ID:  c1242115 
- Last Name: Vandebroek 
- First Name: Martina 
+Student ID:  c1243957 
+ Last Name: Maaya 
+ First Name: Leonard 
 
 
 Question             Your answer          Correct answer       Grade               
-1                                         1.67                 0                   
-2                                         0.622                0                   
-3                                         0.892                0                   
+1                    1.129                1.129                1                   
+2                    146.707              146.707              1                   
+3                    1                    1                    1                   
+4                    2.468                2.468                1                   
                                                                                    
-Total score =  0 / 3                                                               
+Total score =  4 / 4                                                               

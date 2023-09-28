@@ -1,0 +1,16 @@
+Cursist ID:  q1374210 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddCXeIRs/1.dataCXeIRs.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Employed". Geef de Cook’s distance van observatie 25 vermenigvuldigd met 1000. 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Experience". Geef de hat-value van observatie 12. 
+
+ V3: Veronderstel dat je een one-way ANOVA wil uitvoeren, en dat je verwacht dat de groepsgemiddelden de volgende zijn: 55, 60, 57 en 62. Veronderstel verder dat de standaard deviatie binnen de groepen gelijk is aan 6. Wat is de power van de globale F-test als je 20 observaties per groep neemt, en je een significantieniveau van 0,05 hanteert. 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de waarde van de F-teststatistiek voor het globale model. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

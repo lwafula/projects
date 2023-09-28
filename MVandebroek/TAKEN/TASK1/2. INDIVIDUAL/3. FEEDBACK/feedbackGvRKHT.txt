@@ -1,0 +1,12 @@
+Student ID:  q1344369 
+ Last Name: Janssens 
+ First Name: Margaux 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         84780.323            0                   
+2                                         0.386                0                   
+3                                         0.922                0                   
+4                                         5.45                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

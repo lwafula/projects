@@ -1,0 +1,16 @@
+Student ID:  q1417404 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddxLapFV/1.dataxLapFV.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Employed". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for Gender=F, Employed =30. Give the lowerbound of this interval. 
+
+ Q3: Perform a regression with dependent variable "Salary" and independent variable "Employed".  Give the Cook’s distance of observation 25 multiplied by 1000. 
+
+ Q4: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. Give the p-value of the contrast "Department 4 - Department 2". 
+
+
+ Don't forget to round decimals to three digits.

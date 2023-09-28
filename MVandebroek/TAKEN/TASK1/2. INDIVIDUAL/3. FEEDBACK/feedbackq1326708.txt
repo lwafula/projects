@@ -1,0 +1,12 @@
+Student ID:  q1326708 
+ Last Name: van der Plancke 
+ First Name: Jean 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         89964.682            0                   
+2                                         5.42                 0                   
+3                                         0.868                0                   
+4                                         158121346.689        0                   
+                                                                                   
+Total score =  0 / 4                                                               

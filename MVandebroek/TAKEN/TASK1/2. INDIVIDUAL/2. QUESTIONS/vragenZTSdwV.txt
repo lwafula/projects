@@ -1,0 +1,16 @@
+Cursist ID:  q1226687 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddZTSdwV/1.dataZTSdwV.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = M, Employed = 30. Geef de upperbound van dit interval. 
+
+ V2: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Voor hoeveel contrasten is het verschil tussen gemiddelden significant verschillend van 0, als we significantie niveau α = 0.05 gebruiken? 
+
+ V3: Veronderstel dat je een one-way ANOVA wil uitvoeren, en dat je verwacht dat de groepsgemiddelden de volgende zijn: 55, 60, 57 en 62. Veronderstel verder dat de standaard deviatie binnen de groepen gelijk is aan 5. Wat is de power van de globale F-test als je 10 observaties per groep neemt, en je een significantieniveau van 0,05 hanteert. 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de p-waarde van het interactie effect. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

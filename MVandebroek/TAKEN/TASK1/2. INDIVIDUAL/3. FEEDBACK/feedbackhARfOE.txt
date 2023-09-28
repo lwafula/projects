@@ -1,0 +1,12 @@
+Student ID:  q1333029 
+ Last Name: Vrebos 
+ First Name: Hylke 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         83954.583            0                   
+2                                         1.097                0                   
+3                                         0.779                0                   
+4                                         131379591.898        0                   
+                                                                                   
+Total score =  0 / 4                                                               

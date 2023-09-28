@@ -1,0 +1,16 @@
+Student ID:  q1698309 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddPDnpse/1.dataPDnpse.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Education". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for  Gender=M, Employed =30. Give the upperbound of this interval. 
+
+ Q3: Perform a regression with dependent variable "Salary" and independent variable "Education". Give the hat-value of observation 35. 
+
+ Q4: Assume you want to perform a one-way ANOVA. You expect the group means to be 55, 60, 57 en 62. Assume that the standard deviation within the groups equals 6. What is the power of the global F-test if there would be 20 observations in each group, given a significance level of 0,05. 
+
+
+ Don't forget to round decimals to three digits.

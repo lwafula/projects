@@ -1,0 +1,12 @@
+Student ID:  q1388312 
+ Last Name: Moons 
+ First Name: Corneel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         88119.308            0                   
+2                                         0.025                0                   
+3                                         0.868                0                   
+4                                         5.137                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,16 @@
+Cursist ID:  q1342186 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddnFiwpj/1.datanFiwpj.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Employed", "Experience", en "Education" (zonder interactietermen). Geef de variance inflation factor (VIF) van variabele "Education". 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = M, Employed = 30. Geef de upperbound van dit interval. 
+
+ V3: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Experience". Geef de hat-value van observatie 12. 
+
+ V4: Veronderstel dat je een one-way ANOVA wil uitvoeren, en dat je verwacht dat de groepsgemiddelden de volgende zijn: 55, 60, 57 en 62. Veronderstel verder dat de standaard deviatie binnen de groepen gelijk is aan 5. Wat is de power van de globale F-test als je 10 observaties per groep neemt, en een significantieniveau van 0,10 hanteert. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

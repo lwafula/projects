@@ -1,0 +1,12 @@
+Student ID:  q1378375 
+ Last Name: Coppens 
+ First Name: Emma 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.043                0                   
+2                                         52235.887            0                   
+3                                         0.983                0                   
+4                                         0.922                0                   
+                                                                                   
+Total score =  0 / 4                                                               

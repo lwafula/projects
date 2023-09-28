@@ -1,0 +1,12 @@
+Student ID:  q1422297 
+ Last Name: Vermeulen 
+ First Name: Emiel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.894                0                   
+2                                         84856.392            0                   
+3                                         0.478                0                   
+4                                         0.042                0                   
+                                                                                   
+Total score =  0 / 4                                                               

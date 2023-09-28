@@ -1,0 +1,12 @@
+Student ID:  q1700739 
+ Last Name: Ferreira Machado 
+ First Name: José Miguel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.038                0                   
+2                                         34438.014            0                   
+3                                         17.827               0                   
+4                                         0.023                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1524479 
+ Last Name: Lion 
+ First Name: Anne-Éline 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         62437.596            0                   
+2                                         0.029                0                   
+3                                         0.042                0                   
+4                                         3.074                0                   
+                                                                                   
+Total score =  0 / 4                                                               

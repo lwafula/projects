@@ -1,0 +1,12 @@
+Student ID:  q1729368 
+ Last Name: Cappuyns 
+ First Name: Jonas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.56                 0                   
+2                                         12.36                0                   
+3                                         0.101                0                   
+4                                         90030849.743         0                   
+                                                                                   
+Total score =  0 / 4                                                               

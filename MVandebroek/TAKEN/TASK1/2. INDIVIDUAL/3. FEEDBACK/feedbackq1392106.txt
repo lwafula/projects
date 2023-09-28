@@ -1,0 +1,12 @@
+Student ID:  q1392106 
+ Last Name: Lagae 
+ First Name: Victoria 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         38737.674            0                   
+2                                         13.621               0                   
+3                                         1                    0                   
+4                                         0.779                0                   
+                                                                                   
+Total score =  0 / 4                                                               

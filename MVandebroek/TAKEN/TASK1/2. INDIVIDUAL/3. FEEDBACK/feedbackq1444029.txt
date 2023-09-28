@@ -1,0 +1,12 @@
+Student ID:  q1444029 
+ Last Name: Van Damme 
+ First Name: Jan-Maarten 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.007                0                   
+2                                         856.63               0                   
+3                                         0.029                0                   
+4                                         0.002                0                   
+                                                                                   
+Total score =  0 / 4                                                               

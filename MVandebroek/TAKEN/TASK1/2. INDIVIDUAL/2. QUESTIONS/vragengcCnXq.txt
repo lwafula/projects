@@ -1,0 +1,16 @@
+Cursist ID:  q1326968 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddgcCnXq/1.datagcCnXq.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = F, Employed = 30. Geef de upperbound van dit interval. 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education". Geef de hat-value van observatie 35. 
+
+ V3: Veronderstel dat je een one-way ANOVA wil uitvoeren, en dat je verwacht dat de groepsgemiddelden de volgende zijn: 55, 60, 57 en 62. Veronderstel verder dat de standaard deviatie binnen de groepen gelijk is aan 5. Wat is de power van de globale F-test als je 10 observaties per groep neemt, en je een significantieniveau van 0,05 hanteert. 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de waarde van de F-teststatistiek voor het globale model. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

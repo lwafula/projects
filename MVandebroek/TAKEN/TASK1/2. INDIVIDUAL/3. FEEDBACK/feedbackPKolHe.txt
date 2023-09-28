@@ -1,0 +1,12 @@
+Student ID:  q1318019 
+ Last Name: Werckx 
+ First Name: Lua 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.02                 0                   
+2                                         0.689                0                   
+3                                         0.868                0                   
+4                                         2.432                0                   
+                                                                                   
+Total score =  0 / 4                                                               

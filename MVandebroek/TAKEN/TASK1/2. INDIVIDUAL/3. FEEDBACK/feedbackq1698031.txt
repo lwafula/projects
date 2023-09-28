@@ -1,0 +1,12 @@
+Student ID:  q1698031 
+ Last Name: Feil 
+ First Name: Nicolas Alexander 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         78453.303            0                   
+2                                         0.046                0                   
+3                                         1                    0                   
+4                                         2.608                0                   
+                                                                                   
+Total score =  0 / 4                                                               

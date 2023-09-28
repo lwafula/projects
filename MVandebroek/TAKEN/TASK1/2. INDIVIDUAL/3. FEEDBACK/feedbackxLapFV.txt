@@ -1,0 +1,12 @@
+Student ID:  q1417404 
+ Last Name: Lamaire 
+ First Name: Jelle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.287                0                   
+2                                         43004.071            0                   
+3                                         0.281                0                   
+4                                         0.393                0                   
+                                                                                   
+Total score =  0 / 4                                                               

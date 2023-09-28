@@ -1,0 +1,12 @@
+Student ID:  q1433332 
+ Last Name: Meukens 
+ First Name: Dries 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         70647.979            0                   
+2                                         1.57                 0                   
+3                                         0.022                0                   
+4                                         3.489                0                   
+                                                                                   
+Total score =  0 / 4                                                               

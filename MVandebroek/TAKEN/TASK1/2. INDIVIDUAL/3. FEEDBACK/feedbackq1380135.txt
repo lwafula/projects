@@ -1,0 +1,12 @@
+Student ID:  q1380135 
+ Last Name: Marien 
+ First Name: Jannick 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.699                0                   
+2                                         83913.679            0                   
+3                                         188.165              0                   
+4                                         0.569                0                   
+                                                                                   
+Total score =  0 / 4                                                               

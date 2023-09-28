@@ -1,0 +1,12 @@
+Student ID:  q1381200 
+ Last Name: Reusens 
+ First Name: Quentin 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         87251.579            0                   
+2                                         0.078                0                   
+3                                         0.022                0                   
+4                                         0.238                0                   
+                                                                                   
+Total score =  0 / 4                                                               

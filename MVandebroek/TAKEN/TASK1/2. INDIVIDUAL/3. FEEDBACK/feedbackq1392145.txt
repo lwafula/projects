@@ -1,0 +1,12 @@
+Student ID:  q1392145 
+ Last Name: Ouissa 
+ First Name: Ilyas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.76                 0                   
+2                                         38805.051            0                   
+3                                         0.563                0                   
+4                                         0.985                0                   
+                                                                                   
+Total score =  0 / 4                                                               

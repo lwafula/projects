@@ -16,7 +16,8 @@ setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK1")
 source("0. SCRIPTS/0_source_taak1_LM.R")
 
 ### Laad vragenpool en student numbers 
-vragenpool_NED_ENG <- read_excel(path ="1. FILES\\vragen_questions_TEST.xlsx")
+# vragenpool_NED_ENG <- read_excel(path ="1. FILES\\vragen_questions_TEST.xlsx")
+vragenpool_NED_ENG <- read_excel(path ="1. FILES\\vragen_questions_taak1.xlsx")
 
 #Read in Q-numbers 
 # user_info <- read_excel(path = "1. FILES\\user_info with coding.xlsx")
@@ -26,7 +27,7 @@ user_info <- user_info[!is.na(user_info$group),]
 
 
 I <- nrow(user_info)
-N <- 3 #number of questions  
+N <- 4 #number of questions  
 
 
 #store solutions S=Solution, Q=Question
@@ -46,13 +47,13 @@ set.seed(22231)
 for(i in 1:I) {
   
   #draw for each i N questions  
-  QI <- c(sample(c(1:N), 1), N + sample(c(1:N), 1), (2*N) + sample(c(1:N), 1))
+  # QI <- c(sample(c(1:N), 1), N + sample(c(1:N), 1), (2*N) + sample(c(1:N), 1))
   
   # randomly select a question in each block: N in total
 
-  # QI <- vragenpool_NED_ENG |> group_by(BLOK) |> slice_sample(n=1) |> ungroup() |>
-  #   select(`Vraag ID`) |> as.vector() |> unname() |> unlist() |> sample(N) |> sort()
-  # QI
+  QI <- vragenpool_NED_ENG |> group_by(BLOK) |> slice_sample(n=1) |> ungroup() |>
+    select(`Vraag ID`) |> as.vector() |> unname() |> unlist() |> sample(N) |> sort()
+  QI
   
   #read in data
   # ID <- as.character(user_info[i , 'Student ID'])
@@ -73,13 +74,13 @@ for(i in 1:I) {
   
   if (LABEL == "TSTAT") {
     vragen <- vector(mode="character", length=N)
-    vragen  <- vragenpool_NED_ENG |> slice(QI) |> select(contains('NED'))
+    vragen  <- vragenpool_NED_ENG |> slice(QI) |> select('Vraag')
     
     questions_IQ[i, 1] <- as.character(ID)
     questions_IQ[i,2] = paste("Cursist ID: ", as.character(ID), "\n\n", 
                               paste0("Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/dd",idnewid,"/1.data",idnewid,".txt"), "\n",
                               "De vragen voor deze taak staan hieronder vermeld.", "\n\n\n",
-                              "V1:", vragen[1, ], "\n\n", "V2:", vragen[2, ],"\n\n", "V3:", vragen[3, ],"\n\n\n",
+                              "V1:", vragen[1, ], "\n\n", "V2:", vragen[2, ],"\n\n", "V3:", vragen[3, ],"\n\n", "V4:", vragen[4, ], "\n\n\n",
                               "Vergeet kommagetallen niet af te ronden op 3 decimalen.")
     
     filepathW <- paste0(indfolder,"\\2.vragen",user_info[i,"newid"],".txt")  # write to the public folder
@@ -93,13 +94,13 @@ for(i in 1:I) {
     } else{
       
       vragen <- vector(mode="character", length=N)
-      vragen  <- vragenpool_NED_ENG |> slice(QI) |> select(contains('ENG'))
+      vragen  <- vragenpool_NED_ENG |> slice(QI) |> select('Question')
       
       questions_IQ[i, 1] <- as.character(ID)
       questions_IQ[i,2] = paste("Student ID: ", as.character(ID), "\n\n", 
                                 paste0("Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/dd", idnewid, "/1.data",idnewid,".txt"), "\n",
                                 "The questions for this task are listed below.", "\n\n\n",
-                                "Q1:", vragen[1, ], "\n\n", "Q2:", vragen[2, ],"\n\n", "Q3:", vragen[3, ],"\n\n\n",
+                                "Q1:", vragen[1, ], "\n\n", "Q2:", vragen[2, ],"\n\n", "Q3:", vragen[3, ],"\n\n", "Q4:", vragen[4, ],"\n\n\n",
                                 "Don't forget to round decimals to three digits.")
       
       filepathW <- paste0(indfolder,"\\2.questions",user_info[i,"newid"],".txt")  # write to the public folder

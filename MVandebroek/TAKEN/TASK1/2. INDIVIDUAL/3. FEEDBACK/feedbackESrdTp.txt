@@ -1,0 +1,12 @@
+Student ID:  q1510610 
+ Last Name: Wright 
+ First Name: Aaron 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.849                0                   
+2                                         0.001                0                   
+3                                         0.779                0                   
+4                                         3.798                0                   
+                                                                                   
+Total score =  0 / 4                                                               

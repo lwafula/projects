@@ -1,0 +1,16 @@
+Student ID:  q1698031 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddxXpKzS/1.dataxXpKzS.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for  Gender=M, Employed =30. Give the upperbound of this interval. 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variable "Employed". Give the hat-value of observation 20. 
+
+ Q3: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. Give the p-value of the contrast "Department 3 - Department 2". 
+
+ Q4: Perform a two-way ANOVA with response variable "Salary" and factors "Gender" and "Department" (with interaction effect). Give the F- statistic of the global model. 
+
+
+ Don't forget to round decimals to three digits.

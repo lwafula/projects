@@ -1,0 +1,12 @@
+Student ID:  q1381723 
+ Last Name: Hansen 
+ First Name: Olivier 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.289                0                   
+2                                         0.021                0                   
+3                                         0.922                0                   
+4                                         91830266.575         0                   
+                                                                                   
+Total score =  0 / 4                                                               

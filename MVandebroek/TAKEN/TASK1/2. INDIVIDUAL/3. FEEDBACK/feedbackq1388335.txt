@@ -1,0 +1,12 @@
+Student ID:  q1388335 
+ Last Name: Vanderstraeten 
+ First Name: Bjarne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         90203.066            0                   
+2                                         0.041                0                   
+3                                         1                    0                   
+4                                         0.524                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1342186 
+ Last Name: Van den Kerkhof 
+ First Name: Ellen 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.476                0                   
+2                                         80553.811            0                   
+3                                         0.099                0                   
+4                                         0.868                0                   
+                                                                                   
+Total score =  0 / 4                                                               

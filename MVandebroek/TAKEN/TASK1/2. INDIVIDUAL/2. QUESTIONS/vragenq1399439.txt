@@ -1,0 +1,16 @@
+Cursist ID:  q1399439 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddjJEMBm/1.datajJEMBm.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Employed", "Experience", en "Education" (zonder interactietermen). Geef de variance inflation factor (VIF) van variabele "Education". 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = M, Employed = 30. Geef de upperbound van dit interval. 
+
+ V3: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education". Geef de hat-value van observatie 35. 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de waarde van de F-teststatistiek voor het globale model. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

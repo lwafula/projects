@@ -1,0 +1,12 @@
+Student ID:  q1321269 
+ Last Name: Bocklandt 
+ First Name: Orphee 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.076                0                   
+2                                         42444.442            0                   
+3                                         2.454                0                   
+4                                         0.041                0                   
+                                                                                   
+Total score =  0 / 4                                                               

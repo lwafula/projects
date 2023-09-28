@@ -1,0 +1,12 @@
+Student ID:  q1694098 
+ Last Name: Wang 
+ First Name: Qingxia 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         80871.664            0                   
+2                                         0.034                0                   
+3                                         0.559                0                   
+4                                         0.779                0                   
+                                                                                   
+Total score =  0 / 4                                                               

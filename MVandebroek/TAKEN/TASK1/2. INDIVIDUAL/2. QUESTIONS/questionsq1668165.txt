@@ -1,0 +1,16 @@
+Student ID:  q1668165 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddfplreg/1.datafplreg.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Experience". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variable "Employed".  Give the Cook’s distance of observation 25 multiplied by 1000. 
+
+ Q3: Assume you want to perform a one-way ANOVA. You expect the group means to be 55, 60, 57 en 62. Assume that the standard deviation within the groups equals 6. What is the power of the global F-test if there would be 20 observations in each group, given a significance level of 0,05. 
+
+ Q4: Perform a two-way ANOVA with response variable "Salary" and factors "Gender" and "Department" (with interaction effect). Give the F- statistic of the global model. 
+
+
+ Don't forget to round decimals to three digits.

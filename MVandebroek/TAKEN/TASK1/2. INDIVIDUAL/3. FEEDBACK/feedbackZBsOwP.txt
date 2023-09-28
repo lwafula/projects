@@ -1,0 +1,12 @@
+Student ID:  q1333574 
+ Last Name: El Mohor 
+ First Name: Bassel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         76092.552            0                   
+2                                         12.996               0                   
+3                                         0.779                0                   
+4                                         109321853.777        0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1691766 
+ Last Name: Kurt 
+ First Name: Umut 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.097                0                   
+2                                         83006.475            0                   
+3                                         0.922                0                   
+4                                         4.227                0                   
+                                                                                   
+Total score =  0 / 4                                                               

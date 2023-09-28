@@ -17,7 +17,7 @@ rm(list = ls())
 setwd("C:\\Users\\u0118298\\OneDrive\\Projects\\MVandebroek\\TAKEN\\TASK1")
 
 #Read in the Q-numbers 
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-13-10-58-26.csv",
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-28-14-05-57.csv",
                          check.names = F)
 
 group_info = read_xlsx("1. FILES\\user_info with coding.xlsx") |>

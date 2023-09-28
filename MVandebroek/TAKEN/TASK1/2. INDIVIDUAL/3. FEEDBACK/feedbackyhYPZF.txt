@@ -1,0 +1,12 @@
+Student ID:  q1381960 
+ Last Name: Exelmans 
+ First Name: Thibo 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.039                0                   
+2                                         0.235                0                   
+3                                         0.779                0                   
+4                                         0.029                0                   
+                                                                                   
+Total score =  0 / 4                                                               

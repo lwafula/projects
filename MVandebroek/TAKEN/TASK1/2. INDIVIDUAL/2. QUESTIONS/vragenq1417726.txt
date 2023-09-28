@@ -1,0 +1,16 @@
+Cursist ID:  q1417726 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddXvuwTx/1.dataXvuwTx.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Employed", "Experience", en "Education" (zonder interactietermen). Geef de variance inflation factor (VIF) van variabele "Employed". 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Employed". Geef de hat-value van observatie 20. 
+
+ V3: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Geef de p-waarde van het contrast "Department 4 - Department 1". 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de waarde van de F-teststatistiek voor het globale model. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

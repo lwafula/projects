@@ -1,0 +1,12 @@
+Student ID:  q1382431 
+ Last Name: Dom 
+ First Name: Matthias 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         81826.133            0                   
+2                                         38.918               0                   
+3                                         0.023                0                   
+4                                         0.779                0                   
+                                                                                   
+Total score =  0 / 4                                                               

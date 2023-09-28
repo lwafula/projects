@@ -1,0 +1,12 @@
+Student ID:  q1188381 
+ Last Name: Guo 
+ First Name: Chuheng 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.352                0                   
+2                                         53923.872            0                   
+3                                         0.868                0                   
+4                                         150279978.772        0                   
+                                                                                   
+Total score =  0 / 4                                                               

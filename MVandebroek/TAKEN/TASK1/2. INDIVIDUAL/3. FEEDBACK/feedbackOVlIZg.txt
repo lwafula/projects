@@ -1,0 +1,12 @@
+Student ID:  q1393084 
+ Last Name: Mestdag 
+ First Name: Hannah 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         78754.973            0                   
+2                                         0.057                0                   
+3                                         0.779                0                   
+4                                         0.709                0                   
+                                                                                   
+Total score =  0 / 4                                                               

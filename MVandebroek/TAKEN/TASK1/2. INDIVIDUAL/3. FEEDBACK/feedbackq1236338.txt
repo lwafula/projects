@@ -1,0 +1,12 @@
+Student ID:  q1236338 
+ Last Name: Gerits 
+ First Name: Kevin 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.989                0                   
+2                                         42039.362            0                   
+3                                         0.868                0                   
+4                                         123029419.141        0                   
+                                                                                   
+Total score =  0 / 4                                                               

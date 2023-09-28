@@ -38,76 +38,173 @@ getSOL <- function(data, questions){
     
     Q <- questions[i]
     
-    # data$Department <- as.factor(data$Department)
-    # data$Gender <- as.factor(data$Gender)
+    data$Department <- as.factor(data$Department)
+    data$Gender <- as.factor(data$Gender)
     
     solutions[i] <- switch(Q,  
                            
                            #solution Q1
                            {
-                             mod = lm(Y1 ~ X1 + X2, data=data)
-                             as.numeric(coefficients(mod)['X2']) 
+                             mod = lm(Salary~ Experience + Employed + Education, data=data)
+                             vif(mod)[3] 
                            },
                            
                            #solution Q2
                            {
-                             mod = lm(Y2 ~ X1 + X3, data=data)
-                             as.numeric(coefficients(mod)['X3']) 
+                             mod = lm(Salary~ Experience + Employed + Education, data=data)
+                             vif(mod)[2] 
                            },
                            
                            #solution Q3
                            {
-                             mod = lm(Y3 ~ X1 + X3, data=data)
-                             as.numeric(coefficients(mod)['X1']) 
+                             mod = lm(Salary~ Experience + Employed + Education, data=data)
+                             vif(mod)[1] 
                            },
                            
                            #solution Q4
                            {
-                             mod = lm(Y1 ~ X2*X4, data=data)
+                             model = lm(Salary ~ Gender * Employed, data = data)
+                             preddata = data.frame(Gender = "F", Employed = 30)
                              
-                             # p-value for the interaction term
-                             summary(mod)[['coefficients']] |> as.data.frame() |> 
-                               rownames_to_column(var = 'term') |> 
-                               filter(term == 'X2:X4') |> pull('Pr(>|t|)')
+                             #prediction interval for individual salary
+                             result <- predict(model, newdata = preddata, interval="prediction") 
+                             result[3]
                            },
                            
                            #solution Q5
                            {
-                             mod = lm(Y2 ~ X2*X5, data=data)
+                             model = lm(Salary ~ Gender * Employed, data = data)
+                             preddata = data.frame(Gender = "M", Employed = 30)
                              
-                             # p-value for the interaction term
-                             summary(mod)[['coefficients']] |> as.data.frame() |> 
-                               rownames_to_column(var = 'term') |> 
-                               filter(term == 'X2:X5') |> pull('Pr(>|t|)')
+                             #prediction interval for individual salary
+                             result <- predict(model, newdata = preddata, interval="prediction") 
+                             result[3]
                            },
                            
                            #solution Q6
                            {
-                             mod = lm(Y3 ~ X3*X4, data=data)
+                             model = lm(Salary ~ Gender * Employed, data = data)
+                             preddata = data.frame(Gender = "F", Employed = 30)
                              
-                             # p-value for the interaction term
-                             summary(mod)[['coefficients']] |> as.data.frame() |> 
-                               rownames_to_column(var = 'term') |> 
-                               filter(term == 'X3:X4') |> pull('Pr(>|t|)')
+                             #prediction interval for individual salary
+                             result <- predict(model, newdata = preddata, interval="prediction") 
+                             result[2]
                            },
                            
                            #solution Q7
                            {
-                             mod = lm(Y3 ~ X1 + X2 + X3, data=data)
-                             summary(mod)[['r.squared']]
+                             outliermod <- lm(Salary~Employed, data=data)
+                             infl <- influence.measures(outliermod)
+                             infl$infmat[25, 5] * 1000
                              
                            },
                            
                            #solution Q8
                            {
-                             mod = lm(Y1 ~ X2 + X3 + X4, data=data)
-                             summary(mod)[['r.squared']]
+                             outliermod <- lm(Salary~Experience, data=data)
+                             infl <- influence.measures(outliermod)
+                             infl$infmat[35, 5] * 1000
                            },
                            
                            #solution Q9
                            {
-                             mod = lm(Y2 ~ X3 + X4 + X5, data=data)
-                             summary(mod)[['r.squared']]
+                             outliermod <- lm(Salary~Education, data=data)
+                             infl <- influence.measures(outliermod)
+                             infl$infmat[15, 5] * 1000
+                           }, 
+                           
+                           #solution Q10
+                           {
+                             outliermod = lm(Salary~Employed, data=data)
+                             inflmeasures= influence.measures(outliermod)
+                             inflmeasures$infmat[20, 6]
+                           }, 
+                           
+                           #solution Q11
+                           {
+                             outliermod = lm(Salary~Experience, data=data)
+                             inflmeasures= influence.measures(outliermod)
+                             inflmeasures$infmat[12, 6]
+                           },
+                           
+                           #solution Q12
+                           {
+                             outliermod = lm(Salary~Education, data=data)
+                             inflmeasures= influence.measures(outliermod)
+                             inflmeasures$infmat[35, 6]
+                           },
+                           
+                           #solution Q13
+                           {
+                             salary_anova = aov(Salary~ Department, data = data)
+                             tukey = TukeyHSD(salary_anova)
+                             sum(tukey$'Department'[, 4] < 0.05)
+                           },
+                           
+                           #solution Q14
+                           {
+                             salary_anova = aov(Salary~ Department, data = data)
+                             tukey = TukeyHSD(salary_anova)
+                             tukey$'Department'[3, 4] 
+                           },
+                           
+                           #solution Q15
+                           {
+                             salary_anova = aov(Salary~ Department, data = data)
+                             tukey = TukeyHSD(salary_anova)
+                             tukey$'Department'[4, 4] 
+                           },
+                           
+                           #solution Q16
+                           {
+                             salary_anova = aov(Salary ~ Department, data = data)
+                             tukey = TukeyHSD(salary_anova)
+                             tukey$'Department'[5, 4] 
+                           },
+                           
+                           #solution Q17
+                           {
+                             groupmeans <- c(55,60,57,62)
+                             result <- power.anova.test(groups = length(groupmeans),  
+                                                        between.var = var(groupmeans), within.var = 25, sig.level = 0.05, n = 10)
+                             result$power 
+                           },
+                           
+                           #solution Q18
+                           {
+                             groupmeans <- c(55,60,57,62)
+                             result <- power.anova.test(groups = length(groupmeans),  
+                                                        between.var = var(groupmeans), within.var = 36, sig.level = 0.05, n = 20)
+                             result$power 
+                           },
+                           
+                           #solution Q19
+                           {
+                             groupmeans <- c(55,60,57,62)
+                             result <- power.anova.test(groups = length(groupmeans),  
+                                                        between.var = var(groupmeans), within.var = 25, sig.level = 0.10, n = 10)
+                             result$power
+                           },
+                           
+                           #solution Q20
+                           {
+                             twoway = lm(Salary ~ Department * Gender, data = data)
+                             aov <- anova(twoway)
+                             aov$`Pr(>F)`[3]
+                           },
+                           
+                           #solution Q21
+                           {
+                             twoway = lm(Salary ~ Department * Gender, data = data)
+                             test <- summary(twoway)
+                             test$fstatistic[1]
+                           },
+                           
+                           #solution Q22
+                           {
+                             twoway = lm(Salary ~ Department * Gender, data = data)
+                             aov <- anova(twoway)
+                             aov$`Mean Sq`[4]
                            }
     )
   }
@@ -152,9 +249,9 @@ gradingTOOL <- function(responses, solutions){
   
   #dataframe to store all info and feedback
   #all_info <- as.data.frame(matrix(data = NA, ncol = 18))
-  all_info <- as.data.frame(matrix(data = NA, ncol = 14))
+  all_info <- as.data.frame(matrix(data = NA, ncol = 18))
   colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
-                          "Q3", "R3", "S3", "G3","TOTAL")
+                          "Q3", "R3", "S3", "G3", "Q4", "R4", "S4", "G4","TOTAL")
   
   
   #for each respondent 
@@ -204,6 +301,7 @@ gradingTOOL <- function(responses, solutions){
                         c("1", ID_resp[1], round(ID_sol[1], digits = 3), feedback[1]),
                         c("2", ID_resp[2], round(ID_sol[2], digits = 3), feedback[2]),
                         c("3", ID_resp[3], round(ID_sol[3], digits = 3), feedback[3]),
+                        c("4", ID_resp[4], round(ID_sol[4], digits = 3), feedback[4]),
                         c(""),
                         c(paste("Total score = ", sum(as.numeric(feedback)), "/", length(ID_sol))," ", " ", "")) |>
      as.data.frame()
@@ -212,6 +310,7 @@ gradingTOOL <- function(responses, solutions){
     all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
                        ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
                        ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3],
+                       ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4],
                        sum(as.numeric(feedback)))
     
     # individual feedback files

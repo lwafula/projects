@@ -1,0 +1,12 @@
+Student ID:  q1400910 
+ Last Name: Vandewalle 
+ First Name: Miel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.288                0                   
+2                                         10.679               0                   
+3                                         0.922                0                   
+4                                         67063446.654         0                   
+                                                                                   
+Total score =  0 / 4                                                               

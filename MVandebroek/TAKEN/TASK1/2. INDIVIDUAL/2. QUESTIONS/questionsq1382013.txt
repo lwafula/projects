@@ -1,0 +1,16 @@
+Student ID:  q1382013 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddhgjkoS/1.datahgjkoS.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Education". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for  Gender=F, Employed =30. Give the upperbound of this interval. 
+
+ Q3: Perform a regression with dependent variable "Salary" and independent variable "Education". Give the Cook’s distance of observation 15 multiplied by 1000. 
+
+ Q4: Perform a regression with dependent variable "Salary" and independent variable "Employed". Give the hat-value of observation 20. 
+
+
+ Don't forget to round decimals to three digits.

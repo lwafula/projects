@@ -1,0 +1,12 @@
+Student ID:  q1395034 
+ Last Name: Vanderkerken 
+ First Name: Jules 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         87891.159            0                   
+2                                         2.419                0                   
+3                                         0.02                 0                   
+4                                         1                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

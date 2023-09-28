@@ -1,0 +1,12 @@
+Student ID:  q1335615 
+ Last Name: Eeckhout 
+ First Name: Oscar 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.839                0                   
+2                                         70456.455            0                   
+3                                         0.057                0                   
+4                                         0.64                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

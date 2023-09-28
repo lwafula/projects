@@ -1,0 +1,16 @@
+Cursist ID:  q1439613 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddsSGzrM/1.datasSGzrM.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Employed", "Experience", en "Education" (zonder interactietermen). Geef de variance inflation factor (VIF) van variabele "Education". 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = M, Employed = 30. Geef de upperbound van dit interval. 
+
+ V3: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Employed". Geef de Cook’s distance van observatie 25 vermenigvuldigd met 1000. 
+
+ V4: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Geef de p-waarde van het contrast "Department 3 - Department 2". 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

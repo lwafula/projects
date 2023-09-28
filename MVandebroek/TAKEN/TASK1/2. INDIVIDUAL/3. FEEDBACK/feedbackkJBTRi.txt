@@ -1,0 +1,12 @@
+Student ID:  q1383980 
+ Last Name: Keza 
+ First Name: Lauria 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.288                0                   
+2                                         0.041                0                   
+3                                         0.987                0                   
+4                                         0.044                0                   
+                                                                                   
+Total score =  0 / 4                                                               

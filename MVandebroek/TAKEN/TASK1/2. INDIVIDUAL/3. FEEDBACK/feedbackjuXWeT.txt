@@ -1,0 +1,12 @@
+Student ID:  q1374110 
+ Last Name: Kinoo 
+ First Name: Lucas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.049                0                   
+2                                         35134.185            0                   
+3                                         0.866                0                   
+4                                         0.922                0                   
+                                                                                   
+Total score =  0 / 4                                                               

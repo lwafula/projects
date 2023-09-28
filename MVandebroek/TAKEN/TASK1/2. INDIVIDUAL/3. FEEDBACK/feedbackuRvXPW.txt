@@ -1,0 +1,12 @@
+Student ID:  q1305288 
+ Last Name: Geenen 
+ First Name: Jef 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         85009.496            0                   
+2                                         45.854               0                   
+3                                         0.023                0                   
+4                                         1                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

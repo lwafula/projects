@@ -1,0 +1,12 @@
+Student ID:  q1347408 
+ Last Name: Dupont 
+ First Name: Camille 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         95261.161            0                   
+2                                         9.275                0                   
+3                                         0.152                0                   
+4                                         0.363                0                   
+                                                                                   
+Total score =  0 / 4                                                               

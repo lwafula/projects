@@ -1,0 +1,12 @@
+Student ID:  q1595756 
+ Last Name: Russo 
+ First Name: Julian 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.425                0                   
+2                                         54952.838            0                   
+3                                         0.922                0                   
+4                                         104645057.523        0                   
+                                                                                   
+Total score =  0 / 4                                                               

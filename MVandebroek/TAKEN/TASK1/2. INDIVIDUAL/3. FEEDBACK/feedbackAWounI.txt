@@ -1,0 +1,12 @@
+Student ID:  q1366735 
+ Last Name: Tasezer 
+ First Name: Can Emre 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         75615.381            0                   
+2                                         0.03                 0                   
+3                                         0                    0                   
+4                                         0.277                0                   
+                                                                                   
+Total score =  0 / 4                                                               

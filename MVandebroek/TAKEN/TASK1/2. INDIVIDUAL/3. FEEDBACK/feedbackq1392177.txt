@@ -1,0 +1,12 @@
+Student ID:  q1392177 
+ Last Name: Decramer 
+ First Name: Alexandra 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         28.37                0                   
+2                                         0.02                 0                   
+3                                         0.486                0                   
+4                                         0.868                0                   
+                                                                                   
+Total score =  0 / 4                                                               

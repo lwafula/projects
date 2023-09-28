@@ -1,0 +1,16 @@
+Student ID:  q1692486 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddgtJMOS/1.datagtJMOS.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Education". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for  Gender=M, Employed =30. Give the upperbound of this interval. 
+
+ Q3: Perform a regression with dependent variable "Salary" and independent variable "Education". Give the hat-value of observation 35. 
+
+ Q4: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. Give the p-value of the contrast "Department 4 - Department 1". 
+
+
+ Don't forget to round decimals to three digits.

@@ -1,0 +1,12 @@
+Student ID:  q1592209 
+ Last Name: Bayar 
+ First Name: İdil 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.864                0                   
+2                                         44818.996            0                   
+3                                         45.596               0                   
+4                                         0.353                0                   
+                                                                                   
+Total score =  0 / 4                                                               

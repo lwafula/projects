@@ -1,0 +1,16 @@
+Cursist ID:  q1399441 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddtgEclR/1.datatgEclR.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Employed", "Experience", en "Education" (zonder interactietermen). Geef de variance inflation factor (VIF) van variabele "Education". 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor datapunt Gender = F, Employed = 30. Geef de lowerbound van dit interval. 
+
+ V3: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education".  Geef de Cook’s distance van observatie 15 vermenigvuldigd met 1000. 
+
+ V4: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Voor hoeveel contrasten is het verschil tussen gemiddelden significant verschillend van 0, als we significantie niveau α = 0.05 gebruiken? 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

@@ -1,0 +1,16 @@
+Student ID:  q1546353 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddDSoviK/1.dataDSoviK.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Experience". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variable "Education". Give the Cook’s distance of observation 15 multiplied by 1000. 
+
+ Q3: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. For how many contrasts is the difference between group means significantly different from zero, if we use α = 0.05 ? 
+
+ Q4: Perform a two-way ANOVA with response variable "Salary" and factors "Gender" and "Department" (with interaction effect). Give the MSE value. 
+
+
+ Don't forget to round decimals to three digits.

@@ -1,0 +1,12 @@
+Student ID:  q1389018 
+ Last Name: Leenknecht 
+ First Name: Jacob 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.747                0                   
+2                                         52758.451            0                   
+3                                         2.489                0                   
+4                                         0.059                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1399999 
+ Last Name: Thijs 
+ First Name: Pieter-Jan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         89627.077            0                   
+2                                         0.355                0                   
+3                                         0.922                0                   
+4                                         1.293                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1383704 
+ Last Name: Vankersschaever 
+ First Name: Maurice 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.05                 0                   
+2                                         87255.783            0                   
+3                                         1                    0                   
+4                                         2.024                0                   
+                                                                                   
+Total score =  0 / 4                                                               

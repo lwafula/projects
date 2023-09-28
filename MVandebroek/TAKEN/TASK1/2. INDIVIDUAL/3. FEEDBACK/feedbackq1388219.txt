@@ -1,0 +1,12 @@
+Student ID:  q1388219 
+ Last Name: Mortelmans 
+ First Name: Alexander 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         44187.947            0                   
+2                                         79.707               0                   
+3                                         0.759                0                   
+4                                         0.868                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1402234 
+ Last Name: Coussement 
+ First Name: Louis 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.44                 0                   
+2                                         36541.663            0                   
+3                                         0.226                0                   
+4                                         0.922                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1381346 
+ Last Name: Valgaeren 
+ First Name: Caroline 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         41638.728            0                   
+2                                         2.228                0                   
+3                                         0.868                0                   
+4                                         3.207                0                   
+                                                                                   
+Total score =  0 / 4                                                               

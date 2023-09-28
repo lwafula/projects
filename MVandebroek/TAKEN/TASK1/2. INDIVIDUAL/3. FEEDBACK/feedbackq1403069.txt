@@ -1,0 +1,12 @@
+Student ID:  q1403069 
+ Last Name: Boyen 
+ First Name: Jana 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.155                0                   
+2                                         1                    0                   
+3                                         0.922                0                   
+4                                         86112492.919         0                   
+                                                                                   
+Total score =  0 / 4                                                               

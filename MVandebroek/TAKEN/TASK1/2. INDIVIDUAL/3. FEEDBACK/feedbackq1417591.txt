@@ -1,0 +1,12 @@
+Student ID:  q1417591 
+ Last Name: Willemen 
+ First Name: Marie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         46154.092            0                   
+2                                         10.123               0                   
+3                                         0.779                0                   
+4                                         128241743.963        0                   
+                                                                                   
+Total score =  0 / 4                                                               

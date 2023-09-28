@@ -1,0 +1,16 @@
+Student ID:  q1321248 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK1/ddroLicw/1.dataroLicw.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Employed", "Experience", en "Education" (without interaction terms). Give the variance inflation factor (VIF) of variabele "Education". 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variable "Employed".  Give the Cook’s distance of observation 25 multiplied by 1000. 
+
+ Q3: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. Give the p-value of the contrast "Department 3 - Department 2". 
+
+ Q4: Perform a two-way ANOVA with response variable "Salary" and factors "Gender" and "Department" (with interaction effect). Give the MSE value. 
+
+
+ Don't forget to round decimals to three digits.

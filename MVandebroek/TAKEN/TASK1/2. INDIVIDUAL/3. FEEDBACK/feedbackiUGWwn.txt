@@ -1,0 +1,12 @@
+Student ID:  q1671175 
+ Last Name: Durgun 
+ First Name: Yiğit 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.761                0                   
+2                                         85557.752            0                   
+3                                         0.001                0                   
+4                                         123313083.649        0                   
+                                                                                   
+Total score =  0 / 4                                                               

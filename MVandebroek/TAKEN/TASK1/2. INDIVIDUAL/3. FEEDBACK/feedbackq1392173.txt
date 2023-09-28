@@ -1,0 +1,12 @@
+Student ID:  q1392173 
+ Last Name: Clarysse 
+ First Name: Sophie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.014                0                   
+2                                         0.024                0                   
+3                                         0.868                0                   
+4                                         121991231.69         0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,16 @@
+Cursist ID:  q1326807 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK1/ddxiknwF/1.dataxiknwF.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor datapunt Gender = F, Employed = 30. Geef de lowerbound van dit interval. 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education".  Geef de Cook’s distance van observatie 15 vermenigvuldigd met 1000. 
+
+ V3: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education". Geef de hat-value van observatie 35. 
+
+ V4: Voer een two-way ANOVA uit met als responsvariabele "Salary" en factoren "Gender" en "Department" (met interactie effect). Geef de MSE waarde. 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

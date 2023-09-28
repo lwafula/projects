@@ -1,0 +1,12 @@
+Student ID:  q1235315 
+ Last Name: Tangieva 
+ First Name: Izolda 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.571                0                   
+2                                         32091.138            0                   
+3                                         7.466                0                   
+4                                         0.779                0                   
+                                                                                   
+Total score =  0 / 4                                                               

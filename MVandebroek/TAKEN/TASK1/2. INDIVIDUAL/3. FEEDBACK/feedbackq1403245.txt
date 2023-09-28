@@ -1,0 +1,12 @@
+Student ID:  q1403245 
+ Last Name: Vanackere 
+ First Name: Mathis 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.036                0                   
+2                                         9.074                0                   
+3                                         0.031                0                   
+4                                         0.727                0                   
+                                                                                   
+Total score =  0 / 4                                                               

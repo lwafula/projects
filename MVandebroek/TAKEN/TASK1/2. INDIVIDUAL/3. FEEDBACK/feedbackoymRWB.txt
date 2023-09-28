@@ -1,0 +1,12 @@
+Student ID:  q1369427 
+ Last Name: Franssens 
+ First Name: Maurits 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.639                0                   
+2                                         95684.53             0                   
+3                                         14.606               0                   
+4                                         1                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

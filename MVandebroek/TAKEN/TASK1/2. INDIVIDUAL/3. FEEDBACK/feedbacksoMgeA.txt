@@ -1,0 +1,12 @@
+Student ID:  q1341116 
+ Last Name: Xhonneux 
+ First Name: Johan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.074                0                   
+2                                         0.125                0                   
+3                                         1                    0                   
+4                                         85556038.26          0                   
+                                                                                   
+Total score =  0 / 4                                                               

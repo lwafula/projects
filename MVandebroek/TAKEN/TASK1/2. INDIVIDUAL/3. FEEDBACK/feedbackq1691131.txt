@@ -1,0 +1,12 @@
+Student ID:  q1691131 
+ Last Name: Bilgin 
+ First Name: Utku 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         81411.142            0                   
+2                                         2.458                0                   
+3                                         0.02                 0                   
+4                                         1                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

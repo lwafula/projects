@@ -22,11 +22,14 @@ set.seed(22221)
 
 #Read in Q-numbers 
 # olduser_info <- read_xlsx("1. INPUT\\gc_ULTRA-C-17518426-K_columns_2023-06-13-15-45-33.xlsx")
-olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-13-10-58-26.csv")
+olduser_info <- read.csv("1. FILES\\gc_ULTRA-C17747534-B-2324_columns_2023-09-28-14-05-57.csv")
 # group_info = read_xlsx("1. FILES\\group info.xlsx")
 group_info = read.csv("1. FILES\\group info.csv", check.names = F)
 
-user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", all.x=TRUE)
+# students with unassigned groups
+write.xlsx(olduser_info |> filter(!(Username %in% group_info$`User Name`)),"3. QUERIES\\students with no group assigned.xlsx")
+
+user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", all.y=TRUE) # keep those with complete group status
 
 #settings > GENEREER ALIASSEN VOOR DE STUDENTENNUMMERS en voeg group toe
 I <- nrow(user_info)
@@ -35,7 +38,6 @@ df <- data.frame(
   passwd = replicate(I, paste(sample(c(LETTERS, letters), 6), collapse="")))
 
 user_info$newid<-as.character(df$passwd)
-user_info
 
 write.xlsx(user_info,"1. FILES\\user_info with coding.xlsx")
 
@@ -45,16 +47,40 @@ write.xlsx(user_info,"1. FILES\\user_info with coding.xlsx")
 #set seed for replicability
 set.seed(22231)
 
-beta1 <- c(-0.5, 1.4, 2.4, -1.1, -0.6)
-beta2 <- c( 0.5, -0.4, 1.1, -2.1, -1.6)
-beta3 <- c(1.2, 1.4, 1.7, -1.1, -0.8)
+data <- read_xlsx("1. FILES\\salary_data.xlsx", 1)
 
-error1 <- rnorm(50, 0, 1)
-error2 <- rnorm(50, 0, 0.5)
-error3 <- rnorm(50, 0, 2)
+#clean and add observations to global data file 
+newdata1 <- data
+newdata2 <- data
+newdata3<- data
+newdata4 <- data
 
-DATA <- matrix(data = rnorm(1000), nrow = 200, ncol = 5)
-DATA <- as.data.frame(DATA)
+newdata1[newdata1$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 5000, 2000)
+newdata1[newdata1$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 100, 2000)
+newdata1[newdata1$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 0, 2000)
+newdata1[newdata1$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 5000, 2000)
+
+newdata2[newdata2$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 2000, 2000)
+newdata2[newdata2$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 10, 200)
+newdata2[newdata2$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 0, 200)
+newdata2[newdata2$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 500, 200)
+
+newdata3[newdata3$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 3500, 100)
+newdata3[newdata3$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 100, 100)
+newdata3[newdata3$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 0, 20)
+newdata3[newdata3$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 50, 200)
+
+
+data <- rbind(data, newdata1, newdata2, newdata3)
+data$Employee <- 1:nrow(data)
+DATA <- data[, -8]
+
+colnames(DATA) <- c("ID", "Salary", "Experience", "Employed", "Education", "Gender", "Department")
+DATA$Salary <- round(DATA$Salary, digits = 0)
+DATA$Gender <- as.factor(DATA$Gender)
+levels(DATA$Gender) <- c("M", "F") 
+
+
 ##------------------------------------------------------------------
 
 ###########################
@@ -65,17 +91,12 @@ DATA <- as.data.frame(DATA)
 
 for(i in 1:I){
   
-  #draw for each I a subset from DATA 
-  sample_data <- as.matrix(sample_n(DATA, size = N, replace = TRUE))
-  
-  #Regression outcomes
-  Y1 <- sample_data %*% beta1 + error1
-  Y2 <- sample_data %*% beta2 + error2
-  Y3 <- sample_data %*% beta3 + error3
-  
-  sample_data <- as.data.frame(cbind(sample_data, Y1, Y2, Y3))
-  sample_data <- round(sample_data, digits = 2)
-  colnames(sample_data) <- c("X1", "X2", "X3", "X4", "X5", "Y1", "Y2", "Y3")
+  #draw for each I, draw a subset from DATA, repeat until some observations in each group
+  groups <- "notOK"
+  while (groups != "OK"){
+    sample_data <- sample_n(DATA, size = N, replace = FALSE)
+    if(all(!(table(sample_data$Department) < 5))){groups <- "OK"}
+  }
   
   
   #write individual datasets 

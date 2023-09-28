@@ -1,0 +1,12 @@
+Student ID:  q1401497 
+ Last Name: Degraeve 
+ First Name: Emma 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.486                0                   
+2                                         49801.516            0                   
+3                                         0.003                0                   
+4                                         0.922                0                   
+                                                                                   
+Total score =  0 / 4                                                               

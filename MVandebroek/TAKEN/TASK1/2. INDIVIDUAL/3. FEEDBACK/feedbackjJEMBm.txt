@@ -1,0 +1,12 @@
+Student ID:  q1399439 
+ Last Name: Tassens 
+ First Name: Maarten 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.542                0                   
+2                                         88391.239            0                   
+3                                         0.045                0                   
+4                                         2.521                0                   
+                                                                                   
+Total score =  0 / 4                                                               

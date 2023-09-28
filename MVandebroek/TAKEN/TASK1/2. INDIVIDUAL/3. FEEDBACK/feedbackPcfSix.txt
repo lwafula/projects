@@ -1,0 +1,12 @@
+Student ID:  q1382014 
+ Last Name: Jespers 
+ First Name: Floor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.467                0                   
+2                                         96653.452            0                   
+3                                         0.999                0                   
+4                                         5.171                0                   
+                                                                                   
+Total score =  0 / 4                                                               

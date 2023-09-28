@@ -1,0 +1,12 @@
+Student ID:  q1342656 
+ Last Name: Vanistendael 
+ First Name: Juliaan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.452                0                   
+2                                         0.074                0                   
+3                                         0.922                0                   
+4                                         84081450.206         0                   
+                                                                                   
+Total score =  0 / 4                                                               

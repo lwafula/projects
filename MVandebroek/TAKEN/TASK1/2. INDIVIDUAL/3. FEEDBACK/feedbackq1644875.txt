@@ -1,0 +1,12 @@
+Student ID:  q1644875 
+ Last Name: Chou 
+ First Name: Yu-Hsi 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         45025.965            0                   
+2                                         13.003               0                   
+3                                         0.017                0                   
+4                                         0.868                0                   
+                                                                                   
+Total score =  0 / 4                                                               

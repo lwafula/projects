@@ -1,0 +1,12 @@
+Student ID:  q1384587 
+ Last Name: Demeyere 
+ First Name: Alix 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         80963.87             0                   
+2                                         0.945                0                   
+3                                         0.779                0                   
+4                                         91813628.193         0                   
+                                                                                   
+Total score =  0 / 4                                                               

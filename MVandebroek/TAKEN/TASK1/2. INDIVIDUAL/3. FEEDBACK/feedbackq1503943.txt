@@ -1,0 +1,12 @@
+Student ID:  q1503943 
+ Last Name: Quan 
+ First Name: Xinru 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.504                0                   
+2                                         48981.325            0                   
+3                                         1                    0                   
+4                                         0.779                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1371464 
+ Last Name: Vanden Abeele 
+ First Name: Anthony 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         73844.896            0                   
+2                                         0.03                 0                   
+3                                         0.023                0                   
+4                                         0.114                0                   
+                                                                                   
+Total score =  0 / 4                                                               

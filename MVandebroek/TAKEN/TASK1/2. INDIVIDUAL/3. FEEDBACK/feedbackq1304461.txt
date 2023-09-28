@@ -1,0 +1,12 @@
+Student ID:  q1304461 
+ Last Name: Geerts 
+ First Name: Luna 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         77908.963            0                   
+2                                         0.022                0                   
+3                                         0.532                0                   
+4                                         0.868                0                   
+                                                                                   
+Total score =  0 / 4                                                               
