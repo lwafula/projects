@@ -1,3 +1,46 @@
+- Instead of Department, you can have: 4 companies, 4 regions, 4 job titles
+
+*************************************************************************************
+
+* Correct_HI_Taak# to be run only when feedback is needed on W: i.e. after data/questions (script1/2) have been run and provided
+** otherwise students will see feedback & correct answers in their folders before even attempting
+* Once data/questions etc have been provided and done by students;
+** run the correct_HI_taak# file and rerun the CHECKUPLOAD file with feedback url added on the links and upload online
+
+*************************************************************************************
+
+TASK0: Available on Wednesday morning at 9
+feedback-task0; available thursday morning
+recreate the TASK0-your responses: limit attempts to 1
+
+*************************************************************************************
+
+Queries
+
+Release conditions are only for the content. Gradebook's version of release conditions is to make it available and post for a few participants. unfortunately, even if you filter by group, you cannot post by a group
+* 1.	Is it possible to make the tests available by time and group membership?
+** a)	We tried to create a group of testers and noticed that items under Gradebook do not allow Release with conditions. We were hoping that it would be possible to release the feedbacks with conditions so that we can have a group of testers to test that they are working even when hidden for other participants. Do you know how this can be done?
+** b)	Is it possible to set an automated date/time for the tests to be visible to participants? A button like the one for due date but for the availability date for the test to be visible to participants. 
+Aa. not possible for now. Gradebook's way of releasing to a few testers would be to make them available to everyone, and only post to the testers. The others will see the Gradebook, but not the feedback column
+Ab. not possible for now
+
+* 2.	We downloaded a csv file for group membership from the ATSTAT test course “NIETS MEER IN AANPASSEN [TEST ATstat (voorlopig)]”  and noticed that it had:
+** a.	an empty first row (not expected) 
+** b.	automatically separated by the semi-colon (;) instead of the comma (,). 
+      Is it possible to check this so that every csv that is downloaded is comma separated? 
+
+Aa. the empty row is because of an unrolled participant. The unenrolled participant's info is retained in the system, but as an inactive participant. Which is why when downloaded, there's an empty row
+Ab. Toledo is working on an internal system that will be aligned with usual CSVs being comma separated. To be available in a week
+
+* 3.	Is it possible to make a previewer user to see the tasks even if they are hidden for other participants?
+A. The easiest way is to post for the previewer (and any other participant you want) only and have it visible to participants. That way, the other participants
+can see the Gradebook, but without the seeing the feedback column
+
+******************************************************************************************
+
+download the Q numbers, rename the file as ...
+download the group info, rename it as ...
+
 ******************************************************************************************
 
 Feedbacks have to be created in the Gradebook. Those in contents will come with content and settings without the feedback tab
