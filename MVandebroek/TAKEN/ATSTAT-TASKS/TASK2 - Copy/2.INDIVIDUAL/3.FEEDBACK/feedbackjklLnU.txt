@@ -1,0 +1,12 @@
+Student ID:  q1692486 
+ Last Name: Willimès 
+ First Name: Marie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         52706.607            0                   
+2                                         0.021                0                   
+3                                         0.028                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

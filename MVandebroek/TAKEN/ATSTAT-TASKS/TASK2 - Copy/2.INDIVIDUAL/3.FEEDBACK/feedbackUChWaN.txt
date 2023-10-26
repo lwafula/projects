@@ -1,0 +1,12 @@
+Student ID:  q1483322 
+ Last Name: Fong 
+ First Name: Marco Chi Chung 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         85330.681            0                   
+2                                         8.69                 0                   
+3                                         0.923                0                   
+4                                         0.024                0                   
+                                                                                   
+Total score =  0 / 4                                                               

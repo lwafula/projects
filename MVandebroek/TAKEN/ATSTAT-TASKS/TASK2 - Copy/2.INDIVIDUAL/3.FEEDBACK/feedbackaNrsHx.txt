@@ -1,0 +1,12 @@
+Student ID:  q1381987 
+ Last Name: Vanderbeek 
+ First Name: Pauwel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         44388.047            0                   
+2                                         0.022                0                   
+3                                         0.537                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

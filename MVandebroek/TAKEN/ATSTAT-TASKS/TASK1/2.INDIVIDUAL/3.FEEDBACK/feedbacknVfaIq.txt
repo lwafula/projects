@@ -1,0 +1,12 @@
+Student ID:  q1385565 
+ Last Name: Beckers 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    74378                73963.911            0                   
+2                    66.458               0.043                0                   
+3                    1                    1                    1                   
+4                    0                    0.01                 0                   
+                                                                                   
+Total score =  1 / 4                                                               

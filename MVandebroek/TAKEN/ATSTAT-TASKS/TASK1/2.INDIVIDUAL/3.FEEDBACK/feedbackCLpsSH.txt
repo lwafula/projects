@@ -1,0 +1,12 @@
+Student ID:  q1426547 
+ Last Name: Happaerts 
+ First Name: Robbe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    73559.76             73559.759            1                   
+2                    0.138                0.026                0                   
+3                    0.01                 0.559                0                   
+4                    0.081                0.003                0                   
+                                                                                   
+Total score =  1 / 4                                                               

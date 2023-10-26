@@ -1,0 +1,12 @@
+Student ID:  q1384280 
+ Last Name: De Bie 
+ First Name: Joseph 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         43462.229            0                   
+2                                         86.068               0                   
+3                                         1                    0                   
+4                                         0.005                0                   
+                                                                                   
+Total score =  0 / 4                                                               

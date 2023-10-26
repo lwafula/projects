@@ -1,0 +1,12 @@
+Student ID:  q1729905 
+ Last Name: Caty 
+ First Name: Ralph 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    81772.86             81772.859            1                   
+2                    0                    0.04                 0.25                   
+3                    0.943                0.943                1                   
+4                    0                    0                    1                   
+                                                                                   
+Total score =  3.25 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1425926 
+ Last Name: Verhoeven 
+ First Name: Arnaud 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         73559.759            0                   
+2                                         0.026                0                   
+3                                         0.559                0                   
+4                                         0.003                0                   
+                                                                                   
+Total score =  0 / 4                                                               

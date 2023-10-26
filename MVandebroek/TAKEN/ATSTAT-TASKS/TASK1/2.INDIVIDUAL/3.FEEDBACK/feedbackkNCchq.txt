@@ -1,0 +1,12 @@
+Student ID:  q1393014 
+ Last Name: Janssens 
+ First Name: Benoît 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    46524.45             46524.453            1                   
+2                    0.042                0.044                0                   
+3                    0.804                0.103                0                   
+4                    0.112                0.012                0                   
+                                                                                   
+Total score =  1 / 4                                                               

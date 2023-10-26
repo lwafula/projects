@@ -1,0 +1,12 @@
+Student ID:  q1384486 
+ Last Name: Van Vaerenbergh 
+ First Name: Nelle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    43462.23             43462.229            1                   
+2                    86                   86.068               0.75                   
+3                    1                    1                    1                   
+4                    0.005                0.005                1                   
+                                                                                   
+Total score =  3.75 / 4                                                               

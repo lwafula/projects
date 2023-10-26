@@ -1,0 +1,12 @@
+Student ID:  q1126599 
+ Last Name: Imre 
+ First Name: Sebbe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         47601.476            0                   
+2                    0.061                0.061                1                   
+3                                         0.029                0                   
+4                    0.007                0                    0                   
+                                                                                   
+Total score =  1 / 4                                                               

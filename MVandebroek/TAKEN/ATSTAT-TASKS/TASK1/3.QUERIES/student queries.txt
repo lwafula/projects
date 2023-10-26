@@ -1,0 +1,6 @@
+TASK1:
+> Ruben: fitted a correct linear model, but treated gender and department as continous instead of factor variable thus the difference in their estimates. 
+	 advised him to always check number of levels for a variable to help decide whether to treat it as factor or continous variable
+
+> Jose Miguel Machao: fitted a lmm (lmer) intead of lm which gave different results. Asked him to fit a lm since that is what we are interested in for now
+> Students should just avoid the scientific notation as a way of getting around the 3 decimal points.

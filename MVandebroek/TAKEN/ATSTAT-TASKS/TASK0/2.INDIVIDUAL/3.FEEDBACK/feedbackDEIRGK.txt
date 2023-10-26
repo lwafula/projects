@@ -1,0 +1,12 @@
+Student ID:  q1431466 
+ Last Name: Peeters 
+ First Name: Olivia 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.069                0                   
+2                                         0.149                0                   
+3                                         0.788                0                   
+4                                         0.029                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1446659 
+ Last Name: De Baere 
+ First Name: Arthur 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    77721.43             77721.428            1                   
+2                    0.023                0.023                1                   
+3                    0.255                0.255                1                   
+4                    0.065                0.065                1                   
+                                                                                   
+Total score =  4 / 4                                                               

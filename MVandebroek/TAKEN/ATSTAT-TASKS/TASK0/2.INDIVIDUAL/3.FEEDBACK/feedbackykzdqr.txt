@@ -1,0 +1,12 @@
+Student ID:  q1698309 
+ Last Name: Cludts 
+ First Name: Théodore 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.529                0                   
+2                                         0.7                  0                   
+3                                         0.878                0                   
+4                                         0.051                0                   
+                                                                                   
+Total score =  0 / 4                                                               

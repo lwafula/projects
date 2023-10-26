@@ -1,0 +1,12 @@
+Student ID:  q1379578 
+ Last Name: Demeestere 
+ First Name: Auguy 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         71155.013            0                   
+2                                         2.523                0                   
+3                                         0.426                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

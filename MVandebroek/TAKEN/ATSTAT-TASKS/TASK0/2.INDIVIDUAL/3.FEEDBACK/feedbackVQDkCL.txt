@@ -1,0 +1,12 @@
+Student ID:  q1381260 
+ Last Name: Wydaeghe 
+ First Name: Louka 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.546                1.074                0                   
+2                    0.384                0.788                0                   
+3                    1.01                 0.781                0                   
+4                    0.003                0.02                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

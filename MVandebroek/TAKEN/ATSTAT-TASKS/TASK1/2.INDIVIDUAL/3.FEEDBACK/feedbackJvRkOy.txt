@@ -1,0 +1,12 @@
+Student ID:  q1325781 
+ Last Name: De Witte 
+ First Name: Charlotte 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    86335.37             86335.371            1                   
+2                    0.027                0.027                1                   
+3                    0.999                1                    1                   
+4                    0.000000000002201    0                    1                   
+                                                                                   
+Total score =  4 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1457300 
+ Last Name: Coussée 
+ First Name: Lucas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         78916.914            0                   
+2                                         0.156                0                   
+3                                         0.012                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

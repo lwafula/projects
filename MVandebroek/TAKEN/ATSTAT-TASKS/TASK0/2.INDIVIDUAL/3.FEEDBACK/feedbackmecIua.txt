@@ -1,0 +1,12 @@
+Student ID:  q1400472 
+ Last Name: Van Houte 
+ First Name: Joren 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.067                0                   
+2                                         0.055                0                   
+3                                         0.904                0                   
+4                                         0.069                0                   
+                                                                                   
+Total score =  0 / 4                                                               

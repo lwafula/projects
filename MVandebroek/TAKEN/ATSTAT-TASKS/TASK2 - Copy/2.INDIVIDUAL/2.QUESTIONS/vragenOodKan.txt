@@ -1,0 +1,16 @@
+Cursist ID:  q1384280 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK2/1.DATA/dataOodKan.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor datapunt Gender = F, Employed = 30. Geef de lowerbound van dit interval. 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Education".  Geef de Cook’s distance van observatie 15 vermenigvuldigd met 1000. 
+
+ V3: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Voor hoeveel contrasten is het verschil tussen gemiddelden significant verschillend van 0, als we significantie niveau α = 0.05 gebruiken? 
+
+ V4: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhenkelijke variable "Experience", "Gender", en "Department". Is er een verschil in de "Salary" per "Department" als wordt gecontroleerd voor "Experience" en "Gender"? Geef de p-waarde op die hoort bij de Type II SS voor "Department". 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

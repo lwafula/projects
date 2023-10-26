@@ -1,0 +1,12 @@
+Student ID:  q1345891 
+ Last Name: Van Acker 
+ First Name: Thibaut 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         47349.525            0                   
+2                                         0.023                0                   
+3                                         0.573                0                   
+4                                         0.031                0                   
+                                                                                   
+Total score =  0 / 4                                                               

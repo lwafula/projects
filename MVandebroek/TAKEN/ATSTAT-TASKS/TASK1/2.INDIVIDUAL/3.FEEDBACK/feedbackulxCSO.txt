@@ -1,0 +1,12 @@
+Student ID:  q1379669 
+ Last Name: Buyse 
+ First Name: Aurelie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    30023.54             30023.544            1                   
+2                    11                   10.901               0.75                   
+3                    0.001                0.001                1                   
+4                    0.00003345           0                    1                   
+                                                                                   
+Total score =  3.75 / 4                                                               

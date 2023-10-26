@@ -1,0 +1,12 @@
+Student ID:  q1378290 
+ Last Name: Meerten 
+ First Name: Sofie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.387                0                   
+2                                         0.483                0                   
+3                                         0.945                0                   
+4                                         0.03                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

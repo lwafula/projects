@@ -1,0 +1,12 @@
+Student ID:  q1417548 
+ Last Name: Alexander 
+ First Name: Elly 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         69690.433            0                   
+2                                         0.015                0                   
+3                                         0                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

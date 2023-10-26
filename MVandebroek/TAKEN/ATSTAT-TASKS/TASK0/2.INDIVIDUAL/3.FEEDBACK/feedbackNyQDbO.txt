@@ -1,0 +1,12 @@
+Student ID:  q1441532 
+ Last Name: Vanuytrecht 
+ First Name: Seth Vanuytrecht 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    23.5                 1.327                0                   
+2                    9.8                  0.765                0                   
+3                    10                   0.842                0                   
+4                    4                    0.039                0                   
+                                                                                   
+Total score =  0 / 4                                                               

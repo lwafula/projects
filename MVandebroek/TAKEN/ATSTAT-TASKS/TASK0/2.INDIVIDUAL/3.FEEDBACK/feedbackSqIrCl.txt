@@ -1,0 +1,12 @@
+Student ID:  q1412280 
+ Last Name: Nijs 
+ First Name: Justine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.394                0                   
+2                                         0.469                0                   
+3                                         0.558                0                   
+4                                         0.097                0                   
+                                                                                   
+Total score =  0 / 4                                                               

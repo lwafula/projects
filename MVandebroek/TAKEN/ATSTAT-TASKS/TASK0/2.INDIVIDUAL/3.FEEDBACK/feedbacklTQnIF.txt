@@ -1,0 +1,12 @@
+Student ID:  q1417520 
+ Last Name: Vandenameele-Lepla 
+ First Name: Emma 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.818                0                   
+2                                         0.663                0                   
+3                                         0.927                0                   
+4                                         0.067                0                   
+                                                                                   
+Total score =  0 / 4                                                               

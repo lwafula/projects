@@ -1,0 +1,12 @@
+Student ID:  q1321248 
+ Last Name: Deknopper 
+ First Name: Leonard 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         36304.144            0                   
+2                                         0.022                0                   
+3                                         0.019                0                   
+4                                         0.009                0                   
+                                                                                   
+Total score =  0 / 4                                                               

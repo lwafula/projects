@@ -1,0 +1,12 @@
+Student ID:  q1579772 
+ Last Name: Vernik 
+ First Name: Anamarija 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    81856.9              81856.901            1                   
+2                    26                   25.608               0.75                   
+3                    0.956                0.956                1                   
+4                    0.0000001876         0                    1                   
+                                                                                   
+Total score =  3.75 / 4                                                               

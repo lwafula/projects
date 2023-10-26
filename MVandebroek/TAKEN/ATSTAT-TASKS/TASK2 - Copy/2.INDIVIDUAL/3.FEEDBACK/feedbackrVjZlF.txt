@@ -1,0 +1,12 @@
+Student ID:  q1420929 
+ Last Name: Kusters 
+ First Name: Quinten 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         48475.11             0                   
+2                                         605.441              0                   
+3                                         1                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

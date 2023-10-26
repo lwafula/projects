@@ -1,0 +1,12 @@
+Student ID:  q1369771 
+ Last Name: Verlinde 
+ First Name: Astrid 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         50056.974            0                   
+2                                         0.272                0                   
+3                                         0                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

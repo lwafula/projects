@@ -1,0 +1,12 @@
+Student ID:  q1429085 
+ Last Name: Kets 
+ First Name: Alexander 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         56859.544            0                   
+2                                         1.837                0                   
+3                                         2                    0                   
+4                                         0.035                0                   
+                                                                                   
+Total score =  0 / 4                                                               

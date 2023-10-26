@@ -1,0 +1,12 @@
+Student ID:  q1666640 
+ Last Name: Ding 
+ First Name: Albert 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         70656.998            0                   
+2                                         1.337                0                   
+3                                         0                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

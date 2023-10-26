@@ -1,0 +1,12 @@
+Student ID:  q1434794 
+ Last Name: Naeyaert 
+ First Name: Maxim 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         46716.991            0                   
+2                                         0.158                0                   
+3                                         0.971                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

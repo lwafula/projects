@@ -1,0 +1,12 @@
+Student ID:  q1391901 
+ Last Name: Vandewalle 
+ First Name: Lowie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    55699.85             81791.598            0                   
+2                    5.405                0.02                 0                   
+3                    3.72                 0.104                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1381823 
+ Last Name: Merckx 
+ First Name: Simon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    90671.57             90671.572            1                   
+2                    1                    1.249                0.75                   
+3                    1                    1                    1                   
+4                    0.008                0.006                0                   
+                                                                                   
+Total score =  2.75 / 4                                                               

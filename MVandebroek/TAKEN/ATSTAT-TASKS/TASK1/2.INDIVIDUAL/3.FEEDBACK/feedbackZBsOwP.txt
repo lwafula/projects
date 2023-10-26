@@ -1,0 +1,12 @@
+Student ID:  q1326807 
+ Last Name: Devos 
+ First Name: Laurence 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    87061.2              87061.195            1                   
+2                    0.041                0.041                1                   
+3                    0.043                0.043                1                   
+4                    0.029                0.046                0                   
+                                                                                   
+Total score =  3 / 4                                                               

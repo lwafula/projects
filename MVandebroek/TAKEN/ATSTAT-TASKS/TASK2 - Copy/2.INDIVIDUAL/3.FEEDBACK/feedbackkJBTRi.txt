@@ -1,0 +1,12 @@
+Student ID:  q1382116 
+ Last Name: Roose 
+ First Name: Leen 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         71640.914            0                   
+2                                         0.041                0                   
+3                                         0.48                 0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

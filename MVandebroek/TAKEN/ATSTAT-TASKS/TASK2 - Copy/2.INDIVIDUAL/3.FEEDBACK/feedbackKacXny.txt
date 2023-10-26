@@ -1,0 +1,12 @@
+Student ID:  q1390148 
+ Last Name: Vanderhoeven 
+ First Name: Tim 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         88950.867            0                   
+2                                         0.056                0                   
+3                                         2                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

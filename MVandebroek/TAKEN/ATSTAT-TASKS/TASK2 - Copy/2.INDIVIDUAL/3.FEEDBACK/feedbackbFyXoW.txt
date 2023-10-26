@@ -1,0 +1,12 @@
+Student ID:  q1391448 
+ Last Name: Verstraete 
+ First Name: Arnaud 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         85325.946            0                   
+2                                         0.068                0                   
+3                                         0.84                 0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1377671 
+ Last Name: Van den Houte 
+ First Name: Lisa 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    76032.7              76032.702            1                   
+2                    0.048                0.055                0                   
+3                    0.979                0.979                1                   
+4                    0.039                0.002                0                   
+                                                                                   
+Total score =  2 / 4                                                               

@@ -318,6 +318,12 @@ gradingTOOL <- function(responses, solutions){
       select(-(contains(c("Name", "Q")))) |> mutate(across(where(is.double), round, 3)) |> 
       unlist() |> as.vector() 
     
+    # format_fn = function(x, d) formatC(x, format = 'f', digits = 3)
+    # ID_sol = solutions |> filter(User.Name == as.character(ID)) |> 
+    #  select(-(contains(c("Name", "Q")))) |>  
+    #  mutate(across(where(is.double), ~ format_fn(.x))) |> 
+    #  unlist() |> as.vector()
+   
    ID_quest <- solutions |> filter(User.Name == as.character(ID)) |> 
      select(-(contains(c("Name", "S")))) |> unlist() |> as.vector()
     
@@ -339,6 +345,10 @@ gradingTOOL <- function(responses, solutions){
                  "Last Name:", user_info |> filter(User.Name == as.character(ID)) |> select("Last.Name"), "\n", 
                  "First Name:", user_info |> filter(User.Name == as.character(ID)) |> select("First.Name"), "\n\n")
    
+   # ID_sol = formatC(ID_sol, digits = 3, format = 'f')
+   # ID_resp = formatC(ID_resp, digits = 3, format = 'f')
+   # 
+   
    feedbacktext = rbind(c("Question", "Your answer", "Correct answer", "Grade"),
                         c("1", ID_resp[1], round(ID_sol[1], digits = 3), feedback[1]),
                         c("2", ID_resp[2], round(ID_sol[2], digits = 3), feedback[2]),
@@ -348,8 +358,8 @@ gradingTOOL <- function(responses, solutions){
                         c(paste("Total score = ", sum(as.numeric(feedback)), "/", length(ID_sol))," ", " ", "")) |>
      as.data.frame()
     
-    
-    all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
+    all_info[i, ] <- c(ID, 
+                       ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
                        ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
                        ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3],
                        ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4],

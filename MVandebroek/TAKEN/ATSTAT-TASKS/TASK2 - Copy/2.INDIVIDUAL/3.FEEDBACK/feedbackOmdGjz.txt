@@ -1,0 +1,12 @@
+Student ID:  q1368348 
+ Last Name: Hanegraaf 
+ First Name: Tamara 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         47949.685            0                   
+2                                         0.039                0                   
+3                                         0.858                0                   
+4                                         0.238                0                   
+                                                                                   
+Total score =  0 / 4                                                               

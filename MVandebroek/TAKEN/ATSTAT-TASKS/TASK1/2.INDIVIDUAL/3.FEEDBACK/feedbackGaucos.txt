@@ -1,0 +1,12 @@
+Student ID:  q1360810 
+ Last Name: Caustur 
+ First Name: Louise 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    64573.35             64573.347            1                   
+2                    14.311               17.595               0                   
+3                    0.985                0.985                1                   
+4                    0.0003125            0                    1                   
+                                                                                   
+Total score =  3 / 4                                                               

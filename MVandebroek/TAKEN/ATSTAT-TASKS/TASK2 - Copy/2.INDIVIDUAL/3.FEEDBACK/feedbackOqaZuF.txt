@@ -1,0 +1,12 @@
+Student ID:  q1378371 
+ Last Name: Windey 
+ First Name: Emile 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         44361.354            0                   
+2                                         0.02                 0                   
+3                                         0.129                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

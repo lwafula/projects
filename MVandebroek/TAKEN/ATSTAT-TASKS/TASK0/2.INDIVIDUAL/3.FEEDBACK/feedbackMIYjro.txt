@@ -1,0 +1,12 @@
+Student ID:  q1392062 
+ Last Name: Verhamme 
+ First Name: Leonard 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.017                0                   
+2                                         0.084                0                   
+3                                         0.622                0                   
+4                                         0.088                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1699452 
+ Last Name: Campion 
+ First Name: Francesco 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.979                0                   
+2                                         0.709                0                   
+3                                         0.901                0                   
+4                                         0.023                0                   
+                                                                                   
+Total score =  0 / 4                                                               

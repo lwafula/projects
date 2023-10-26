@@ -1,0 +1,12 @@
+Student ID:  q1364271 
+ Last Name: De Wolf 
+ First Name: Lotte 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         33521.482            0                   
+2                                         0.034                0                   
+3                                         2                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

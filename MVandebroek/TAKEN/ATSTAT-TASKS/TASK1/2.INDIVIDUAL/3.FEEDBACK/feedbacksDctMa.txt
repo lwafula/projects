@@ -1,0 +1,12 @@
+Student ID:  q1395814 
+ Last Name: Clarebout 
+ First Name: Lune 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    72672.88             72672.882            1                   
+2                    0.025                0.025                1                   
+3                    0.007                0.007                1                   
+4                    0                    0.002                0                   
+                                                                                   
+Total score =  3 / 4                                                               

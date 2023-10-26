@@ -1,0 +1,12 @@
+Student ID:  q1634704 
+ Last Name: Faina 
+ First Name: Andrea 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         42638.495            0                   
+2                                         0.353                0                   
+3                                         0.999                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

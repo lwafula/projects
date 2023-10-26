@@ -1,0 +1,12 @@
+Student ID:  q1389032 
+ Last Name: Van den Broeck 
+ First Name: Robbe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    85637.496            85637.496            1                   
+2                    15.95                15.95                1                   
+3                    0.208                0.208                1                   
+4                    0.000000001216       0                    1                   
+                                                                                   
+Total score =  4 / 4                                                               

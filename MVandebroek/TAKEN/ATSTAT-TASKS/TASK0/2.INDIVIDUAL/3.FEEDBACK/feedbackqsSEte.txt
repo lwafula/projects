@@ -1,0 +1,12 @@
+Student ID:  q1688859 
+ Last Name: Akdağcık 
+ First Name: Zeynep 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.16                 0                   
+2                                         0.262                0                   
+3                                         0.946                0                   
+4                                         0.023                0                   
+                                                                                   
+Total score =  0 / 4                                                               

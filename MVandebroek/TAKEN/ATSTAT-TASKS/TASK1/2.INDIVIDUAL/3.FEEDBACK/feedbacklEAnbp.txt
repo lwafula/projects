@@ -1,0 +1,12 @@
+Student ID:  q1267761 
+ Last Name: Quintens 
+ First Name: Kim 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    80339.51             80339.506            1                   
+2                    122.927              122.927              1                   
+3                    0.134                0.134                1                   
+4                    0.005                0.005                1                   
+                                                                                   
+Total score =  4 / 4                                                               

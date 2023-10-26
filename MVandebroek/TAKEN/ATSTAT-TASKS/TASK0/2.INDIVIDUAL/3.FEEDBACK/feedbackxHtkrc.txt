@@ -1,0 +1,12 @@
+Student ID:  q1389926 
+ Last Name: Vandormael 
+ First Name: Lukas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.02                 0                   
+2                                         0.69                 0                   
+3                                         0.6                  0                   
+4                                         0.023                0                   
+                                                                                   
+Total score =  0 / 4                                                               

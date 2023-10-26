@@ -1,0 +1,12 @@
+Student ID:  q1326587 
+ Last Name: De Clercq 
+ First Name: Senne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    80349.33             80349.325            1                   
+2                    0.02                 0.02                 1                   
+3                    0.006                0.006                1                   
+4                    0.000001568          0                    1                   
+                                                                                   
+Total score =  4 / 4                                                               

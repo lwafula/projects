@@ -1,0 +1,12 @@
+Student ID:  q1350315 
+ Last Name: Vermeersch 
+ First Name: Siebe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         64573.347            0                   
+2                                         17.595               0                   
+3                                         0.985                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

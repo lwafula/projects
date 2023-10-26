@@ -1,0 +1,16 @@
+Student ID:  q1392030 
+
+ Use the data in https://feb.kuleuven.be/public/u0118298/TASK2/1.DATA/datacCjqHe.txt 
+ The questions for this task are listed below. 
+
+
+ Q1: Perform a regression with dependent variable "Salary" and independent variables "Gender" and "Employed" (with the interaction term). Calculate the prediction interval for Gender=F, Employed =30. Give the lowerbound of this interval. 
+
+ Q2: Perform a regression with dependent variable "Salary" and independent variable "Employed". Give the hat-value of observation 20. 
+
+ Q3: Perform a one-way ANOVA with response variable "Salary" and factor "Department". Afterwards, test all pairwise contrasts with the Tukey method. For how many contrasts is the difference between group means significantly different from zero, if we use α = 0.05 ? 
+
+ Q4: Explain the "Salary" in terms of "Experience", "Gender" and "Education". Is there a difference in the salaries by education when one controls for experience and gender? Provide the p-value associated with the Type III SS for Education. 
+
+
+ Don't forget to round decimals to three digits.

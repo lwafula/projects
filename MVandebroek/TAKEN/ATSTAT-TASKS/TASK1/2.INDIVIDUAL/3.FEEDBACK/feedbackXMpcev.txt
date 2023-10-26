@@ -1,0 +1,12 @@
+Student ID:  q1460275 
+ Last Name: Van Lishout 
+ First Name: Matthias 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    78916.91             78916.914            1                   
+2                    0.028                0.156                0                   
+3                    0.568                0.012                0                   
+4                    0                    0                    1                   
+                                                                                   
+Total score =  2 / 4                                                               

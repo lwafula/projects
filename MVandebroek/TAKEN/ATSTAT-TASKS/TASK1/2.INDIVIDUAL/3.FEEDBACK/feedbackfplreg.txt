@@ -1,0 +1,12 @@
+Student ID:  q1521204 
+ Last Name: Van Der Elst 
+ First Name: Romain 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    86085.61             86085.606            1                   
+2                    0.066                0.022                0                   
+3                    0.0013               0.001                1                   
+4                    0.00018              0.003                0                   
+                                                                                   
+Total score =  2 / 4                                                               

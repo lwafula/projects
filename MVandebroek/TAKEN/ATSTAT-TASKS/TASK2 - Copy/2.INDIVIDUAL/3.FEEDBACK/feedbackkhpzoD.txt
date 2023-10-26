@@ -1,0 +1,12 @@
+Student ID:  q1399441 
+ Last Name: Van Esser 
+ First Name: Jan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         49935.598            0                   
+2                                         0.02                 0                   
+3                                         0.262                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1400475 
+ Last Name: Ven 
+ First Name: Robbe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    80218.46             80218.458            1                   
+2                    58.126               0.01                 0                   
+3                    0.002                0.002                1                   
+4                    0.491                0                    0                   
+                                                                                   
+Total score =  2 / 4                                                               

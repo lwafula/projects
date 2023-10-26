@@ -1,0 +1,12 @@
+Student ID:  q1695246 
+ Last Name: Paolucci 
+ First Name: Giulia 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.433                0                   
+2                                         0.327                0                   
+3                                         0.914                0                   
+4                                         0.02                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

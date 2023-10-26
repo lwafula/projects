@@ -1,0 +1,12 @@
+Student ID:  q1686165 
+ Last Name: Van Lancker 
+ First Name: Sem 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         43070.397            0                   
+2                                         0.042                0                   
+3                                         0.172                0                   
+4                                         0.002                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1690546 
+ Last Name: Abbottoni 
+ First Name: Sara 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         71544.128            0                   
+2                                         0.021                0                   
+3                                         0.989                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

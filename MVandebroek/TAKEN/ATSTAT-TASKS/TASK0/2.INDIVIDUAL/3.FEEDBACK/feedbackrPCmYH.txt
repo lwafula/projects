@@ -1,0 +1,12 @@
+Student ID:  q1286217 
+ Last Name: Smets 
+ First Name: Margot 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.992                0                   
+2                                         0.387                0                   
+3                                         0.911                0                   
+4                                         0.064                0                   
+                                                                                   
+Total score =  0 / 4                                                               

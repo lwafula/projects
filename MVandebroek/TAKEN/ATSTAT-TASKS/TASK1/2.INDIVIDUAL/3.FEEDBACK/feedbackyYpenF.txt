@@ -1,0 +1,12 @@
+Student ID:  q1417726 
+ Last Name: Vanvuchelen 
+ First Name: Emma 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    84666.56             84666.56             1                   
+2                    5.049                2.971                0                   
+3                    0.118                0.118                1                   
+4                    0                    0                    1                   
+                                                                                   
+Total score =  3 / 4                                                               

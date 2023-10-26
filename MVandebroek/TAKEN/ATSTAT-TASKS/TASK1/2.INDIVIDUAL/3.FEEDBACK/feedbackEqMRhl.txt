@@ -1,0 +1,12 @@
+Student ID:  c1243957 
+ Last Name: Maaya 
+ First Name: Leonard 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    23.123               77597.049            0                   
+2                    3.165                171.835              0                   
+3                    200.364              0.006                0                   
+4                    12.356               0.007                0                   
+                                                                                   
+Total score =  0 / 4                                                               

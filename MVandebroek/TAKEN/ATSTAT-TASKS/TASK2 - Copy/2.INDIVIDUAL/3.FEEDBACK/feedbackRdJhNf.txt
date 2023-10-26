@@ -1,0 +1,12 @@
+Student ID:  q1376375 
+ Last Name: Adriaenssens 
+ First Name: Wout 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         73390.162            0                   
+2                                         0.053                0                   
+3                                         0.635                0                   
+4                                         0.002                0                   
+                                                                                   
+Total score =  0 / 4                                                               

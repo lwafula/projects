@@ -1,0 +1,12 @@
+Student ID:  q1382348 
+ Last Name: Libbrecht 
+ First Name: Manu 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.006                0                   
+2                                         0.576                0                   
+3                                         0.855                0                   
+4                                         0.021                0                   
+                                                                                   
+Total score =  0 / 4                                                               

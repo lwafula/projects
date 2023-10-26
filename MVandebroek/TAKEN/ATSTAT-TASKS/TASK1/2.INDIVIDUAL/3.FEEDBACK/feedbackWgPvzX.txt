@@ -1,0 +1,12 @@
+Student ID:  q1384658 
+ Last Name: Claes 
+ First Name: Josse 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    79608.752            48548.804            0                   
+2                    0.031                20.558               0                   
+3                    0.546                0.979                0                   
+4                    0.868                0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

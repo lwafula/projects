@@ -1,0 +1,12 @@
+Student ID:  q1516941 
+ Last Name: Xu 
+ First Name: Lujing 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    2.06                 2.06                 1                   
+2                    0.006                0.006                1                   
+3                    0.945                0.945                1                   
+4                    0.048                0.048                1                   
+                                                                                   
+Total score =  4 / 4                                                               

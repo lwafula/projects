@@ -1,0 +1,12 @@
+Student ID:  q1408512 
+ Last Name: Joachum 
+ First Name: Jitse 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    50184.93             50184.929            1                   
+2                    3.371                3.371                1                   
+3                    2                    2                    1                   
+4                    0.00000968           0                    1                   
+                                                                                   
+Total score =  4 / 4                                                               

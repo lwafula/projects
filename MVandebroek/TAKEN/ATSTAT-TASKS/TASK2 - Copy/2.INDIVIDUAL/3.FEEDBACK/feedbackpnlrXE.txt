@@ -1,0 +1,12 @@
+Student ID:  q1270832 
+ Last Name: Ibrahim 
+ First Name: Fahad 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         86046.053            0                   
+2                                         51.373               0                   
+3                                         0                    0                   
+4                                         0.042                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1382037 
+ Last Name: Debaveye 
+ First Name: Arnaud 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         84440.544            0                   
+2                                         0.023                0                   
+3                                         0.017                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

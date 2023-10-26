@@ -1,0 +1,12 @@
+Student ID:  q1381386 
+ Last Name: Van Oosterwyck 
+ First Name: Reine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    48761.48             48761.484            1                   
+2                    0.064                0.064                1                   
+3                    0.001                0.001                1                   
+4                    0.002                0.002                1                   
+                                                                                   
+Total score =  4 / 4                                                               

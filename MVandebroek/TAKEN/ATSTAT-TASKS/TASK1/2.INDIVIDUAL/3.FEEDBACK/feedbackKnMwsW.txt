@@ -1,0 +1,12 @@
+Student ID:  q1314986 
+ Last Name: Vangeneugden 
+ First Name: Jeroen 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    41968.726            41968.726            1                   
+2                    0.026                0.026                1                   
+3                    0.781                0.781                1                   
+4                    0.134                0                    0                   
+                                                                                   
+Total score =  3 / 4                                                               

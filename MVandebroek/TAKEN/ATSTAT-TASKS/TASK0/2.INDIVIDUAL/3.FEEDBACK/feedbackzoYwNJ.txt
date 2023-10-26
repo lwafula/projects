@@ -1,0 +1,12 @@
+Student ID:  q1415243 
+ Last Name: Bérard 
+ First Name: Romain 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    1.152                1.152                1                   
+2                    0.096                0.096                1                   
+3                    0.934                0.934                1                   
+4                    0.02                 0.02                 1                   
+                                                                                   
+Total score =  4 / 4                                                               

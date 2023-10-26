@@ -1,0 +1,12 @@
+Student ID:  q1456891 
+ Last Name: Verhamme 
+ First Name: Lukas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         44163.947            0                   
+2                                         22.991               0                   
+3                                         0                    0                   
+4                                         0.11                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

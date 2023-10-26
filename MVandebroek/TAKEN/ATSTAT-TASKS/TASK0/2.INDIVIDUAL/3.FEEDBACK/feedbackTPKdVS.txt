@@ -1,0 +1,12 @@
+Student ID:  q1229911 
+ Last Name: Van Rompaey 
+ First Name: Nils 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    1.241                1.241                1                   
+2                    0.347                0.328                0                   
+3                    0.999                0.943                0                   
+4                    1.51                 0.055                0                   
+                                                                                   
+Total score =  1 / 4                                                               

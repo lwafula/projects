@@ -1,0 +1,12 @@
+Student ID:  q1426862 
+ Last Name: Vanbergen 
+ First Name: Jan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    79561.78             79561.778            1                   
+2                    0.104                2.188                0                   
+3                    0.009                0.009                1                   
+4                    0.018                0.018                1                   
+                                                                                   
+Total score =  3 / 4                                                               

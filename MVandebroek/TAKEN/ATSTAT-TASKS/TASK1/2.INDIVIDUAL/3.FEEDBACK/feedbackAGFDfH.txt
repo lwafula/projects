@@ -1,0 +1,12 @@
+Student ID:  q1313595 
+ Last Name: Vyncke 
+ First Name: Andreas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    39906.94             39906.936            1                   
+2                    0.02                 0.025                0                   
+3                    0.227                0.227                1                   
+4                    0.0000000001184      0                    1                   
+                                                                                   
+Total score =  3 / 4                                                               

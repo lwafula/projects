@@ -1,0 +1,12 @@
+Student ID:  q1371150 
+ Last Name: Verstraeten 
+ First Name: Matthias 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0                    1.403                0                   
+2                    0                    0.88                 0                   
+3                    0                    0.931                0                   
+4                    0                    0.072                0                   
+                                                                                   
+Total score =  0 / 4                                                               

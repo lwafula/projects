@@ -1,0 +1,12 @@
+Student ID:  q1521055 
+ Last Name: Hertoghe 
+ First Name: Orhiane 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         84654.053            0                   
+2                                         113.698              0                   
+3                                         0.382                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

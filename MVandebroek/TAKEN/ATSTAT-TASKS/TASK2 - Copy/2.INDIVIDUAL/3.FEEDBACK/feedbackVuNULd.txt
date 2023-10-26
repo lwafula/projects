@@ -1,0 +1,12 @@
+Student ID:  q1383445 
+ Last Name: Beukeleirs 
+ First Name: Lyssa 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         85721.528            0                   
+2                                         1.056                0                   
+3                                         3                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

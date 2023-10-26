@@ -1,0 +1,12 @@
+Student ID:  q1374746 
+ Last Name: Valgaeren 
+ First Name: Tom 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.39                 0                   
+2                                         0.218                0                   
+3                                         0.529                0                   
+4                                         0.022                0                   
+                                                                                   
+Total score =  0 / 4                                                               

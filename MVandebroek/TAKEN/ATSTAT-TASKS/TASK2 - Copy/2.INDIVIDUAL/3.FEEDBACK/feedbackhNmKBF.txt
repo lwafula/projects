@@ -1,0 +1,12 @@
+Student ID:  q1698138 
+ Last Name: Obermeier 
+ First Name: Simon Jonas Peter 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         76640.68             0                   
+2                                         0.022                0                   
+3                                         0.047                0                   
+4                                         0.005                0                   
+                                                                                   
+Total score =  0 / 4                                                               

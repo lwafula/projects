@@ -1,0 +1,12 @@
+Student ID:  q1379576 
+ Last Name: Rasson 
+ First Name: Sarah 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.1                  0.565                0                   
+2                    2.39                 0.136                0                   
+3                    5.617                0.921                0                   
+4                    7.981                0.03                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

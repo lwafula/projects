@@ -1,0 +1,12 @@
+Student ID:  q1381312 
+ Last Name: Vanheyst 
+ First Name: Sander 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         74133.163            0                   
+2                                         0.024                0                   
+3                                         0.004                0                   
+4                                         0.001                0                   
+                                                                                   
+Total score =  0 / 4                                                               

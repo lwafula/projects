@@ -1,0 +1,12 @@
+Student ID:  q1349191 
+ Last Name: Cruyt 
+ First Name: Nigella 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    82581.78             82581.784            1                   
+2                    0.01                 9.68                 0.25                   
+3                    0.236                0.236                1                   
+4                    0.000005618          0                    1                   
+                                                                                   
+Total score =  3.25 / 4                                                               

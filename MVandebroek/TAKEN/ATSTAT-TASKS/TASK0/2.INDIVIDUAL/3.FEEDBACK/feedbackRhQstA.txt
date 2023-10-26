@@ -1,0 +1,12 @@
+Student ID:  q1393681 
+ Last Name: Van Hees 
+ First Name: Alix 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.424                1.154                0                   
+2                    0                    0.238                0                   
+3                    0.818                0.607                0                   
+4                    0.021                0.041                0                   
+                                                                                   
+Total score =  0 / 4                                                               

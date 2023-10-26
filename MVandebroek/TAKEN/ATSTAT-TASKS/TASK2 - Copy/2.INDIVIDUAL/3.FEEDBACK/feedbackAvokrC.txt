@@ -1,0 +1,12 @@
+Student ID:  q1439613 
+ Last Name: Dobbels 
+ First Name: Christophe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         77900.464            0                   
+2                                         6.127                0                   
+3                                         1                    0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1427375 
+ Last Name: Soenen 
+ First Name: Ian 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    76250.94             76250.94             1                   
+2                    0                    0.262                0                   
+3                    0.874                0.874                1                   
+4                    0.00001044           0                    1                   
+                                                                                   
+Total score =  3 / 4                                                               

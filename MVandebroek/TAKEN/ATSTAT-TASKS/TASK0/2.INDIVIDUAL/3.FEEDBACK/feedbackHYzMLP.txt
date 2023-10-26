@@ -1,0 +1,12 @@
+Student ID:  q1383877 
+ Last Name: Van Rompaey 
+ First Name: Jonas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.504                0                   
+2                                         0.816                0                   
+3                                         0.858                0                   
+4                                         0.031                0                   
+                                                                                   
+Total score =  0 / 4                                                               

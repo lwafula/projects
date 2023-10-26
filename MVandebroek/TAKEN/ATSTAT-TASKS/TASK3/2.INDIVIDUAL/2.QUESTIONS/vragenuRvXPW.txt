@@ -1,0 +1,16 @@
+Cursist ID:  q1283721 
+
+ Gebruik de data in https://feb.kuleuven.be/public/u0118298/TASK3/1.DATA/datauRvXPW.txt 
+ De vragen voor deze taak staan hieronder vermeld. 
+
+
+ V1: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabelen "Gender" en "Employed" (met interactie term). Bereken het prediction interval voor Gender = M, Employed = 30. Geef de upperbound van dit interval. 
+
+ V2: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhankelijke variabele "Employed". Geef de hat-value van observatie 20. 
+
+ V3: Voer een one-way ANOVA uit met responsvariabele "Salary" en factor "Department". Test nadien alle paarsgewijze contrasten met de Tukey methode. Geef de p-waarde van het contrast "Department 3 - Department 2". 
+
+ V4: Voer een regressie uit met als afhankelijke variabele "Salary" en onafhenkelijke variable "Employed", "Gender", en "Department". Is er een verschil in de "Salary" per "Department" als wordt gecontroleerd voor "Employed" en "Gender"? Geef de p-waarde op die hoort bij de Type II SS voor "Department". 
+
+
+ Vergeet kommagetallen niet af te ronden op 3 decimalen.

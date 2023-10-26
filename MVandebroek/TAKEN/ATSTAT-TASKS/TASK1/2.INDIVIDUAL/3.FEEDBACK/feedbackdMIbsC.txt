@@ -1,0 +1,12 @@
+Student ID:  q1380520 
+ Last Name: Herman 
+ First Name: Arne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    50821.26             50821.256            1                   
+2                    0.022                0.022                1                   
+3                    0.807                0.807                1                   
+4                    0.166                0.166                1                   
+                                                                                   
+Total score =  4 / 4                                                               

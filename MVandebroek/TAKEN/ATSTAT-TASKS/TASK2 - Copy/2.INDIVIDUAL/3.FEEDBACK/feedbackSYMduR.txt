@@ -1,0 +1,12 @@
+Student ID:  q1346626 
+ Last Name: Timmermans 
+ First Name: Simon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         84461.089            0                   
+2                                         0.023                0                   
+3                                         0.212                0                   
+4                                         0.018                0                   
+                                                                                   
+Total score =  0 / 4                                                               

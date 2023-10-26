@@ -1,0 +1,12 @@
+Student ID:  q1392153 
+ Last Name: Vandelanotte 
+ First Name: Ruben 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         78000.283            0                   
+2                                         11.868               0                   
+3                                         0                    0                   
+4                                         0.134                0                   
+                                                                                   
+Total score =  0 / 4                                                               

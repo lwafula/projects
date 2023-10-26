@@ -1,0 +1,12 @@
+Student ID:  q1381884 
+ Last Name: Vos 
+ First Name: Elise 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         70763.16             0                   
+2                                         0.023                0                   
+3                                         0.991                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

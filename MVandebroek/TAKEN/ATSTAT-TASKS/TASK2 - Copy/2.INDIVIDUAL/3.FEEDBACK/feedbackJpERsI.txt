@@ -1,0 +1,12 @@
+Student ID:  q1283721 
+ Last Name: Bral 
+ First Name: Charlotte 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         76800.77             0                   
+2                                         0.022                0                   
+3                                         0.674                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

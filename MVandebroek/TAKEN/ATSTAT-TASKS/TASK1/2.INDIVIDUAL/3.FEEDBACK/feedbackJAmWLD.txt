@@ -1,0 +1,12 @@
+Student ID:  q1445403 
+ Last Name: Bruggheman 
+ First Name: Arne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    80121.7              80121.701            1                   
+2                    145                  144.549              0.75                   
+3                    2                    2                    1                   
+4                    0.003                0.003                1                   
+                                                                                   
+Total score =  3.75 / 4                                                               

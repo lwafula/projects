@@ -1,0 +1,12 @@
+Student ID:  q1310669 
+ Last Name: Verstappen 
+ First Name: Tijs 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    56626.07             48052.663            0                   
+2                    0.329                0.329                1                   
+3                    0                    2                    0                   
+4                    0                    0                    1                   
+                                                                                   
+Total score =  2 / 4                                                               

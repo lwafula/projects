@@ -1,0 +1,12 @@
+Student ID:  q1381583 
+ Last Name: Sobry 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         41714.245            0                   
+2                                         0.02                 0                   
+3                                         0.001                0                   
+4                                         0                    0                   
+                                                                                   
+Total score =  0 / 4                                                               

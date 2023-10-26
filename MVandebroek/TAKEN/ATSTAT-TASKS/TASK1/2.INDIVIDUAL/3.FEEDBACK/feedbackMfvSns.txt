@@ -1,0 +1,12 @@
+Student ID:  q1241712 
+ Last Name: D'Hondt 
+ First Name: Nathan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    84329.01             79293.055            0                   
+2                    0.009                1.886                0                   
+3                    0.961                0.961                1                   
+4                    0.017                0.017                1                   
+                                                                                   
+Total score =  2 / 4                                                               

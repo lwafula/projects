@@ -1,0 +1,12 @@
+Student ID:  q1418628 
+ Last Name: Langedock 
+ First Name: Merijn 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    77388.738            77388.738            1                   
+2                    0.021                0.021                1                   
+3                    1                    1                    1                   
+4                    0.003                0.003                1                   
+                                                                                   
+Total score =  4 / 4                                                               

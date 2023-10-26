@@ -1,0 +1,12 @@
+Student ID:  q1666820 
+ Last Name: Elhan 
+ First Name: Utku 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         51225.737            0                   
+2                                         40.501               0                   
+3                                         0.027                0                   
+4                                         0.007                0                   
+                                                                                   
+Total score =  0 / 4                                                               

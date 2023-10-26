@@ -1,0 +1,12 @@
+Student ID:  q1371123 
+ Last Name: Brusselle 
+ First Name: Mathias 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    56502.396            37354.916            0                   
+2                    0.05                 0.05                 1                   
+3                    0                    1                    0                   
+4                    0.87                 0.042                0                   
+                                                                                   
+Total score =  1 / 4                                                               

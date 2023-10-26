@@ -1,0 +1,12 @@
+Student ID:  q1546353 
+ Last Name: Hsu 
+ First Name: Zhe-Rong 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    50982.33             45865.547            0                   
+2                    2.222                2.222                1                   
+3                    0.966                0.966                1                   
+4                                         0                    0                   
+                                                                                   
+Total score =  2 / 4                                                               
