@@ -1,0 +1,12 @@
+Student ID:  q1277736 
+ Last Name: Lipperts 
+ First Name: Roeland 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    99.253               99.253               1                   
+2                    21.83                0.792                0                   
+3                    -0.933               -2.177               0                   
+4                    2.406                1.308                0                   
+                                                                                   
+Total score =  1 / 4                                                               

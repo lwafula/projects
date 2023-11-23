@@ -1,0 +1,12 @@
+Student ID:  q1381753 
+ Last Name: Pillen 
+ First Name: Rachelle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    104.434              104.434              1                   
+2                    0.25                 -2.524               0                   
+3                                         -2.05                0                   
+4                                         0.699                0                   
+                                                                                   
+Total score =  1 / 4                                                               

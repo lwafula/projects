@@ -1,0 +1,12 @@
+Student ID:  q1464010 
+ Last Name: Moens 
+ First Name: Gabrielle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    103.72               103.716              1                   
+2                    1.247                -2.401               0                   
+3                    -2.69                -2.688               1                   
+4                    2.331                2.331                1                   
+                                                                                   
+Total score =  3 / 4                                                               

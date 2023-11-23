@@ -1,0 +1,12 @@
+Student ID:  q1664193 
+ Last Name: Sánchez Henao 
+ First Name: Andreas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    279                  101.724              0                   
+2                    0.193                3.483                0                   
+3                    0.14                 -3.505               0                   
+4                    0.402                0.708                0                   
+                                                                                   
+Total score =  0 / 4                                                               

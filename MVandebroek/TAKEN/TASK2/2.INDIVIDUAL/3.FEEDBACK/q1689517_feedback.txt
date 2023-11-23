@@ -1,0 +1,12 @@
+Student ID:  q1689517 
+ Last Name: Chung Ya Chi 
+ First Name: XXX 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -1.611               0                   
+2                    -1.235               -1.258               0.25                   
+3                    0.329                -2.487               0                   
+4                    5.456                0.171                0                   
+                                                                                   
+Total score =  0.25 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1229992 
+ Last Name: Aerden 
+ First Name: Seppe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         103.373              0                   
+2                                         3.198                0                   
+3                                         -3.553               0                   
+4                                         2.197                0                   
+                                                                                   
+Total score =  0 / 4                                                               

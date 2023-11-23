@@ -1,0 +1,12 @@
+Student ID:  q1689440 
+ Last Name: Van der Heyden 
+ First Name: Sebastien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    1.548                -1.558               0                   
+2                    0.258                -1.233               0                   
+3                    -3.754               -3.754               1                   
+4                    0                    0.999                0                   
+                                                                                   
+Total score =  1 / 4                                                               

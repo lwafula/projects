@@ -1,0 +1,12 @@
+Student ID:  q1596453 
+ Last Name: Iosifides 
+ First Name: Diana 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    103.12               103.125              1                   
+2                    1.78                 -1.78                0.75                   
+3                    0.023                -3.28                0                   
+4                    5.779                4.74                 0                   
+                                                                                   
+Total score =  1.75 / 4                                                               

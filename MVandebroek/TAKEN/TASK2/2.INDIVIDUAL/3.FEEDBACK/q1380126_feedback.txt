@@ -1,0 +1,12 @@
+Student ID:  q1380126 
+ Last Name: Andries 
+ First Name: Robin 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    96.577               96.577               1                   
+2                    37.307               2.434                0                   
+3                    -2.6                 -2.598               1                   
+4                    0.712                0.712                1                   
+                                                                                   
+Total score =  3 / 4                                                               

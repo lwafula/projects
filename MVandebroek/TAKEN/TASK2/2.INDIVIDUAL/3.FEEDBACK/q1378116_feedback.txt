@@ -1,0 +1,12 @@
+Student ID:  q1378116 
+ Last Name: Van der Velpen 
+ First Name: Elien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    276.97               95.967               0                   
+2                    26.238               4.947                0                   
+3                    -1.08                -1.078               1                   
+4                    0.844                0.844                1                   
+                                                                                   
+Total score =  2 / 4                                                               

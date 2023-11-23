@@ -1,0 +1,12 @@
+Student ID:  q1400456 
+ Last Name: Van Eyck 
+ First Name: Floor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    102.81               102.805              1                   
+2                    0.441                0.441                1                   
+3                    -3.565               -4.946               0                   
+4                    0.011                0.081                0                   
+                                                                                   
+Total score =  2 / 4                                                               

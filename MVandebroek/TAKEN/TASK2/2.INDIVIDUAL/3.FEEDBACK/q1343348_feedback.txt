@@ -1,0 +1,12 @@
+Student ID:  q1343348 
+ Last Name: Dewulf 
+ First Name: Hannah 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.136                -1.501               0.25                   
+2                    0.142                -1.469               0                   
+3                    -1.56                -1.555               1                   
+4                    0.16                 0.16                 1                   
+                                                                                   
+Total score =  2.25 / 4                                                               

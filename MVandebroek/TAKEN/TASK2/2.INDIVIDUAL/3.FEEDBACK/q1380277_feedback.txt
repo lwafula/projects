@@ -1,0 +1,12 @@
+Student ID:  q1380277 
+ Last Name: Jaourat 
+ First Name: Jawad 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    92.639               92.639               1                   
+2                    4.005                4.005                1                   
+3                    -0.804               -0.804               1                   
+4                    0.439                0.439                1                   
+                                                                                   
+Total score =  4 / 4                                                               

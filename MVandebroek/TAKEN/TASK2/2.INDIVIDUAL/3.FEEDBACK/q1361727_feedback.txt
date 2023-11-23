@@ -1,0 +1,12 @@
+Student ID:  q1361727 
+ Last Name: Drieskens 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         99.873               0                   
+2                                         1.854                0                   
+3                                         -1.597               0                   
+4                                         0.694                0                   
+                                                                                   
+Total score =  0 / 4                                                               

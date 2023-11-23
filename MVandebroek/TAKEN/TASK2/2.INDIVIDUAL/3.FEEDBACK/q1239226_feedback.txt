@@ -1,0 +1,12 @@
+Student ID:  q1239226 
+ Last Name: Vandenbussche 
+ First Name: Ruben 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         102.827              0                   
+2                                         1.116                0                   
+3                                         -1.35                0                   
+4                                         2.517                0                   
+                                                                                   
+Total score =  0 / 4                                                               

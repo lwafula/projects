@@ -1,0 +1,12 @@
+Student ID:  q1438109 
+ Last Name: Hertoghe 
+ First Name: Penelope 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    266.47               101.606              0                   
+2                    -1.365               -1.361               0.25                   
+3                    -0.933               -0.969               0                   
+4                    0                    0.599                0                   
+                                                                                   
+Total score =  0.25 / 4                                                               

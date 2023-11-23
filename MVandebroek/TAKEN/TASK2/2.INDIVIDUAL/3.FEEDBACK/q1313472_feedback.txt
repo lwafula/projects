@@ -1,0 +1,12 @@
+Student ID:  q1313472 
+ Last Name: De Bondt 
+ First Name: Marith 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -2.413               0                   
+2                                         5.211                0                   
+3                                         -1.415               0                   
+4                                         0.276                0                   
+                                                                                   
+Total score =  0 / 4                                                               

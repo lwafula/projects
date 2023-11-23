@@ -1,0 +1,12 @@
+Student ID:  q1392158 
+ Last Name: Bauwens 
+ First Name: Matiz 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    97.158               97.158               1                   
+2                    2.269                2.268                1                   
+3                    -0.945               -0.945               1                   
+4                    0.257                0.257                1                   
+                                                                                   
+Total score =  4 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1232840 
+ Last Name: Baart 
+ First Name: Tim 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -2.263               0                   
+2                                         3.175                0                   
+3                                         -3.561               0                   
+4                                         0.342                0                   
+                                                                                   
+Total score =  0 / 4                                                               

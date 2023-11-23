@@ -1,0 +1,12 @@
+Student ID:  q1696366 
+ Last Name: Sallai 
+ First Name: Réka 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         102.724              0                   
+2                                         -2.055               0                   
+3                                         -1.23                0                   
+4                                         0.289                0                   
+                                                                                   
+Total score =  0 / 4                                                               

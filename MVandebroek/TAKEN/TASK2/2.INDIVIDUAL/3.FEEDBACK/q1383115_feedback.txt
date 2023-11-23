@@ -1,0 +1,12 @@
+Student ID:  q1383115 
+ Last Name: Schoenaers 
+ First Name: Julien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -2.068               0                   
+2                                         -0.978               0                   
+3                                         -1.803               0                   
+4                                         4.345                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+TASK 2 ISSUES: student responses vs solutions
+
+Auguy Demeestere| Nathan Munteanu|Sallai - submitted nothing!
+Liu Wei|Lombardi still has scientific format in Q4! actually no, s/he answered 0.039 but excel picked it as 3.9E-2
+
+Charlotte De Witte 105.61 vs 105.613
+Lion Anne-Eline 102.54 vs 102.544
+David Henri -1.851 vs -1.863
+Schoofs Lucas 104.96 vs 104.965
+Vanbergen Jan -1.01 vs -1.096
+Ozdemir Irmak 111.74 vs 111.742
+Iosifides Diana 1.78 vs -1.78

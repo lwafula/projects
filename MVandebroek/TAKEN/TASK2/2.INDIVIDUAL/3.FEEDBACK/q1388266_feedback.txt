@@ -1,0 +1,12 @@
+Student ID:  q1388266 
+ Last Name: Mellaerts 
+ First Name: Mirthe 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -6.015               -0.988               0                   
+2                    0                    -1.297               0                   
+3                    -2.381               -2.585               0                   
+4                    0.029                0.896                0                   
+                                                                                   
+Total score =  0 / 4                                                               

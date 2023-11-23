@@ -1,0 +1,12 @@
+Student ID:  q1375124 
+ Last Name: Van der Meersch 
+ First Name: Hanne 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    271.29               -1.867               0                   
+2                    -2.461               1.084                0                   
+3                    -1.118               -1.118               1                   
+4                    0.101                0.101                1                   
+                                                                                   
+Total score =  2 / 4                                                               

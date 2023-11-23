@@ -1,0 +1,12 @@
+Student ID:  q1544574 
+ Last Name: Fernandez 
+ First Name: Simon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -1.444               0                   
+2                                         -1.335               0                   
+3                                         -0.869               0                   
+4                                         0.039                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1387566 
+ Last Name: Goossens 
+ First Name: Lynn 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.871               -1.871               1                   
+2                    -1.469               -1.469               1                   
+3                    -3.056               -3.056               1                   
+4                    0.761                0.761                1                   
+                                                                                   
+Total score =  4 / 4                                                               

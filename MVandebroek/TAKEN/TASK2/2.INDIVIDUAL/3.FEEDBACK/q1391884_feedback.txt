@@ -1,0 +1,12 @@
+Student ID:  q1391884 
+ Last Name: Norman 
+ First Name: Tommy 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    2.471                -2.471               0.75                   
+2                    1.986                1.986                1                   
+3                    -2.34                -2.336               1                   
+4                    8.802                8.802                1                   
+                                                                                   
+Total score =  3.75 / 4                                                               

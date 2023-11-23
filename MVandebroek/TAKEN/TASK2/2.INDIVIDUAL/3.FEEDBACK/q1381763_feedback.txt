@@ -1,0 +1,12 @@
+Student ID:  q1381763 
+ Last Name: Verhaegen 
+ First Name: Johan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.285               -2.301               0                   
+2                    1.425                1.425                1                   
+3                    -1.69                -1.69                1                   
+4                    0                    0.179                0                   
+                                                                                   
+Total score =  2 / 4                                                               

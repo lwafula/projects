@@ -1,0 +1,12 @@
+Student ID:  q1236343 
+ Last Name: Broux 
+ First Name: Tom 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    93.076               93.076               1                   
+2                    0.1133               2.508                0                   
+3                    0.436                -2.324               0                   
+4                    0.0479               0.906                0                   
+                                                                                   
+Total score =  1 / 4                                                               

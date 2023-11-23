@@ -1,0 +1,12 @@
+Student ID:  q1442714 
+ Last Name: Van De Velde 
+ First Name: Arnaud 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    259.581              90.539               0                   
+2                    -1.982               -1.975               0                   
+3                    -1.278               -1.278               1                   
+4                    1.235                0.295                0                   
+                                                                                   
+Total score =  1 / 4                                                               

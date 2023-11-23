@@ -1,0 +1,12 @@
+Student ID:  q1379658 
+ Last Name: Demeyere 
+ First Name: Joachim 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -1.821               0                   
+2                                         -1.279               0                   
+3                                         -2.106               0                   
+4                                         0.032                0                   
+                                                                                   
+Total score =  0 / 4                                                               
