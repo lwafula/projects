@@ -1,0 +1,12 @@
+Student ID:  q1401433 
+ Last Name: Coppens 
+ First Name: Jules 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         21                   0                   
+2                                         12.461               0                   
+3                                         88.7                 0                   
+4                                         0.037                0                   
+                                                                                   
+Total score =  0 / 4                                                               

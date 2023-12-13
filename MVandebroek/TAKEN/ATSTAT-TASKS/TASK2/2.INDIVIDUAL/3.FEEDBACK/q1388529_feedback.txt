@@ -1,0 +1,12 @@
+Student ID:  q1388529 
+ Last Name: El Metni 
+ First Name: Rayane 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    92.501               92.501               1                   
+2                    0.874                0.874                1                   
+3                    -1.55                -1.553               1                   
+4                    1.654                1.654                1                   
+                                                                                   
+Total score =  4 / 4                                                               

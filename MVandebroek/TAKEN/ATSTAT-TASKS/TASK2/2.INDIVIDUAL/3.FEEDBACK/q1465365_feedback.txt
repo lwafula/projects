@@ -1,0 +1,12 @@
+Student ID:  q1465365 
+ Last Name: Ben Jaballah 
+ First Name: Siwar 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1910                -1.923               0.25                   
+2                    0                    2.826                0                   
+3                    2345                 -1.054               0                   
+4                    2345                 0.333                0                   
+                                                                                   
+Total score =  0.25 / 4                                                               

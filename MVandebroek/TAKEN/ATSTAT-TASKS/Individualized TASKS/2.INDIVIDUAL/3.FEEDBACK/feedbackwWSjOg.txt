@@ -1,0 +1,12 @@
+Student ID:  q0357526 
+ Last Name: Luwel 
+ First Name: Koen 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    125                  125                  1                   
+2                    8                    8                    1                   
+3                    23                   23                   1                   
+4                    12                   12                   1                   
+                                                                                   
+Total score =  4 / 4                                                               

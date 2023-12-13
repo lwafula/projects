@@ -1,0 +1,12 @@
+Student ID:  q1391974 
+ Last Name: Corneillie 
+ First Name: Amber 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    20                   20                   1                   
+2                    8.641                12.127               0                   
+3                    86.929               86.52                0                   
+4                    0.342                0.342                1                   
+                                                                                   
+Total score =  2 / 4                                                               

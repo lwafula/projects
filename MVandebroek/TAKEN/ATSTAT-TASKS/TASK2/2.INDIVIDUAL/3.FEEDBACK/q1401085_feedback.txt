@@ -1,0 +1,12 @@
+Student ID:  q1401085 
+ Last Name: Ingels 
+ First Name: Juliette 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    114.61               114.609              1                   
+2                    -1.552               -1.568               0                   
+3                    -1.19                -1.187               1                   
+4                    0.16                 0.16                 1                   
+                                                                                   
+Total score =  3 / 4                                                               

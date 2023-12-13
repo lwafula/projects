@@ -1,0 +1,16 @@
+Reageer alleen met een numerieke waarde. Vermijd wetenschappelijke notatie. Als het resultaat groter is dan 1000, rondt u de waarde af op nul decimalen. Als het resultaat kleiner is dan 1000, geef het getal dan afgerond op drie decimalen en gebruik een punt (.) als decimaal scheidingsteken.
+----------------------------------------------------------------
+                                                            
+Dataset1 bevat informatie over de jaaromzet (REVENUE) van verschillende bedrijven gedurende een aantal jaren, evenals hun uitgaven aan Research en Development (RnDEXPEND) en de leeftijd van het bedrijf (COMPANYAGE).
+----------------------------------------------------------------
+Vraag 1: Gebruik voor deze vraag enkel de gegevens van het jaar 1999. Schat een regressiemodel dat REVENUE verklaart aan de hand van COMPANYAGE en gebruik de robuuste schatter voor de variantie-covariantiematrix die bekomen wordt met de methode van White. Geef de waarde van de t-statistiek voor de significantie van de parameter van COMPANYAGE.
+                                                            
+Vraag 2: Gebruik voor deze vraag al de gegevens in dataset1. Schat een fixed effects panel model om na te gaan wat het effect is van COMPANYAGE op REVENUE. Geef de waarde van de teststatistiek bij COMPANYAGE waarbij gebruik gemaakt wordt van de cluster-corrected covariantiematrix.
+                                                            
+                                                            
+Dataset2 bevat een tijdreeks met de inflatiegegevens (Inflation) van een bepaald land.
+----------------------------------------------------------------
+Vraag 3: Voer een Augmented Dickey Fuller test uit op de tijdreeks in dataset2. Geef de teststatistiek voor de test met 3 extra lags voor een model zonder drift of trend.
+                                                            
+Vraag 4: Modelleer de inflatie als een lineaire functie van de tijd en de inflatie in de vorige 2 perioden. Geef de waarde van de teststatiek van de test op autocorrelatie in de foutentermen.
+                                                            

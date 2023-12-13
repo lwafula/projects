@@ -1,0 +1,12 @@
+Student ID:  q1324821 
+ Last Name: Dierick 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         12                   0                   
+2                                         11.929               0                   
+3                                         -41.114              0                   
+4                                         0.429                0                   
+                                                                                   
+Total score =  0 / 4                                                               

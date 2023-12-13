@@ -1,0 +1,12 @@
+Student ID:  q1382013 
+ Last Name: Vandenhoudt 
+ First Name: Astor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    11.154               11.154               1                   
+3                    -37.259              -38.373              0                   
+4                    0.3                  0.233                0                   
+                                                                                   
+Total score =  2 / 4                                                               

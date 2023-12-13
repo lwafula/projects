@@ -1,0 +1,12 @@
+Student ID:  q1383665 
+ Last Name: Demuynck 
+ First Name: Victor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    13                   14                   0                   
+2                    6.84                 11.011               0                   
+3                    89.535               89.54                1                   
+4                    0.5787               0.579                1                   
+                                                                                   
+Total score =  2 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1401343 
+ Last Name: Van Dorpe 
+ First Name: Ide 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    0                    5.301                0                   
+3                    -46.56               -46.559              1                   
+4                    0.488                0.488                1                   
+                                                                                   
+Total score =  3 / 4                                                               

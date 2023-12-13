@@ -1,0 +1,12 @@
+Student ID:  q1570527 
+ Last Name: Li 
+ First Name: Yining 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         17                   0                   
+2                                         5.361                0                   
+3                                         -38.629              0                   
+4                                         0.28                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

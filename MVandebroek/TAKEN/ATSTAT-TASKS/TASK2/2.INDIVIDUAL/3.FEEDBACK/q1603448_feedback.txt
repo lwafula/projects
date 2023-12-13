@@ -1,0 +1,12 @@
+Student ID:  q1603448 
+ Last Name: Dikranian 
+ First Name: Louise 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    102.82               102.817              1                   
+2                    -1.102               -1.11                0                   
+3                    -3.54                -3.538               1                   
+4                    2.215                0.012                0                   
+                                                                                   
+Total score =  2 / 4                                                               

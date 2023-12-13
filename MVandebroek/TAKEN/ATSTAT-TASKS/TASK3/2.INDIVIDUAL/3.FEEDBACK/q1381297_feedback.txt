@@ -1,0 +1,12 @@
+Student ID:  q1381297 
+ Last Name: 'T Kindt 
+ First Name: Maxime 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    15                   13                   0                   
+2                    7.07                 6.217                0                   
+3                    98.967               98.97                1                   
+4                    0.544                0.621                0                   
+                                                                                   
+Total score =  1 / 4                                                               

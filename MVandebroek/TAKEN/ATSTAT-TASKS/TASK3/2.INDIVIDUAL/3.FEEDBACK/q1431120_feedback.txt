@@ -1,0 +1,12 @@
+Student ID:  q1431120 
+ Last Name: Van de Meersch 
+ First Name: Stephania 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         20                   0                   
+2                                         11.003               0                   
+3                                         85.4                 0                   
+4                                         0.677                0                   
+                                                                                   
+Total score =  0 / 4                                                               

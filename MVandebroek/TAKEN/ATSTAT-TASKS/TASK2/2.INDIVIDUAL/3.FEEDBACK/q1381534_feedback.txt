@@ -1,0 +1,12 @@
+Student ID:  q1381534 
+ Last Name: Smolders 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    104.915              105.622              0                   
+2                    1.936                1.936                1                   
+3                    7.321                -2.331               0                   
+4                    1.667                2.698                0                   
+                                                                                   
+Total score =  1 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1692171 
+ Last Name: Contini 
+ First Name: Gabriel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         99.752               0                   
+2                                         1.762                0                   
+3                                         -2.928               0                   
+4                                         0.411                0                   
+                                                                                   
+Total score =  0 / 4                                                               

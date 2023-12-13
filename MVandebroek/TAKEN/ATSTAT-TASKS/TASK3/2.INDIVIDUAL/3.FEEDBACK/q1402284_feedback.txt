@@ -1,0 +1,12 @@
+Student ID:  q1402284 
+ Last Name: Meylemans 
+ First Name: Kjetil 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    13                   13                   1                   
+2                    5.398                5.398                1                   
+3                    -38.96               -38.955              1                   
+4                    0.31                 0.31                 1                   
+                                                                                   
+Total score =  4 / 4                                                               

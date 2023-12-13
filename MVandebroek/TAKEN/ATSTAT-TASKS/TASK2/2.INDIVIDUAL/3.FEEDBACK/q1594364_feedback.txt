@@ -1,0 +1,12 @@
+Student ID:  q1594364 
+ Last Name: Liubomschii 
+ First Name: Gleb 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    96.163               101.669              0                   
+2                    0.002                -1.489               0                   
+3                    -4.058               -4.027               0.25                   
+4                    0.625                0.431                0                   
+                                                                                   
+Total score =  0.25 / 4                                                               

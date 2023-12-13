@@ -1,0 +1,12 @@
+Student ID:  q1388162 
+ Last Name: Mintjens 
+ First Name: Kara 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    5.075                5.075                1                   
+3                    -37.651              -37.651              1                   
+4                    0.408                0.408                1                   
+                                                                                   
+Total score =  4 / 4                                                               

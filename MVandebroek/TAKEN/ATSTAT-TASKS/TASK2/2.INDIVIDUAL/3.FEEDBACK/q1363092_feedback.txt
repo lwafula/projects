@@ -1,0 +1,12 @@
+Student ID:  q1363092 
+ Last Name: Denijs 
+ First Name: Jean-Baptiste 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    263.34               109.716              0                   
+2                    -1.163               -1.163               1                   
+3                    -2.07                -2.066               1                   
+4                    0.907                0.907                1                   
+                                                                                   
+Total score =  3 / 4                                                               

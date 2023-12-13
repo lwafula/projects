@@ -1,0 +1,12 @@
+Student ID:  q1444310 
+ Last Name: Oversteyns 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    79.778               79.778               1                   
+2                    1.861                -1.719               0                   
+3                    -0.597               -0.515               0                   
+4                    4.768                4.769                1                   
+                                                                                   
+Total score =  2 / 4                                                               

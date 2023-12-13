@@ -1,0 +1,12 @@
+Student ID:  q1345454 
+ Last Name: Vrancken 
+ First Name: Castor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    101.12               101.121              1                   
+2                    2.102                2.102                1                   
+3                    -3.258               -3.258               1                   
+4                    0.969                0.756                0                   
+                                                                                   
+Total score =  3 / 4                                                               

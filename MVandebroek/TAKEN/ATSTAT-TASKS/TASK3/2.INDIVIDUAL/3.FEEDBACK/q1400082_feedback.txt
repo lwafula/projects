@@ -1,0 +1,12 @@
+Student ID:  q1400082 
+ Last Name: Dumon 
+ First Name: Myra 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    9.778                9.778                1                   
+3                    -41.723              -41.723              1                   
+4                    0.542                0.542                1                   
+                                                                                   
+Total score =  4 / 4                                                               

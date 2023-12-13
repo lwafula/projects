@@ -1,0 +1,12 @@
+Student ID:  q1326679 
+ Last Name: Denys 
+ First Name: Jan-Willem 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    12                   12                   1                   
+2                    5.188                5.188                1                   
+3                    -30.559              -38.298              0                   
+4                    0.094                0.094                1                   
+                                                                                   
+Total score =  3 / 4                                                               

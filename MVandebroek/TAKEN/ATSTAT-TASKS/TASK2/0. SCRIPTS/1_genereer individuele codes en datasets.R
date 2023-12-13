@@ -12,15 +12,18 @@ rm(list = ls())
 library(readxl)
 library(openxlsx)
 library(dplyr)
+library(tidyverse)
+library(data.table)
+library(gdata)
 
 # personID
 personID = "u0118298"
 
 setwd(paste0("C:\\Users\\",personID,"\\OneDrive - KU Leuven\\ATSTAT-TASKS\\TASK2"))
 
+#set seed for replicability
 
-#set seed 
-set.seed(22221)
+set.seed(22231)
 
 #Read in Q-numbers 
 olduser_info <- read.csv("1.FILES\\olduser_info_TASK2.csv")
@@ -34,7 +37,8 @@ user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", al
 
 #settings > GENEREER ALIASSEN VOOR DE STUDENTENNUMMERS en voeg group toe
 I <- nrow(user_info)
-N <- 50 #dataset size
+N <- 150 #dataset size
+
 df <- data.frame(
   passwd = replicate(I, paste(sample(c(LETTERS, letters), 6), collapse="")))
 
@@ -44,71 +48,62 @@ write.xlsx(user_info,"1.FILES\\user_info with coding_TASK2.xlsx")
 
 
 #------------------------------------------------------------------
-###genereer algemene dataset voor regressie vragen. 
-#set seed for replicability
-set.seed(22231)
 
-data <- read_xlsx("1.FILES\\salary_data.xlsx", 1)
+# company expenditures on social responsibility activities as a function of their revenue and tax grants they get from the government
+# years: 1985 - 1993: firm performance (income) on their RnD + tax breaks/marketing/age
+# some nice variables here: https://www.emerald.com/insight/content/doi/10.1108/CG-03-2022-0128/full/pdf (Prowess IQ database)
 
-#clean and add observations to global data file 
-newdata1 <- data
-newdata2 <- data
-newdata3<- data
-newdata4 <- data
+beta <- c(3.86, -0.31) # +ve RnD, -ve measure of age 
+Nc = 265 # number of companies
+cols2format = c('RnDEXPEND', 'COMPANYAGE')
+std_fn <- function(x) (x - min(x))/(max(x) - min(x)) + 0.01
 
-newdata1[newdata1$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 500, 2000)
-newdata1[newdata1$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 1000, 2000)
-newdata1[newdata1$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, -50, 2000)
-newdata1[newdata1$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 5000, 2000)
-
-newdata2[newdata2$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 100, 250)
-newdata2[newdata2$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 1000, 2000)
-newdata2[newdata2$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 50, 200)
-newdata2[newdata2$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 250, 20)
-
-newdata3[newdata3$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 3500, 1000)
-newdata3[newdata3$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 100, 100)
-newdata3[newdata3$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 0, 200)
-newdata3[newdata3$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 500, 200)
+data1 = cbind(ID = sort(rep(1:Nc, 9))) |> as.data.table() %>% 
+  .[, `:=`(YEAR = 1994:2002), by = ID] %>% group_by(ID) |> mutate(n = 1:n()) |>
+  mutate("COMPANYAGE" = ifelse(n == 1, sample(seq(1, 15, 0.25), 1), 0)) |>
+  mutate("COMPANYAGE" = ifelse(n > 1, `COMPANYAGE`[n==1] + (n-1), `COMPANYAGE`)) |>
+  dplyr::select(-n) |> as.data.table() %>%
+  .[, `:=`('RnDEXPEND' = exp(rlnorm(1, 0, 0.1))), by = .(ID, YEAR)] %>%
+  mutate(across(all_of(cols2format), ~ std_fn(.))) |> rowwise() |>
+  mutate(REVENUE = beta[1]*RnDEXPEND + beta[2]*COMPANYAGE + rnorm(1, 3, 0.01))
 
 
-data <- rbind(data, newdata1, newdata2, newdata3)
-data$Employee <- 1:nrow(data)
-DATA <- data[, -8]
-
-colnames(DATA) <- c("ID", "Salary", "Experience", "Employed", "Education", "Gender", "Department")
-DATA$Salary <- round(DATA$Salary, digits = 0)
-DATA$Gender <- as.factor(DATA$Gender)
-levels(DATA$Gender) <- c("M", "F") 
-
-
-##------------------------------------------------------------------
-
-###########################
-### individual datasets ###
-###########################
-
+data2 <- read_excel("1.FILES/inflationtaak_meerlanden.xlsx") |>
+  pivot_longer(!`Country Name`, names_to = "year", values_to = "inflation") |>
+  mutate(year = as.numeric(year)) |> group_by(`Country Name`) |> 
+  mutate(cID = dplyr::cur_group_id()) |> ungroup() |> arrange(cID)
 
 
 for(i in 1:I){
   
-  #draw for each I, draw a subset from DATA, repeat until some observations in each group
-  groups <- "notOK"
-  while (groups != "OK"){
-    sample_data <- sample_n(DATA, size = N, replace = FALSE)
-    if(all(!(table(sample_data$Department) < 5))){groups <- "OK"}
-  }
+  #data1
+  ID_in <- sample(unique(data1$ID), size = N, replace = FALSE)
+  sample_data1 <- data1[data1$ID %in% ID_in, ]
   
+  #data2: for each student, select an inflation timeseries for a single country
+  data2_1 = data2 |> filter(cID == sample(1:max(data2[['cID']]), 1)) |>
+    dplyr::select(c(year, inflation))
   
-  #write individual datasets 
+  start <- sample(1:5, 1)
+  end <- sample(1:5, 1)
+  sample_data2<- data2_1[start:(nrow(data2_1)-end), ]
+  
+  #write individual datasets
+  
   indfolder= paste0("W:\\TASK2\\1.DATA")
-  # dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-  filepathW <- paste0(indfolder,"\\data",user_info[i,"newid"],".txt")  # write to the public folder
-  filepathB <- paste0("2.INDIVIDUAL\\1.DATA\\", "data",user_info[i,"newid"],".txt")
-  filepathBx <- paste0("2.INDIVIDUAL\\1.DATA\\", "data",user_info[i,"Username"],".txt")
-  write.table(sample_data, file = filepathW, quote = FALSE, row.names = FALSE)
-  write.table(sample_data, file = filepathB, quote = FALSE, row.names = FALSE)
-  write.table(sample_data, file = filepathBx, quote = FALSE, row.names = FALSE)
+  
+  filepathW1 <- paste0(indfolder, "\\", user_info[i,"newid"], "_data1", ".txt")  # write to the public folder
+  filepathW2 <- paste0(indfolder, "\\", user_info[i,"newid"], "_data2", ".txt")
+  
+  filepathBx1 <- paste0("2.INDIVIDUAL\\1.DATA\\", user_info[i,"Username"], "_data1",".txt")
+  filepathBx2 <- paste0("2.INDIVIDUAL\\1.DATA\\", user_info[i,"Username"], "_data2",".txt")
+  
+  write.table(sample_data1, file = filepathW1, quote = FALSE, row.names = FALSE)
+  write.table(sample_data1, file = filepathBx1, quote = FALSE, row.names = FALSE)
+  
+  write.table(sample_data2, file = filepathW2, quote = FALSE, row.names = FALSE)
+  write.table(sample_data2, file = filepathBx2, quote = FALSE, row.names = FALSE)
+  
 }
 
 

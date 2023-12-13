@@ -1,0 +1,12 @@
+Student ID:  q1444442 
+ Last Name: Buysschaert 
+ First Name: Matteo 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    13                   13                   1                   
+2                    8.46                 6.814                0                   
+3                    -40.47               -40.473              1                   
+4                    0.428                0.428                1                   
+                                                                                   
+Total score =  3 / 4                                                               

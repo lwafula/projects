@@ -1,0 +1,12 @@
+Student ID:  q1381362 
+ Last Name: Engelborghs 
+ First Name: Victor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    17                   17                   1                   
+2                    6.207                6.207                1                   
+3                    102.84               102.84               1                   
+4                    0.498                0.498                1                   
+                                                                                   
+Total score =  4 / 4                                                               

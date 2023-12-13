@@ -1,0 +1,12 @@
+Student ID:  q1699704 
+ Last Name: Seck Marcolin 
+ First Name: Yacine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.32                -2.366               0.25                   
+2                    -6.876               -3.007               0                   
+3                    -2.711               -3.678               0                   
+4                    0                    0.51                 0                   
+                                                                                   
+Total score =  0.25 / 4                                                               

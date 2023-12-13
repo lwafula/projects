@@ -1,0 +1,12 @@
+Student ID:  q1381210 
+ Last Name: Van Der Schueren 
+ First Name: Ine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    12                   12                   1                   
+2                    5.327                5.327                1                   
+3                    82.936               82.94                1                   
+4                    0.851                0.851                1                   
+                                                                                   
+Total score =  4 / 4                                                               

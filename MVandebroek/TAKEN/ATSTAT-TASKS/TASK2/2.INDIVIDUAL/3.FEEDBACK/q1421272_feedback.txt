@@ -1,0 +1,12 @@
+Student ID:  q1421272 
+ Last Name: Sustronck 
+ First Name: Daan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    104.023              104.724              0                   
+2                    -0.314               -1.875               0                   
+3                    -3.293               -3.301               1                   
+4                    0.448                0.531                0                   
+                                                                                   
+Total score =  1 / 4                                                               

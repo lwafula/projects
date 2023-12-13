@@ -1,0 +1,12 @@
+Student ID:  q1422656 
+ Last Name: Nguyên 
+ First Name: Ha 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   18                   0                   
+2                    7.167                10.734               0                   
+3                    -38.822              -42.729              0                   
+4                    0.1894               0.133                0                   
+                                                                                   
+Total score =  0 / 4                                                               

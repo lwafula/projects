@@ -1,0 +1,12 @@
+Student ID:  q1727021 
+ Last Name: Lombardi 
+ First Name: Damien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    14.372               5.575                0                   
+3                    -37561               -37.831              0                   
+4                    0.498                0.492                0                   
+                                                                                   
+Total score =  1 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1417470 
+ Last Name: Notredame 
+ First Name: Michiel 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    12                   12                   1                   
+2                    10.976               10.976               1                   
+3                    90.713               90.71                1                   
+4                    0.41                 0.41                 1                   
+                                                                                   
+Total score =  4 / 4                                                               

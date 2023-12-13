@@ -1,0 +1,12 @@
+Student ID:  q1346262 
+ Last Name: Breyne 
+ First Name: Ellen 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    17                   17                   1                   
+2                    6.766                6.766                1                   
+3                    -39.539              -39.539              1                   
+4                    0.494                0.494                1                   
+                                                                                   
+Total score =  4 / 4                                                               

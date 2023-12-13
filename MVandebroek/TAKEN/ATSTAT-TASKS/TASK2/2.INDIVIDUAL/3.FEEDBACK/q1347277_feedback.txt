@@ -1,0 +1,12 @@
+Student ID:  q1347277 
+ Last Name: Coopmans 
+ First Name: Helina 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    97.677               97.677               1                   
+2                    0.037                4.369                0                   
+3                    -2.77                -2.774               1                   
+4                                         0.893                0                   
+                                                                                   
+Total score =  2 / 4                                                               

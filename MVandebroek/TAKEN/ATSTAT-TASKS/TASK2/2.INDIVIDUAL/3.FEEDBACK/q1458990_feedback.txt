@@ -1,0 +1,12 @@
+Student ID:  q1458990 
+ Last Name: Clinck 
+ First Name: Benjamin 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -5.999               -1.22                0                   
+2                    -1.753               -1.753               1                   
+3                    -3.648               -3.648               1                   
+4                    0.394                0.394                1                   
+                                                                                   
+Total score =  3 / 4                                                               

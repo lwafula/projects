@@ -1,0 +1,12 @@
+Student ID:  q1381735 
+ Last Name: Dehaemers 
+ First Name: Zazou 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    5.33                 6.316                0                   
+3                    91.927               91.93                1                   
+4                    0.524                0.524                1                   
+                                                                                   
+Total score =  3 / 4                                                               

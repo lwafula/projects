@@ -1,0 +1,12 @@
+Student ID:  q1691278 
+ Last Name: Eraslan 
+ First Name: Nur 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    4.99                 5.326                0                   
+3                    89.083               83.92                0                   
+4                    0.207                0.192                0                   
+                                                                                   
+Total score =  1 / 4                                                               

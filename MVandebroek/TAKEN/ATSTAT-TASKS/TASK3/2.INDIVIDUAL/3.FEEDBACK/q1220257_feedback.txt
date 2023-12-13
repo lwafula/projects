@@ -1,0 +1,12 @@
+Student ID:  q1220257 
+ Last Name: Vanmalleghem 
+ First Name: Olivia 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                                         11.493               0                   
+3                    -35.722              -39.372              0                   
+4                    0.23                 0.599                0                   
+                                                                                   
+Total score =  1 / 4                                                               

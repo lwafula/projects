@@ -1,0 +1,12 @@
+Student ID:  q1366242 
+ Last Name: Van Bouwel 
+ First Name: Hannes 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.482               -2.482               1                   
+2                                         2.852                0                   
+3                    -1.01                -2.537               0                   
+4                    0.885                0.855                0                   
+                                                                                   
+Total score =  1 / 4                                                               

@@ -1,0 +1,23 @@
+Only respond with a numeric value. Avoid scientific notation. If the result is larger than 1000, round the value to zero decimals. If the result is smaller than 1000, give the number rounded to three decimal places and use a point (.) as decimal separator.
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+The dataset (data1) has data on the number of years (YEARS) until failure for various small and medium enterprises. Data of 2 market characteristics (CHARACTER 1 for a highly competitive and CHARACTER 2 for a niche market) are included. The FAILURE variable is 1 (the event) if the enterprise fails and 0 if it is still in business. Data is also available on whether the enterprise is family-owned (FAMILY = 1) or not (FAMILY = 0) and the number of employees in the firm (EMPLOYEES).
+----------------------------------------------------------------
+Question 1: Fit a Kaplan Meier survival function for the time until failure of all enterprises that have 50 employees, and give the 50th percentile quantile of the survival function.
+                                                            
+Question 2: Fit an AFT model with a Weibull distribution for the time until failure. Compute how long it takes according to this model until 20 percent of the enterprises that have 50 EMPLOYEES, are active in a highly competitive market, and are family-owned, fail.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+The dataset (data2) contains data on persons that were treated for depression. They were asked whether the treatment was highly useful (Y = 1), somewhat helpful (Y = 2) or not helpful (Y = 3). The dataset also contains the following variables: AGE of the person, DOSE of a drug, GENDER (0 for females and 1 for males), and WEIGHT of the person.
+----------------------------------------------------------------
+Question 3: Model the probability that the answer is 1, 2 or 3  based on the following variables: AGE, DOSE, and GENDER. Give the AIC value of the fitted model.
+                                                            
+Question 4: Give the probability that observation 20 gives answer 1 based on the model with explanatory variables WEIGHT, DOSE and GENDER.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------

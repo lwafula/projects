@@ -1,0 +1,12 @@
+Student ID:  q1699405 
+ Last Name: Blanchez 
+ First Name: Charlotte 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    10.5                 13                   0                   
+2                    8.889                11.997               0                   
+3                    90.573               88.43                0                   
+4                    1.615                0.473                0                   
+                                                                                   
+Total score =  0 / 4                                                               

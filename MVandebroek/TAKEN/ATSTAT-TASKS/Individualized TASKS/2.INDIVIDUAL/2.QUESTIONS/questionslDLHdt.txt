@@ -1,0 +1,15 @@
+Student ID:  q0240274 
+
+ The questions for this task are listed below. 
+
+
+ Q1: Enter value 10 
+
+ Q2: What is 12 minus 15 
+
+ Q3: What is 15 plus 8 
+
+ Q4: What is the next number after 110 
+
+
+

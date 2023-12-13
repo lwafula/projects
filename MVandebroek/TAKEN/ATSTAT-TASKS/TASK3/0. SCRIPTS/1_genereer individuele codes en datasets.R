@@ -1,30 +1,60 @@
-
-#######################################
-##### ATSTAT - test task
-#######################################
+######################################
+##### HI TAAK 3 DATA GENERATION ######
+######################################
 rm(list = ls())
 
-############
-### DATA ### 
-############
-
-#libraries
+##libraries
 library(readxl)
-library(openxlsx)
+library(writexl)
 library(dplyr)
+library(openxlsx)
+library(tidyverse)
+library(data.table)
 
 # personID
 personID = "u0118298"
 
 setwd(paste0("C:\\Users\\",personID,"\\OneDrive - KU Leuven\\ATSTAT-TASKS\\TASK3"))
 
+##############
+### DATA 1 ###
+##############
+#story 3
+SMEFailures_data <- read_excel("1.FILES/SMEFailures.xlsx") |>
+  rename('FAILURE'=`STATUS`, "YEARS" = `SURVT`, 'EMPLOYEES' = `DOSE`, 
+         'FAMILY' = `OXYGEN`, 'CHARACTER' = `CLINIC`) |>
+  mutate(YEARS = round(YEARS/32, 0))
+SMEFailures_sort <-  SMEFailures_data[order(SMEFailures_data$YEARS), ]
+SMEFailures_data <- SMEFailures_sort[-c(1:30, 205:235), ]
+data1 <- SMEFailures_data
+
+
+##############
+### DATA 2 ###
+##############
+#story 3
+counseling_data <- read_excel("1.FILES\\datacounseling.xlsx", 1) |>
+  rename('AGE'=`OPMAR`, "DOSE" = `LTDCAP`, 'GENDER' = `LEVER`,'WEIGHT' = `RECTURN`, 'Y' = `class`) |>
+  mutate(Y = ifelse(Y=='A', '1', ifelse(Y == 'B', '2', '3')), AGE = round(AGE*250, 0), 
+         DOSE = round((DOSE-1)*10,0), GENDER = ifelse(GENDER >= mean(GENDER), 1, 0),
+         WEIGHT = scales::rescale(WEIGHT, c(45, 85)))
+
+counseling_data[, -5] <- round(counseling_data[, -5], 3)
+data2 <- counseling_data
+
+
+###########################
+### individual datasets ###
+###########################
+
+#Read in Q-numbers 
+#set seed for replicability
 
 #set seed 
-set.seed(22221)
+set.seed(22233)
 
 #Read in Q-numbers 
 olduser_info <- read.csv("1.FILES\\olduser_info_TASK3.csv")
-# group_info = read_xlsx("1.FILES\\group info.xlsx")
 group_info = read.csv("1.FILES\\group info_TASK3.csv", check.names = F)
 
 # students with unassigned groups
@@ -34,7 +64,9 @@ user_info = merge(olduser_info,group_info,by.x="Username",by.y = "User Name", al
 
 #settings > GENEREER ALIASSEN VOOR DE STUDENTENNUMMERS en voeg group toe
 I <- nrow(user_info)
-N <- 50 #dataset size
+N_1 <- 150 #dataset size 
+N_2 <- 50
+
 df <- data.frame(
   passwd = replicate(I, paste(sample(c(LETTERS, letters), 6), collapse="")))
 
@@ -43,72 +75,33 @@ user_info$newid<-as.character(df$passwd)
 write.xlsx(user_info,"1.FILES\\user_info with coding_TASK3.xlsx")
 
 
-#------------------------------------------------------------------
-###genereer algemene dataset voor regressie vragen. 
-#set seed for replicability
-set.seed(22231)
-
-data <- read_xlsx("1.FILES\\salary_data.xlsx", 1)
-
-#clean and add observations to global data file 
-newdata1 <- data
-newdata2 <- data
-newdata3<- data
-newdata4 <- data
-
-newdata1[newdata1$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 500, 2000)
-newdata1[newdata1$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 1000, 2000)
-newdata1[newdata1$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, -50, 2000)
-newdata1[newdata1$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 5000, 2000)
-
-newdata2[newdata2$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 100, 250)
-newdata2[newdata2$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 1000, 2000)
-newdata2[newdata2$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 50, 200)
-newdata2[newdata2$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 250, 20)
-
-newdata3[newdata3$Department == 4, ]$Salary <-  data[data$Department == 4, ]$Salary + rnorm(1, 3500, 1000)
-newdata3[newdata3$Department == 3, ]$Salary <-  data[data$Department == 3, ]$Salary + rnorm(1, 100, 100)
-newdata3[newdata3$Department == 2, ]$Salary <-  data[data$Department == 2, ]$Salary + rnorm(1, 0, 200)
-newdata3[newdata3$Department == 1, ]$Salary <-  data[data$Department == 1, ]$Salary - rnorm(1, 500, 200)
-
-
-data <- rbind(data, newdata1, newdata2, newdata3)
-data$Employee <- 1:nrow(data)
-DATA <- data[, -8]
-
-colnames(DATA) <- c("ID", "Salary", "Experience", "Employed", "Education", "Gender", "Department")
-DATA$Salary <- round(DATA$Salary, digits = 0)
-DATA$Gender <- as.factor(DATA$Gender)
-levels(DATA$Gender) <- c("M", "F") 
-
-
-##------------------------------------------------------------------
-
-###########################
-### individual datasets ###
-###########################
-
+# --- ---------------------------------------------------------------------
 
 
 for(i in 1:I){
   
-  #draw for each I, draw a subset from DATA, repeat until some observations in each group
-  groups <- "notOK"
-  while (groups != "OK"){
-    sample_data <- sample_n(DATA, size = N, replace = FALSE)
-    if(all(!(table(sample_data$Department) < 5))){groups <- "OK"}
-  }
+  #draw for each Q a subset from DATA, repeat untill some observations in each group
+  sample1 <- sample_n(data1, size = N_1, replace = FALSE)
+  sample2 <- sample_n(data2, size = N_2, replace = FALSE)
   
+  #write individual datasets
   
-  #write individual datasets 
   indfolder= paste0("W:\\TASK3\\1.DATA")
-  # dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-  filepathW <- paste0(indfolder,"\\data",user_info[i,"newid"],".txt")  # write to the public folder
-  filepathB <- paste0("2.INDIVIDUAL\\1.DATA\\", "data",user_info[i,"newid"],".txt")
-  filepathBx <- paste0("2.INDIVIDUAL\\1.DATA\\", "data",user_info[i,"Username"],".txt")
-  write.table(sample_data, file = filepathW, quote = FALSE, row.names = FALSE)
-  write.table(sample_data, file = filepathB, quote = FALSE, row.names = FALSE)
-  write.table(sample_data, file = filepathBx, quote = FALSE, row.names = FALSE)
+  
+  filepathW1 <- paste0(indfolder, "\\", user_info[i,"newid"], "_data1", ".txt")  # write to the public folder
+  filepathW2 <- paste0(indfolder, "\\", user_info[i,"newid"], "_data2", ".txt")
+  
+  filepathBx1 <- paste0("2.INDIVIDUAL\\1.DATA\\", user_info[i,"Username"], "_data1",".txt")
+  filepathBx2 <- paste0("2.INDIVIDUAL\\1.DATA\\", user_info[i,"Username"], "_data2",".txt")
+  
+  write.table(sample1, file = filepathW1, quote = FALSE, row.names = FALSE)
+  write.table(sample1, file = filepathBx1, quote = FALSE, row.names = FALSE)
+  
+  write.table(sample2, file = filepathW2, quote = FALSE, row.names = FALSE)
+  write.table(sample2, file = filepathBx2, quote = FALSE, row.names = FALSE)
+  
 }
 
 
+ 
+ 

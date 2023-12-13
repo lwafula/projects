@@ -1,0 +1,12 @@
+Student ID:  q1384282 
+ Last Name: Souren 
+ First Name: Luca 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    98.3                 102.616              0                   
+2                    -1.822385            -1.823               1                   
+3                    -2.645704            -2.646               1                   
+4                    0.6815583            0.398                0                   
+                                                                                   
+Total score =  2 / 4                                                               

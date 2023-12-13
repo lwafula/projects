@@ -1,0 +1,14 @@
+User.Name Last.Name First.Name Group Code Student.ID Last.Access Individualized.tasks.Data.Questions..Total.Pts..1.Complete.Incomplete Q1 R1 S1 G1 Q2 R2 S2 G2 Q3 R3 S3 G3 Q4 R4 S4 G4 TOTAL
+c1242115 Vandebroek Martina Grp1 31242115 2023-11-29 15:21:27 Ready to Post(Complete) 3 126 126 1 6 3 3 1 8 24 24 1 11 12 12 1 4
+q0009610 Hendrickx Jef Grp1 50009966 NA NA 3 126 126 1 4 8 8 1 7 23 23 1 10 2 2 1 4
+q0010721 Meulders Michel Grp1 50010822 NA Ready to Post(Complete) 1 10 10 1 5 -3 -3 1 9 164 164 1 10 2 2 1 4
+q0022019 Claeskens Gerda Grp1 50043181 NA Ready to Post(Complete) 1 10 10 1 6 3 3 1 7 23 23 1 10 2 2 1 4
+q0240274 Vermuyten Hendrik Grp2 50100400 2023-11-28 15:55:26 Ready to Post(Complete) 1 10 10 1 5 -3 -3 1 7 23 23 1 12 111 111 1 4
+q0267969 Vanpaemel Wolf Grp2 50044384 NA Ready to Post(Complete) 3 126 126 1 4 8 8 1 7 23 23 1 11 12 12 1 4
+q0269362 Walrave Johan Grp1 50071044 NA Ready to Post(Complete) 3 126 126 1 6 3 3 1 9 164 164 1 12 111 111 1 4
+q0269421 Laeremans Ann Grp2 50018335 NA Ready to Post(Complete) 2 125 125 1 4 8 8 1 7 23 23 1 11 12 12 1 4
+q0269916 Dierckx Goedele Grp2 50022902 2023-11-30 11:24:48 Ready to Post(Complete) 3 126 126 1 6 3 3 1 8 24 24 1 11 12 12 1 4
+q0303789 Van den Bossche Filip Grp1 50057859 NA Ready to Post(Complete) 3 126 126 1 6 3 3 1 8 24 24 1 11 12 12 1 4
+q0328524 Pepermans Guido Grp2 50018180 NA Ready to Post(Complete) 1 10 10 1 6 3 3 1 7 23 23 1 10 2 2 1 4
+q0357526 Luwel Koen Grp2 50006307 NA Ready to Post(Complete) 2 125 125 1 4 8 8 1 7 23 23 1 11 12 12 1 4
+q1580835 Ghiotto Simon Grp2 50152070 NA Ready to Post(Complete) 1 10 10 1 4 8 8 1 9 164 164 1 12 111 111 1 4

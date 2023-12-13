@@ -1,0 +1,23 @@
+Reageer alleen met een numerieke waarde. Vermijd wetenschappelijke notatie. Als het resultaat groter is dan 1000, rondt u de waarde af op nul decimalen. Als het resultaat kleiner is dan 1000, geef het getal dan afgerond op drie decimalen en gebruik een punt (.) als decimaal scheidingsteken.
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+De dataset (data1) bevat gegevens over een aantal kleine en middelgrote ondernemingen. De variabele YEARS geeft het aantal jaren sinds de start van het bedrijf tot een eventueel faillissement. Verder is er een variabele CHARACTER die 1 is als het bedrijf opereert in een zeer competitieve markt en die 2 is als het een bedrijf in een nichemarkt betreft. De FAILURE variabele is 1 (= het event) als de onderneming failliet ging en 0 als deze nog steeds bestaat. De variabele FAMILY is 1 als het een familiebedrijf betreft en 0 als dat niet het geval is en het aantal werknemers in het bedrijf wordt weergegeven in de variabele EMPLOYEES.
+----------------------------------------------------------------
+Vraag 1: Fit een Kaplan Meier-overlevingsfunctie (survivalfunctie) voor alle ondernemingen die geen familiebedrijven zijn. Geef het 75e percentiel  van de survival functie.
+                                                            
+Vraag 2: Fit een AFT-model met een Weibull-verdeling voor de tijd tot het faillissement. Bereken hoe lang het volgens dit model duurt voordat 20 procent van de familiale ondernemingen met 50 EMPLOYEES en actief in een zeer competitieve markt, failliet gaat.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+De dataset (data2) bevat gegevens van personen die behandeld werden voor een depressie. Er werd hen gevraagd of de behandeling zeer nuttig was (Y=1), enigszins nuttig was (Y=2) of niet nuttig was (Y=3). De dataset bevat ook de volgende variabelen: AGE van de persoon, DOSE van een medicijn, GENDER (0 voor vrouwen, 1 voor mannen), en WEIGHT van de persoon.
+----------------------------------------------------------------
+Vraag 3: Modelleer de kans dat het antwoord 1, 2 of 3 is op basis van de volgende variabelen: AGE, DOSE, en GENDER. Geef de AIC waarde van het gefitte model.
+                                                            
+Vraag 4: Modelleer de kans dat het antwoord 1, 2 of 3 op basis van de volgende variabelen: GENDER, DOSE, en WEIGHT. Geef de kans dat observatie 20 antwoord 1 geeft.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------

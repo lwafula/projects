@@ -1,0 +1,15 @@
+Student ID:  q0357526 
+
+ The questions for this task are listed below. 
+
+
+ Q1: Enter value 125 
+
+ Q2: What is 10 minus 2 
+
+ Q3: What is 15 plus 8 
+
+ Q4: What is the next number after 11 
+
+
+

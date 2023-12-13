@@ -1,0 +1,12 @@
+Student ID:  q1374210 
+ Last Name: Vangheel 
+ First Name: Liesl 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -6.455               -3.441               0                   
+2                    -1.577               -1.577               1                   
+3                    -1.49                -1.202               0                   
+4                    0.413                0.413                1                   
+                                                                                   
+Total score =  2 / 4                                                               

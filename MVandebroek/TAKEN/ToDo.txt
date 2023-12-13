@@ -1,3 +1,20 @@
+Warnings for 3 cases: I do not know for which observations this is happening despite running individual observations! 
+but they are warnings for a task. Maybe we should not be too keen?
+
+Hessian is numerically singular: parameters are not uniquely determined 
+In addition: Absolute convergence criterion was met, but relative criterion was not met
+
+
+* different steps: start to end try-out
+* some few slides: structure
+* 1hr-online
+* Bert technical support
+* updated TAAK 3; Monday/Tuesday
+* try-out: Wednesday 2.30pm
+* R codes for the exam? which topics? HC0 and HC1.....etc
+
+*************************************************************************************
+
 - Instead of Department, you can have: 4 companies, 4 regions, 4 job titles
 
 *************************************************************************************

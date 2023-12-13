@@ -1,0 +1,16 @@
+Only respond with a numeric value. Avoid scientific notation. If the result is larger than 1000, round the value to zero decimals. If the result is smaller than 1000, give the number rounded to three decimal places and use a point (.) as decimal separator.
+----------------------------------------------------------------
+                                                            
+Dataset1 has information on the annual revenues (REVENUE) of several companies for a number of years, as well as their expenditures on Research and Development (RnDEXPEND), and the company age (COMPANYAGE).
+----------------------------------------------------------------
+Question 1: Use only the data of 1997 and regress REVENUE on COMPANYAGE. Give the t-statistic corresponding to the parameter of COMPANYAGE that you obtain by using the robust estimator of the variance-covariance matrix of the OLS estimators as suggested by White.
+                                                            
+Question 2: Use all the information in Dataset1 for this question. Fit a fixed effects panel model to investigate the effect of COMPANYAGE on REVENUE. Give the value of the teststatistic corresponding to COMPANYAGE using the cluster corrected covariance matrix.
+                                                            
+                                                            
+Dataset2 has the inflation in a specific country over a number of years.
+----------------------------------------------------------------
+Question 3: Perform an Augmented Dickey Fuller test on the timeseries in dataset2. Give the teststatistic corresponding to the test with 3 extra lags for the model without drift and without trend.
+                                                            
+Question 4: Model the inflation as a linear function of time and the previous two values of inflation. Give the p-value corresponding to the test for autocorrelated residuals.
+                                                            

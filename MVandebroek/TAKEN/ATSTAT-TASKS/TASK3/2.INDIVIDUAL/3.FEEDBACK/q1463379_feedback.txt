@@ -1,0 +1,12 @@
+Student ID:  q1463379 
+ Last Name: Vanvuchelen 
+ First Name: Lukas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   20                   0                   
+2                    31.16                13.227               0                   
+3                    -34.849              -36.417              0                   
+4                    0.265                0.265                1                   
+                                                                                   
+Total score =  1 / 4                                                               

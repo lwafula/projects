@@ -1,0 +1,12 @@
+Student ID:  q1381858 
+ Last Name: Heuvelmans 
+ First Name: Jill 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.119               -1.99                0                   
+2                    0.071                0.071                1                   
+3                    -7.55                -3.808               0                   
+4                    0.994                0.994                1                   
+                                                                                   
+Total score =  2 / 4                                                               

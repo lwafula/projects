@@ -1,0 +1,12 @@
+Student ID:  q1391986 
+ Last Name: Despiegelaere 
+ First Name: Elisabeth 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    17                   17                   1                   
+2                    6.865                6.865                1                   
+3                    -39.823              -39.823              1                   
+4                    0.058                0.058                1                   
+                                                                                   
+Total score =  4 / 4                                                               

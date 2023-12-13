@@ -1,0 +1,12 @@
+Student ID:  q1391495 
+ Last Name: Bomberna 
+ First Name: Victor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    11.912               11.912               1                   
+3                    89.828               89.83                1                   
+4                    0.568                0.568                1                   
+                                                                                   
+Total score =  4 / 4                                                               

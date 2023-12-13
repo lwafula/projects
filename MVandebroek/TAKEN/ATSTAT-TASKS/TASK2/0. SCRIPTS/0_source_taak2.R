@@ -5,12 +5,25 @@
 #libraries
 library("readxl")
 library("dplyr")
+library("MASS")
+library("tidyverse")
 library("gdata")
-library("car")
-library(tidyverse)
+library(plm)
+library(lmtest)
+library(car)
+library(Hmisc)
+library(data.table)
+library(AER)
+library(pcse)
+library(lme4)
+library(parameters)
+library(clubSandwich)
+library(aTSA)
+
 
 #No scientific notation
 options(scipen = 999)
+
 #print 10 digits (default = 7)
 options(digits=10)
 
@@ -18,283 +31,485 @@ personID = "u0118298"
 
 ### check the type of the data files > this test with txt files !!!
 ### read in individual dataset
-getDATA <- function(ID){
+getDATA <- function(ID, type){
   
   WD <- paste0("C:\\Users\\",personID,"\\OneDrive - KU Leuven\\ATSTAT-TASKS\\TASK2\\2.INDIVIDUAL\\")
   
-  filename <- paste(WD, "1.DATA\\data",ID,".txt", sep = "") 
+  filename <- paste(WD, "1.DATA\\",ID, "_data", type, ".txt", sep = "") 
   data <- read.table(file = filename, header = TRUE)
   
   return(data)
 }
 
-
-### solution function
-getSOL <- function(data, questions){
+### function to get group label
+getLABEL <- function(ID, user_info){
   
+  label <- user_info$`group`[user_info$`Username` == as.character(ID)]
+  
+  return(label)
+}
+
+
+### solution function DEPENDS ON THE STORY USED (Different variable names) !!!
+getSOL_story1 <- function(data, questions){
+  
+  Municipal <- data[[1]]
+  infl <- data[[2]]
   solutions <- numeric(length = length(questions))
+  
   #for each question
   for(i in 1:length(questions)){
     
     Q <- questions[i]
     
-    data$Department <- as.factor(data$Department)
-    data$Gender <- as.factor(data$Gender)
-    
     solutions[i] <- switch(Q,  
-                           
                            #solution Q1
                            {
-                             mod = lm(Salary~ Experience + Employed + Education, data=data)
-                             vif(mod)[3] 
+                             Muni1982 = subset(Municipal, YEAR == 1982)
+                             reg = lm(EXPEND~GRANTS, data = Muni1982)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
                            },
                            
                            #solution Q2
                            {
-                             mod = lm(Salary~ Experience + Employed + Education, data=data)
-                             vif(mod)[2] 
+                             Muni1984 = subset(Municipal, YEAR == 1984)
+                             reg = lm(EXPEND~GRANTS, data = Muni1984)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
                            },
                            
                            #solution Q3
                            {
-                             mod = lm(Salary~ Experience + Employed + Education, data=data)
-                             vif(mod)[1] 
+                             Muni1982 = subset(Municipal, YEAR == 1982)
+                             reg = lm(EXPEND~REVENUE, data = Muni1982)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
                            },
+                           
                            
                            #solution Q4
                            {
-                             model = lm(Salary ~ Gender * Employed, data = data)
-                             preddata = data.frame(Gender = "F", Employed = 30)
+                             Muni1984 = subset(Municipal, YEAR == 1984)
+                             reg = lm(EXPEND~REVENUE, data = Muni1984)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
                              
-                             #prediction interval for individual salary
-                             result <- predict(model, newdata = preddata, interval="prediction") 
-                             result[3]
                            },
                            
                            #solution Q5
                            {
-                             model = lm(Salary ~ Gender * Employed, data = data)
-                             preddata = data.frame(Gender = "M", Employed = 30)
-                             
-                             #prediction interval for individual salary
-                             result <- predict(model, newdata = preddata, interval="prediction") 
-                             result[3]
+                             panel <- pdata.frame(Municipal, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(EXPEND ~ GRANTS, data=panel, model="within")
+                             coeftest(plm_fixed, vcov = vcovCR(plm_fixed, type ="CR0"))[3]
                            },
                            
                            #solution Q6
                            {
-                             model = lm(Salary ~ Gender * Employed, data = data)
-                             preddata = data.frame(Gender = "F", Employed = 30)
+                             panel <- pdata.frame(Municipal, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(EXPEND ~ GRANTS, data=panel, model="within")
+                             plm_random <- plm(EXPEND ~ GRANTS, data=panel, model="random")
+                             as.numeric(phtest(plm_fixed, plm_random)[1])
                              
-                             #prediction interval for individual salary
-                             result <- predict(model, newdata = preddata, interval="prediction") 
-                             result[2]
                            },
                            
                            #solution Q7
                            {
-                             outliermod <- lm(Salary~Employed, data=data)
-                             infl <- influence.measures(outliermod)
-                             infl$infmat[25, 5] * 1000
+                             
+                             plm_random <- plm(formula = EXPEND ~ REVENUE, data = Municipal, model = "random")
+                             obj <- summary(plm_random)
+                             obj$ercomp$sigma2[1]
                              
                            },
                            
                            #solution Q8
                            {
-                             outliermod <- lm(Salary~Experience, data=data)
-                             infl <- influence.measures(outliermod)
-                             infl$infmat[35, 5] * 1000
+                             plm_random <- plm(formula = EXPEND ~ REVENUE, data = Municipal, model = "random")
+                             obj <- summary(plm_random)
+                             sqrt(obj$ercomp$sigma2[1])
+                             
                            },
+                           
                            
                            #solution Q9
                            {
-                             outliermod <- lm(Salary~Education, data=data)
-                             infl <- influence.measures(outliermod)
-                             infl$infmat[15, 5] * 1000
-                           }, 
+                             ct <- adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type3[7]
+                             
+                           },
                            
                            #solution Q10
                            {
-                             outliermod = lm(Salary~Employed, data=data)
-                             inflmeasures= influence.measures(outliermod)
-                             inflmeasures$infmat[20, 6]
+                             ct=adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type2[6]
                            }, 
                            
                            #solution Q11
                            {
-                             outliermod = lm(Salary~Experience, data=data)
-                             inflmeasures= influence.measures(outliermod)
-                             inflmeasures$infmat[12, 6]
+                             ct=adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type1[8]
                            },
                            
                            #solution Q12
                            {
-                             outliermod = lm(Salary~Education, data=data)
-                             inflmeasures= influence.measures(outliermod)
-                             inflmeasures$infmat[35, 6]
+                             infl$L1F = Lag(infl$inflation, 1)  
+                             infl$L2F = Lag(infl$inflation, 2) 
+                             regmod = lm(inflation~year+L1F+L2F, data=infl)
+                             as.numeric(bgtest(regmod, order = 1)[4])
                            },
                            
                            #solution Q13
                            {
-                             salary_anova = aov(Salary~ Department, data = data)
-                             tukey = TukeyHSD(salary_anova)
-                             sum(tukey$'Department'[, 4] < 0.05)
-                           },
-                           
-                           #solution Q14
-                           {
-                             salary_anova = aov(Salary~ Department, data = data)
-                             tukey = TukeyHSD(salary_anova)
-                             tukey$'Department'[3, 4] 
-                           },
-                           
-                           #solution Q15
-                           {
-                             salary_anova = aov(Salary~ Department, data = data)
-                             tukey = TukeyHSD(salary_anova)
-                             tukey$'Department'[4, 4] 
-                           },
-                           
-                           #solution Q16
-                           {
-                             salary_anova = aov(Salary ~ Department, data = data)
-                             tukey = TukeyHSD(salary_anova)
-                             tukey$'Department'[5, 4] 
-                           },
-                           
-                           #solution Q17
-                           {
-                             groupmeans <- c(55,60,57,62)
-                             result <- power.anova.test(groups = length(groupmeans),  
-                                                        between.var = var(groupmeans), within.var = 25, sig.level = 0.05, n = 10)
-                             result$power 
-                           },
-                           
-                           #solution Q18
-                           {
-                             groupmeans <- c(55,60,57,62)
-                             result <- power.anova.test(groups = length(groupmeans),  
-                                                        between.var = var(groupmeans), within.var = 36, sig.level = 0.05, n = 20)
-                             result$power 
-                           },
-                           
-                           #solution Q19
-                           {
-                             groupmeans <- c(55,60,57,62)
-                             result <- power.anova.test(groups = length(groupmeans),  
-                                                        between.var = var(groupmeans), within.var = 25, sig.level = 0.10, n = 10)
-                             result$power
-                           },
-                           
-                           #solution Q20
-                           {
-                             twoway = lm(Salary ~ Department * Gender, data = data)
-                             aov <- anova(twoway)
-                             aov$`Pr(>F)`[3]
-                           },
-                           
-                           #solution Q21
-                           {
-                             twoway = lm(Salary ~ Department * Gender, data = data)
-                             test <- summary(twoway)
-                             test$fstatistic[1]
-                           },
-                           
-                           #solution Q22
-                           {
-                             twoway = lm(Salary ~ Department * Gender, data = data)
-                             aov <- anova(twoway)
-                             aov$`Mean Sq`[4]
-                           },
-                           
-                           #solution Q23: Type II SS
-                           {
-                             typeIISS = lm(Salary ~ Experience + Gender + Department, data = data)
-                             Anova(typeIISS, type = 2) |> as.data.frame() |> rownames_to_column() |> 
-                               filter(rowname == 'Department') |> pull(contains('Pr('))
-                           },
-                           
-                           #solution Q24: Type III SS
-                           {
-                             typeIIISS = lm(Salary ~ Experience + Gender + Education, data = data)
-                             Anova(typeIIISS, type = 3) |> as.data.frame() |> rownames_to_column() |> 
-                               filter(rowname == 'Education') |> pull(contains('Pr('))
-                           },
-                           
-                           
-                           #solution Q25: Type II SS
-                           {
-                             typeIISS = lm(Salary ~ Employed + Gender + Department, data = data)
-                             Anova(typeIISS, type = 2) |> as.data.frame() |> rownames_to_column() |> 
-                               filter(rowname == 'Department') |> pull(contains('Pr('))
-                           },
-                           
-                           #solution Q26: treatment coding
-                           {
-                             data2 = data
-                             contrasts(data2$Department) = contr.treatment(nlevels(data2$Department))
-                             
-                             Rtreatmentcoding = lm(Salary ~ Employed + Gender+Department, data = data2)
-                             summary(Rtreatmentcoding)["coefficients"] |> as.data.frame() |> rownames_to_column() |>
-                               filter(rowname == 'Department2') |> pull(contains('Pr'))
-                           },
-                           
-                           #solution Q27: effect coding
-                           {
-                             data3 = data
-                             contrasts(data3$Department) = contr.sum(nlevels(data3$Department))
-                             
-                             Reffectcoding = lm(Salary ~ Employed + Gender+Department, data = data3)
-                             summary(Reffectcoding)["coefficients"] |> as.data.frame() |> rownames_to_column() |>
-                               filter(rowname == 'Department2') |> pull(contains('Pr'))
+                             infl$L1F = Lag(infl$inflation, 1)  
+                             infl$L2F = Lag(infl$inflation, 2) 
+                             regmod = lm(inflation~year+L1F+L2F, data=infl)
+                             as.numeric(bgtest(regmod, order = 1)[1])
                            }
+                           
     )
   }
   
-  return(round(solutions, digits = 5))
+  return(round(solutions, digits = 3))
   
 }
+
+getSOL_story2 <- function(data, questions){
+  
+  emission <- data[[1]]
+  temp <- data[[2]]
+  solutions <- numeric(length = length(questions))
+  
+  #for each question
+  for(i in 1:length(questions)){
+    
+    Q <- questions[i]
+    
+    solutions[i] <- switch(Q,  
+                           #solution Q1
+                           {
+                             emi1985 = subset(emission, YEAR == 1985)
+                             reg = lm(CO2~CARS, data = emi1985)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                           },
+                           
+                           #solution Q2
+                           {
+                             emi1979 = subset(emission, YEAR == 1979)
+                             reg = lm(CO2~CARS, data = emi1979)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                           },
+                           
+                           #solution Q3
+                           {
+                             emi1981 = subset(emission, YEAR == 1981)
+                             reg = lm(CO2~CARS, data = emi1981)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
+                           },
+                           
+                           
+                           #solution Q4
+                           {
+                             emi1983 = subset(emission, YEAR == 1983)
+                             reg = lm(CO2~CARS, data = emi1983)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                           },
+                           
+                           #solution Q5
+                           {
+                             panel <- pdata.frame(emission, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(CO2 ~ CARS, data=panel, model="within")
+                             coeftest(plm_fixed, vcov. = vcovCR(plm_fixed, type ="CR0"))[3]
+                           },
+                           
+                           #solution Q6
+                           {
+                             panel <- pdata.frame(emission, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(CO2 ~ CARS, data=panel, model="within")
+                             plm_random <- plm(CO2 ~ CARS, data=panel, model="random")
+                             as.numeric(phtest(plm_fixed, plm_random)[1])
+                           },
+                           
+                           #solution Q7
+                           {
+                             plm_random <- plm(formula = CO2 ~ COWS, data = emission, model = "random")
+                             obj <- summary(plm_random)
+                             obj$ercomp$sigma2[1]
+                           },
+                           
+                           #solution Q8
+                           {
+                             plm_random <- plm(formula = CO2 ~ COWS, data = emission, model = "random")
+                             obj <- summary(plm_random)
+                             sqrt(obj$ercomp$sigma2[1])
+                           },
+                           
+                           #solution Q9
+                           {
+                             ct <- adf.test(temp$TEMP, nlag=4, output = FALSE)
+                             ct$type3[7]
+                           },
+                           
+                           #solution Q10
+                           {
+                             ct=adf.test(temp$TEMP, nlag=4, output = FALSE)
+                             ct$type2[6]
+                           }, 
+                           
+                           #solution Q11
+                           {
+                             ct=adf.test(temp$TEMP, nlag=4, output = FALSE)
+                             ct$type1[8]
+                           }, 
+                           
+                           #solution Q12
+                           {
+                             temp$L1F = Lag(temp$TEMP, 1)  
+                             temp$L2F = Lag(temp$TEMP, 2) 
+                             regmod = lm(TEMP~year+L1F+L2F, data=temp)
+                             as.numeric(bgtest(regmod, order = 1)[4])
+                           }, 
+                           
+                           #solution Q13
+                           {
+                             temp$L1F = Lag(temp$TEMP, 1)  
+                             temp$L2F = Lag(temp$TEMP, 2) 
+                             regmod = lm(TEMP~year+L1F+L2F, data=temp)
+                             as.numeric(bgtest(regmod, order = 1)[1])
+                             
+                           }
+                           
+    )
+  }
+  
+  return(round(solutions, digits = 3))
+  
+}
+
+getSOL_story3 <- function(data, questions){
+  
+  Company <- data[[1]]
+  infl <- data[[2]]
+  solutions <- numeric(length = length(questions))
+  
+  #for each question
+  for(i in 1:length(questions)){
+    
+    Q <- questions[i]
+    
+    solutions[i] <- switch(Q,  
+                           #solution Q1
+                           {
+                             Comp1997 = subset(Company, YEAR == 1997)
+                             reg = lm(REVENUE ~ COMPANYAGE, data = Comp1997)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
+                           },
+                           
+                           #solution Q2
+                           {
+                             Comp1999 = subset(Company, YEAR == 1999)
+                             reg = lm(REVENUE ~ COMPANYAGE, data = Comp1999)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
+                           },
+                           
+                           #solution Q3
+                           {
+                             Comp1997 = subset(Company, YEAR == 1997)
+                             reg = lm(REVENUE ~ RnDEXPEND, data = Comp1997)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
+                           },
+                           
+                           
+                           #solution Q4
+                           {
+                             Comp1999 = subset(Company, YEAR == 1999)
+                             reg = lm(REVENUE ~ RnDEXPEND, data = Comp1999)
+                             whitecov = vcovHC(reg, type = "HC0")
+                             coeftest(reg, vcov. = whitecov)[6]
+                             
+                           },
+                           
+                           #solution Q5
+                           {
+                             panel <- pdata.frame(Company, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(REVENUE ~ COMPANYAGE, data=panel, model="within")
+                             coeftest(plm_fixed, vcov = vcovCR(plm_fixed, type ="CR0"))[3]
+                           },
+                           
+                           #solution Q6
+                           {
+                             panel <- pdata.frame(Company, index=c("ID","YEAR"),  row.names=TRUE)
+                             plm_fixed <- plm(REVENUE ~ COMPANYAGE, data=panel, model="within")
+                             plm_random <- plm(REVENUE ~ COMPANYAGE, data=panel, model="random")
+                             as.numeric(phtest(plm_fixed, plm_random)[1])
+                             
+                           },
+                           
+                           #solution Q7
+                           {
+                             
+                             plm_random <- plm(formula = REVENUE ~ RnDEXPEND, data = Company, model = "random")
+                             obj <- summary(plm_random)
+                             obj$ercomp$sigma2[1]
+                             
+                           },
+                           
+                           #solution Q8
+                           {
+                             plm_random <- plm(formula = REVENUE ~ RnDEXPEND, data = Company, model = "random")
+                             obj <- summary(plm_random)
+                             sqrt(obj$ercomp$sigma2[1])
+                             
+                           },
+                           
+                           
+                           #solution Q9
+                           {
+                             ct <- adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type3[7]
+                             
+                           },
+                           
+                           #solution Q10
+                           {
+                             ct=adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type2[6]
+                           }, 
+                           
+                           #solution Q11
+                           {
+                             ct=adf.test(infl$inflation, nlag=4, output = FALSE)
+                             ct$type1[8]
+                           },
+                           
+                           #solution Q12
+                           {
+                             infl$L1F = Lag(infl$inflation, 1)  
+                             infl$L2F = Lag(infl$inflation, 2) 
+                             regmod = lm(inflation~year+L1F+L2F, data=infl)
+                             as.numeric(bgtest(regmod, order = 1)[4])
+                           },
+                           
+                           #solution Q13
+                           {
+                             infl$L1F = Lag(infl$inflation, 1)  
+                             infl$L2F = Lag(infl$inflation, 2) 
+                             regmod = lm(inflation~year+L1F+L2F, data=infl)
+                             as.numeric(bgtest(regmod, order = 1)[1])
+                           }
+                           
+    )
+  }
+  
+  return(round(solutions, digits = 3))
+  
+}
+
 
 
 ### function to compare answers with rounding 
 comp <- function(answer, solution){
   
-  if (solution > 1000){ #output question 1 can only have 2 decimals 
-    grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.011, scale = 1)), 1, 0)
-  }
-  
-  if (solution < 1000){ #remaining questions 
-    grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.0011, scale = 1)), 1, 0)
-  }
-  
+  grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.0011, scale = 1)), 1, 0)
   
   return(grade)
 }
+
+comp2 <- function(answer, solution){
+  
+  grade <- ifelse(isTRUE(all.equal(answer, solution, tolerance = 0.011, scale = 1)), 1, 0)
+  
+  return(grade)
+}
+
+
 # 
 # 
-# ### feedback function 
-# # data frame to store all scores 
-# all_scores <- data.frame(matrix(ncol = 6, nrow = 0))
-# colnames(all_scores) <- c("User.Name", "Q1", "Q2", "Q3", "Q4", "Total score")
-# 
-# 
+### feedback function 
+# data frame to store all scores 
+all_scores <- data.frame(matrix(ncol = 6, nrow = 0))
+colnames(all_scores) <- c("Student ID", "Vraag 1", "Vraag 2", "Vraag 3", "Vraag 4", "Total score")
+
+
+feedBACK <- function(ID, i, ID_resp, ID_sol){
+  
+  # get ID responses  
+  feedback = vector(mode="character", length=length(ID_sol))
+  
+  #compare responses with correct results 
+  for (q in 1:length(ID_sol)){
+    if(q != 3){
+      feedback[q] <- comp(answer = ID_resp[q], solution = ID_sol[q])
+    } else { # for question 3 only 2 digits accuracy 
+      feedback[q] <- comp2(answer = ID_resp[q], solution = ID_sol[q])
+    }
+    
+  }
+  
+  #store feedback in table 
+
+  Head <- paste("Student ID: ", as.character(ID), "\n",
+                "Last Name:", user_info |> filter(User.Name == as.character(ID)) |> dplyr::select("Last.Name"), "\n", 
+                "First Name:", user_info |> filter(User.Name == as.character(ID)) |> dplyr::select("First.Name"), "\n\n")
+  
+  feedbacktext = rbind(c("Question", "Your answer", "Correct answer", "Grade"),
+                       c("1", ID_resp[1], round(ID_sol[1], digits = 3), feedback[1]),
+                       c("2", ID_resp[2], round(ID_sol[2], digits = 3), feedback[2]),
+                       c("3", ID_resp[3], round(ID_sol[3], digits = 3), feedback[3]),
+                       c("4", ID_resp[4], round(ID_sol[4], digits = 3), feedback[4]),
+                       c(""),
+                       c(paste("Total score = ", sum(as.numeric(feedback)), "/", length(ID_sol))," ", " ", "")) |>
+    as.data.frame()
+  
+  
+  
+  #write individual feedback file
+  filenameW <- paste(user_info |> filter(`User.Name` == ID) |> pull(newid), "_feedback.txt", sep="")
+  indfolder= paste0("W:\\TASK2\\3.FEEDBACK")
+  filepathW <- paste0(indfolder,"\\",filenameW)
+  
+  filename <- paste(ID, "_feedback.txt", sep="")
+  filepathB <- paste0("2.INDIVIDUAL\\3.FEEDBACK\\", filename)
+
+  writeLines(Head, filepathW)
+  write.fwf(feedbacktext, file=filepathW, width = 20, colnames = F, justify = 'left', append = T)
+  
+  writeLines(Head, filepathB)
+  write.fwf(feedbacktext, file=filepathB, width = 20, colnames = F, justify = 'left', append = T)
+
+  #return grades  
+  return(feedback)
+  
+}
+
 
 ###-----------------------------------------------------
 #### 
+
+#### OVERALL FUNCTION 
 gradingTOOL <- function(responses, solutions){
   
   #respondents ID 
   group_IDS <- as.character(user_info$User.Name)
   group_IDS <- na.omit(group_IDS)
   
-  NA_IDS <-  group_IDS[!group_IDS %in% responses$User.Name]
+  NA_IDS <-  group_IDS[!group_IDS %in% responses$Username]
   
-  #dataframe to store all info and feedback
-  #all_info <- as.data.frame(matrix(data = NA, ncol = 18))
+  #dataframe to store all info
   all_info <- as.data.frame(matrix(data = NA, ncol = 18))
-  colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
-                          "Q3", "R3", "S3", "G3", "Q4", "R4", "S4", "G4","TOTAL")
-  
   
   #for each respondent 
   for (i in 1:length(group_IDS)){
@@ -313,67 +528,34 @@ gradingTOOL <- function(responses, solutions){
     #####
     ## Get respondent solutions and questions
     #####
-    
     ID_sol = solutions |> filter(User.Name == as.character(ID)) |> 
-      select(-(contains(c("Name", "Q")))) |> mutate(across(where(is.double), round, 3)) |> 
+      dplyr::select(-(contains(c("Name", "Q")))) |> 
+      mutate(across(where(is.double), \(x) round(x, 3))) |> 
       unlist() |> as.vector() 
     
     ID_quest <- solutions |> filter(User.Name == as.character(ID)) |> 
-      select(-(contains(c("Name", "S")))) |> unlist() |> as.vector()
+      dplyr::select(-(contains(c("Name", "S")))) |> unlist() |> as.vector()
     
     #####
-    ## Write feedback in file and store overall grades
+    ## Write feedback reports and store overall grades
     #####
+
+    feedback <- feedBACK(ID=ID, i=i, ID_resp = ID_resp, ID_sol = ID_sol)
     
-    
-    #compare responses with correct results
-    feedback = vector(mode="character", length=length(ID_sol))
-    
-    for (q in 1:length(ID_sol)){
-      feedback[q] <- comp(answer = ID_resp[q], solution = ID_sol[q])
-    }
-    
-    #store feedback in table
-    
-    Head <- paste("Student ID: ", as.character(ID), "\n",
-                  "Last Name:", user_info |> filter(User.Name == as.character(ID)) |> select("Last.Name"), "\n", 
-                  "First Name:", user_info |> filter(User.Name == as.character(ID)) |> select("First.Name"), "\n\n")
-    
-    feedbacktext = rbind(c("Question", "Your answer", "Correct answer", "Grade"),
-                         c("1", ID_resp[1], round(ID_sol[1], digits = 3), feedback[1]),
-                         c("2", ID_resp[2], round(ID_sol[2], digits = 3), feedback[2]),
-                         c("3", ID_resp[3], round(ID_sol[3], digits = 3), feedback[3]),
-                         c("4", ID_resp[4], round(ID_sol[4], digits = 3), feedback[4]),
-                         c(""),
-                         c(paste("Total score = ", sum(as.numeric(feedback)), "/", length(ID_sol))," ", " ", "")) |>
-      as.data.frame()
-    
-    
-    all_info[i, ] <- c(ID, ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
+    all_info[i, ] <- c(ID, 
+                       ID_quest[1], ID_resp[1], ID_sol[1],  feedback[1],
                        ID_quest[2], ID_resp[2], ID_sol[2],  feedback[2],
                        ID_quest[3], ID_resp[3], ID_sol[3],  feedback[3],
                        ID_quest[4], ID_resp[4], ID_sol[4],  feedback[4],
                        sum(as.numeric(feedback)))
     
-    # individual feedback files
-    
-    indfolder= paste0("W:\\TASK2\\3.FEEDBACK")
-    # dir.create(indfolder,showWarnings=TRUE, recursive = FALSE, mode = "0777")
-    
-    filepathW <- paste0(indfolder,"\\feedback",user_info[i,"newid"],".txt")  
-    filepathB <- paste0("2.INDIVIDUAL\\3.FEEDBACK\\feedback",user_info[i,"newid"],".txt") 
-    # filepathBx <- paste0("2.INDIVIDUAL\\3.FEEDBACK\\feedback",user_info[i,"User.Name"],".txt") 
-    writeLines(Head, filepathW)
-    write.fwf(feedbacktext, file=filepathW, width = 20, colnames = F, justify = 'left', append = T)
-    
-    writeLines(Head, filepathB)
-    write.fwf(feedbacktext, file=filepathB, width = 20, colnames = F, justify = 'left', append = T)
-    
-    # writeLines(Head, filepathBx)
-    # write.fwf(feedbacktext, file=filepathBx, width = 20, colnames = F, justify = 'left', append = T)
-    
-    
   } 
+  
+  colnames(all_info) <- c("ID", "Q1", "R1", "S1", "G1", "Q2", "R2", "S2", "G2", 
+                          "Q3", "R3", "S3", "G3", "Q4", "R4", "S4", "G4","TOTAL")
+  #not participated
+  not_PP <- group_IDS %in% NA_IDS
+  all_info$Participated <- !not_PP
   
   return(all_info)
   

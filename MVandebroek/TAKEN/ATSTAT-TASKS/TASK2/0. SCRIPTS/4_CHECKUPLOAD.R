@@ -1,6 +1,4 @@
 
-
-
 # https://www.html.am/html-codes/links/
 # https://community.rstudio.com/t/how-to-preserve-hyperlinks-in-r-htmltable-while-writing-to-a-csv-excel-file/37728/2
 
@@ -18,15 +16,13 @@ personID = "u0118298"
 
 setwd(paste0("C:\\Users\\",personID,"\\OneDrive - KU Leuven\\ATSTAT-TASKS\\TASK2"))
 
-# link to shared folder
-sharedFolder = "https://kuleuven-my.sharepoint.com/:t:/r/personal/leonard_maaya_kuleuven_be1/Documents/ATSTAT-TASKS"
-
 #Read in the Q-numbers 
-olduser_info <- read.csv("1.FILES\\olduser_info_TASK2.csv",
-                         check.names = F)
+
+olduser_info <- read.csv("1.FILES\\olduser_info_TASK2.csv", check.names = F) |> 
+  filter(!(str_detect(tolower(`First Name`), "elia") & str_detect(tolower(`Last Name`), "preview")))
 
 group_info = read_xlsx("1.FILES\\user_info with coding_TASK2.xlsx") |>
-  select(Username, `Group Code`, newid)
+  dplyr::select(Username, `Group Code`, newid)
 
 dfUPLOAD = merge(olduser_info, group_info, by = 'Username')
 
@@ -39,15 +35,12 @@ for (i in 1:length(group_IDS)){
   
   if (LABEL == "TSTAT") {
     # create html links for toledo
-    # the public link points to the W: drive
+    # the public link points to the W: drive paste0(indfolder, "\\", user_info[i,"newid"], "_data1", ".txt")
     
-    dataquizfeedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
-                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/2.QUESTIONS/vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
-    # for the sharedFolder
-    # dataquizfeedpath = paste0("<p>Click <a href=", sharedFolder,'/TASK2/2.INDIVIDUAL/1.DATA/data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
-    #                       # "<p></p>", 
-    #                       "<p>Click <a href=", sharedFolder,'/TASK2/2.INDIVIDUAL/2.QUESTIONS/vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
-    # 
+    dataquizfeedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/', dfUPLOAD[i,'newid'],'_data1.txt',">here for dataset1</a>",
+                              " and <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/', dfUPLOAD[i,'newid'],'_data2.txt',">here for dataset2</a></p>",
+                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/2.QUESTIONS/vragen',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
+                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/3.FEEDBACK/',dfUPLOAD[i,'newid'],'_feedback.txt',">here for your feedback</a></p>")
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(dataquizfeedpath))
@@ -56,8 +49,10 @@ for (i in 1:length(group_IDS)){
     
     # create html links for toledo
     # the public link points to the W: drive
-    dataquizfeedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/data',dfUPLOAD[i,'newid'],'.txt',">here for your data</a></p>",
-                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/2.QUESTIONS/questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>")
+    dataquizfeedpath = paste0("<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/', dfUPLOAD[i,'newid'],'_data1.txt',">here for dataset1</a>",
+                              " and <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/1.DATA/', dfUPLOAD[i,'newid'],'_data2.txt',">here for dataset2</a></p>",
+                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/2.QUESTIONS/questions',dfUPLOAD[i,'newid'],'.txt',">here for your questions</a></p>",
+                              "<p>Click <a href=", 'https://feb.kuleuven.be/public/', personID,'/TASK2/3.FEEDBACK/',dfUPLOAD[i,'newid'],'_feedback.txt',">here for your feedback</a></p>")
     
     dfUPLOAD[i, ] = dfUPLOAD |> filter(Username == group_IDS[i]) |> 
       mutate(`Feedback to Learner` = paste0(dataquizfeedpath))
@@ -68,11 +63,11 @@ for (i in 1:length(group_IDS)){
 # to mutate a column with contains: e.g. TASK column changes with a new 
 # https://www.statology.org/dplyr-mutate-if-contains/
 
-dfUPLOAD = dfUPLOAD |> select(-c(`Group Code`, newid)) |>
+dfUPLOAD = dfUPLOAD |> dplyr::select(-c(`Group Code`, newid)) |>
   mutate(`Marking Notes` = as.character("Marking Notes"), 
          `Notes Format` = 'SMART_TEXT', `Feedback Format` = 'HTML') |> 
   mutate_at(vars(contains('TASK')), ~ (1)) |>
-  select("Last Name", "First Name", "Username", `Student ID`:`Feedback Format` )
+  dplyr::select("Last Name", "First Name", "Username", `Student ID`:`Feedback Format` )
 
 write.table(dfUPLOAD, file = "1.FILES\\CHECKUPLOADFILE_TASK2.csv", 
             sep = ',', row.names = F)

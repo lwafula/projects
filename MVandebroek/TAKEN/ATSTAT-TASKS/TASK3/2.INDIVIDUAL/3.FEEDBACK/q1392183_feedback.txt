@@ -1,0 +1,12 @@
+Student ID:  q1392183 
+ Last Name: Goddeeris 
+ First Name: Anna 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    20                   13                   0                   
+2                    1.318                6.001                0                   
+3                    93.539               91.16                0                   
+4                    0.344                0.502                0                   
+                                                                                   
+Total score =  0 / 4                                                               

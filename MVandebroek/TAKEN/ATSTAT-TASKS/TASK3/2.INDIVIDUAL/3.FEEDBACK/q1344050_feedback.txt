@@ -1,0 +1,12 @@
+Student ID:  q1344050 
+ Last Name: Marx 
+ First Name: Anne-Sophie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    22                   22                   1                   
+2                    12.277               12.277               1                   
+3                    -45.245              -39.595              0                   
+4                    0.416                0.417                1                   
+                                                                                   
+Total score =  3 / 4                                                               

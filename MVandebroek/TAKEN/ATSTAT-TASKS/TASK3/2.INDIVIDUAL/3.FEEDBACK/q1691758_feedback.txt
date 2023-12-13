@@ -1,0 +1,12 @@
+Student ID:  q1691758 
+ Last Name: Hanenberg 
+ First Name: Philip 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    5                    11.259               0                   
+3                    -36.968              -37.83               0                   
+4                    0.15                 0.132                0                   
+                                                                                   
+Total score =  1 / 4                                                               

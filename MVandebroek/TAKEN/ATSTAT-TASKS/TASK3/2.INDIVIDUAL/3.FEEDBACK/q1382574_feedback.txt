@@ -1,0 +1,12 @@
+Student ID:  q1382574 
+ Last Name: Van den Bruel 
+ First Name: Gitte 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    6.396                6.396                1                   
+3                    90.796               90.8                 1                   
+4                    0.652                0.652                1                   
+                                                                                   
+Total score =  4 / 4                                                               

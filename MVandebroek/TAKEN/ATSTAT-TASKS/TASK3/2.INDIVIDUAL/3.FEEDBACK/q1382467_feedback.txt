@@ -1,0 +1,12 @@
+Student ID:  q1382467 
+ Last Name: Coninx 
+ First Name: Charle 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14.3718              20                   0                   
+2                    14                   11.762               0                   
+3                    -37.560              90.95                0                   
+4                    0.4981               0.402                0                   
+                                                                                   
+Total score =  0 / 4                                                               

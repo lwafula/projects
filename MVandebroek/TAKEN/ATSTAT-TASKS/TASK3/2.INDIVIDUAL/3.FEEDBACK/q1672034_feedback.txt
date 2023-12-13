@@ -1,0 +1,12 @@
+Student ID:  q1672034 
+ Last Name: Bossut 
+ First Name: Lorris 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    10.874               10.808               0                   
+3                    84.961               86.15                0                   
+4                    0.457                0.392                0                   
+                                                                                   
+Total score =  1 / 4                                                               

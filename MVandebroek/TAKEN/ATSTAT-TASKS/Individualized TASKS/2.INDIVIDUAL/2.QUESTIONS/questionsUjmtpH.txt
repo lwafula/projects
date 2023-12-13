@@ -1,0 +1,15 @@
+Student ID:  q1580835 
+
+ The questions for this task are listed below. 
+
+
+ Q1: Enter value 10 
+
+ Q2: What is 10 minus 2 
+
+ Q3: What is 101 plus 63 
+
+ Q4: What is the next number after 110 
+
+
+

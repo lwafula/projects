@@ -1,0 +1,12 @@
+Student ID:  q1376283 
+ Last Name: Van Cauwelaert-De Wyels 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         18                   0                   
+2                                         6.722                0                   
+3                                         91.67                0                   
+4                                         0.671                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1266592 
+ Last Name: Ovelacq 
+ First Name: Lucy 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         12                   0                   
+2                                         12.954               0                   
+3                                         95.1                 0                   
+4                                         0.107                0                   
+                                                                                   
+Total score =  0 / 4                                                               

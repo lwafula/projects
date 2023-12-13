@@ -1,0 +1,12 @@
+Student ID:  q1378677 
+ Last Name: Peeters 
+ First Name: Jesse 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.871               -1.907               0                   
+2                                         8.855                0                   
+3                    -4.903               -4.903               1                   
+4                                         0.787                0                   
+                                                                                   
+Total score =  1 / 4                                                               

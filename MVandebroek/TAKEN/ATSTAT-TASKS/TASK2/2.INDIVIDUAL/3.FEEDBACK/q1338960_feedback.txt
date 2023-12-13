@@ -1,0 +1,12 @@
+Student ID:  q1338960 
+ Last Name: Maes 
+ First Name: Lucas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -3.396               -3.396               1                   
+2                    -0.631               -0.631               1                   
+3                    -3.94                -3.944               1                   
+4                    0.203                0.203                1                   
+                                                                                   
+Total score =  4 / 4                                                               

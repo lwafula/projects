@@ -1,0 +1,12 @@
+Student ID:  q1651277 
+ Last Name: Wang 
+ First Name: Jiaqi 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    11.585               11.585               1                   
+3                    -42.17               -42.173              1                   
+4                    0.354                0.354                1                   
+                                                                                   
+Total score =  4 / 4                                                               

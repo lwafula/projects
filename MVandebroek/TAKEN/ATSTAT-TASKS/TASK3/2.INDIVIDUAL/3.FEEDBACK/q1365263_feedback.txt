@@ -1,0 +1,12 @@
+Student ID:  q1365263 
+ Last Name: Fache 
+ First Name: Alex 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    12                   12                   1                   
+2                    9.805                9.805                1                   
+3                    -40.92               -40.923              1                   
+4                    0.581                0.668                0                   
+                                                                                   
+Total score =  3 / 4                                                               

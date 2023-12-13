@@ -1,0 +1,12 @@
+Student ID:  q1324661 
+ Last Name: Voorbij 
+ First Name: Herlinde 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    6.837                6.837                1                   
+3                    90.533               90.53                1                   
+4                    0.435                0.435                1                   
+                                                                                   
+Total score =  4 / 4                                                               

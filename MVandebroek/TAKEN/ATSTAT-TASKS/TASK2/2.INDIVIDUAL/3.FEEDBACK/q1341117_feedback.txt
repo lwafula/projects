@@ -1,0 +1,12 @@
+Student ID:  q1341117 
+ Last Name: Christiaens 
+ First Name: Lisa 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    124.57               124.575              1                   
+2                    24.618               3.772                0                   
+3                    -3.5                 -2.627               0                   
+4                    2.754                2.754                1                   
+                                                                                   
+Total score =  2 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1601101 
+ Last Name: Pirlot 
+ First Name: Louise 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    10.223               10.223               1                   
+3                    -41.945              -41.945              1                   
+4                    0.448                0.448                1                   
+                                                                                   
+Total score =  4 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1702737 
+ Last Name: David 
+ First Name: Henri 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.851               -1.863               0                   
+2                    -1.409               -1.409               1                   
+3                    -4.02                -4.017               1                   
+4                    0.438                0.438                1                   
+                                                                                   
+Total score =  3 / 4                                                               

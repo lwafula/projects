@@ -1,0 +1,12 @@
+Student ID:  q1554537 
+ Last Name: Özdemir 
+ First Name: Irmak 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    111.74               111.742              1                   
+2                    2.44                 2.44                 1                   
+3                    -3.66                -3.658               1                   
+4                    0.934                0.934                1                   
+                                                                                   
+Total score =  4 / 4                                                               

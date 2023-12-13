@@ -1,0 +1,12 @@
+Student ID:  q1324858 
+ Last Name: De Vlieger 
+ First Name: Robrecht 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         14                   0                   
+2                                         10.156               0                   
+3                                         -38.441              0                   
+4                                         0.053                0                   
+                                                                                   
+Total score =  0 / 4                                                               

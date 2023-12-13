@@ -1,0 +1,12 @@
+Student ID:  q1694896 
+ Last Name: Liu 
+ First Name: Wei 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.799                21                   0                   
+2                    23.825               13.597               0                   
+3                    -43.522              -42.282              0                   
+4                    1.583                0.459                0                   
+                                                                                   
+Total score =  0 / 4                                                               

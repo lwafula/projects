@@ -1,0 +1,12 @@
+Student ID:  q1382319 
+ Last Name: Verlinden 
+ First Name: Louis 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    21                   21                   1                   
+2                    10.375               5.364                0                   
+3                    -36.576              -36.691              0                   
+4                    0.6112               0.611                1                   
+                                                                                   
+Total score =  2 / 4                                                               

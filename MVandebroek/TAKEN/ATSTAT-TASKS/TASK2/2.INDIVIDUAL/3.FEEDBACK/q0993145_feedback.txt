@@ -1,0 +1,12 @@
+Student ID:  q0993145 
+ Last Name: Geenen 
+ First Name: Julien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         106.935              0                   
+2                                         -2.409               0                   
+3                                         -0.741               0                   
+4                                         0.508                0                   
+                                                                                   
+Total score =  0 / 4                                                               

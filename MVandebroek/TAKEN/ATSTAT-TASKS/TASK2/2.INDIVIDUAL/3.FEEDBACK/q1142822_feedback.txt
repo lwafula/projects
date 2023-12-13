@@ -1,0 +1,12 @@
+Student ID:  q1142822 
+ Last Name: Storms 
+ First Name: Joni 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    113.091              113.091              1                   
+2                    2.774                2.774                1                   
+3                    -3.08                -3.08                1                   
+4                    2.177                0.006                0                   
+                                                                                   
+Total score =  3 / 4                                                               

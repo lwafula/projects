@@ -1,0 +1,12 @@
+Student ID:  q1414845 
+ Last Name: Dugardin 
+ First Name: Eléonore 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         12                   0                   
+2                                         9.951                0                   
+3                    90.723               95.75                0                   
+4                    0.383                0.448                0                   
+                                                                                   
+Total score =  0 / 4                                                               

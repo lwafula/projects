@@ -1,0 +1,12 @@
+Student ID:  q1384635 
+ Last Name: van Kuyck 
+ First Name: Brecht 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    14                   14                   1                   
+2                    9.898                9.898                1                   
+3                    97.11                97.11                1                   
+4                    0.355                0.355                1                   
+                                                                                   
+Total score =  4 / 4                                                               

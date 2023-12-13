@@ -1,0 +1,12 @@
+Student ID:  q1423105 
+ Last Name: Shaposhnik 
+ First Name: Gal 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    13                   13                   1                   
+2                    6.616                5.387                0                   
+3                    94.494               94.49                1                   
+4                    0.354                0.354                1                   
+                                                                                   
+Total score =  3 / 4                                                               

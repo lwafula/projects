@@ -1,0 +1,12 @@
+Student ID:  q1421875 
+ Last Name: Claeys 
+ First Name: Simon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.646               -2.646               1                   
+2                    3.354                -1.442               0                   
+3                    -2.84                -2.837               1                   
+4                    1.496                1.496                1                   
+                                                                                   
+Total score =  3 / 4                                                               

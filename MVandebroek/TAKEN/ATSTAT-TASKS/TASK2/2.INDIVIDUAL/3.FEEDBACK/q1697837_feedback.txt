@@ -1,0 +1,12 @@
+Student ID:  q1697837 
+ Last Name: Vereecken 
+ First Name: Remi 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         95.128               0                   
+2                                         -1.51                0                   
+3                                         -1.726               0                   
+4                                         3.548                0                   
+                                                                                   
+Total score =  0 / 4                                                               

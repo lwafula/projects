@@ -1,0 +1,12 @@
+Student ID:  q1266287 
+ Last Name: Depré 
+ First Name: Sofie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -2.224               0                   
+2                                         -2.248               0                   
+3                                         -1.576               0                   
+4                                         2.714                0                   
+                                                                                   
+Total score =  0 / 4                                                               
