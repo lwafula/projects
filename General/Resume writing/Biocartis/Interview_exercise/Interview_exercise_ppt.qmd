@@ -1,0 +1,178 @@
+---
+title: "Interview Exercise"
+author: "Leonard Maaya"
+format: pptx
+editor: visual
+---
+
+```{r}
+
+# NOTES -------------------------------------------------------------------
+
+## https://rpruim.github.io/fastR2/reference/wilson.ci.html
+### The Wilson confidence intervals have better coverage rates for small samples.
+### A. Agresti and B. A. Coull, Approximate is better then `exact' for interval 
+### estimation of binomial proportions, American Statistician 52 (1998), 119--126.
+
+
+rm(list = ls())
+
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(flextable)
+library(officer)
+library(binom)
+
+# Data  -------------------------------------------------------------------
+
+# I. Idylla File: “Results_LODest_COVID19.csv”
+Results_LODest_COVID19 = read.table('Results_LODest_COVID19_LM.csv', 
+                                  header = TRUE, sep = ';') |>
+  filter(Name == "SARS-CoV-2")
+
+# II. Disc File: “DiscInspectionTemplate_AIO_5561_02_biostat.xlsx”
+## first three rows were hidden 
+## unnamed 1st column has no number 72
+## what should happens to remarked rows: error repeat run? Btn B&C small spot
+### have been removed for this analysis, but in work circumstances, a thorough
+### justification will be sort: cartridges removed are "47860723" and "47860227"
+DiscInspectionTemplate_AIO_5561_02_biostat = 
+  readxl::read_xlsx('DiscInspectionTemplate_AIO_5561_02_biostat_LM.xlsx') |>
+  select(-1) |> slice(-(c(1:2, 171))) |> filter(is.na(Remark)) |>
+  mutate(`Run time` = openxlsx::convertToDate(`Run time`)) 
+
+
+# merged data'
+Disc_Results_df = merge(
+  DiscInspectionTemplate_AIO_5561_02_biostat |> 
+    select(`Run time`, Operator, `Cartridge ID`, `Sample ID`),
+  Results_LODest_COVID19 |> select(CartridgeSerialNumber, Name, Value),
+  by.x = 'Cartridge ID', by.y = 'CartridgeSerialNumber')
+
+CartridgesinResultsNotinDisc = as.character(Results_LODest_COVID19$CartridgeSerialNumber)[!(as.character(Results_LODest_COVID19$CartridgeSerialNumber) %in% 
+  DiscInspectionTemplate_AIO_5561_02_biostat$`Cartridge ID`)]
+# CartridgesinResultsNotinDisc
+
+
+```
+
+
+## Questions
+
+---
+
+### 1. Cartridge detection rates (‘positive call rates’) vs input level.
+
+```{r, echo=FALSE}
+
+InputLevelvsdetection = 
+  table(Disc_Results_df$`Sample ID`, Disc_Results_df$Value) |> as.data.frame() |>
+  rename('Input Level (copies/ml)' = `Var1`, "Value" = `Var2`) |> 
+  mutate('Input Level (copies/ml)' = parse_number(as.character(`Input Level (copies/ml)`))) |>
+  group_by(`Input Level (copies/ml)`) |> 
+  mutate("Positive call rates" = Freq/sum(Freq))
+
+InputLevelvsdetectiontab = 
+  InputLevelvsdetection |> 
+  pivot_wider(names_from = Value, values_from = c(Freq, `Positive call rates`)) |>
+  mutate("N" = Freq_Detected+Freq_Not_Detected, 
+         "Detected (%)"= paste0(Freq_Detected, "(", formatC(`Positive call rates_Detected`, digits=2, format = 'f'), ")")) |>
+  select(`Input Level (copies/ml)`, `N` , `Detected (%)`) |> arrange(`Input Level (copies/ml)`)
+
+std_border = fp_border(color="gray")
+std_borderFoot = fp_border(color="black", width = 2)
+
+flextable(InputLevelvsdetectiontab) %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>%  merge_h(part = "header") %>%
+  merge_v(part = "header") %>%  width(j = c(1, 3), width = c(1, 0.9)) %>% 
+  vline(border = std_border, part = "all") %>% align(align = "center", part = "all") %>% 
+  align(align = "left", part = "all", j = 1) %>% fix_border_issues(part = "all") %>% 
+  hline_top(part="header", border = std_borderFoot) %>% fontsize(size = 11, part = "all")
+
+```
+
+---
+
+### 2. Positive call rates vs input levels.
+
+```{r, echo=FALSE}
+
+InputLevelvsdetectiondf = InputLevelvsdetection |> filter(Value == 'Detected') |> 
+  ungroup() |> mutate(InputLevel = `Input Level (copies/ml)`) |>
+  mutate(`Input Level (copies/ml)` = as.factor(`Input Level (copies/ml)`))
+
+my_labels <- unique(InputLevelvsdetectiondf$InputLevel)
+
+InputLevelvsdetectionPlot = 
+  ggplot(InputLevelvsdetectiondf,
+         aes(x = `InputLevel`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() + 
+  scale_x_continuous(breaks = sort(my_labels), minor_breaks = NULL) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_y_continuous(breaks = seq(0.7, 1.0, 0.05), limits = c(0.7, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Input Level (copies/ml)") 
+
+
+ggsave(file = "graphs/InputLevelvsdetectionPlot.png",
+       plot = InputLevelvsdetectionPlot, width = 13, height = 10, units = "cm", 
+       scale=1)
+
+knitr::include_graphics("graphs/InputLevelvsdetectionPlot.png")
+
+```
+
+---
+
+```{r, echo=FALSE, warning=FALSE}
+
+Disc_Results_df = Disc_Results_df |> 
+  mutate(ValueFactor = as.factor(ifelse(Value == 'Detected', 1, 0)),
+         InputLevel = parse_number(as.character(`Sample ID`)))
+
+model <- glm(ValueFactor ~ InputLevel, data = Disc_Results_df, family = binomial)
+
+newdata = data.frame(InputLevel = seq(125, 4000, 1))
+xpred = predict(model, newdata, type = 'response')
+
+# lowest input value giving 95% positive rates
+xpred_inputLevel = cbind(newdata, xpred)
+Linputvalue = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "InputLevel"]
+
+# Wilson confidence interval for the input value
+
+n = 24 # there were 24 cartridges at each Input level
+ci_wilson_rates = 
+  binom.confint(x = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "xpred"]*n, 
+                n = n, method = "wilson", conf.level = 0.95)
+
+# ci_wilson_rates[, c("lower", "upper")] # 147, 423
+LCL = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
+UCL = xpred_inputLevel[tail(which(xpred_inputLevel[, "xpred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
+
+# cbind("lower" = LCL, "Input Value" = Linputvalue, "upper" = UCL)
+
+```
+
+### 3. Statistical model
+
+- Lowest input level (cps/ml) with 95% positive call rates: 
+  * `r Linputvalue`
+- Corresponding 95% Wilson CI for the input level (cps/ml): 
+  * c(`r c(LCL, UCL)`)
+
+
+
+## To be checked
+
+- Operator vs Positive call rates
+
+- Day vs Positive call rates
+
+- Day-Operator vs Positive call rates
+
+## Modeling
+
+- Include the other variables?
+- Bayesian?
