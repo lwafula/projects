@@ -1,5 +1,133 @@
+Possibility of 3rd interview with clinical team from US. Will be content/technical more or less
+like the first one. prepare!
+
+
+*****************************************
+
+Core competencies
+
+- teamwork
+- customer-centric
+- accountability
+- results
+- quality
+- innovation
+- change
+
+*****************************************
+
+Questions:
+
+* associate statistician
+* what deliberate policies has the Biocartis HR put in place to promote a feel-good factor for
+  its employees
+* from HR experience, what would you consider important for a successful occupant of this role
+* how does HR try to help a candidate succeed in this role using lessons from past role-holders
+* any plans to expand to africa as a manufacturing site? I see multiple pharma companies plus belgian biologics 
+  opening their sites in Africa, Kenya etc?
+
+****************************************
+
+Salary: ask for gross to net ratio
+Gross of 75+ p.a
+Net of 52+ p.a
+Net monthly 4500
+Gross monthly 6250
+
+Jnj range job group 26
+Min 63k. Med 90k. Max 117k
+
+Mechelen biostatistician salary/Glassdoor: 70k - 111k p.a 
+Minimum acceptable number: 70k-75k
+
+
+Bonus
+Meal vouchers? bonus % (at jnj for pay grade 25 was 9% of gross annual salary), sports & culture, how many hours per week?
+
+Holidays
+Childcare
+Schooling
+Relocation allowance for family
+
+Sign on allowance
+House search
+Transportation allowance
+House rent allowance
+Language lessons
+Spouse transition allowance
+Opportunities for learning and development
+
+Better job title
+Flexible work hours
+
+****************************************
+
+Biocartis:
+Generaal De Wittelaan 11B, 2800 Mechelen, Belgium
+
+Galapagos:
+Generaal De Wittelaan L11 A3,2800 Mechelen, Belgium
+
+****************************************
+
+QUIZ:
+1. QbD used/employed?
+
+
+JnJ projects
+
+12. Reviewing papers:
+
+	- Extended Youden design for biological assays that provides nearly orthogonal designs in cases where multiple factors are to be controlled but you cannot
+	achieve orthogonality for all of them simultaneously e.g., if you need at least one row on each plate to have a standard treatment, it is impossible to 
+	achieve orthogonality for other nuisance factors like location since you cannot eliminate heterogeneity for both cases. For one, a BIBD would do, but 
+      extending it to more than factor is problematic 
+	
+
+11. Dissolution similarity using f2 bootstraping + sample size calculation; whether to bootstrap within baths or batches
+
+	- if asked: talk of rewriting R code for implementation in a local R package to allow for bootstrapping within baths as opposed to only within batches
+	- plus having an shiny-app so that scientists do not have to wait for a statistician to work on it for routine cases
+
+10. process performance qualification (ppq)
+
+9. Design and analysis of experiments, comparability and product stability, shelf-life calculations and specifications
+
+8. DoEs; robustness tests
+
+7. process capability and statistical process control
+
+6. analytical method validation
+
+5. dissolution modeling and sample size calculation
+
+4. content uniformity; ASTM
+
+3. sample size calculation to help pass different CQA specs
+
+2. probability of success (pos) for different CQAs given their spec limits
+
+1. Dissolution of drugs at release, stability of different dissolution timepoints and pos for dissolution using different strategies
+
+NOTES:
+
+Process capability
+
+4. Robustness DoE in JMP (e.g., split plots, definitive screening designs)
+https://www.chemistryworld.com/webinars/find-robust-operating-points-using-jmps-simulation-experiment-tool/4014186.article
+https://community.jmp.com/t5/Discovery-Summit-Americas-2020/Designing-Robust-Products-2020-US-30MP-539/ta-p/281494
+https://www.jmp.com/support/help/en/17.2/index.shtml#page/jmp/experiments-for-robust-process-and-product-design.shtml
+
+creating robust operating points using JMP simulator
+
 3. Clinical and analytical performance characteristics
 https://meridian.allenpress.com/aplm/article/133/5/743/460758/Recommended-Principles-and-Practices-for
+https://link.springer.com/article/10.1007/s40291-016-0193-4
+https://bmccancer.biomedcentral.com/articles/10.1186/s12885-019-5443-5#Tab2
+https://www.nature.com/articles/s41746-020-0260-4#Sec14
+
+FDA
+https://www.fda.gov/regulatory-information/search-fda-guidance-documents/statistical-guidance-reporting-results-studies-evaluating-diagnostic-tests-guidance-industry-and-fda
 
 2. Validation of Analytical methods: 
 2.1 Parameters to be checked for method validation (selectivity/specificity, precision, accuracy, linearity, 

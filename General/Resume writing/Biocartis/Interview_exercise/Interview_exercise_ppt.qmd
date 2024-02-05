@@ -1,7 +1,11 @@
 ---
 title: "Interview Exercise"
 author: "Leonard Maaya"
-format: pptx
+# format: pptx
+format:
+  revealjs:
+        logo: biocartisLogo.PNG
+        footer: "Leonard Maaya"
 editor: visual
 ---
 
@@ -39,7 +43,7 @@ Results_LODest_COVID19 = read.table('Results_LODest_COVID19_LM.csv',
 ### justification will be sort: cartridges removed are "47860723" and "47860227"
 DiscInspectionTemplate_AIO_5561_02_biostat = 
   readxl::read_xlsx('DiscInspectionTemplate_AIO_5561_02_biostat_LM.xlsx') |>
-  select(-1) |> slice(-(c(1:2, 171))) |> filter(is.na(Remark)) |>
+  select(-1) |> slice(-(c(1:2, 171))) |> # filter(is.na(Remark)) |>
   mutate(`Run time` = openxlsx::convertToDate(`Run time`)) 
 
 
@@ -57,12 +61,11 @@ CartridgesinResultsNotinDisc = as.character(Results_LODest_COVID19$CartridgeSeri
 
 ```
 
-
 ## Questions
 
----
+------------------------------------------------------------------------
 
-### 1. Cartridge detection rates (‘positive call rates’) vs input level.
+### 1. Cartridge detection rates ('positive call rates') vs input level.
 
 ```{r, echo=FALSE}
 
@@ -93,7 +96,7 @@ flextable(InputLevelvsdetectiontab) %>% hline(part="body", border = std_border) 
 
 ```
 
----
+------------------------------------------------------------------------
 
 ### 2. Positive call rates vs input levels.
 
@@ -103,13 +106,14 @@ InputLevelvsdetectiondf = InputLevelvsdetection |> filter(Value == 'Detected') |
   ungroup() |> mutate(InputLevel = `Input Level (copies/ml)`) |>
   mutate(`Input Level (copies/ml)` = as.factor(`Input Level (copies/ml)`))
 
-my_labels <- unique(InputLevelvsdetectiondf$InputLevel)
+my_ticks <- c(unique(InputLevelvsdetectiondf$InputLevel), seq(1000, 4000, 250))
+my_labels <- c(unique(InputLevelvsdetectiondf$InputLevel), rep("", length(seq(1000, 4000, 250))))
 
 InputLevelvsdetectionPlot = 
   ggplot(InputLevelvsdetectiondf,
          aes(x = `InputLevel`, y = `Positive call rates`)) +
   geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() + 
-  scale_x_continuous(breaks = sort(my_labels), minor_breaks = NULL) + 
+  scale_x_continuous(breaks = my_ticks, minor_breaks = NULL, labels = my_labels) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   scale_y_continuous(breaks = seq(0.7, 1.0, 0.05), limits = c(0.7, 1.0)) +
   ylab(bquote(paste('Positive call rates'))) + xlab("Input Level (copies/ml)") 
@@ -123,7 +127,7 @@ knitr::include_graphics("graphs/InputLevelvsdetectionPlot.png")
 
 ```
 
----
+------------------------------------------------------------------------
 
 ```{r, echo=FALSE, warning=FALSE}
 
@@ -134,22 +138,22 @@ Disc_Results_df = Disc_Results_df |>
 model <- glm(ValueFactor ~ InputLevel, data = Disc_Results_df, family = binomial)
 
 newdata = data.frame(InputLevel = seq(125, 4000, 1))
-xpred = predict(model, newdata, type = 'response')
+ypred = predict(model, newdata, type = 'response')
 
 # lowest input value giving 95% positive rates
-xpred_inputLevel = cbind(newdata, xpred)
-Linputvalue = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "InputLevel"]
+ypred_inputLevel = cbind(newdata, ypred)
+Linputvalue = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= 0.95)[1], "InputLevel"]
 
 # Wilson confidence interval for the input value
 
 n = 24 # there were 24 cartridges at each Input level
 ci_wilson_rates = 
-  binom.confint(x = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "xpred"]*n, 
+  binom.confint(x = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= 0.95)[1], "ypred"]*n, 
                 n = n, method = "wilson", conf.level = 0.95)
 
 # ci_wilson_rates[, c("lower", "upper")] # 147, 423
-LCL = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
-UCL = xpred_inputLevel[tail(which(xpred_inputLevel[, "xpred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
+LCL = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
+UCL = ypred_inputLevel[tail(which(ypred_inputLevel[, "ypred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
 
 # cbind("lower" = LCL, "Input Value" = Linputvalue, "upper" = UCL)
 
@@ -157,22 +161,188 @@ UCL = xpred_inputLevel[tail(which(xpred_inputLevel[, "xpred"] <= ci_wilson_rates
 
 ### 3. Statistical model
 
-- Lowest input level (cps/ml) with 95% positive call rates: 
-  * `r Linputvalue`
-- Corresponding 95% Wilson CI for the input level (cps/ml): 
-  * c(`r c(LCL, UCL)`)
+-   $\text{logit(}p\text{)} = \beta_0 + \beta_1\text{*input level}$
+
+```{r, echo=FALSE}
+
+estTable = formatC(summary(model)$coefficients, digits = 2, format='f') |> 
+  as.data.frame() |> rownames_to_column() |> 
+  mutate(rowname = ifelse(rowname=="(Intercept)", "\\beta_0", "\\beta_1")) |> rename("Parameter" = `rowname`, "Est." = `Estimate`)
+
+estTable = flextable(estTable) 
+
+ft <- compose(
+    x = estTable, j = "Parameter",
+    value = as_paragraph(as_equation(Parameter, width = 2, height = .5))
+  )
+  
+ft %>% hline(part="body", border = std_border) %>% 
+  hline_bottom(part="body", border = std_borderFoot) %>% 
+  hline_top(part="body", border = std_borderFoot) %>%  merge_h(part = "header") %>%
+  merge_v(part = "header") %>%  width(j = c(1, 3), width = c(1, 0.9)) %>% 
+  vline(border = std_border, part = "all") %>% align(align = "center", part = "all") %>% 
+  align(align = "left", part = "all", j = 1) %>% fix_border_issues(part = "all") %>% 
+  hline_top(part="header", border = std_borderFoot) %>% fontsize(size = 11, part = "all")
 
 
+```
+
+------------------------------------------------------------------------
+
+-   Lowest input level (cps/ml) with 95% positive call rates:
+    -   `r Linputvalue`
+-   Corresponding 95% Wilson CI for the input level (cps/ml):
+    -   c(`r c(LCL, UCL)`)
 
 ## To be checked
 
-- Operator vs Positive call rates
+-   Operator vs Positive call rates
 
-- Day vs Positive call rates
+-   Day vs Positive call rates
 
-- Day-Operator vs Positive call rates
+-   Day-Operator vs Positive call rates
 
 ## Modeling
 
-- Include the other variables?
-- Bayesian?
+-   Include the other variables?
+-   Bayesian?
+
+## Possible consideration: Probit model
+
+```{r, echo=FALSE, warning=FALSE}
+
+modelProbi <- glm(ValueFactor ~ InputLevel, data = Disc_Results_df, 
+                  family = binomial(link = 'probit'))
+
+ypredProb = predict(modelProbi, newdata, type = 'response')
+
+ypred_inputLevelProbLog = cbind(newdata, ypred, ypredProb)
+
+
+colnames(ypred_inputLevelProbLog) <- c("InputLevel", "Logit", "Probit")
+
+ypred_inputLevelLong <- ypred_inputLevelProbLog |> 
+  pivot_longer(!InputLevel, names_to = "Model", 
+               values_to = "Positive call rates") |>
+  mutate(Model = as.factor(Model))
+
+ypred_inputLevelLong = merge(ypred_inputLevelLong,
+                         InputLevelvsdetectiondf |> select(InputLevel, `Positive call rates`) |>
+                           rename('rateOriginal' = `Positive call rates`),
+                         by = 'InputLevel', all.x = TRUE)
+
+
+InputLevelvsdetectionPlotProbLogit = 
+  ggplot(ypred_inputLevelLong,
+       aes(x = `InputLevel`, y = `Positive call rates`, group=Model, colour=Model)) +
+  geom_line() +
+  geom_point(aes(x = `InputLevel`, y = `rateOriginal`), shape = 16, size = 1.5, stat = "identity",
+             colour = 'black') + theme_bw() + 
+  scale_x_continuous(breaks = my_ticks, minor_breaks = NULL, labels = my_labels) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_y_continuous(breaks = seq(0.7, 1.0, 0.05), limits = c(0.7, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Input Level (copies/ml)") 
+
+
+ggsave(file = "graphs/InputLevelvsdetectionPlotProbLogit.png",
+       plot = InputLevelvsdetectionPlotProbLogit, width = 13, height = 10, units = "cm", 
+       scale=1)
+
+knitr::include_graphics("graphs/InputLevelvsdetectionPlotProbLogit.png")
+
+```
+
+## Extras
+
+```{r, echo=FALSE}
+
+Operatorvsdetection = 
+  table(Disc_Results_df$`Operator`, Disc_Results_df$Value) |> as.data.frame() |>
+  rename('Operator' = `Var1`, "Value" = `Var2`) |> group_by(`Operator`) |> 
+  mutate("Positive call rates" = Freq/sum(Freq))
+
+
+# 2.b Make a figure to visualize the relationship between the positive call rates and the operators.
+
+Operatorvsdetectiondf = Operatorvsdetection |> filter(Value == 'Detected') |> 
+  ungroup() 
+
+
+OperatorvsdetectionPlot = 
+  ggplot(Operatorvsdetectiondf,
+         aes(x = `Operator`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() +
+  scale_y_continuous(breaks = seq(0.9, 1.0, 0.05), limits = c(0.9, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Operator") 
+
+
+ggsave(file = "graphs/OperatorvsdetectionPlot.png",
+       plot = OperatorvsdetectionPlot, width = 13, height = 10, units = "cm", 
+       scale=1)
+
+knitr::include_graphics("graphs/OperatorvsdetectionPlot.png")
+
+```
+
+------------------------------------------------------------------------
+
+```{r, echo=FALSE}
+
+Datevsdetection = 
+  table(Disc_Results_df$`Run time`, Disc_Results_df$Value) |> as.data.frame() |>
+  rename('Date' = `Var1`, "Value" = `Var2`) |> mutate('Date' = as.Date(`Date`)) |>
+  group_by(`Date`) |> mutate("Positive call rates" = Freq/sum(Freq))
+
+
+# 2.c Make a figure to visualize the relationship between the positive call rates and date.
+
+Datevsdetectiondf = Datevsdetection |> filter(Value == 'Detected') |> 
+  ungroup()
+
+
+DatevsdetectionPlot = 
+  ggplot(Datevsdetectiondf,
+         aes(x = `Date`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw()  +
+  scale_y_continuous(breaks = seq(0.9, 1.0, 0.05), limits = c(0.9, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Date") 
+
+
+ggsave(file = "graphs/DatevsdetectionPlot.png",
+       plot = DatevsdetectionPlot, width = 13, height = 10, units = "cm", 
+       scale=1)
+
+knitr::include_graphics("graphs/DatevsdetectionPlot.png")
+
+```
+
+------------------------------------------------------------------------
+
+```{r, echo=FALSE}
+
+OperatorDatevsdetection = 
+  Disc_Results_df |> mutate(ValueNum = ifelse(Value=='Detected', 1, 0)) |>
+  group_by(Operator, `Run time`) |> count(ValueNum) |> rename('Freq' = `n`) |> 
+  mutate("Positive call rates" = Freq/sum(Freq)) |> as.data.frame() 
+
+# 2.d Make a figure to visualize the relationship between the positive call rates and operator/date
+
+OperatorDatevsdetectiondf = OperatorDatevsdetection |> filter(ValueNum == 1) |> 
+  mutate(`Operator` = as.factor(`Operator`), `Date` = as.factor(`Run time`))
+
+OperatorDatevsdetectionPlot = 
+  ggplot(OperatorDatevsdetectiondf,
+         aes(x = `Operator`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() + 
+  facet_wrap(vars(Date), nrow = 1) + 
+  scale_y_continuous(breaks = seq(0.8, 1.0, 0.05), limits = c(0.8, 1.0)) +
+  ylab(bquote(paste('Positive call rates')))  
+
+
+ggsave(file = "graphs/OperatorDatevsdetectionPlot.png",
+       plot = OperatorDatevsdetectionPlot, width = 12, height = 9, units = "cm", 
+       scale=0.65)
+
+knitr::include_graphics("graphs/OperatorDatevsdetectionPlot.png")
+
+```

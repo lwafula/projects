@@ -38,7 +38,7 @@ table(Results_LODest_COVID19$Cycle) # 0's
 ### justification will be sort: cartridges removed are "47860723" and "47860227"
 DiscInspectionTemplate_AIO_5561_02_biostat = 
   readxl::read_xlsx('DiscInspectionTemplate_AIO_5561_02_biostat_LM.xlsx') |>
-  select(-1) |> slice(-(c(1:2, 171))) |> filter(is.na(Remark)) |>
+  select(-1) |> slice(-(c(1:2, 171))) |> # filter(is.na(Remark)) |>
   mutate(`Run time` = openxlsx::convertToDate(`Run time`)) 
 
 table(DiscInspectionTemplate_AIO_5561_02_biostat$`Sample ID`)
@@ -90,13 +90,14 @@ InputLevelvsdetectiondf = InputLevelvsdetection |> filter(Value == 'Detected') |
   ungroup() |> mutate(InputLevel = `Input Level (copies/ml)`) |>
   mutate(`Input Level (copies/ml)` = as.factor(`Input Level (copies/ml)`))
 
-my_labels <- unique(InputLevelvsdetectiondf$InputLevel)
+my_ticks <- c(unique(InputLevelvsdetectiondf$InputLevel), seq(1000, 4000, 250))
+my_labels <- c(unique(InputLevelvsdetectiondf$InputLevel), rep("", length(seq(1000, 4000, 250))))
 
 InputLevelvsdetectionPlot = 
-  ggplot(InputLevelvsdetectiondf,
-         aes(x = `InputLevel`, y = `Positive call rates`)) +
+ggplot(InputLevelvsdetectiondf,
+       aes(x = `InputLevel`, y = `Positive call rates`)) +
   geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() + 
-  scale_x_continuous(breaks = sort(my_labels), minor_breaks = NULL) + 
+  scale_x_continuous(breaks = my_ticks, minor_breaks = NULL, labels = my_labels) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   scale_y_continuous(breaks = seq(0.7, 1.0, 0.05), limits = c(0.7, 1.0)) +
   ylab(bquote(paste('Positive call rates'))) + xlab("Input Level (copies/ml)") 
@@ -119,21 +120,85 @@ Disc_Results_df = Disc_Results_df |>
 model <- glm(ValueFactor ~ InputLevel, data = Disc_Results_df, family = binomial)
 
 newdata = data.frame(InputLevel = seq(125, 4000, 1))
-xpred = predict(model, newdata, type = 'response')
+ypred = predict(model, newdata, type = 'response')
 
 # lowest input value giving 95% positive rates
-xpred_inputLevel = cbind(newdata, xpred)
-Linputvalue = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "InputLevel"]
+ypred_inputLevel = cbind(newdata, ypred)
+Linputvalue = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= 0.95)[1], "InputLevel"]
 
 # Wilson confidence interval for the input value
 
 n = 24 # there were 24 cartridges at each Input level
 ci_wilson_rates = 
-  binom.confint(x = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= 0.95)[1], "xpred"]*n, 
+  binom.confint(x = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= 0.95)[1], "ypred"]*n, 
                 n = n, method = "wilson", conf.level = 0.95)
 
 # ci_wilson_rates[, c("lower", "upper")] # 147, 423
-LCL = xpred_inputLevel[which(xpred_inputLevel[, "xpred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
-UCL = xpred_inputLevel[tail(which(xpred_inputLevel[, "xpred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
+LCL = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
+UCL = ypred_inputLevel[tail(which(ypred_inputLevel[, "ypred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
 
 cbind("lower" = LCL, "Input Value" = Linputvalue, "upper" = UCL)
+
+
+
+# Extras ------------------------------------------------------------------
+
+Operatorvsdetection = 
+  table(Disc_Results_df$`Operator`, Disc_Results_df$Value) |> as.data.frame() |>
+  rename('Operator' = `Var1`, "Value" = `Var2`) |> group_by(`Operator`) |> 
+  mutate("Positive call rates" = Freq/sum(Freq))
+
+Operatorvsdetection |> 
+  pivot_wider(names_from = Value, values_from = c(Freq, `Positive call rates`)) |>
+  mutate("Detected/N (%)" = paste0(Freq_Detected, "/",Freq_Detected+Freq_Not_Detected, 
+                                   "(", formatC(`Positive call rates_Detected`, digits=3, format = 'f'), ")")) |>
+  select(`Operator`, `Detected/N (%)`)
+
+# 2.b Make a figure to visualize the relationship between the positive call rates and the operators.
+
+Operatorvsdetectiondf = Operatorvsdetection |> filter(Value == 'Detected') |> 
+  ungroup() 
+
+
+OperatorvsdetectionPlot = 
+  ggplot(Operatorvsdetectiondf,
+         aes(x = `Operator`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw() +
+  scale_y_continuous(breaks = seq(0.9, 1.0, 0.05), limits = c(0.9, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Operator") 
+
+
+ggsave(file = "graphs/OperatorvsdetectionPlot.png",
+       plot = OperatorvsdetectionPlot, width = 15, height = 12, units = "cm", 
+       scale=1.5)
+
+
+# Date vs positive rates
+Datevsdetection = 
+  table(Disc_Results_df$`Run time`, Disc_Results_df$Value) |> as.data.frame() |>
+  rename('Date' = `Var1`, "Value" = `Var2`) |> mutate('Date' = as.Date(`Date`)) |>
+  group_by(`Date`) |> mutate("Positive call rates" = Freq/sum(Freq))
+
+Datevsdetection |> 
+  pivot_wider(names_from = Value, values_from = c(Freq, `Positive call rates`)) |>
+  mutate("Detected/N (%)" = paste0(Freq_Detected, "/",Freq_Detected+Freq_Not_Detected, 
+                                   "(", formatC(`Positive call rates_Detected`, digits=3, format = 'f'), ")")) |>
+  select(`Date`, `Detected/N (%)`)
+
+# 2.c Make a figure to visualize the relationship between the positive call rates and date.
+
+Datevsdetectiondf = Datevsdetection |> filter(Value == 'Detected') |> 
+  ungroup()
+
+
+DatevsdetectionPlot = 
+  ggplot(Datevsdetectiondf,
+         aes(x = `Date`, y = `Positive call rates`)) +
+  geom_point(shape = 16, size = 1.5, stat = "identity") + theme_bw()  +
+  scale_y_continuous(breaks = seq(0.9, 1.0, 0.05), limits = c(0.9, 1.0)) +
+  ylab(bquote(paste('Positive call rates'))) + xlab("Date") 
+
+
+ggsave(file = "graphs/DatevsdetectionPlot.png",
+       plot = DatevsdetectionPlot, width = 15, height = 12, units = "cm", 
+       scale=1.5)

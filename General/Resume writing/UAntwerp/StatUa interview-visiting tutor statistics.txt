@@ -1,0 +1,73 @@
+Pieter Spooren : Social sciences
+Kris Laukens: Machine learning, pattern discovery and bioinformatics, personalized medicine
+Niel Hens: Modeling infectious diseases
+Ronny BLUST: environmental stresses, environmental physiology 
+	* Chi-square tests for testing expected vs observed frequences
+	* ANOVA for testing differences in responses amongst treatments
+	* binomial generalized linear mixed models (GLMM) by ML/laplace approximation to assess the main
+	  and interaction effects of time/variable and treatment on the fraction of subjects that experienced
+	  a condition; aquarium ID and daily observations can be included as random effects. Aquarium ID 
+	  nested within treatment and observations
+https://www.researchgate.net/publication/376618066_Olivine_avoidance_behaviour_by_marine_gastropods_Littorina_littorea_L_and_amphipods_Gammarus_locusta_L_within_the_context_of_ocean_alkalinity_enhancement
+
+	* use of non-parametric methods if we do not want to make assumptions e.g for normality, e.g,
+	Kruskal-Wallis ANOVA to test differences amongst groups, adjusting for multiple comparisons using 
+      Dunn's multiple comparison test as a post-hoc adjustment
+
+https://www.researchgate.net/publication/373881931_Enhanced_olivine_dissolution_in_seawater_through_continuous_grain_collisions
+
+Steve Abrams: Modeling infectious diseases
+	* Integration of survival data techniques in infectious disease epidemiology, 
+	* outbreak risk assessment in highly vaccinated populations
+	* ANOVA to compare differences in a given epidemiological score among participants from different groups
+	* longitudinal data analysis to determine socio-economic and behavioral factors for a given disease
+		- binary longitudinal data (for presence or absence of a cardiovascular disease)
+	* two-sample t-tests  and chi-square tests for numerical and categorical variables for comparison
+	of responses among individuals of different characteristics
+	* To estimate the populationaveraged effect of socioeconomic, behavioral and physical determinants 
+	on the occurrence ofCVD, we developed two independent marginal models using multivariable 
+	Generalized Estimating Equations (GEEs) with the binomial distribution and logit link function [21]. 
+      GEE accounts for within-subject association and allows to estimate the between-subject effects of 
+      the relationships of determinants with the occurrence of CVD over the observation period
+
+https://www.researchgate.net/publication/346648778_Socioeconomic_and_behavioral_determinants_of_cardiovascular_diseases_among_older_adults_in_Belgium_and_France_A_longitudinal_analysis_from_the_SHARE_study
+
+Steven Van Laere - Oncology
+
+	* Use of supervised and unsupervised cluster analysis (wald, manhattan distances) as a first approach 
+       to uncover molecular clusters of breast cancer patients before applying survival analysis to help
+	understand when the condition sets in and the factors that drive acquisition of the condition: 
+	cox proportional model, generalized linear models, non-parameteric models e.g to compare continuous
+	data among two or more groups; Kruskall-wallis/Mann-Whitney, to compare distribution of categorical
+	variables; chi-square/Fisher Exact test
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6156084/
+
+	* cancer research depending on clinical endpoint of interest: survival analysis
+
+https://watermark.silverchair.com/crc-22-0330.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA1gwggNUBgkqhkiG9w0BBwagggNFMIIDQQIBADCCAzoGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMC8Bfoz5waL1m6IncAgEQgIIDC2UA5hBHE1AcV7mhbJkQ8CAPRE1WbASi0Z8pwED6nn0kT_fbfCZuSF7_u7k6hPpMFrYggodyKFSEvZNO-Y5i7x3QfJXB60wAf3FRnvmdiHuxie56YdNjEF4-7YO3E23bncYd0tLOjR0YsQ7X9IEwvuNvwXgxU7MFQVq_mKst19m4-mNdMNEBG6jHHJrkveQLqhSSKjFe70TYoadp4EPJa0aZlXCPfx_hBuBPAxdZjpcowPaIwTPTBs_s4ptTPeb3UaSAuPQb6D8scyDOUTsAOUmGM1ZLwTk6MNIZcfP9c1ajfBt1Oag9mUbGUdklCxb286CEOZ-FLgLd74NLIs37ighOwxVhCKeO28n4u3_KJdQjb-z5BrtDGBxG8wNR4dGiIKmhXqkD9WZYlAb5FRtojQ2zXbzK6vKJZ7jJu0ueXvN32vZ87gu3KMyVp9hGLq4byHT8E80_6-MpkG5kgSG4D90d2eImfBrRM8mV2b-ArbG2olqa2zurWyt7_b9fu8w_sC6TILobMmXlkYJEMFjdzKq7IP5PeIvp5G8bex2ZhsMXF-y3OwjkO5UWytUExZj_v6nX5Q32utY4ggpThqbqaMvwROmbjeTzQVB7iVcCAoJgnJDAAo2dN270kGOe6F_YbP58WMTTkD2Q5No8OqzkMsuVyOuXTTvcEFcWznNe49J2etIlw6lhcoVhvUyjwfnd_mOp5M7Y83QSouQVIo2qtuYPGmi_95Al4sVH-g0QtEL8ZtuMe9bYWNtNPdrTi09NlE8CXjbs0bJaL5jjiWkfjWqOt1ie3iUAfEtvqgDJGXSc2ZrBSBdBFu1dYKKnFxoX-S3meCHLFMne3sqYqr3-WDcol2P4wdZ_NoB8r46F19QkRWFTNMQtJBep9MnQHucLPCmufB2surcL9PAx9NT2kmzx-J1ry_t4pnsUkjPV8n1VUPmbPLHlNd4ZKjT9w_rR9OEqn3UMoagCFY9JumJwXmuFrcq-geNWN3Plvo9Vx0RpUWv8HaKlpLJH2Av9qkK3TWkCe0xfVPghCXeJ
+
+Sunčica Vujić -  applied econometrics
+	* cross-sectional, panel data and time-series data analysis methods, longitudinal data analysis
+
+	- longitudinal data on students smartphone use and educational performance; panel data random 
+	effects estimation controlling for unobserved individual characteristics: linear mixed model
+
+	- In statistics and econometrics, panel data and longitudinal data are both multi-dimensional data
+	 involving measurements over time. Panel data is a subset of longitudinal data where observations are for the same subjects each time
+	
+	- In mathematics, a time series is a series of data points indexed in time order. Most commonly, a 
+	  time series is a sequence taken at successive equally spaced points in time. Thus it is a 
+        sequence of discrete-time data.
+
+Peter Thijssen - Political sociology
+
+	* survey and sampling methods like stratification/clustering/randomization to assess public awareness for an event,
+	opinion and interventions such as communication to inform public participation, opinion and decision
+	* assessing how political information related to a world leader can affect polarization for him,
+	his/her country or party
+	* develop a polarization score
+	* Structural Equation modeling, Network analysis, sample size calculation, longitudinal or 
+	cross-sectional time frames. surveying, experiment, interview, focus group methods for data collection
+
+Tim Verdonck - mathematician
+	* Use of machine learning methods to predict usage of public resources
