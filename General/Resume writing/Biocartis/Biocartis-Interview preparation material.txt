@@ -1,3 +1,41 @@
+The prefered design is a randomised controled clinical trial for MDx
+- need sample size and power calculation
+- clinical trial data should be reported using an internationally recognized standard
+for the relevant study design e.g., the CONSORT reporting standards for RCTs.
+
+******************************************
+
+Quiz:
+
+- have you considered doing a Quality of use study on Idylla platform / synonym for QoL
+  to assess user experience, objectively?
+- what ideas they have that can help enhance their experience with the statistics team
+- obviously there is a large drop in the time to get results for the tests (12hr->2.5hrs). Are there plans to lower this time or we
+  are forever satisfied?
+- I also heard that Idylla was used for testing covid even though it was not designed for it. It gave some good results then. Are there
+  plans to make it even more robust for measuring infectious diseases in the future?
+- the cartridges are single use? Isn't that wasteful?
+- what is the performance on fresh and frozen samples?
+- clinical project manager: when do we ask for escalation and when not to DICE?
+- which people are on your team, clinical project manager? which are the usual reasons
+  why some projects may need reviews budgeting, times etc?
+
+Percent agreement/ Cobhen's kappa (agreement of raters)/concordance with reference
+
+LODs, LoQs, accuracy/Sensitivity/Specificity/PPV/NPV/Likelihood positive ratio
+
+survival analysis: log rank for differences in the survival profiles on KM curves
+
+******************************************
+
+protocol development, roles of statisticians
+
+- randomization of patients
+- eligibility criteria implementation for data collection
+- schedule of data collection
+- data quality and submission schedule
+- determining the number/sample size for responses
+
 Possibility of 3rd interview with clinical team from US. Will be content/technical more or less
 like the first one. prepare!
 
@@ -121,6 +159,7 @@ https://www.jmp.com/support/help/en/17.2/index.shtml#page/jmp/experiments-for-ro
 creating robust operating points using JMP simulator
 
 3. Clinical and analytical performance characteristics
+https://www.sciencedirect.com/science/article/pii/S1568997209000184?via=ihub
 https://meridian.allenpress.com/aplm/article/133/5/743/460758/Recommended-Principles-and-Practices-for
 https://link.springer.com/article/10.1007/s40291-016-0193-4
 https://bmccancer.biomedcentral.com/articles/10.1186/s12885-019-5443-5#Tab2
