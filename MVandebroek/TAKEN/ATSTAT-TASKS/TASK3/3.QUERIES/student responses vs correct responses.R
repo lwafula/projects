@@ -8,6 +8,29 @@ library("nnet")
 library('writexl')
 library('stringi')
 
+
+# Lorris Bossut
+
+# Q2, Q8 in source file
+
+qlkKgf_data1 <- read.table("C:/Users/u0118298/Downloads/qlkKgf_data1.txt", header = TRUE)
+SMEFailures_data = qlkKgf_data1
+
+qlkKgf_data1$EMPLOYEESNUM=as.numeric(qlkKgf_data1$EMPLOYEES)
+s=subset(qlkKgf_data1, FAMILY==0 & CHARACTER==2 & EMPLOYEESNUM==50)
+head(s)
+WB=survreg(Surv(YEARS,FAILURE)~1, data=s, dist="weibull")
+summary(WB)
+predict(WB, type="quantile",p=c(0.2))
+#10.874
+
+# Sol
+survregw <- survreg(Surv(YEARS, FAILURE)~ CHARACTER + FAMILY + EMPLOYEES,
+                    data= SMEFailures_data, dist = "weibull")
+
+predict(survregw, newdata=list(EMPLOYEES=50, FAMILY=0, CHARACTER=2),
+        type="quantile", p=0.2)
+
 # Amber Corneillie --------------------------------------------------------
 
 # Q2

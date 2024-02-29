@@ -1,0 +1,12 @@
+Student ID:  q1325443 
+ Last Name: Coomans 
+ First Name: Aron 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.893               0                   
+2                                         0.056                0                   
+3                                         22                   0                   
+4                                         -0.132               0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  c1242115 
+ Last Name: Vandebroek 
+ First Name: Martina 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.925               0                   
+2                                         0.042                0                   
+3                                         22                   0                   
+4                                         -0.589               0                   
+                                                                                   
+Total score =  0 / 4                                                               

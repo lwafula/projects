@@ -1,0 +1,12 @@
+Student ID:  q1394133 
+ Last Name: Van Parys 
+ First Name: Nestor 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.559               0                   
+2                                         0                    0                   
+3                                         9                    0                   
+4                                         0.119                0                   
+                                                                                   
+Total score =  0 / 4                                                               

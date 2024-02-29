@@ -1,0 +1,12 @@
+Student ID:  q1722093 
+ Last Name: De Quinnemar 
+ First Name: Louise 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.68                 0                   
+2                                         23                   0                   
+3                                         14                   0                   
+4                                         -0.185               0                   
+                                                                                   
+Total score =  0 / 4                                                               

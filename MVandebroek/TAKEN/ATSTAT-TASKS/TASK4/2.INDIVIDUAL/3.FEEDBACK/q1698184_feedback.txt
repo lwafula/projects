@@ -1,0 +1,12 @@
+Student ID:  q1698184 
+ Last Name: Gillieaux 
+ First Name: Emile 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.56                 0                   
+2                                         0                    0                   
+3                                         22                   0                   
+4                                         -0.609               0                   
+                                                                                   
+Total score =  0 / 4                                                               

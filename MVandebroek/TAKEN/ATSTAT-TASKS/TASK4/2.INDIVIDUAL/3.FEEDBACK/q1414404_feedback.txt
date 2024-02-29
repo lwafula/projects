@@ -1,0 +1,12 @@
+Student ID:  q1414404 
+ Last Name: Robyns de Schneidauer 
+ First Name: Arnaud 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    1.003                1.003                1                   
+2                    17                   17                   1                   
+3                    27                   21                   0                   
+4                    0.09                 -0.154               1                   
+                                                                                   
+Total score =  3 / 4                                                               

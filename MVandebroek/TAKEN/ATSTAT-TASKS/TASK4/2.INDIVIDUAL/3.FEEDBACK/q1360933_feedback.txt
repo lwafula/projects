@@ -1,0 +1,12 @@
+Student ID:  q1360933 
+ Last Name: Kalinis 
+ First Name: Nina 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -0.171               -0.171               1                   
+2                    0.056                0.056                1                   
+3                    19                   19                   1                   
+4                    -0.07                -0.07                1                   
+                                                                                   
+Total score =  4 / 4                                                               

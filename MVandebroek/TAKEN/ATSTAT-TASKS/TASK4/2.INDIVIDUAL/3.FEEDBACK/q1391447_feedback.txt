@@ -1,0 +1,12 @@
+Student ID:  q1391447 
+ Last Name: Van Lerberghe 
+ First Name: Leon 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    23                   0.173                0                   
+2                    16                   12                   0                   
+3                    2.56                 12                   0                   
+4                    0.34                 -0.555               0                   
+                                                                                   
+Total score =  0 / 4                                                               

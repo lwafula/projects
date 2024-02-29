@@ -1,0 +1,12 @@
+Student ID:  q1384665 
+ Last Name: Govaert 
+ First Name: Romain 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -1.104               0                   
+2                                         0.048                0                   
+3                                         23                   0                   
+4                                         -0.574               0                   
+                                                                                   
+Total score =  0 / 4                                                               

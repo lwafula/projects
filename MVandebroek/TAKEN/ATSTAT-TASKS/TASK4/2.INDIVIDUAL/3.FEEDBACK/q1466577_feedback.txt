@@ -1,0 +1,12 @@
+Student ID:  q1466577 
+ Last Name: Ben Krid 
+ First Name: Lynda 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -0.3                 -0.3                 1                   
+2                                         0                    0                   
+3                    20                   20                   1                   
+4                    0.239                -0.18                1                   
+                                                                                   
+Total score =  3 / 4                                                               

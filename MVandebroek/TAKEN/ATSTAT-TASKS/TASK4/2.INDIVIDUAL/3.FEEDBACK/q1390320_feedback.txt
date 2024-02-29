@@ -1,0 +1,12 @@
+Student ID:  q1390320 
+ Last Name: Peeters 
+ First Name: Warre 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         0.285                0                   
+2                                         0                    0                   
+3                                         22                   0                   
+4                                         0.121                0                   
+                                                                                   
+Total score =  0 / 4                                                               

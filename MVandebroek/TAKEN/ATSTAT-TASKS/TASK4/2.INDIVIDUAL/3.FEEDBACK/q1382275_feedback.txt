@@ -1,0 +1,12 @@
+Student ID:  q1382275 
+ Last Name: Peeters 
+ First Name: Yana 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.079                0.079                1                   
+2                    0                    16                   0                   
+3                    23                   23                   1                   
+4                    0.56                 0.131                0                   
+                                                                                   
+Total score =  2 / 4                                                               

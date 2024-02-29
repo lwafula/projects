@@ -1,0 +1,30 @@
+Only respond with a numeric value. Avoid scientific notation. If the result is larger than 1000, round the value to zero decimals. If the result is smaller than 1000, give the number rounded to three decimal places and use a point (.) as decimal separator.
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+The dataset (data1) contains data on the Faculty of Economics and Business in some European universities. There is information on the average experience of the teaching staff (experience), the average age of the staff (age), the number of publications from the faculty (publications), the number of PhD researchers (phds), the number of Masters students (masters), and a ranking measure (ranking, the higher the better). The variable Industry indicates whether the faculty has an affiliation to a company in the industry (Industry = yes), or not (Industry = no).
+----------------------------------------------------------------
+Question 1: Perform a PCA with variables experience, age, publications, phds, masters and ranking. Give the PC score of the 10th observation on the first PC.
+                                                            
+Question 2: Perform an LDA with dependent variable Industry and independent variables phds and masters. Use equal priors. Give the coefficient of the variable masters in the discriminant function.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+The dataset (data2) contains data on five different attributes of participants in a study. All the variables have been standardized.
+----------------------------------------------------------------
+Question 3: Use all the observations in dataset 2. Perform cluster analysis with the method "single" to group the participants. Cut the tree into 5 clusters. How many participants are in the largest cluster?
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+The dataset (data3) contains 23 items on students perceptions towards learning a statistical unit at KU Leuven. Use this to perform an exploratory factor analysis.
+----------------------------------------------------------------
+Question 4: Perform a factor analysis extracting 4 factors with method='ml' and SMC as initial estimates for the communalities. Rotate the factor model with a varimax rotation and give the loading of variable q9 on the third factor.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------

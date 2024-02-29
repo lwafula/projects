@@ -1,0 +1,12 @@
+Student ID:  q1384109 
+ Last Name: Heytens 
+ First Name: Matisse 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -0.522               -0.522               1                   
+2                    1                    18                   0                   
+3                    23                   23                   1                   
+4                    4                    -0.133               0                   
+                                                                                   
+Total score =  2 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1291452 
+ Last Name: Basheer 
+ First Name: Muath 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    0.223                0.223                1                   
+2                    0                    22                   0                   
+3                    10                   10                   1                   
+4                    0.085                0.086                1                   
+                                                                                   
+Total score =  3 / 4                                                               

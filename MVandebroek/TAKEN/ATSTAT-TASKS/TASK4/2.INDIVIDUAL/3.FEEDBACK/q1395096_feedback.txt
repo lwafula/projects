@@ -1,0 +1,12 @@
+Student ID:  q1395096 
+ Last Name: Munteanu 
+ First Name: Nathan 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.592               0                   
+2                                         0.058                0                   
+3                                         23                   0                   
+4                                         0.16                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

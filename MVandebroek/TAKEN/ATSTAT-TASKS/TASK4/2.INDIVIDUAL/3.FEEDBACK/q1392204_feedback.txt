@@ -1,0 +1,12 @@
+Student ID:  q1392204 
+ Last Name: Bamelis 
+ First Name: Charles 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -2.813               0                   
+2                                         21                   0                   
+3                                         14                   0                   
+4                                         0.14                 0                   
+                                                                                   
+Total score =  0 / 4                                                               

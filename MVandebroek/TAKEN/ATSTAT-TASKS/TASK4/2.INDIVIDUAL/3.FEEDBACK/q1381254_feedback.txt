@@ -1,0 +1,12 @@
+Student ID:  q1381254 
+ Last Name: Libbrecht 
+ First Name: Mattice 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.848               -1.848               1                   
+2                    0                    0                    1                   
+3                    12                   12                   1                   
+4                    -0.6                 -0.598               1                   
+                                                                                   
+Total score =  4 / 4                                                               

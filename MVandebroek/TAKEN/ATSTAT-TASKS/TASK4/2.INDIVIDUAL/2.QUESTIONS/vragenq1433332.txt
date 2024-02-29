@@ -1,0 +1,30 @@
+Reageer alleen met een numerieke waarde. Vermijd wetenschappelijke notatie. Als het resultaat groter is dan 1000, rondt u de waarde af op nul decimalen. Als het resultaat kleiner is dan 1000, geef het getal dan afgerond op drie decimalen en gebruik een punt (.) als decimaal scheidingsteken.
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+De dataset (data1) bevat gegevens over de Faculteit Economie en Bedrijfskunde van enkele Europese universiteiten. Er is informatie over de gemiddelde ervaring van het onderwijzend personeel (experience), de gemiddelde leeftijd van het personeel (age), het aantal publicaties van de faculteit (publications), het aantal promovendi (phds), het aantal masterstudenten (masters) en een rangschikkingsmaatstaf (ranking, hoe hoger hoe beter). De variabele Industrie geeft aan of de faculteit een band heeft met een bedrijf uit de sector (Industry = yes), of niet (Industry = no).
+----------------------------------------------------------------
+Vraag 1: Voer een PCA uit met variabelen experience, age, publications, phds, masters en ranking. Geef de PC score van de 20ste observatie op de 2e PC.
+                                                            
+Vraag 2: Voer een LDA met crossvalidatie uit met afhankelijke variabele Industry en onafhankelijke variabelen experience en ranking. Gebruik 0.20 als prior voor industrie (en dus 0.80 als prior voor niet-industrie). Geef het aantal industrie gelieerde faculteiten die worden geklasseerd als niet-industrie.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+De dataset (data2) bevat gegevens over vijf verschillende kenmerken van deelnemers aan een onderzoek. Alle variabelen zijn gestandaardiseerd.
+----------------------------------------------------------------
+Vraag 3: Gebruik alle observaties in dataset 2. Voer een clusteranalyse uit met de methode "single" om de deelnemers te groeperen. Haal hieruit de oplossing met 5 clusters. Hoeveel deelnemers zitten er in de grootste cluster?
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------
+                                                            
+                                                            
+                                                            
+De dataset (data3) bevat 23 items over de percepties van studenten ten aanzien van het leren van een statistische eenheid aan de KU Leuven. Gebruik deze dataset om een verkennende factoranalyse uit te voeren.
+----------------------------------------------------------------
+Vraag 4: Bereken een factormodel met 4 factoren met method = 'ml' en met SMC als initiele schatters voor de communaliteiten. Roteer het factor model met de quartimax methode en geef de lading van variabele q3 op de eerste factor.
+                                                            
+----------------------------------------------------------------
+----------------------------------------------------------------

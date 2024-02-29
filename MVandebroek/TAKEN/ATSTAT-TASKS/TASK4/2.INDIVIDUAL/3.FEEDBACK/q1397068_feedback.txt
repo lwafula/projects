@@ -1,0 +1,12 @@
+Student ID:  q1397068 
+ Last Name: Nackaerts 
+ First Name: Anne-Marit 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.889               -1.889               1                   
+2                    87                   14                   0                   
+3                    14                   14                   1                   
+4                    0.16                 0.159                1                   
+                                                                                   
+Total score =  3 / 4                                                               

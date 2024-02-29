@@ -1,0 +1,12 @@
+Student ID:  q1426875 
+ Last Name: Bossuyt 
+ First Name: Edward 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         2.062                0                   
+2                                         0.042                0                   
+3                                         23                   0                   
+4                                         -0.142               0                   
+                                                                                   
+Total score =  0 / 4                                                               

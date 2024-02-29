@@ -1,0 +1,12 @@
+Student ID:  q1223499 
+ Last Name: Van Kerckhoven 
+ First Name: Jef 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    2.416                2.416                1                   
+2                    0.042                0.042                1                   
+3                    22                   22                   1                   
+4                    0.554                0.554                1                   
+                                                                                   
+Total score =  4 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1130740 
+ Last Name: Poisquet 
+ First Name: Paulien 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.939               0                   
+2                                         16                   0                   
+3                                         19                   0                   
+4                                         -0.09                0                   
+                                                                                   
+Total score =  0 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1693211 
+ Last Name: Bouzouina 
+ First Name: Yasmine Aimina 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.057               -1.057               1                   
+2                    0                    0                    1                   
+3                    23                   23                   1                   
+4                    -0.093               0.113                1                   
+                                                                                   
+Total score =  4 / 4                                                               

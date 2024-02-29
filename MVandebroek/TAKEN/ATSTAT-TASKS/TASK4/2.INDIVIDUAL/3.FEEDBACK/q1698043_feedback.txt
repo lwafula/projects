@@ -1,0 +1,12 @@
+Student ID:  q1698043 
+ Last Name: Amoros 
+ First Name: Achile Oscar Jean 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.584                0                   
+2                                         17                   0                   
+3                                         14                   0                   
+4                                         -0.575               0                   
+                                                                                   
+Total score =  0 / 4                                                               

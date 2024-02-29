@@ -1,0 +1,12 @@
+Student ID:  q1347603 
+ Last Name: Nelissen 
+ First Name: Lowie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         1.181                0                   
+2                                         0                    0                   
+3                                         22                   0                   
+4                                         0.118                0                   
+                                                                                   
+Total score =  0 / 4                                                               

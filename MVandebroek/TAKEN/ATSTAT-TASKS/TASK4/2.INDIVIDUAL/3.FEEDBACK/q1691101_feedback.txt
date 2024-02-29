@@ -1,0 +1,12 @@
+Student ID:  q1691101 
+ Last Name: Akar 
+ First Name: Ezgi 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    4.664                4.664                1                   
+2                    1                    15                   0                   
+3                    21                   21                   1                   
+4                    0.117                0.108                1                   
+                                                                                   
+Total score =  3 / 4                                                               

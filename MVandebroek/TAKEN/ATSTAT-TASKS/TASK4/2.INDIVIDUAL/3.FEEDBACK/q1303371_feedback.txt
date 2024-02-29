@@ -1,0 +1,12 @@
+Student ID:  q1303371 
+ Last Name: De decker 
+ First Name: Wout 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -4.273               -4.273               1                   
+2                    0.056                0.056                1                   
+3                    21                   21                   1                   
+4                    0.14                 0.142                1                   
+                                                                                   
+Total score =  4 / 4                                                               

@@ -1,0 +1,12 @@
+Student ID:  q1693795 
+ Last Name: Gasparro 
+ First Name: Jonah Carmine 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    2.199                2.199                1                   
+2                    14                   14                   1                   
+3                    22                   22                   1                   
+4                    0.09                 -0.091               1                   
+                                                                                   
+Total score =  4 / 4                                                               

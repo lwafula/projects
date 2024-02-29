@@ -1,0 +1,12 @@
+Student ID:  q1318538 
+ Last Name: Meers 
+ First Name: Marie 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -1.255               -1.255               1                   
+2                    0.045                0.045                1                   
+3                    21                   21                   1                   
+4                    -0.11                -0.114               1                   
+                                                                                   
+Total score =  4 / 4                                                               

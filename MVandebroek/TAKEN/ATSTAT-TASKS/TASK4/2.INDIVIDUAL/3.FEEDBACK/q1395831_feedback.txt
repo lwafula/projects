@@ -1,0 +1,12 @@
+Student ID:  q1395831 
+ Last Name: Mertens 
+ First Name: Lars 
+
+
+Question             Your answer          Correct answer       Grade               
+1                                         -0.327               0                   
+2                                         0.06                 0                   
+3                                         23                   0                   
+4                                         0.093                0                   
+                                                                                   
+Total score =  0 / 4                                                               

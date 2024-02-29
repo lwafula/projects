@@ -1,0 +1,12 @@
+Student ID:  q1416060 
+ Last Name: Tanghe 
+ First Name: Margot 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    55.662               0.978                0                   
+2                    1                    19                   0                   
+3                    23                   15                   0                   
+4                    -0.62                -0.619               1                   
+                                                                                   
+Total score =  1 / 4                                                               

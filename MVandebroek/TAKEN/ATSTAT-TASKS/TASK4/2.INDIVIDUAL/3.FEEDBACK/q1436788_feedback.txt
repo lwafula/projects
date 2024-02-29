@@ -1,0 +1,12 @@
+Student ID:  q1436788 
+ Last Name: Hanne 
+ First Name: Thomas 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    1.107                1.107                1                   
+2                                         0.044                0                   
+3                    27                   21                   0                   
+4                    -0.59                -0.579               0                   
+                                                                                   
+Total score =  1 / 4                                                               

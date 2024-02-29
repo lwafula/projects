@@ -1,0 +1,12 @@
+Student ID:  q1595183 
+ Last Name: Zhang 
+ First Name: Ziyun 
+
+
+Question             Your answer          Correct answer       Grade               
+1                    -2.303               -2.303               1                   
+2                    0.04                 0.042                0                   
+3                    18                   18                   1                   
+4                    0.015                -0.055               1                   
+                                                                                   
+Total score =  3 / 4                                                               
