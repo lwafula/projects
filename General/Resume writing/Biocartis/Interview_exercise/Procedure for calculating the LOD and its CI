@@ -1,1 +1,14 @@
+- Fit a model logistic on the data provided to get the parameters
+- Find the predicted hit rates for a range of values; typically between the minimum and maximum values of the variables defined in the data
+- Find the lowest value in the range whose predicted hit rate is greater than or equal to the desired hit rate. call this Estimate.
+- For the hit rate CIs; use the Estimate above to calculate its 95% CI; 
 
+                  n = 24 # there were 24 cartridges at each Input level
+                  ci_wilson_rates = binom.confint(x = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= 0.95)[1], "ypred"]*n, 
+                                  n = n, method = "wilson", conf.level = 0.95)
+- From the above CI;
+  l) find the smallest value in the range whose predicted hit rate is greater than or equal to the lower CI. Call this Lower CI
+                  LCL = ypred_inputLevel[which(ypred_inputLevel[, "ypred"] >= ci_wilson_rates[, c("lower")])[1], "InputLevel"]
+
+  u) find the smallest value in the range whose predicted hit rate is less than or equal to the upper CI. Call this Upper CI
+                  UCL = ypred_inputLevel[tail(which(ypred_inputLevel[, "ypred"] <= ci_wilson_rates[, c("upper")]), 1), "InputLevel"]
